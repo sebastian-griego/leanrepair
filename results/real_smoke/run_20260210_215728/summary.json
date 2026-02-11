@@ -1,0 +1,181 @@
+{
+  "input": "data/real_benchmark_smoke.jsonl",
+  "count": 40,
+  "created_at_utc": "20260210_215728",
+  "Tmax": 6,
+  "timeout_s": 25.0,
+  "policies": {
+    "heuristic": {
+      "count": 40,
+      "solved": 1,
+      "exact": 0,
+      "solve_rate": 0.025,
+      "solve_rate_ci95": [
+        0.004426717407794919,
+        0.1288165948800778
+      ],
+      "exact_rate": 0.0,
+      "exact_rate_ci95": [
+        0.0,
+        0.08762453925039232
+      ],
+      "avg_steps": 1.25,
+      "median_steps": 1.0,
+      "avg_elapsed_ms": 243.35,
+      "by_corruption": {
+        "lowercase_type": {
+          "count": 2,
+          "solved": 0,
+          "exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.0,
+            0.6576280471103807
+          ]
+        },
+        "not_proposition": {
+          "count": 6,
+          "solved": 1,
+          "exact": 0,
+          "solve_rate": 0.16666666666666666,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.030052585871730285,
+            0.563509436563646
+          ]
+        },
+        "parse_missing_colon": {
+          "count": 10,
+          "solved": 0,
+          "exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.0,
+            0.2775401687666165
+          ]
+        },
+        "parse_unbalanced_paren": {
+          "count": 8,
+          "solved": 0,
+          "exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.0,
+            0.3244156195108769
+          ]
+        },
+        "type_mismatch": {
+          "count": 6,
+          "solved": 0,
+          "exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.0,
+            0.3903430336530645
+          ]
+        },
+        "unknown_type_symbol": {
+          "count": 8,
+          "solved": 0,
+          "exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.0,
+            0.3244156195108769
+          ]
+        }
+      }
+    },
+    "research": {
+      "count": 40,
+      "solved": 28,
+      "exact": 10,
+      "solve_rate": 0.7,
+      "solve_rate_ci95": [
+        0.545696893456796,
+        0.819253290843047
+      ],
+      "exact_rate": 0.25,
+      "exact_rate_ci95": [
+        0.14186967895549518,
+        0.40194259066970106
+      ],
+      "avg_steps": 2.525,
+      "median_steps": 2.0,
+      "avg_elapsed_ms": 489.975,
+      "by_corruption": {
+        "lowercase_type": {
+          "count": 2,
+          "solved": 2,
+          "exact": 2,
+          "solve_rate": 1.0,
+          "exact_rate": 1.0,
+          "solve_rate_ci95": [
+            0.3423719528896193,
+            1.0
+          ]
+        },
+        "not_proposition": {
+          "count": 6,
+          "solved": 6,
+          "exact": 0,
+          "solve_rate": 1.0,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.6096569663469354,
+            1.0
+          ]
+        },
+        "parse_missing_colon": {
+          "count": 10,
+          "solved": 2,
+          "exact": 2,
+          "solve_rate": 0.2,
+          "exact_rate": 0.2,
+          "solve_rate_ci95": [
+            0.05668094798069328,
+            0.5098431532792767
+          ]
+        },
+        "parse_unbalanced_paren": {
+          "count": 8,
+          "solved": 7,
+          "exact": 6,
+          "solve_rate": 0.875,
+          "exact_rate": 0.75,
+          "solve_rate_ci95": [
+            0.5291051942301385,
+            0.9775830911367039
+          ]
+        },
+        "type_mismatch": {
+          "count": 6,
+          "solved": 6,
+          "exact": 0,
+          "solve_rate": 1.0,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.6096569663469354,
+            1.0
+          ]
+        },
+        "unknown_type_symbol": {
+          "count": 8,
+          "solved": 5,
+          "exact": 0,
+          "solve_rate": 0.625,
+          "exact_rate": 0.0,
+          "solve_rate_ci95": [
+            0.3057378545838018,
+            0.863158240538479
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "runs": [
+    "results/paper/run_20260210_212752",
+    "results/paper/run_20260210_212939",
+    "results/paper/run_20260210_213126"
+  ],
+  "n_runs": 3,
+  "policies": {
+    "heuristic": {
+      "solve_rate_mean": 0.3333333333333333,
+      "solve_rate_std": 0.0,
+      "exact_rate_mean": 0.0,
+      "exact_rate_std": 0.0,
+      "avg_steps_mean": 1.1666666666666667,
+      "avg_steps_std": 0.0,
+      "avg_elapsed_ms_mean": 225.38222222222223,
+      "avg_elapsed_ms_std": 0.020608041101109382,
+      "by_corruption": {
+        "lowercase_type": {
+          "solve_rate_mean": 0.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 0.0,
+          "exact_rate_std": 0.0
+        },
+        "not_proposition": {
+          "solve_rate_mean": 1.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 0.0,
+          "exact_rate_std": 0.0
+        },
+        "parse_missing_colon": {
+          "solve_rate_mean": 0.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 0.0,
+          "exact_rate_std": 0.0
+        },
+        "parse_unbalanced_paren": {
+          "solve_rate_mean": 0.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 0.0,
+          "exact_rate_std": 0.0
+        },
+        "type_mismatch": {
+          "solve_rate_mean": 0.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 0.0,
+          "exact_rate_std": 0.0
+        },
+        "unknown_type_symbol": {
+          "solve_rate_mean": 1.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 0.0,
+          "exact_rate_std": 0.0
+        }
+      }
+    },
+    "research": {
+      "solve_rate_mean": 1.0,
+      "solve_rate_std": 0.0,
+      "exact_rate_mean": 0.6666666666666666,
+      "exact_rate_std": 0.0,
+      "avg_steps_mean": 1.8333333333333333,
+      "avg_steps_std": 0.0,
+      "avg_elapsed_ms_mean": 354.4888888888889,
+      "avg_elapsed_ms_std": 0.3405260998680804,
+      "by_corruption": {
+        "lowercase_type": {
+          "solve_rate_mean": 1.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 1.0,
+          "exact_rate_std": 0.0
+        },
+        "not_proposition": {
+          "solve_rate_mean": 1.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 0.0,
+          "exact_rate_std": 0.0
+        },
+        "parse_missing_colon": {
+          "solve_rate_mean": 1.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 1.0,
+          "exact_rate_std": 0.0
+        },
+        "parse_unbalanced_paren": {
+          "solve_rate_mean": 1.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 1.0,
+          "exact_rate_std": 0.0
+        },
+        "type_mismatch": {
+          "solve_rate_mean": 1.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 1.0,
+          "exact_rate_std": 0.0
+        },
+        "unknown_type_symbol": {
+          "solve_rate_mean": 1.0,
+          "solve_rate_std": 0.0,
+          "exact_rate_mean": 0.0,
+          "exact_rate_std": 0.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "runs": [
+    "results/paper_v2/run_20260210_213407",
+    "results/paper_v2/run_20260210_213601",
+    "results/paper_v2/run_20260210_213754"
+  ],
+  "n_runs": 3,
+  "per_run": {
+    "run_20260210_213407": {
+      "heuristic": {
+        "solve_rate": 0.25333333333333335,
+        "exact_rate": 0.0,
+        "avg_steps": 1.21,
+        "avg_elapsed_ms": 233.31
+      },
+      "research": {
+        "solve_rate": 0.9866666666666667,
+        "exact_rate": 0.44666666666666666,
+        "avg_steps": 1.9566666666666668,
+        "avg_elapsed_ms": 377.49666666666667
+      }
+    },
+    "run_20260210_213601": {
+      "heuristic": {
+        "solve_rate": 0.29,
+        "exact_rate": 0.0,
+        "avg_steps": 1.2333333333333334,
+        "avg_elapsed_ms": 237.80666666666667
+      },
+      "research": {
+        "solve_rate": 0.9933333333333333,
+        "exact_rate": 0.47,
+        "avg_steps": 1.9433333333333334,
+        "avg_elapsed_ms": 374.84
+      }
+    },
+    "run_20260210_213754": {
+      "heuristic": {
+        "solve_rate": 0.31666666666666665,
+        "exact_rate": 0.0,
+        "avg_steps": 1.2766666666666666,
+        "avg_elapsed_ms": 246.21666666666667
+      },
+      "research": {
+        "solve_rate": 0.99,
+        "exact_rate": 0.45,
+        "avg_steps": 1.96,
+        "avg_elapsed_ms": 378.1933333333333
+      }
+    }
+  },
+  "policies": {
+    "heuristic": {
+      "solve_rate_mean": 0.2866666666666667,
+      "solve_rate_std": 0.025962936545662035,
+      "exact_rate_mean": 0.0,
+      "exact_rate_std": 0.0,
+      "avg_steps_mean": 1.24,
+      "avg_steps_std": 0.02762178421034677,
+      "avg_elapsed_ms_mean": 239.11111111111111,
+      "avg_elapsed_ms_std": 5.349248706911566
+    },
+    "research": {
+      "solve_rate_mean": 0.99,
+      "solve_rate_std": 0.002721655269759059,
+      "exact_rate_mean": 0.45555555555555555,
+      "exact_rate_std": 0.01030402055055077,
+      "avg_steps_mean": 1.9533333333333334,
+      "avg_steps_std": 0.007200822998230951,
+      "avg_elapsed_ms_mean": 376.8433333333333,
+      "avg_elapsed_ms_std": 1.444840116747522
+    }
+  }
+}

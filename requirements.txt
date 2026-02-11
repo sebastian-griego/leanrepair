@@ -1,0 +1,5 @@
+# LeanRepair dependencies
+# Core dependencies: Python 3.10+ standard library only
+
+# Development/Testing dependencies
+pytest>=7.0.0
