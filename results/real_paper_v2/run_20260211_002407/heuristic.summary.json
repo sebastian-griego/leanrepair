@@ -1,0 +1,86 @@
+{
+  "count": 300,
+  "solved": 29,
+  "exact": 0,
+  "solve_rate": 0.09666666666666666,
+  "solve_rate_ci95": [
+    0.06814985592393716,
+    0.13538251094090295
+  ],
+  "exact_rate": 0.0,
+  "exact_rate_ci95": [
+    0.0,
+    0.012643429997735661
+  ],
+  "avg_steps": 1.34,
+  "median_steps": 1.0,
+  "avg_elapsed_ms": 260.51,
+  "by_corruption": {
+    "lowercase_type": {
+      "count": 42,
+      "solved": 0,
+      "exact": 0,
+      "solve_rate": 0.0,
+      "exact_rate": 0.0,
+      "solve_rate_ci95": [
+        0.0,
+        0.08380161250916197
+      ]
+    },
+    "not_proposition": {
+      "count": 64,
+      "solved": 29,
+      "exact": 0,
+      "solve_rate": 0.453125,
+      "exact_rate": 0.0,
+      "solve_rate_ci95": [
+        0.33729251486034373,
+        0.5742661747932022
+      ]
+    },
+    "parse_missing_colon": {
+      "count": 49,
+      "solved": 0,
+      "exact": 0,
+      "solve_rate": 0.0,
+      "exact_rate": 0.0,
+      "solve_rate_ci95": [
+        0.0,
+        0.07270029673590504
+      ]
+    },
+    "parse_unbalanced_paren": {
+      "count": 50,
+      "solved": 0,
+      "exact": 0,
+      "solve_rate": 0.0,
+      "exact_rate": 0.0,
+      "solve_rate_ci95": [
+        0.0,
+        0.07135003417431873
+      ]
+    },
+    "type_mismatch": {
+      "count": 50,
+      "solved": 0,
+      "exact": 0,
+      "solve_rate": 0.0,
+      "exact_rate": 0.0,
+      "solve_rate_ci95": [
+        0.0,
+        0.07135003417431873
+      ]
+    },
+    "unknown_type_symbol": {
+      "count": 45,
+      "solved": 0,
+      "exact": 0,
+      "solve_rate": 0.0,
+      "exact_rate": 0.0,
+      "solve_rate_ci95": [
+        0.0,
+        0.07865426194064076
+      ]
+    }
+  }
+}

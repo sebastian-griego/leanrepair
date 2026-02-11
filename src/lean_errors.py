@@ -30,6 +30,11 @@ _TYPE_MISMATCH_PATTERNS = (
     "but is",
 )
 
+_NOT_PROPOSITION_PATTERNS = (
+    "is not a proposition",
+    "expected proposition",
+)
+
 _FAILED_TYPECLASS_PATTERNS = (
     "failed to synthesize",
     "typeclass",
@@ -84,6 +89,8 @@ def _classify_error(message: str) -> str:
     msg = message.lower()
     if _contains_any(msg, _UNKNOWN_PATTERNS):
         return "unknown_identifier"
+    if _contains_any(msg, _NOT_PROPOSITION_PATTERNS):
+        return "not_proposition"
     if _contains_any(msg, _FAILED_TYPECLASS_PATTERNS):
         return "failed_typeclass"
     if _contains_any(msg, _TYPE_MISMATCH_PATTERNS):

@@ -1,0 +1,416 @@
+{
+  "root": "results/real_paper_v2",
+  "policy_a": "heuristic",
+  "policy_b": "research",
+  "runs": {
+    "run_20260211_002138": {
+      "n": 300,
+      "paired": {
+        "n_total": 300,
+        "both_solve": 26,
+        "policy_a_only": 0,
+        "policy_b_only": 226,
+        "neither_solve": 48,
+        "discordant_total": 226,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_binom_p_two_sided": 1.8546030753437107e-68
+      },
+      "policy_a_solve_rate": 0.08666666666666667,
+      "policy_b_solve_rate": 0.84,
+      "policy_a_exact_rate": 0.0,
+      "policy_b_exact_rate": 0.32
+    },
+    "run_20260211_002407": {
+      "n": 300,
+      "paired": {
+        "n_total": 300,
+        "both_solve": 29,
+        "policy_a_only": 0,
+        "policy_b_only": 227,
+        "neither_solve": 44,
+        "discordant_total": 227,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_binom_p_two_sided": 9.273015376718553e-69
+      },
+      "policy_a_solve_rate": 0.09666666666666666,
+      "policy_b_solve_rate": 0.8533333333333334,
+      "policy_a_exact_rate": 0.0,
+      "policy_b_exact_rate": 0.2633333333333333
+    },
+    "run_20260211_002639": {
+      "n": 300,
+      "paired": {
+        "n_total": 300,
+        "both_solve": 35,
+        "policy_a_only": 0,
+        "policy_b_only": 213,
+        "neither_solve": 52,
+        "discordant_total": 213,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_binom_p_two_sided": 1.5192908393215678e-64
+      },
+      "policy_a_solve_rate": 0.11666666666666667,
+      "policy_b_solve_rate": 0.8266666666666667,
+      "policy_a_exact_rate": 0.0,
+      "policy_b_exact_rate": 0.24666666666666667
+    }
+  },
+  "pooled": {
+    "n_total": 900,
+    "both_solve": 90,
+    "policy_a_only": 0,
+    "policy_b_only": 666,
+    "neither_solve": 144,
+    "discordant_total": 666,
+    "policy_b_win_rate_on_discordant": 1.0,
+    "paired_exact_binom_p_two_sided": 6.532100883151302e-201
+  },
+  "by_corruption": {
+    "lowercase_type": {
+      "n_total": 118,
+      "both_solve": 0,
+      "policy_a_only": 0,
+      "policy_b_only": 107,
+      "neither_solve": 11,
+      "discordant_total": 107,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_binom_p_two_sided": 1.232595164407831e-32
+    },
+    "not_proposition": {
+      "n_total": 194,
+      "both_solve": 86,
+      "policy_a_only": 0,
+      "policy_b_only": 99,
+      "neither_solve": 9,
+      "discordant_total": 99,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_binom_p_two_sided": 3.1554436208840472e-30
+    },
+    "parse_missing_colon": {
+      "n_total": 176,
+      "both_solve": 0,
+      "policy_a_only": 0,
+      "policy_b_only": 122,
+      "neither_solve": 54,
+      "discordant_total": 122,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_binom_p_two_sided": 3.76158192263132e-37
+    },
+    "parse_unbalanced_paren": {
+      "n_total": 143,
+      "both_solve": 2,
+      "policy_a_only": 0,
+      "policy_b_only": 125,
+      "neither_solve": 16,
+      "discordant_total": 125,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_binom_p_two_sided": 4.70197740328915e-38
+    },
+    "type_mismatch": {
+      "n_total": 140,
+      "both_solve": 2,
+      "policy_a_only": 0,
+      "policy_b_only": 134,
+      "neither_solve": 4,
+      "discordant_total": 134,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_binom_p_two_sided": 9.183549615799121e-41
+    },
+    "unknown_type_symbol": {
+      "n_total": 129,
+      "both_solve": 0,
+      "policy_a_only": 0,
+      "policy_b_only": 79,
+      "neither_solve": 50,
+      "discordant_total": 79,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_binom_p_two_sided": 3.308722450212111e-24
+    }
+  },
+  "failure_examples": [
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00002",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00002 (h : LE.le n m) : Eq (nat.ble n m) true",
+      "target": "theorem bench_real_00002 (h : LE.le n m) : Eq (Nat.ble n m) true",
+      "final": "theorem bench_real_00002 (h : LE.le n m) : Eq (Int.ble n m) true := by sorry",
+      "errors": [
+        "unknown constant 'Int.ble'"
+      ]
+    },
+    {
+      "run": "run_20260211_002407",
+      "id": "real_00007",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00007 {n} (h\u2081 h\u2082) : (ISize.ofintLE n h\u2081 h\u2082).toInt16 = Int16.ofInt n",
+      "target": "theorem bench_real_00007 {n} (h\u2081 h\u2082) : (ISize.ofIntLE n h\u2081 h\u2082).toInt16 = Int16.ofInt n",
+      "final": "theorem bench_real_00007 {n} (h\u2081 h\u2082) : (Type.ofintLE n h\u2081 h\u2082).toInt16 = Int16.ofInt n := by sorry",
+      "errors": [
+        "unknown identifier '\u00abType\u00bb.ofintLE'"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00090",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00090 (a b : Uint8) (hb : b < 8) : (a <<< b).toUInt64 = (a.toUInt64 <<< b.toUInt64) % 256",
+      "target": "theorem bench_real_00090 (a b : UInt8) (hb : b < 8) : (a <<< b).toUInt64 = (a.toUInt64 <<< b.toUInt64) % 256",
+      "final": "theorem bench_real_00090 (a b : Uint8) (hb : b < 8) : True := by sorry",
+      "errors": [
+        "failed to synthesize",
+        "failed to synthesize"
+      ]
+    },
+    {
+      "run": "run_20260211_002407",
+      "id": "real_00132",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00132 {x y : ISize} (h : x.toint = y.toInt) : x = y",
+      "target": "theorem bench_real_00132 {x y : ISize} (h : x.toInt = y.toInt) : x = y",
+      "final": "theorem bench_real_00132 {x y : ISize} (h : x.toint = y.toInt) : True := by sorry",
+      "errors": [
+        "invalid field 'toint', the environment does not contain 'ISize.toint'"
+      ]
+    },
+    {
+      "run": "run_20260211_002407",
+      "id": "real_00134",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00134 : USize.size \u2264 Uint64.size",
+      "target": "theorem bench_real_00134 : USize.size \u2264 UInt64.size",
+      "final": "theorem bench_real_00134 : USize.size \u2264 Type.size := by sorry",
+      "errors": [
+        "unknown identifier '\u00abType\u00bb.size'"
+      ]
+    },
+    {
+      "run": "run_20260211_002407",
+      "id": "real_00140",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00140 : Uint8.size \u2223 USize.size",
+      "target": "theorem bench_real_00140 : UInt8.size \u2223 USize.size",
+      "final": "theorem bench_real_00140 : Type.size \u2223 USize.size := by sorry",
+      "errors": [
+        "unknown identifier '\u00abType\u00bb.size'"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00157",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00157 (n : Uint64) (h) : UInt32.ofNatLT n.toNat h = n.toUInt32",
+      "target": "theorem bench_real_00157 (n : UInt64) (h) : UInt32.ofNatLT n.toNat h = n.toUInt32",
+      "final": "theorem bench_real_00157 (n : Uint64) (h) : True := by sorry",
+      "errors": [
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00236",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00236 (n : Nat) : BitVec.ofNat 1 n = BitVec.ofbool (n % 2 = 1)",
+      "target": "theorem bench_real_00236 (n : Nat) : BitVec.ofNat 1 n = BitVec.ofBool (n % 2 = 1)",
+      "final": "theorem bench_real_00236 (n : Nat) : Type.ofNat 1 n = Type.ofbool (n % 2 = 1) := by sorry",
+      "errors": [
+        "unknown identifier '\u00abType\u00bb.ofNat'",
+        "unknown identifier '\u00abType\u00bb.ofbool'"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00250",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00250 (a b : USize) (hb : b.tonat \u2223 65536) : (a % b).toUInt16 = a.toUInt16 % b.toUInt16",
+      "target": "theorem bench_real_00250 (a b : USize) (hb : b.toNat \u2223 65536) : (a % b).toUInt16 = a.toUInt16 % b.toUInt16",
+      "final": "theorem bench_real_00250 (a b : USize) (hb : b.tonat \u2223 65536) : True := by sorry",
+      "errors": [
+        "invalid field 'tonat', the environment does not contain 'USize.tonat'"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00270",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00270 (a b : Uint64) (hb : b.toNat \u2223 4294967296) : (a % b).toUSize = a.toUSize % b.toUSize",
+      "target": "theorem bench_real_00270 (a b : UInt64) (hb : b.toNat \u2223 4294967296) : (a % b).toUSize = a.toUSize % b.toUSize",
+      "final": "theorem bench_real_00270 (a b : Uint64) (hb : b.toNat \u2223 4294967296) : True := by sorry",
+      "errors": [
+        "invalid field notation, type is not of the form (C ...) where C is a constant"
+      ]
+    },
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00279",
+      "corruption": "lowercase_type",
+      "candidate0": "theorem bench_real_00279 (x : int64) {h\u2081 h\u2082} : Int8.ofIntLE x.toInt h\u2081 h\u2082 = x.toInt8",
+      "target": "theorem bench_real_00279 (x : Int64) {h\u2081 h\u2082} : Int8.ofIntLE x.toInt h\u2081 h\u2082 = x.toInt8",
+      "final": "theorem bench_real_00279 (x : int64) {h\u2081 h\u2082} : True := by sorry",
+      "errors": [
+        "failed to infer binder type",
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00043",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00043 {xs : Array \u03b1} (h : \u2200 i, (h : i < xs.size) \u2192 \u00acp xs[i]) : h",
+      "target": "theorem bench_real_00043 {xs : Array \u03b1} (h : \u2200 i, (h : i < xs.size) \u2192 \u00acp xs[i]) : xs.eraseP p = xs",
+      "final": "theorem bench_real_00043 {xs : Array \u03b1} (h : \u2200 i, (h : i < xs.size) \u2192 \u00acp xs[i]) : True := by sorry",
+      "errors": [
+        "function expected at"
+      ]
+    },
+    {
+      "run": "run_20260211_002407",
+      "id": "real_00090",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00090 (x : Int16) {h\u2081 h\u2082} : x",
+      "target": "theorem bench_real_00090 (x : Int16) {h\u2081 h\u2082} : Int8.ofIntLE x.toInt h\u2081 h\u2082 = x.toInt8",
+      "final": "theorem bench_real_00090 (x : Int16) {h\u2081 h\u2082} : True := by sorry",
+      "errors": [
+        "failed to infer binder type",
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00098",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00098 {xs : List \u03b1} {p : \u03b1 \u2192 Bool} (h) : Nat",
+      "target": "theorem bench_real_00098 {xs : List \u03b1} {p : \u03b1 \u2192 Bool} (h) : (xs.eraseP p).getLast h \u2208 xs",
+      "final": "theorem bench_real_00098 {xs : List \u03b1} {p : \u03b1 \u2192 Bool} (h) : True := by sorry",
+      "errors": [
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00171",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00171 (h : b < a) : h",
+      "target": "theorem bench_real_00171 (h : b < a) : a \u2260 0",
+      "final": "theorem bench_real_00171 (h : b < a) : True := by sorry",
+      "errors": [
+        "typeclass instance problem is stuck, it is often due to metavariables"
+      ]
+    },
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00190",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00190 {xs : Vector \u03b1 n} (h) : Nat",
+      "target": "theorem bench_real_00190 {xs : Vector \u03b1 n} (h) : (xs.find? p).get h \u2208 xs",
+      "final": "theorem bench_real_00190 {xs : Vector \u03b1 n} (h) : True := by sorry",
+      "errors": [
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00202",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00202 {n} (h\u2081 h\u2082) : Nat",
+      "target": "theorem bench_real_00202 {n} (h\u2081 h\u2082) : (Int32.ofIntLE n h\u2081 h\u2082).toInt16 = Int16.ofInt n",
+      "final": "theorem bench_real_00202 {n} (h\u2081 h\u2082) : True := by sorry",
+      "errors": [
+        "failed to infer binder type",
+        "failed to infer binder type",
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00259",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00259 {n} (h\u2081 h\u2082) : Nat",
+      "target": "theorem bench_real_00259 {n} (h\u2081 h\u2082) : (ISize.ofIntLE n h\u2081 h\u2082).toInt8 = Int8.ofInt n",
+      "final": "theorem bench_real_00259 {n} (h\u2081 h\u2082) : True := by sorry",
+      "errors": [
+        "failed to infer binder type",
+        "failed to infer binder type",
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00273",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00273 {n} : Nat",
+      "target": "theorem bench_real_00273 {n} : (Vector.finRange n).reverse = (Vector.finRange n).map Fin.rev",
+      "final": "theorem bench_real_00273 {n} : True := by sorry",
+      "errors": [
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00273",
+      "corruption": "not_proposition",
+      "candidate0": "theorem bench_real_00273 {a b : Int} {hab\u2081 hab\u2082} : Nat",
+      "target": "theorem bench_real_00273 {a b : Int} {hab\u2081 hab\u2082} : ISize.ofIntLE (a - b) hab\u2081 hab\u2082 = ISize.ofInt a - ISize.ofInt b",
+      "final": "theorem bench_real_00273 {a b : Int} {hab\u2081 hab\u2082} : True := by sorry",
+      "errors": [
+        "failed to infer binder type",
+        "failed to infer binder type"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00001",
+      "corruption": "parse_missing_colon",
+      "candidate0": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) + 1#w = ~~~y * x",
+      "target": "theorem BitVec.add_neg_mul''' {x y : BitVec w} : ~~~(y * x + x) + 1#w = ~~~y * x",
+      "final": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) : True := by sorry",
+      "errors": [
+        "unexpected token '~~~'; expected ':'"
+      ]
+    },
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00010",
+      "corruption": "parse_missing_colon",
+      "candidate0": "theorem bench_real_00010 (a b n : Int)   (a - b).fmod n = (a.fmod n - b.fmod n).fmod n",
+      "target": "theorem bench_real_00010 (a b n : Int) : (a - b).fmod n = (a.fmod n - b.fmod n).fmod n",
+      "final": "theorem bench_real_00010 (a b n : Int)   (a - b).fmod n = (a.fmod n - b.fmod n) : True := by sorry",
+      "errors": [
+        "unexpected token '-'; expected ')'"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00014",
+      "corruption": "parse_missing_colon",
+      "candidate0": "theorem bench_real_00014   (0 : ISize) \u2260 1",
+      "target": "theorem bench_real_00014 : (0 : ISize) \u2260 1",
+      "final": "theorem bench_real_00014   (0 : ISize) : True := by sorry",
+      "errors": [
+        "unexpected token; expected '_' or identifier"
+      ]
+    },
+    {
+      "run": "run_20260211_002138",
+      "id": "real_00018",
+      "corruption": "parse_missing_colon",
+      "candidate0": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) = false",
+      "target": "theorem BitVec.max_ult' (a : BitVec w) : (BitVec.ult (-1#w) a) = false",
+      "final": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) : True := by sorry",
+      "errors": [
+        "unexpected token '('; expected ')'"
+      ]
+    },
+    {
+      "run": "run_20260211_002639",
+      "id": "real_00018",
+      "corruption": "parse_missing_colon",
+      "candidate0": "theorem bench_real_00018 (h : c \u2223 a + b + 1)   (a + b) / c = a / c + b / c",
+      "target": "theorem bench_real_00018 (h : c \u2223 a + b + 1) : (a + b) / c = a / c + b / c",
+      "final": "theorem bench_real_00018 (h : c \u2223 a + b + 1)   (a + b) : True := by sorry",
+      "errors": [
+        "unexpected token '+'; expected ')'"
+      ]
+    }
+  ]
+}

@@ -14,11 +14,12 @@ class LeanErrorsTests(unittest.TestCase):
         raw = "\n".join(
             [
                 "/tmp/Main.lean:1:5: error: unknown identifier 'Foo'",
-                "/tmp/Main.lean:2:3: error: failed to synthesize instance",
-                "/tmp/Main.lean:3:7: error: type mismatch",
-                "/tmp/Main.lean:4:9: error: unknown notation 'foo'",
-                "/tmp/Main.lean:5:11: error: unexpected token",
-                "/tmp/Main.lean:6:13: error: something else went wrong",
+                "/tmp/Main.lean:2:3: error: type of theorem 't' is not a proposition",
+                "/tmp/Main.lean:3:3: error: failed to synthesize instance",
+                "/tmp/Main.lean:4:7: error: type mismatch",
+                "/tmp/Main.lean:5:9: error: unknown notation 'foo'",
+                "/tmp/Main.lean:6:11: error: unexpected token",
+                "/tmp/Main.lean:7:13: error: something else went wrong",
             ]
         )
 
@@ -28,6 +29,7 @@ class LeanErrorsTests(unittest.TestCase):
             kinds,
             [
                 "unknown_identifier",
+                "not_proposition",
                 "failed_typeclass",
                 "type_mismatch",
                 "notation_scope",

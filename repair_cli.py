@@ -4,10 +4,13 @@ import argparse
 import json
 from pathlib import Path
 import sys
-from typing import Iterable
+
+# Add src directory to path for module imports
+_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(_ROOT / "src"))
 
 import repair_loop as rl
-from llm_policy import HeuristicPolicy, OpenAIChatPolicy, LLMPolicy
+from llm_policy import HeuristicPolicy, OpenAIChatPolicy, ResearchHeuristicPolicy, LLMPolicy
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -15,10 +18,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--input", required=True, help="Path to input JSONL")
     parser.add_argument("--output", required=True, help="Path to output JSONL")
     parser.add_argument("--Tmax", type=int, default=3, help="Maximum repair steps per item")
-    parser.add_argument("--timeout-s", type=float, default=2.0, help="Lean check timeout in seconds")
+    parser.add_argument("--timeout-s", type=float, default=20.0, help="Lean check timeout in seconds")
     parser.add_argument(
         "--policy",
-        choices=("heuristic", "openai"),
+        choices=("heuristic", "research", "openai"),
         default="heuristic",
         help="Policy backend",
     )
@@ -43,7 +46,7 @@ def run_dataset(
     timeout_s: float,
     policy: LLMPolicy,
 ) -> None:
-    policy_fn = lambda nl, ctx, cand, result: policy.propose(nl, ctx, cand, result)
+    policy_fn = lambda nl, ctx, cand, result: policy.propose_many(nl, ctx, cand, result)
 
     with input_path.open("r", encoding="utf-8") as handle:
         lines = handle.readlines()
@@ -72,6 +75,8 @@ def run_dataset(
 def _make_policy(kind: str) -> LLMPolicy:
     if kind == "openai":
         return OpenAIChatPolicy(fallback=HeuristicPolicy())
+    if kind == "research":
+        return ResearchHeuristicPolicy()
     return HeuristicPolicy()
 
 
