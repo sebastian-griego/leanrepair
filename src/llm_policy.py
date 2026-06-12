@@ -508,7 +508,33 @@ def _extract_candidate(text: str) -> str:
                 cleaned = lines[1].strip() if len(lines) > 1 else ""
             else:
                 cleaned = code_block
-    return cleaned
+    return _extract_lean_header(cleaned)
+
+
+def _extract_lean_header(text: str) -> str:
+    lines = text.strip().splitlines()
+    start_idx = None
+    for idx, line in enumerate(lines):
+        if re.match(r"^\s*(theorem|lemma)\b", line):
+            start_idx = idx
+            break
+    if start_idx is None:
+        return text.strip()
+
+    header_lines: list[str] = []
+    for line in lines[start_idx:]:
+        if header_lines and re.match(r"^\s*(theorem|lemma)\b", line):
+            break
+        if not header_lines and not line.strip():
+            continue
+        header_lines.append(line.rstrip())
+        if ":=" in line:
+            break
+
+    header = "\n".join(header_lines).strip()
+    if ":=" in header:
+        header = header.split(":=", 1)[0].rstrip()
+    return header
 
 
 def _format_errors(result: lc.CheckResult) -> str:

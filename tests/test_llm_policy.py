@@ -46,6 +46,29 @@ class LLMPolicyTests(unittest.TestCase):
         text = "```lean4\ntheorem bar (x : Nat) : Nat\n```"
         self.assertEqual(_extract_candidate(text), "theorem bar (x : Nat) : Nat")
 
+    def test_extract_candidate_drops_imports_and_proof_body(self):
+        text = """```lean
+import Mathlib
+
+theorem foo (n : Nat) : n = n := by
+  rfl
+```"""
+        self.assertEqual(_extract_candidate(text), "theorem foo (n : Nat) : n = n")
+
+    def test_extract_candidate_keeps_multiline_header(self):
+        text = """Here is the repair:
+
+```lean
+lemma foo
+    (n : Nat)
+    : n = n := by
+  rfl
+```"""
+        self.assertEqual(
+            _extract_candidate(text),
+            "lemma foo\n    (n : Nat)\n    : n = n",
+        )
+
     def test_research_policy_returns_multiple_candidates(self):
         policy = ResearchHeuristicPolicy()
         result = lc.CheckResult(

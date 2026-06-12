@@ -119,6 +119,7 @@ Environment variables:
 - `OPENAI_PROJECT`: Project ID (optional)
 
 The OpenAI policy falls back to heuristic repairs if the API is unavailable or returns invalid responses.
+When a model returns a Lean code block with imports or a proof body, LeanRepair extracts the theorem/lemma header and then runs the same sanitizer used by the local policies.
 
 ## Research Workflow
 
