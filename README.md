@@ -20,7 +20,7 @@ LeanRepair takes incomplete or incorrect Lean theorem/lemma declarations and:
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/leanrepair.git
+git clone https://github.com/sebastian-griego/leanrepair.git
 cd leanrepair
 pip install -r requirements.txt
 ```
@@ -251,6 +251,9 @@ leanrepair/
 pip install pytest
 python -m pytest tests/ -v
 ```
+
+CI runs the unit tests on supported Python versions. The tests mock Lean calls
+where possible so they can exercise repair logic without requiring API keys.
 
 ## License
 
