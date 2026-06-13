@@ -173,6 +173,11 @@ done
 python scripts/analyze_paired_results.py --root results/real_paper --policy-a heuristic --policy-b research
 ```
 
+The paired analyzer reports coverage before comparing policies, so unmatched
+rows are visible instead of being silently dropped. Use `--strict-pairs` to
+fail a run with missing policy outputs, and tune `--bootstrap-samples`/`--seed`
+to reproduce confidence intervals for solve-rate and exact-rate lift.
+
 Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 
 - Per-policy traces: `heuristic.jsonl`, `research.jsonl`
