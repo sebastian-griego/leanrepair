@@ -43,7 +43,7 @@ def analyze_records(
     examples: list[dict[str, Any]] = []
 
     for row in records:
-        prepared = _prepare_record(row, token_recall_floor=token_recall_floor)
+        prepared = classify_record(row, token_recall_floor=token_recall_floor)
         solved += int(prepared["ok"])
         exact += int(prepared["exact"])
         degenerate += int(prepared["degenerate"])
@@ -94,6 +94,14 @@ def analyze_records(
             for item in examples[: max(0, int(max_examples))]
         ],
     }
+
+
+def classify_record(
+    row: dict[str, Any],
+    *,
+    token_recall_floor: float = 0.2,
+) -> dict[str, Any]:
+    return _prepare_record(row, token_recall_floor=token_recall_floor)
 
 
 def analyze_run_dir(
@@ -491,6 +499,7 @@ __all__ = [
     "analyze_records",
     "analyze_root",
     "analyze_run_dir",
+    "classify_record",
     "format_markdown",
     "load_jsonl",
 ]

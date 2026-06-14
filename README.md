@@ -178,6 +178,7 @@ python scripts/analyze_budget_curve.py --root results/real_paper --policies heur
 python scripts/analyze_exactness_gap.py --root results/real_paper --policies heuristic research
 python scripts/analyze_semantic_drift.py --root results/real_paper --policies heuristic research
 python scripts/analyze_quality_summary.py --root results/real_paper --policies heuristic research
+python scripts/analyze_strict_replay.py --root results/real_paper --policies heuristic research
 ```
 
 The paired analyzer reports coverage before comparing policies, so unmatched
@@ -195,6 +196,7 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Exactness gap: `exactness_gap.json`, `exactness_gap.md`
 - Semantic drift audit: `semantic_drift.json`, `semantic_drift.md`
 - Quality-adjusted summary: `quality_summary.json`, `quality_summary.md`
+- Strict replay audit: `strict_replay.json`, `strict_replay.md`
 
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
@@ -207,6 +209,7 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - `research` solve `84.0%` (95% CI `[81.5, 86.2]`)
 - Paired test (`research` vs `heuristic`): exact two-sided binomial `p = 6.532e-201`
 - Semantic drift audit: `research` has `501/756` solved outputs classified as degenerate (`338` `True` goals, `157` reflexive equalities, `6` low-retention goals), leaving `255/900` nondegenerate solved headers.
+- Strict replay audit: filtering degenerate accepted fixes preserves all `249` exact `research` repairs while reducing raw `research` solves from `756/900` to `255/900`; no existing trace contains a later nondegenerate accepted candidate after a degenerate one.
 
 Per-run artifacts are available under `results/real_paper_v2/run_*/`.
 

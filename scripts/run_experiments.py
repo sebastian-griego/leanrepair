@@ -21,6 +21,7 @@ import quality_analysis as qa  # noqa: E402
 import repair_cli as rc  # noqa: E402
 import repair_loop as rl  # noqa: E402
 import semantic_drift_analysis as sda  # noqa: E402
+import strict_replay_analysis as sra  # noqa: E402
 import trace_analysis as ta  # noqa: E402
 
 
@@ -76,6 +77,7 @@ def main(argv: list[str] | None = None) -> int:
     _write_exactness_gap(run_dir, args.policies)
     _write_semantic_drift(run_dir, args.policies)
     _write_quality_summary(run_dir, args.policies)
+    _write_strict_replay(run_dir, args.policies)
 
     print(f"Wrote experiment outputs to {run_dir}")
     return 0
@@ -277,6 +279,18 @@ def _write_quality_summary(run_dir: Path, policies: list[str]) -> None:
     )
     (run_dir / "quality_summary.md").write_text(
         qa.format_markdown(summary) + "\n",
+        encoding="utf-8",
+    )
+
+
+def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
+    summary = sra.analyze_run_dir(run_dir, policies, max_examples=20)
+    (run_dir / "strict_replay.json").write_text(
+        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
+        encoding="utf-8",
+    )
+    (run_dir / "strict_replay.md").write_text(
+        sra.format_markdown(summary) + "\n",
         encoding="utf-8",
     )
 
