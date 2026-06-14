@@ -239,6 +239,12 @@ reports:
 python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2
 ```
 
+Verify the checked-in snapshot is current without rewriting it:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2 --check
+```
+
 ## API Usage
 
 ```python

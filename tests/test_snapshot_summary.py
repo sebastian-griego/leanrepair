@@ -6,7 +6,11 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
 
-from scripts.summarize_real_paper_snapshot import build_snapshot, format_markdown  # noqa: E402
+from scripts.summarize_real_paper_snapshot import (  # noqa: E402
+    _stale_outputs,
+    build_snapshot,
+    format_markdown,
+)
 
 
 def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
@@ -45,6 +49,33 @@ def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
     assert "Trace Taxonomy" in markdown
     assert "Corruption Highlights" in markdown
     assert "Strict Paired Comparison" in markdown
+
+
+def test_stale_outputs_detects_missing_and_mismatched_files(tmp_path):
+    matching = tmp_path / "matching.txt"
+    stale = tmp_path / "stale.txt"
+    missing = tmp_path / "missing.txt"
+    matching.write_text("expected\n", encoding="utf-8")
+    stale.write_text("old\n", encoding="utf-8")
+
+    assert _stale_outputs(
+        {
+            matching: "expected\n",
+            stale: "new\n",
+            missing: "new\n",
+        }
+    ) == [stale, missing]
+
+
+def test_checked_in_real_paper_snapshot_is_current(monkeypatch):
+    monkeypatch.chdir(ROOT)
+    root = pathlib.Path("results") / "real_paper_v2"
+    snapshot = build_snapshot(root)
+
+    assert (root / "snapshot_summary.json").read_text(encoding="utf-8") == (
+        json.dumps(snapshot, indent=2, ensure_ascii=True) + "\n"
+    )
+    assert (root / "snapshot_summary.md").read_text(encoding="utf-8") == format_markdown(snapshot)
 
 
 def _write(path: pathlib.Path, payload: dict) -> None:

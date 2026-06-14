@@ -538,19 +538,50 @@ def _rows(rows: list[dict[str, Any]]) -> str:
     return ", ".join(f"`{row['name']}` {row['count']}" for row in rows)
 
 
+def _stale_outputs(expected: dict[Path, str]) -> list[Path]:
+    stale = []
+    for path, expected_text in expected.items():
+        if not path.exists() or path.read_text(encoding="utf-8") != expected_text:
+            stale.append(path)
+    return stale
+
+
+def _display_paths(paths: list[Path]) -> str:
+    return ", ".join(str(path).replace("\\", "/") for path in paths)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default="results/real_paper_v2")
     parser.add_argument("--output-json", default="")
     parser.add_argument("--output-md", default="")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="fail if generated snapshot outputs differ from the checked-in files",
+    )
     args = parser.parse_args()
 
     root = Path(args.root)
     snapshot = build_snapshot(root)
+    json_text = json.dumps(snapshot, indent=2, ensure_ascii=True) + "\n"
     markdown = format_markdown(snapshot)
     output_json = Path(args.output_json) if args.output_json else root / "snapshot_summary.json"
     output_md = Path(args.output_md) if args.output_md else root / "snapshot_summary.md"
-    output_json.write_text(json.dumps(snapshot, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+    expected = {output_json: json_text, output_md: markdown}
+
+    if args.check:
+        stale = _stale_outputs(expected)
+        if stale:
+            raise SystemExit(
+                "Stale snapshot outputs: "
+                + _display_paths(stale)
+                + "; rerun scripts/summarize_real_paper_snapshot.py without --check"
+            )
+        print(f"Snapshot outputs are up to date: {_display_paths(list(expected))}")
+        return
+
+    output_json.write_text(json_text, encoding="utf-8")
     output_md.write_text(markdown, encoding="utf-8")
     print(f"Wrote {output_json} and {output_md}")
 
