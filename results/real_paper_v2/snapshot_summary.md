@@ -84,12 +84,12 @@
 
 ## Sources
 
-- `aggregate`: `results/real_paper_v2/aggregate_summary.json` (`sha256:501baeaa431b22698391ae311ec8bc60ef28af57e79110204d20d2d1ee93572b`)
-- `budget_curve`: `results/real_paper_v2/budget_curve.json` (`sha256:64820df3374990c283df78c4f80a90c2b789a8c67aa15c75c34775143d5181fb`)
-- `exactness_gap`: `results/real_paper_v2/exactness_gap.json` (`sha256:4972b267fbe02953a729bb57b3d01b75065f6865f088ad58103c396f70eac3d0`)
-- `quality`: `results/real_paper_v2/quality_summary.json` (`sha256:850e90625600279fe188e3fd5c7a82f2249eb83797c3e93845de4549f7cc7141`)
-- `semantic_drift`: `results/real_paper_v2/semantic_drift.json` (`sha256:54902099925c33bbf489aa4b6c60cbacd01851dfa93d1f555d27e28deb5cd87b`)
-- `strict_replay`: `results/real_paper_v2/strict_replay.json` (`sha256:4292094dbd8438714b8440639f97f79591d5ade1024b863494d16d257bb06dff`)
-- `strict_casebook`: `results/real_paper_v2/strict_replay_casebook.json` (`sha256:b9513fa63b9d72ea5cd65353854f5e8cb7cc4ce2befc155245d725add1e221af`)
-- `strict_paired`: `results/real_paper_v2/strict_replay_paired.json` (`sha256:1d59bdd5095b80b3f3f826800ac5772da55f80155ed5fd4bca27fed216c2f43a`)
-- `trace_taxonomy`: `results/real_paper_v2/trace_taxonomy.json` (`sha256:7596cf03e26302fccf7299758629c05b05f9b42a09747d85aece2c23e1475439`)
+- `aggregate`: `results/real_paper_v2/aggregate_summary.json` (`sha256:909043257c4e93862a7e99ca3e9a512eee58e5edb996cb57efabdb5ff44e895a`)
+- `budget_curve`: `results/real_paper_v2/budget_curve.json` (`sha256:43dba319b29f3979bb50c15e4c934c28ec41c73f3cbcdb661484f02f736ccfe7`)
+- `exactness_gap`: `results/real_paper_v2/exactness_gap.json` (`sha256:53a4fd0ae737320e2cb14f3cdf82d409be9a1a24aec9ce49dc5780978bde7c50`)
+- `quality`: `results/real_paper_v2/quality_summary.json` (`sha256:37f4f28dde3169262f1e9dc27e6413521f5c151509fe38e7e86b9d3ba7239bfa`)
+- `semantic_drift`: `results/real_paper_v2/semantic_drift.json` (`sha256:26bbfbfe16e17209046ee733dd4084b980afcad1110347bbc7b27b69468b4859`)
+- `strict_replay`: `results/real_paper_v2/strict_replay.json` (`sha256:96e3d8a8f57ad50c1bd7369d8666e46707a12b0aabe20c7ba16ab8c264131e4d`)
+- `strict_casebook`: `results/real_paper_v2/strict_replay_casebook.json` (`sha256:aec552bfc342c7afc4d3eb0b39073b76ae3435f6654ca373637e5f38e453af5b`)
+- `strict_paired`: `results/real_paper_v2/strict_replay_paired.json` (`sha256:d2bd0c90566831864f29d6fed3e1d23e9651b8bbb7c3c3e20b8eda43ea14f5bd`)
+- `trace_taxonomy`: `results/real_paper_v2/trace_taxonomy.json` (`sha256:2fca5fcb8b2867945d5de320c8e8fa0af403ef912b2aea078e6e20d5f4c9af67`)
