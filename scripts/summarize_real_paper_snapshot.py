@@ -25,6 +25,7 @@ def build_snapshot(root: Path) -> dict[str, Any]:
     root = Path(root)
     source_paths = {name: root / filename for name, filename in ARTIFACTS.items()}
     loaded = {name: _load_json(path) for name, path in source_paths.items()}
+    _validate_snapshot_sources(loaded)
     aggregate = loaded["aggregate"]
     budget = loaded["budget_curve"]
     exactness = loaded["exactness_gap"]
@@ -298,6 +299,91 @@ def format_markdown(snapshot: dict[str, Any]) -> str:
         else:
             lines.append(f"- `{name}`: `{path}`")
     return "\n".join(lines).rstrip() + "\n"
+
+
+def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
+    aggregate = loaded["aggregate"]
+    policies = set(aggregate["policies"])
+    _require_equal("aggregate.n_runs", int(aggregate["n_runs"]), len(aggregate["runs"]))
+    for artifact in (
+        "budget_curve",
+        "exactness_gap",
+        "quality",
+        "semantic_drift",
+        "strict_replay",
+        "trace_taxonomy",
+    ):
+        artifact_policies = set(loaded[artifact]["policies"])
+        if artifact_policies != policies:
+            raise ValueError(
+                f"Inconsistent source artifact {artifact}.policies: "
+                f"{sorted(artifact_policies)} != {sorted(policies)}"
+            )
+
+    for policy in sorted(policies):
+        records = int(aggregate["policies"][policy]["pooled"]["count"])
+        _require_equal(
+            f"budget_curve.{policy}.count",
+            int(loaded["budget_curve"]["policies"][policy]["count"]),
+            records,
+        )
+        _require_equal(
+            f"exactness_gap.{policy}.count",
+            int(loaded["exactness_gap"]["policies"][policy]["count"]),
+            records,
+        )
+        _require_equal(
+            f"quality.{policy}.pooled.count",
+            int(loaded["quality"]["policies"][policy]["pooled"]["count"]),
+            records,
+        )
+        _require_equal(
+            f"semantic_drift.{policy}.count",
+            int(loaded["semantic_drift"]["policies"][policy]["count"]),
+            records,
+        )
+        _require_equal(
+            f"strict_replay.{policy}.count",
+            int(loaded["strict_replay"]["policies"][policy]["count"]),
+            records,
+        )
+        _require_equal(
+            f"trace_taxonomy.{policy}.count",
+            int(loaded["trace_taxonomy"]["policies"][policy]["count"]),
+            records,
+        )
+
+    casebook_policies = set(loaded["strict_casebook"]["by_policy"])
+    if not casebook_policies.issubset(policies):
+        raise ValueError(
+            "Inconsistent source artifact strict_casebook.by_policy: "
+            f"{sorted(casebook_policies)} is not a subset of {sorted(policies)}"
+        )
+
+    paired = loaded["strict_paired"]
+    policy_a = paired["policy_a"]
+    policy_b = paired["policy_b"]
+    for policy in (policy_a, policy_b):
+        if policy not in policies:
+            raise ValueError(
+                f"Inconsistent source artifact strict_paired policy {policy!r} "
+                f"not in {sorted(policies)}"
+            )
+    _require_equal(
+        "strict_paired.coverage.policy_a_records",
+        int(paired["coverage"]["policy_a_records"]),
+        int(aggregate["policies"][policy_a]["pooled"]["count"]),
+    )
+    _require_equal(
+        "strict_paired.coverage.policy_b_records",
+        int(paired["coverage"]["policy_b_records"]),
+        int(aggregate["policies"][policy_b]["pooled"]["count"]),
+    )
+
+
+def _require_equal(label: str, actual: int, expected: int) -> None:
+    if actual != expected:
+        raise ValueError(f"Inconsistent source artifact {label}: {actual} != {expected}")
 
 
 def _aggregate_policy(row: dict[str, Any]) -> dict[str, Any]:

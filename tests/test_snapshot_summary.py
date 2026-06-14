@@ -3,6 +3,8 @@ import pathlib
 import subprocess
 import sys
 
+import pytest
+
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
@@ -49,6 +51,17 @@ def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
     assert "Corruption Highlights" in markdown
     assert "Strict Paired Comparison" in markdown
     assert "sha256:" in markdown
+
+
+def test_snapshot_rollup_rejects_inconsistent_policy_counts(tmp_path):
+    root = tmp_path / "real_paper_v2"
+    _write_snapshot_inputs(root)
+    budget = _budget()
+    budget["policies"]["research"]["count"] = 21
+    _write(root / "budget_curve.json", budget)
+
+    with pytest.raises(ValueError, match="budget_curve.research.count"):
+        build_snapshot(root)
 
 
 def test_snapshot_check_cli_fails_without_rewriting_stale_outputs(tmp_path):
