@@ -17,6 +17,7 @@ import eval_utils as eu  # noqa: E402
 import acceptance  # noqa: E402
 import budget_analysis as ba  # noqa: E402
 import exactness_analysis as ea  # noqa: E402
+from jsonl_io import load_jsonl_objects  # noqa: E402
 import lean_check as lc  # noqa: E402
 import quality_analysis as qa  # noqa: E402
 import repair_cli as rc  # noqa: E402
@@ -203,14 +204,7 @@ def _trace_step_to_dict(step: rl.TraceStep) -> dict[str, Any]:
 
 
 def _load_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            stripped = line.strip()
-            if not stripped:
-                continue
-            rows.append(json.loads(stripped))
-    return rows
+    return load_jsonl_objects(path)
 
 
 def _warmup(timeout_s: float) -> None:

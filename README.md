@@ -213,6 +213,10 @@ loop, and count rejection reasons such as `goal_true`.
 
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
+- Generated snapshot: `results/real_paper_v2/snapshot_summary.md`
+- Snapshot rollup includes aggregate outcomes, repair-budget curve, exactness
+  gap, quality adjustment, trace taxonomy, strict replay, and paired replay
+  with source paths and SHA-256 provenance for the exact component artifacts.
 - Aggregate report: `results/real_paper_v2/aggregate_report.md`
 - Quality-adjusted report: `results/real_paper_v2/quality_summary.md`
 - Baseline `heuristic`: solve rate `10.0% +/- 1.2%`, exact rate `0.0% +/- 0.0%`
@@ -227,6 +231,46 @@ loop, and count rejection reasons such as `goal_true`.
 - Strict paired replay: `results/real_paper_v2/strict_replay_paired.md` shows that the raw `research` solve lift of `+74.0` percentage points becomes a strict solve lift of `+28.0` points (`252` `research`-only strict solves vs `0` `heuristic`-only; sign-test `p = 2.764e-76`) and a strict exact lift of `+27.9` points (`251` `research`-only exact repairs vs `0`; `p = 5.527e-76`). It also identifies `414` raw `research`-only wins that strict replay rejects as degenerate, now split by rejection reason (`334` `goal_true`, `80` `reflexive_equality`) and corruption type.
 
 Per-run artifacts are available under `results/real_paper_v2/run_*/`.
+
+Regenerate the compact source-traceable snapshot after refreshing component
+reports:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2
+```
+
+Run the full local reproducibility gate used by CI:
+
+```bash
+python scripts/verify_reproducibility.py
+```
+
+Write a machine-readable command report:
+
+```bash
+python scripts/verify_reproducibility.py --report-json results/reproducibility_report.json
+```
+
+The JSON report records `schema_version`, planned and executed command counts,
+per-command return codes, elapsed times, and the first failed command when the
+gate stops early.
+
+CI uploads this report as an artifact for each supported Python version.
+
+Verify the checked-in snapshot is current without rewriting it:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2 --check
+```
+
+Verify that the source hashes embedded in the checked-in snapshot still match
+the current component artifacts:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py \
+  --output-json results/real_paper_v2/snapshot_summary.json \
+  --verify-source-hashes
+```
 
 ## API Usage
 
