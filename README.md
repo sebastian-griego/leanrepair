@@ -174,6 +174,7 @@ python scripts/analyze_paired_results.py --root results/real_paper --policy-a he
 python scripts/analyze_trace_taxonomy.py --root results/real_paper --policies heuristic research
 python scripts/analyze_budget_curve.py --root results/real_paper --policies heuristic research
 python scripts/analyze_exactness_gap.py --root results/real_paper --policies heuristic research
+python scripts/analyze_semantic_drift.py --root results/real_paper --policies heuristic research
 ```
 
 The paired analyzer reports coverage before comparing policies, so unmatched
@@ -189,6 +190,7 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Trace taxonomy: `trace_taxonomy.json`, `trace_taxonomy.md`
 - Repair budget curve: `budget_curve.json`, `budget_curve.md`
 - Exactness gap: `exactness_gap.json`, `exactness_gap.md`
+- Semantic drift audit: `semantic_drift.json`, `semantic_drift.md`
 
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
@@ -199,6 +201,7 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - `heuristic` solve `10.0%` (95% CI `[8.2, 12.1]`)
 - `research` solve `84.0%` (95% CI `[81.5, 86.2]`)
 - Paired test (`research` vs `heuristic`): exact two-sided binomial `p = 6.532e-201`
+- Semantic drift audit: `research` has `501/756` solved outputs classified as degenerate (`338` `True` goals, `157` reflexive equalities, `6` low-retention goals), leaving `255/900` nondegenerate solved headers.
 
 Per-run artifacts are available under `results/real_paper_v2/run_*/`.
 
