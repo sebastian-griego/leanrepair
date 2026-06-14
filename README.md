@@ -245,6 +245,15 @@ Verify the checked-in snapshot is current without rewriting it:
 python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2 --check
 ```
 
+Verify that the source hashes embedded in the checked-in snapshot still match
+the current component artifacts:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py \
+  --output-json results/real_paper_v2/snapshot_summary.json \
+  --verify-source-hashes
+```
+
 ## API Usage
 
 ```python

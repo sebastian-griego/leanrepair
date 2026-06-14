@@ -8,6 +8,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
 
 from scripts.summarize_real_paper_snapshot import (  # noqa: E402
+    _source_hash_mismatches,
     _stale_outputs,
     build_snapshot,
     format_markdown,
@@ -27,6 +28,7 @@ def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
         len(digest) == 64
         for digest in snapshot["provenance"]["source_sha256"].values()
     )
+    assert _source_hash_mismatches(snapshot, base_dir=ROOT) == []
     assert snapshot["aggregate"]["research"]["solved"] == 16
     assert snapshot["budget_curve"]["research"]["final_budget"]["budget"] == 3
     assert snapshot["exactness_gap"]["research"]["solved_not_exact"] == 10
@@ -79,6 +81,58 @@ def test_snapshot_check_cli_fails_without_rewriting_stale_outputs(tmp_path):
     assert "Stale snapshot outputs" in completed.stderr + completed.stdout
     assert output_json.read_text(encoding="utf-8") == "stale\n"
     assert output_md.read_text(encoding="utf-8") == "stale\n"
+
+
+def test_snapshot_verify_source_hashes_cli_detects_changed_source(tmp_path):
+    root = tmp_path / "real_paper_v2"
+    _write_snapshot_inputs(root)
+    output_json = tmp_path / "snapshot.json"
+    output_md = tmp_path / "snapshot.md"
+
+    subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "summarize_real_paper_snapshot.py"),
+            "--root",
+            str(root),
+            "--output-json",
+            str(output_json),
+            "--output-md",
+            str(output_md),
+        ],
+        cwd=ROOT,
+        check=True,
+    )
+    subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "summarize_real_paper_snapshot.py"),
+            "--output-json",
+            str(output_json),
+            "--verify-source-hashes",
+        ],
+        cwd=ROOT,
+        check=True,
+    )
+
+    _write(root / "aggregate_summary.json", {**_aggregate(), "n_runs": 3})
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "summarize_real_paper_snapshot.py"),
+            "--output-json",
+            str(output_json),
+            "--verify-source-hashes",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert completed.returncode != 0
+    assert "Source hash verification failed" in completed.stderr + completed.stdout
+    assert "aggregate" in completed.stderr + completed.stdout
 
 
 def test_stale_outputs_detects_missing_and_mismatched_files(tmp_path):
