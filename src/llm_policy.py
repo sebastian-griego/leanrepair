@@ -35,6 +35,7 @@ _UNKNOWN_RE = re.compile(
 @dataclass
 class ResearchHeuristicPolicy(LLMPolicy):
     max_proposals: int = 8
+    allow_degenerate_fallbacks: bool = True
 
     def propose(self, nl: str, ctx: str, cand: str, check_result: lc.CheckResult) -> str:
         proposals = self.propose_many(nl, ctx, cand, check_result)
@@ -86,6 +87,8 @@ class ResearchHeuristicPolicy(LLMPolicy):
         if sanitized is None:
             return
         if sanitized == original:
+            return
+        if not self.allow_degenerate_fallbacks and _is_degenerate_fallback(sanitized):
             return
         if sanitized in proposals:
             return
@@ -157,6 +160,29 @@ def _replace_goal(candidate: str, new_goal: str) -> str:
         return candidate
     prefix = candidate[: colon_idx + 1]
     return f"{prefix} {new_goal.strip()}"
+
+
+def _is_degenerate_fallback(candidate: str) -> bool:
+    colon_idx = rl._find_top_level_colon(candidate)
+    if colon_idx == -1:
+        return False
+    goal = _normalize_expr(candidate[colon_idx + 1 :])
+    if goal == "True":
+        return True
+    return _is_reflexive_equality(goal)
+
+
+def _is_reflexive_equality(goal: str) -> bool:
+    parts = goal.split("=")
+    if len(parts) != 2:
+        return False
+    left = _normalize_expr(parts[0])
+    right = _normalize_expr(parts[1])
+    return bool(left) and left == right
+
+
+def _normalize_expr(text: str) -> str:
+    return re.sub(r"\s+", "", str(text).strip())
 
 
 def _rewrite_goal_as_equality(candidate: str) -> str:

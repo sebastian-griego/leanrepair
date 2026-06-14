@@ -12,6 +12,7 @@ sys.path.append(str(ROOT / "src"))
 
 import lean_check as lc  # noqa: E402
 import repair_cli as rc  # noqa: E402
+from llm_policy import ResearchHeuristicPolicy  # noqa: E402
 
 
 class RepairCLITests(unittest.TestCase):
@@ -39,6 +40,12 @@ class RepairCLITests(unittest.TestCase):
             self.assertIn("trace", record)
             self.assertIsInstance(record["trace"], list)
             self.assertIsInstance(record["steps"], int)
+
+    def test_make_policy_supports_research_strict(self):
+        policy = rc._make_policy("research_strict")
+
+        self.assertIsInstance(policy, ResearchHeuristicPolicy)
+        self.assertFalse(policy.allow_degenerate_fallbacks)
 
 
 if __name__ == "__main__":

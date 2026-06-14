@@ -32,7 +32,7 @@ def main(argv: list[str] | None = None) -> int:
         "--policies",
         nargs="+",
         default=["heuristic", "research"],
-        choices=("heuristic", "research", "openai"),
+        choices=("heuristic", "research", "research_strict", "openai"),
         help="Policies to evaluate",
     )
     parser.add_argument("--Tmax", type=int, default=6, help="Maximum repair steps per item")

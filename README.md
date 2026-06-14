@@ -50,7 +50,7 @@ python repair_cli.py \
 | `--output` | Path to output JSONL file | Required |
 | `--Tmax` | Maximum repair iterations per theorem | 3 |
 | `--timeout-s` | Lean compiler timeout in seconds | 20.0 |
-| `--policy` | Repair policy: `heuristic`, `research`, or `openai` | heuristic |
+| `--policy` | Repair policy: `heuristic`, `research`, `research_strict`, or `openai` | heuristic |
 
 ### Input Format
 
@@ -99,6 +99,8 @@ The baseline heuristic policy applies rule-based repairs for common error patter
 - Handles extra error modes, including non-proposition theorem goals
 - Applies syntax repairs for missing top-level `:` and unbalanced binder parentheses
 - Repairs common corruption patterns (`nat` -> `Nat`, `x = True` -> `x = x`, inferred type replacement for unknown type symbols)
+
+Use `research_strict` to run the same search without trivial `True` and reflexive-equality fallback proposals. This is useful when raw typechecking success should not be inflated by degenerate repairs.
 
 ### OpenAI Policy
 

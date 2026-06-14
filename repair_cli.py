@@ -21,7 +21,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout-s", type=float, default=20.0, help="Lean check timeout in seconds")
     parser.add_argument(
         "--policy",
-        choices=("heuristic", "research", "openai"),
+        choices=("heuristic", "research", "research_strict", "openai"),
         default="heuristic",
         help="Policy backend",
     )
@@ -75,6 +75,8 @@ def run_dataset(
 def _make_policy(kind: str) -> LLMPolicy:
     if kind == "openai":
         return OpenAIChatPolicy(fallback=HeuristicPolicy())
+    if kind == "research_strict":
+        return ResearchHeuristicPolicy(allow_degenerate_fallbacks=False)
     if kind == "research":
         return ResearchHeuristicPolicy()
     return HeuristicPolicy()

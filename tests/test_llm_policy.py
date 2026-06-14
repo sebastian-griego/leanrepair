@@ -7,6 +7,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT / "src"))
 
 import lean_check as lc  # noqa: E402
+import repair_loop as rl  # noqa: E402
 from lean_errors import ErrorInfo  # noqa: E402
 from llm_policy import (  # noqa: E402
     HeuristicPolicy,
@@ -93,6 +94,52 @@ lemma foo
         )
         proposals = policy.propose_many("", "", "theorem u : x", result)
         self.assertTrue(any(": x = x" in p or ": True" in p for p in proposals))
+
+    def test_research_strict_suppresses_degenerate_fallbacks(self):
+        policy = ResearchHeuristicPolicy(allow_degenerate_fallbacks=False)
+        result = lc.CheckResult(
+            ok=False,
+            errors=[ErrorInfo(message="type of theorem 'u' is not a proposition", kind="not_proposition")],
+            raw="",
+            elapsed_ms=0,
+            timed_out=False,
+        )
+        proposals = policy.propose_many("", "", "theorem u : Nat", result)
+
+        self.assertFalse(any(": True" in p for p in proposals))
+        self.assertFalse(any(": Nat = Nat" in p for p in proposals))
+
+    def test_research_strict_does_not_accept_trivial_not_prop_success(self):
+        policy = ResearchHeuristicPolicy(allow_degenerate_fallbacks=False)
+
+        def fake_lean_check(ctx: str, theorem: str, timeout_s: float) -> lc.CheckResult:
+            del ctx, timeout_s
+            if ": True" in theorem or ": Nat = Nat" in theorem:
+                return lc.CheckResult(ok=True, errors=[], raw="", elapsed_ms=1, timed_out=False)
+            return lc.CheckResult(
+                ok=False,
+                errors=[ErrorInfo(message="type of theorem 'u' is not a proposition", kind="not_proposition")],
+                raw="",
+                elapsed_ms=1,
+                timed_out=False,
+            )
+
+        original = lc.lean_check
+        try:
+            lc.lean_check = fake_lean_check
+            trace = rl.repair_one(
+                nl="",
+                ctx="",
+                candidate0="theorem u : Nat",
+                Tmax=4,
+                timeout_s=1.0,
+                policy=policy.propose_many,
+            )
+        finally:
+            lc.lean_check = original
+
+        self.assertEqual(len(trace.steps), 1)
+        self.assertFalse(trace.steps[-1].result.ok)
 
     def test_insert_missing_colon_after_brace_binder(self):
         candidate = "theorem t {x : Nat} x = x"
