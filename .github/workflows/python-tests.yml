@@ -33,5 +33,8 @@ jobs:
       - name: Compile Python sources
         run: python -m compileall -q repair_cli.py src scripts tests
 
+      - name: Check real-paper snapshot freshness
+        run: python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2 --check
+
       - name: Run tests
         run: python -m pytest -q
