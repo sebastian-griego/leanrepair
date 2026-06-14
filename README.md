@@ -213,6 +213,7 @@ loop, and count rejection reasons such as `goal_true`.
 
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
+- Generated snapshot: `results/real_paper_v2/snapshot_summary.md`
 - Aggregate report: `results/real_paper_v2/aggregate_report.md`
 - Quality-adjusted report: `results/real_paper_v2/quality_summary.md`
 - Baseline `heuristic`: solve rate `10.0% +/- 1.2%`, exact rate `0.0% +/- 0.0%`
@@ -227,6 +228,13 @@ loop, and count rejection reasons such as `goal_true`.
 - Strict paired replay: `results/real_paper_v2/strict_replay_paired.md` shows that the raw `research` solve lift of `+74.0` percentage points becomes a strict solve lift of `+28.0` points (`252` `research`-only strict solves vs `0` `heuristic`-only; sign-test `p = 2.764e-76`) and a strict exact lift of `+27.9` points (`251` `research`-only exact repairs vs `0`; `p = 5.527e-76`). It also identifies `414` raw `research`-only wins that strict replay rejects as degenerate, now split by rejection reason (`334` `goal_true`, `80` `reflexive_equality`) and corruption type.
 
 Per-run artifacts are available under `results/real_paper_v2/run_*/`.
+
+Regenerate the compact source-traceable snapshot after refreshing component
+reports:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2
+```
 
 ## API Usage
 

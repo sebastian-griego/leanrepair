@@ -1,0 +1,327 @@
+{
+  "root": "results/real_paper_v2",
+  "provenance": {
+    "generator": "scripts/summarize_real_paper_snapshot.py",
+    "sources": {
+      "aggregate": "results/real_paper_v2/aggregate_summary.json",
+      "quality": "results/real_paper_v2/quality_summary.json",
+      "semantic_drift": "results/real_paper_v2/semantic_drift.json",
+      "strict_replay": "results/real_paper_v2/strict_replay.json",
+      "strict_casebook": "results/real_paper_v2/strict_replay_casebook.json",
+      "strict_paired": "results/real_paper_v2/strict_replay_paired.json"
+    }
+  },
+  "dataset": {
+    "runs": [
+      "results/real_paper_v2/run_20260211_002138",
+      "results/real_paper_v2/run_20260211_002407",
+      "results/real_paper_v2/run_20260211_002639"
+    ],
+    "n_runs": 3,
+    "records_per_policy": {
+      "heuristic": 900,
+      "research": 900
+    }
+  },
+  "aggregate": {
+    "heuristic": {
+      "records": 900,
+      "solved": 90,
+      "exact": 0,
+      "solve_rate": 0.1,
+      "solve_rate_ci95": [
+        0.0820680651050478,
+        0.12133217670723434
+      ],
+      "exact_rate": 0.0,
+      "exact_rate_ci95": [
+        4.318375942142756e-19,
+        0.0042503022653526895
+      ],
+      "solve_rate_mean": 0.1,
+      "solve_rate_std": 0.012472191289246471,
+      "exact_rate_mean": 0.0,
+      "exact_rate_std": 0.0
+    },
+    "research": {
+      "records": 900,
+      "solved": 756,
+      "exact": 249,
+      "solve_rate": 0.84,
+      "solve_rate_ci95": [
+        0.8146106088402726,
+        0.8624991856192874
+      ],
+      "exact_rate": 0.27666666666666667,
+      "exact_rate_ci95": [
+        0.24843575382159014,
+        0.306796047856934
+      ],
+      "solve_rate_mean": 0.84,
+      "solve_rate_std": 0.010886621079036372,
+      "exact_rate_mean": 0.27666666666666667,
+      "exact_rate_std": 0.0313876597596123
+    }
+  },
+  "quality_adjusted": {
+    "heuristic": {
+      "records": 900,
+      "solved": 90,
+      "exact": 0,
+      "nondegenerate_solved": 0,
+      "degenerate_solved": 90,
+      "nondegenerate_solved_rate": 0.0,
+      "nondegenerate_solved_rate_ci95": [
+        4.318375942142756e-19,
+        0.0042503022653526895
+      ],
+      "degenerate_given_solved": 1.0
+    },
+    "research": {
+      "records": 900,
+      "solved": 756,
+      "exact": 251,
+      "nondegenerate_solved": 252,
+      "degenerate_solved": 504,
+      "nondegenerate_solved_rate": 0.28,
+      "nondegenerate_solved_rate_ci95": [
+        0.2516479484077991,
+        0.31022218458895606
+      ],
+      "degenerate_given_solved": 0.6666666666666666
+    }
+  },
+  "semantic_drift": {
+    "heuristic": {
+      "records": 900,
+      "solved": 90,
+      "exact": 0,
+      "degenerate_solved": 90,
+      "nondegenerate_solved": 0,
+      "degenerate_reasons": {
+        "bare_identifier_goal": 12,
+        "reflexive_equality": 78
+      },
+      "degenerate_given_solved": 1.0
+    },
+    "research": {
+      "records": 900,
+      "solved": 756,
+      "exact": 251,
+      "degenerate_solved": 504,
+      "nondegenerate_solved": 252,
+      "degenerate_reasons": {
+        "bare_identifier_goal": 9,
+        "goal_true": 338,
+        "reflexive_equality": 157
+      },
+      "degenerate_given_solved": 0.6666666666666666
+    }
+  },
+  "strict_replay": {
+    "heuristic": {
+      "records": 900,
+      "raw_solved": 90,
+      "strict_solved": 0,
+      "raw_exact": 0,
+      "strict_exact": 0,
+      "strict_not_exact": 0,
+      "raw_degenerate_solved": 90,
+      "raw_to_strict_loss": 90,
+      "strict_retention_given_raw": 0.0,
+      "strict_exact_given_strict": 0.0,
+      "raw_degenerate_reasons": {
+        "bare_identifier_goal": 12,
+        "reflexive_equality": 78
+      }
+    },
+    "research": {
+      "records": 900,
+      "raw_solved": 756,
+      "strict_solved": 252,
+      "raw_exact": 251,
+      "strict_exact": 251,
+      "strict_not_exact": 1,
+      "raw_degenerate_solved": 504,
+      "raw_to_strict_loss": 504,
+      "strict_retention_given_raw": 0.3333333333333333,
+      "strict_exact_given_strict": 0.996031746031746,
+      "raw_degenerate_reasons": {
+        "bare_identifier_goal": 9,
+        "goal_true": 338,
+        "reflexive_equality": 157
+      }
+    }
+  },
+  "strict_casebook": {
+    "dataset": {
+      "records": 1800,
+      "focused_cases": 595,
+      "policies": {
+        "heuristic": 900,
+        "research": 900
+      }
+    },
+    "primary_case_counts": {
+      "raw_to_strict_loss": 594,
+      "strict_exact_accept": 251,
+      "strict_nonexact_accept": 1,
+      "unsolved": 954
+    },
+    "flag_counts": {
+      "raw_to_strict_loss": 594,
+      "strict_nonexact_accept": 1
+    },
+    "by_policy": {
+      "heuristic": {
+        "raw_to_strict_loss": 90,
+        "unsolved": 810
+      },
+      "research": {
+        "raw_to_strict_loss": 504,
+        "strict_exact_accept": 251,
+        "strict_nonexact_accept": 1,
+        "unsolved": 144
+      }
+    },
+    "raw_loss_reasons": {
+      "bare_identifier_goal": 21,
+      "goal_true": 338,
+      "reflexive_equality": 235
+    }
+  },
+  "strict_paired": {
+    "policy_a": "heuristic",
+    "policy_b": "research",
+    "coverage": {
+      "policy_a_records": 900,
+      "policy_b_records": 900,
+      "paired_records": 900,
+      "policy_a_unpaired": 0,
+      "policy_b_unpaired": 0
+    },
+    "metrics": {
+      "raw_ok": {
+        "policy_a_successes": 90,
+        "policy_b_successes": 756,
+        "policy_a_only": 0,
+        "policy_b_only": 666,
+        "policy_b_lift": 0.74,
+        "paired_exact_sign_p_two_sided": 6.532100883151361e-201
+      },
+      "strict_ok": {
+        "policy_a_successes": 0,
+        "policy_b_successes": 252,
+        "policy_a_only": 0,
+        "policy_b_only": 252,
+        "policy_b_lift": 0.28,
+        "paired_exact_sign_p_two_sided": 2.763573937630259e-76
+      },
+      "strict_exact": {
+        "policy_a_successes": 0,
+        "policy_b_successes": 251,
+        "policy_a_only": 0,
+        "policy_b_only": 251,
+        "policy_b_lift": 0.2788888888888889,
+        "paired_exact_sign_p_two_sided": 5.527147875260529e-76
+      }
+    },
+    "case_counts": {
+      "policy_b_strict_wins": 252,
+      "policy_a_strict_wins": 0,
+      "policy_b_exact_wins": 251,
+      "policy_b_raw_wins_lost_by_strict": 414
+    },
+    "raw_win_loss": {
+      "total": 414,
+      "by_reason": [
+        {
+          "name": "goal_true",
+          "count": 334,
+          "share": 0.8067632850241546
+        },
+        {
+          "name": "reflexive_equality",
+          "count": 80,
+          "share": 0.1932367149758454
+        }
+      ],
+      "by_corruption": [
+        {
+          "name": "type_mismatch",
+          "count": 134,
+          "share": 0.32367149758454106
+        },
+        {
+          "name": "not_proposition",
+          "count": 99,
+          "share": 0.2391304347826087
+        },
+        {
+          "name": "unknown_type_symbol",
+          "count": 73,
+          "share": 0.17632850241545894
+        },
+        {
+          "name": "parse_unbalanced_paren",
+          "count": 54,
+          "share": 0.13043478260869565
+        },
+        {
+          "name": "parse_missing_colon",
+          "count": 31,
+          "share": 0.0748792270531401
+        },
+        {
+          "name": "lowercase_type",
+          "count": 23,
+          "share": 0.05555555555555555
+        }
+      ],
+      "by_reason_and_corruption": [
+        {
+          "reason": "goal_true",
+          "corruption": "not_proposition",
+          "count": 99,
+          "share": 0.2391304347826087
+        },
+        {
+          "reason": "reflexive_equality",
+          "corruption": "type_mismatch",
+          "count": 80,
+          "share": 0.1932367149758454
+        },
+        {
+          "reason": "goal_true",
+          "corruption": "unknown_type_symbol",
+          "count": 73,
+          "share": 0.17632850241545894
+        },
+        {
+          "reason": "goal_true",
+          "corruption": "parse_unbalanced_paren",
+          "count": 54,
+          "share": 0.13043478260869565
+        },
+        {
+          "reason": "goal_true",
+          "corruption": "type_mismatch",
+          "count": 54,
+          "share": 0.13043478260869565
+        },
+        {
+          "reason": "goal_true",
+          "corruption": "parse_missing_colon",
+          "count": 31,
+          "share": 0.0748792270531401
+        },
+        {
+          "reason": "goal_true",
+          "corruption": "lowercase_type",
+          "count": 23,
+          "share": 0.05555555555555555
+        }
+      ]
+    }
+  }
+}
