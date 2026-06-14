@@ -13,24 +13,37 @@ def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
     root = tmp_path / "real_paper_v2"
     root.mkdir()
     _write(root / "aggregate_summary.json", _aggregate())
+    _write(root / "budget_curve.json", _budget())
+    _write(root / "exactness_gap.json", _exactness())
     _write(root / "quality_summary.json", _quality())
     _write(root / "semantic_drift.json", _semantic())
     _write(root / "strict_replay.json", _strict())
     _write(root / "strict_replay_casebook.json", _casebook())
     _write(root / "strict_replay_paired.json", _paired())
+    _write(root / "trace_taxonomy.json", _trace())
 
     snapshot = build_snapshot(root)
     markdown = format_markdown(snapshot)
 
     assert snapshot["dataset"]["n_runs"] == 2
     assert snapshot["aggregate"]["research"]["solved"] == 16
+    assert snapshot["budget_curve"]["research"]["final_budget"]["budget"] == 3
+    assert snapshot["exactness_gap"]["research"]["solved_not_exact"] == 10
     assert snapshot["quality_adjusted"]["research"]["nondegenerate_solved"] == 6
     assert snapshot["semantic_drift"]["research"]["degenerate_reasons"] == {"goal_true": 10}
     assert snapshot["strict_replay"]["research"]["strict_exact"] == 5
     assert snapshot["strict_casebook"]["flag_counts"]["raw_to_strict_loss"] == 13
     assert snapshot["strict_paired"]["metrics"]["strict_ok"]["policy_b_only"] == 6
     assert snapshot["strict_paired"]["raw_win_loss"]["by_reason"][0]["name"] == "goal_true"
+    assert snapshot["trace_taxonomy"]["research"]["top_terminal_failure"] == {
+        "kind": "parse_error",
+        "count": 4,
+    }
     assert "LeanRepair Real Paper v2 Snapshot" in markdown
+    assert "Repair Budget Curve" in markdown
+    assert "Exactness Gap" in markdown
+    assert "Trace Taxonomy" in markdown
+    assert "Corruption Highlights" in markdown
     assert "Strict Paired Comparison" in markdown
 
 
@@ -63,6 +76,88 @@ def _aggregate_policy(count, solved, exact, solve_rate, exact_rate) -> dict:
             "solve_rate_ci95": [solve_rate, solve_rate],
             "exact_rate": exact_rate,
             "exact_rate_ci95": [exact_rate, exact_rate],
+        },
+    }
+
+
+def _budget() -> dict:
+    return {
+        "policies": {
+            "heuristic": _budget_policy(20, [(1, 0, 0), (2, 2, 0)]),
+            "research": _budget_policy(20, [(1, 0, 0), (2, 12, 4), (3, 16, 5)]),
+        }
+    }
+
+
+def _budget_policy(count, points) -> dict:
+    budgets = [
+        {
+            "budget": budget,
+            "count": count,
+            "solved": solved,
+            "exact": exact,
+            "solve_rate": solved / count,
+            "exact_rate": exact / count,
+            "avg_checks_used": float(budget),
+        }
+        for budget, solved, exact in points
+    ]
+    previous = 0
+    marginal = {}
+    for budget, solved, _ in points:
+        marginal[str(budget)] = solved - previous
+        previous = solved
+    return {
+        "count": count,
+        "max_observed_steps": points[-1][0],
+        "budgets": budgets,
+        "marginal_solves": marginal,
+        "by_corruption": {
+            "not_proposition": {
+                "count": count,
+                "budgets": budgets,
+                "marginal_solves": marginal,
+            }
+        },
+    }
+
+
+def _exactness() -> dict:
+    return {
+        "policies": {
+            "heuristic": _exactness_policy(20, 2, 0),
+            "research": _exactness_policy(20, 16, 6),
+        }
+    }
+
+
+def _exactness_policy(count, solved, exact) -> dict:
+    return {
+        "count": count,
+        "solved": solved,
+        "exact": exact,
+        "solved_with_target": solved,
+        "solved_not_exact": solved - exact,
+        "solved_missing_target": 0,
+        "solve_rate": solved / count,
+        "exact_rate": exact / count,
+        "exact_given_solved": exact / solved if solved else 0.0,
+        "drift_given_solved": (solved - exact) / solved if solved else 0.0,
+        "avg_header_similarity": 0.75 if solved else None,
+        "avg_token_jaccard": 0.5 if solved else None,
+        "by_corruption": {
+            "not_proposition": {
+                "count": count,
+                "solved": solved,
+                "exact": exact,
+                "solved_not_exact": solved - exact,
+                "solve_rate": solved / count,
+                "exact_rate": exact / count,
+                "exact_given_solved": exact / solved if solved else 0.0,
+                "drift_given_solved": (solved - exact) / solved if solved else 0.0,
+                "avg_header_similarity": 0.75 if solved else None,
+                "avg_token_jaccard": 0.5 if solved else None,
+            }
         },
     }
 
@@ -182,4 +277,60 @@ def _paired_metric(a_success, b_success, b_only, a_only, lift, pvalue) -> dict:
         "policy_b_only": b_only,
         "policy_b_lift": lift,
         "paired_exact_sign_p_two_sided": pvalue,
+    }
+
+
+def _trace() -> dict:
+    return {
+        "policies": {
+            "heuristic": _trace_policy(20, 2, 0, {"parse_error": 18, "solved": 2}),
+            "research": _trace_policy(20, 16, 6, {"solved": 16, "parse_error": 4}),
+        }
+    }
+
+
+def _trace_policy(count, solved, exact, terminal) -> dict:
+    return {
+        "count": count,
+        "records_with_trace": count,
+        "solved": solved,
+        "exact": exact,
+        "lean_ok_records": solved,
+        "rejected_lean_ok_records": 0,
+        "rejected_lean_ok_steps": 0,
+        "accepted_after_rejection": 0,
+        "solve_rate": solved / count,
+        "exact_rate": exact / count,
+        "lean_ok_rate": solved / count,
+        "rejected_lean_ok_rate": 0.0,
+        "avg_steps": 2.0,
+        "median_steps": 2.0,
+        "median_solve_step": 2.0 if solved else None,
+        "avg_elapsed_ms": 12.0,
+        "timeout_records": 0,
+        "first_error_kind": {"parse_error": count},
+        "terminal_error_kind": terminal,
+        "acceptance_rejection_reasons": {},
+        "failure_transitions": {"parse_error->parse_error": count - solved},
+        "solved_by_step": {"2": solved} if solved else {},
+        "by_corruption": {
+            "not_proposition": {
+                "count": count,
+                "solved": solved,
+                "exact": exact,
+                "lean_ok_records": solved,
+                "rejected_lean_ok_records": 0,
+                "rejected_lean_ok_steps": 0,
+                "accepted_after_rejection": 0,
+                "solve_rate": solved / count,
+                "exact_rate": exact / count,
+                "lean_ok_rate": solved / count,
+                "rejected_lean_ok_rate": 0.0,
+                "avg_steps": 2.0,
+                "avg_elapsed_ms": 12.0,
+                "first_error_kind": {"parse_error": count},
+                "terminal_error_kind": terminal,
+                "failure_transitions": {"parse_error->parse_error": count - solved},
+            }
+        },
     }
