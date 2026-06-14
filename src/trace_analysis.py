@@ -33,6 +33,11 @@ def analyze_records(
     solve_steps: list[int] = []
     solved = 0
     exact = 0
+    lean_ok_records = 0
+    rejected_lean_ok_records = 0
+    rejected_lean_ok_steps = 0
+    accepted_after_rejection = 0
+    rejection_reasons: Counter[str] = Counter()
     timeout_records = 0
     records_with_trace = 0
 
@@ -57,6 +62,16 @@ def analyze_records(
         elapsed_values.append(elapsed_ms)
         solved += int(ok)
         exact += int(is_exact)
+        record_lean_ok = any(bool(step.get("ok", False)) for step in trace)
+        record_rejected_steps = [
+            step for step in trace if bool(step.get("ok", False)) and not _step_accepted(step)
+        ]
+        lean_ok_records += int(record_lean_ok)
+        rejected_lean_ok_records += int(bool(record_rejected_steps))
+        rejected_lean_ok_steps += len(record_rejected_steps)
+        accepted_after_rejection += int(ok and bool(record_rejected_steps))
+        for step in record_rejected_steps:
+            rejection_reasons[_acceptance_reason(step)] += 1
         timeout_records += int(_trace_timed_out(trace))
 
         if ok:
@@ -73,6 +88,10 @@ def analyze_records(
         bucket.add(
             ok=ok,
             exact=is_exact,
+            lean_ok=record_lean_ok,
+            rejected_lean_ok=bool(record_rejected_steps),
+            rejected_lean_ok_steps=len(record_rejected_steps),
+            accepted_after_rejection=bool(ok and record_rejected_steps),
             first_kind=first_kind,
             terminal_kind=terminal_kind,
             failure_transition=None if ok else f"{first_kind}->{terminal_kind}",
@@ -86,8 +105,14 @@ def analyze_records(
         "records_with_trace": records_with_trace,
         "solved": solved,
         "exact": exact,
+        "lean_ok_records": int(lean_ok_records),
+        "rejected_lean_ok_records": int(rejected_lean_ok_records),
+        "rejected_lean_ok_steps": int(rejected_lean_ok_steps),
+        "accepted_after_rejection": int(accepted_after_rejection),
         "solve_rate": _rate(solved, total),
         "exact_rate": _rate(exact, total),
+        "lean_ok_rate": _rate(lean_ok_records, total),
+        "rejected_lean_ok_rate": _rate(rejected_lean_ok_records, total),
         "avg_steps": mean(step_values) if step_values else 0.0,
         "median_steps": median(step_values) if step_values else 0.0,
         "median_solve_step": median(solve_steps) if solve_steps else None,
@@ -95,6 +120,7 @@ def analyze_records(
         "timeout_records": timeout_records,
         "first_error_kind": _sorted_counter(first_kinds),
         "terminal_error_kind": _sorted_counter(terminal_kinds),
+        "acceptance_rejection_reasons": _sorted_counter(rejection_reasons),
         "failure_transitions": _sorted_counter(failure_transitions),
         "solved_by_step": _sorted_counter(solved_by_step),
         "by_corruption": {
@@ -198,15 +224,17 @@ def format_markdown(summary: dict[str, Any]) -> str:
         "",
         "## Aggregate",
         "",
-        "| Policy | Records | Solve Rate | Exact Rate | Avg Steps | Median Solve Step | Timeouts |",
-        "|---|---:|---:|---:|---:|---:|---:|",
+        "| Policy | Records | Solve Rate | Exact Rate | Lean-OK Rate | Rejected Lean-OK Records | Accepted After Rejection | Avg Steps | Median Solve Step | Timeouts |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for policy, row in sorted(policies.items()):
         median_solve = row["median_solve_step"]
         median_solve_text = "-" if median_solve is None else f"{float(median_solve):.1f}"
         lines.append(
             f"| {policy} | {row['count']} | {_pct(row['solve_rate'])} | "
-            f"{_pct(row['exact_rate'])} | {row['avg_steps']:.2f} | "
+            f"{_pct(row['exact_rate'])} | {_pct(row.get('lean_ok_rate', row['solve_rate']))} | "
+            f"{row.get('rejected_lean_ok_records', 0)} | "
+            f"{row.get('accepted_after_rejection', 0)} | {row['avg_steps']:.2f} | "
             f"{median_solve_text} | {row['timeout_records']} |"
         )
 
@@ -215,6 +243,17 @@ def format_markdown(summary: dict[str, Any]) -> str:
         lines.extend([f"### {policy}", "", "| Terminal kind | Count |", "|---|---:|"])
         for kind, count in _top_items(row.get("terminal_error_kind", {}), limit=12):
             lines.append(f"| {_md(kind)} | {count} |")
+        lines.append("")
+
+    lines.extend(["## Acceptance Rejections", ""])
+    for policy, row in sorted(policies.items()):
+        lines.extend([f"### {policy}", "", "| Reason | Count |", "|---|---:|"])
+        reasons = row.get("acceptance_rejection_reasons", {})
+        if reasons:
+            for reason, count in _top_items(reasons, limit=12):
+                lines.append(f"| {_md(reason)} | {count} |")
+        else:
+            lines.append("| - | 0 |")
         lines.append("")
 
     lines.extend(["## Failure Transitions", ""])
@@ -234,14 +273,16 @@ def format_markdown(summary: dict[str, Any]) -> str:
             [
                 f"### {policy}",
                 "",
-                "| Corruption | N | Solve Rate | Exact Rate | Top terminal failure |",
-                "|---|---:|---:|---:|---|",
+                "| Corruption | N | Solve Rate | Lean-OK Rate | Rejected Lean-OK | Exact Rate | Top terminal failure |",
+                "|---|---:|---:|---:|---:|---:|---|",
             ]
         )
         for corruption, bucket in row.get("by_corruption", {}).items():
             top_terminal = _top_terminal_failure(bucket.get("terminal_error_kind", {}))
             lines.append(
                 f"| {_md(corruption)} | {bucket['count']} | {_pct(bucket['solve_rate'])} | "
+                f"{_pct(bucket.get('lean_ok_rate', bucket['solve_rate']))} | "
+                f"{bucket.get('rejected_lean_ok_records', 0)} | "
                 f"{_pct(bucket['exact_rate'])} | {_md(top_terminal)} |"
             )
         lines.append("")
@@ -254,6 +295,10 @@ class _Bucket:
         self.count = 0
         self.solved = 0
         self.exact = 0
+        self.lean_ok = 0
+        self.rejected_lean_ok = 0
+        self.rejected_lean_ok_steps = 0
+        self.accepted_after_rejection = 0
         self.steps: list[int] = []
         self.elapsed_ms: list[float] = []
         self.first_kinds: Counter[str] = Counter()
@@ -265,6 +310,10 @@ class _Bucket:
         *,
         ok: bool,
         exact: bool,
+        lean_ok: bool,
+        rejected_lean_ok: bool,
+        rejected_lean_ok_steps: int,
+        accepted_after_rejection: bool,
         first_kind: str,
         terminal_kind: str,
         failure_transition: str | None,
@@ -274,6 +323,10 @@ class _Bucket:
         self.count += 1
         self.solved += int(ok)
         self.exact += int(exact)
+        self.lean_ok += int(lean_ok)
+        self.rejected_lean_ok += int(rejected_lean_ok)
+        self.rejected_lean_ok_steps += int(rejected_lean_ok_steps)
+        self.accepted_after_rejection += int(accepted_after_rejection)
         self.steps.append(int(steps))
         self.elapsed_ms.append(float(elapsed_ms))
         self.first_kinds[first_kind] += 1
@@ -286,8 +339,14 @@ class _Bucket:
             "count": self.count,
             "solved": self.solved,
             "exact": self.exact,
+            "lean_ok_records": int(self.lean_ok),
+            "rejected_lean_ok_records": int(self.rejected_lean_ok),
+            "rejected_lean_ok_steps": int(self.rejected_lean_ok_steps),
+            "accepted_after_rejection": int(self.accepted_after_rejection),
             "solve_rate": _rate(self.solved, self.count),
             "exact_rate": _rate(self.exact, self.count),
+            "lean_ok_rate": _rate(self.lean_ok, self.count),
+            "rejected_lean_ok_rate": _rate(self.rejected_lean_ok, self.count),
             "avg_steps": mean(self.steps) if self.steps else 0.0,
             "avg_elapsed_ms": mean(self.elapsed_ms) if self.elapsed_ms else 0.0,
             "first_error_kind": _sorted_counter(self.first_kinds),
@@ -297,8 +356,10 @@ class _Bucket:
 
 
 def _primary_kind(step: dict[str, Any]) -> str:
-    if bool(step.get("ok", False)):
+    if _step_accepted(step):
         return "solved"
+    if bool(step.get("ok", False)):
+        return f"rejected_{_acceptance_reason(step)}"
     if bool(step.get("timed_out", False)):
         return "timeout"
     errors = step.get("errors", [])
@@ -317,9 +378,20 @@ def _terminal_kind(trace: list[dict[str, Any]]) -> str:
 
 def _first_ok_step(trace: list[dict[str, Any]]) -> int | None:
     for index, step in enumerate(trace, start=1):
-        if bool(step.get("ok", False)):
+        if _step_accepted(step):
             return index
     return None
+
+
+def _step_accepted(step: dict[str, Any]) -> bool:
+    if "accepted" in step:
+        return bool(step.get("accepted", False))
+    return bool(step.get("ok", False))
+
+
+def _acceptance_reason(step: dict[str, Any]) -> str:
+    reason = str(step.get("acceptance_reason", "") or "").strip()
+    return reason or "lean_ok_rejected"
 
 
 def _trace_timed_out(trace: list[dict[str, Any]]) -> bool:

@@ -203,6 +203,10 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Quality-adjusted summary: `quality_summary.json`, `quality_summary.md`
 - Strict replay audit: `strict_replay.json`, `strict_replay.md`
 
+Trace taxonomy reports are acceptance-aware: on strict-acceptance runs they
+separate raw Lean-ok candidates from candidates actually accepted by the repair
+loop, and count rejection reasons such as `goal_true`.
+
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
 - Aggregate report: `results/real_paper_v2/aggregate_report.md`

@@ -67,6 +67,61 @@ class TraceAnalysisTests(unittest.TestCase):
         self.assertEqual(summary["by_corruption"]["name"]["failure_transitions"]["unknown_identifier->not_proposition"], 1)
         self.assertEqual(summary["failure_examples"][0]["id"], "b")
 
+    def test_analyze_records_tracks_strict_acceptance_rejections(self):
+        records = [
+            {
+                "id": "reject_terminal",
+                "corruption": "not_proposition",
+                "ok": False,
+                "exact": False,
+                "steps": 1,
+                "trace": [
+                    {
+                        "candidate": "theorem a : True",
+                        "ok": True,
+                        "accepted": False,
+                        "acceptance_reason": "goal_true",
+                        "errors": [],
+                    }
+                ],
+            },
+            {
+                "id": "accept_later",
+                "corruption": "parse",
+                "ok": True,
+                "exact": True,
+                "steps": 2,
+                "trace": [
+                    {
+                        "candidate": "theorem b : True",
+                        "ok": True,
+                        "accepted": False,
+                        "acceptance_reason": "goal_true",
+                        "errors": [],
+                    },
+                    {
+                        "candidate": "theorem b (n : Nat) : n = n",
+                        "ok": True,
+                        "accepted": True,
+                        "acceptance_reason": "exact",
+                        "errors": [],
+                    },
+                ],
+            },
+        ]
+
+        summary = ta.analyze_records(records)
+
+        self.assertEqual(summary["solved"], 1)
+        self.assertEqual(summary["lean_ok_records"], 2)
+        self.assertEqual(summary["rejected_lean_ok_records"], 2)
+        self.assertEqual(summary["rejected_lean_ok_steps"], 2)
+        self.assertEqual(summary["accepted_after_rejection"], 1)
+        self.assertEqual(summary["acceptance_rejection_reasons"]["goal_true"], 2)
+        self.assertEqual(summary["terminal_error_kind"]["rejected_goal_true"], 1)
+        self.assertEqual(summary["failure_transitions"]["rejected_goal_true->rejected_goal_true"], 1)
+        self.assertEqual(summary["by_corruption"]["parse"]["accepted_after_rejection"], 1)
+
     def test_trace_taxonomy_cli_writes_outputs(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp)
