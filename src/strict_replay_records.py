@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 from jsonl_io import JsonlError, iter_jsonl_objects
 
@@ -72,6 +72,32 @@ def load_records_jsonl(path: str | Path) -> list[dict[str, Any]]:
                 f"at {path}:{line_no}; first seen at line {first_lines[key]}"
             )
         first_lines[key] = line_no
+        rows.append(row)
+    return rows
+
+
+def validate_records(
+    records: Iterable[object],
+    *,
+    location: str = "input strict replay records",
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    first_rows: dict[tuple[str, str, str], int] = {}
+    for row_no, row in enumerate(records, start=1):
+        if not isinstance(row, dict):
+            raise JsonlError(
+                f"expected {location} row {row_no} to be dict, got {type(row).__name__}"
+            )
+        validate_record(row, path=location, line_no=row_no)
+        key = _record_key(row)
+        if key in first_rows:
+            run, item_id, policy = key
+            raise JsonlError(
+                "duplicate strict replay row "
+                f"run={run!r}, id={item_id!r}, policy={policy!r} "
+                f"at input row {row_no}; first seen at input row {first_rows[key]}"
+            )
+        first_rows[key] = row_no
         rows.append(row)
     return rows
 
@@ -151,4 +177,5 @@ __all__ = [
     "TEXT_FIELDS",
     "load_records_jsonl",
     "validate_record",
+    "validate_records",
 ]

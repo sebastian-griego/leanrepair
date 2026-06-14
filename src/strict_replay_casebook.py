@@ -5,7 +5,10 @@ import json
 from pathlib import Path
 from typing import Any, Iterable
 
-from strict_replay_records import load_records_jsonl as load_strict_replay_records
+from strict_replay_records import (
+    load_records_jsonl as load_strict_replay_records,
+    validate_records as validate_strict_replay_records,
+)
 
 
 INTERESTING_FLAGS = (
@@ -25,7 +28,7 @@ def analyze_records(
     *,
     max_cases: int = 25,
 ) -> dict[str, Any]:
-    rows = [_annotate_case(row) for row in records]
+    rows = [_annotate_case(row) for row in validate_strict_replay_records(records)]
     if not rows:
         raise ValueError("no strict replay records found")
 

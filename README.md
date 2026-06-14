@@ -205,10 +205,10 @@ to reproduce confidence intervals for solve-rate and exact-rate lift. Per-policy
 result files are loaded through duplicate-`id` checks across the aggregate
 analyzers, with physical line numbers in failures, so accidental concatenation
 cannot silently inflate or overwrite reported results.
-Strict replay ledgers are schema-validated when loaded from JSONL and reject
-duplicate `(run, id, policy)` rows with the physical line number, so the
-casebook and paired replay reports cannot double-count a replay decision from a
-corrupted or resumed ledger.
+Strict replay ledgers are schema-validated before casebook and paired replay
+reports are built, whether loaded from JSONL or supplied in memory. Duplicate
+`(run, id, policy)` rows are rejected with the physical line number or input row,
+so corrupted or resumed ledgers cannot double-count a replay decision.
 
 Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 

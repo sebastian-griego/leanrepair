@@ -6,10 +6,9 @@ from pathlib import Path
 from typing import Any, Iterable
 
 import eval_utils as eu
-from jsonl_io import JsonlError
 from strict_replay_records import (
     load_records_jsonl as load_strict_replay_records,
-    validate_record as validate_strict_replay_record,
+    validate_records as validate_strict_replay_records,
 )
 
 
@@ -28,10 +27,9 @@ def analyze_records(
     strict_pairs: bool = False,
     max_cases: int = 25,
 ) -> dict[str, Any]:
-    rows = list(records)
+    rows = validate_strict_replay_records(records)
     if not rows:
         raise ValueError("no strict replay records found")
-    _validate_input_records(rows)
     policy_a = str(policy_a)
     policy_b = str(policy_b)
     by_key = _index_records(rows)
@@ -237,35 +235,12 @@ def _index_records(
     rows: Iterable[dict[str, Any]],
 ) -> dict[tuple[str, str], dict[str, dict[str, Any]]]:
     by_key: dict[tuple[str, str], dict[str, dict[str, Any]]] = {}
-    first_rows: dict[tuple[str, str, str], int] = {}
-    for row_no, row in enumerate(rows, start=1):
+    for row in rows:
         key = (str(row.get("run", "")), str(row.get("id", "")))
         policy = str(row.get("policy", ""))
-        full_key = (key[0], key[1], policy)
         bucket = by_key.setdefault(key, {})
-        if policy in bucket:
-            raise JsonlError(
-                "duplicate strict replay row "
-                f"run={key[0]!r}, id={key[1]!r}, policy={policy!r} "
-                f"at input row {row_no}; first seen at input row {first_rows[full_key]}"
-            )
         bucket[policy] = row
-        first_rows[full_key] = row_no
     return by_key
-
-
-def _validate_input_records(rows: Iterable[dict[str, Any]]) -> None:
-    for row_no, row in enumerate(rows, start=1):
-        if not isinstance(row, dict):
-            raise JsonlError(
-                f"expected input strict replay record {row_no} to be dict, "
-                f"got {type(row).__name__}"
-            )
-        validate_strict_replay_record(
-            row,
-            path="input strict replay records",
-            line_no=row_no,
-        )
 
 
 def _paired_metric(
