@@ -153,6 +153,11 @@ python scripts/run_experiments.py \
   --warmup
 ```
 
+Experiment inputs are validated before any run directory is created. Each
+benchmark row must contain non-empty string `id`, `candidate`, and `target`
+fields; optional `nl`, `ctx`, and `corruption` fields must also be strings when
+present. Schema errors report the physical JSONL line number.
+
 ### Real Benchmark (Mined from Lean Source)
 
 Build a real benchmark by mining theorem/lemma headers from local Lean sources (`Init`/`Std`), validating clean targets, and keeping only corrupted variants that fail Lean checking:

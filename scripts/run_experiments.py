@@ -17,7 +17,7 @@ import eval_utils as eu  # noqa: E402
 import acceptance  # noqa: E402
 import budget_analysis as ba  # noqa: E402
 import exactness_analysis as ea  # noqa: E402
-from jsonl_io import load_jsonl_objects  # noqa: E402
+from jsonl_io import JsonlError, iter_jsonl_objects  # noqa: E402
 import lean_check as lc  # noqa: E402
 import quality_analysis as qa  # noqa: E402
 import repair_cli as rc  # noqa: E402
@@ -53,7 +53,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     input_path = Path(args.input)
-    dataset = _load_jsonl(input_path)
+    dataset = _load_benchmark(input_path)
 
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     run_dir = Path(args.output_dir) / f"run_{timestamp}"
@@ -203,8 +203,29 @@ def _trace_step_to_dict(step: rl.TraceStep) -> dict[str, Any]:
     }
 
 
-def _load_jsonl(path: Path) -> list[dict[str, Any]]:
-    return load_jsonl_objects(path)
+def _load_benchmark(path: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for line_no, row in iter_jsonl_objects(path):
+        _validate_benchmark_row(row, path=path, line_no=line_no)
+        rows.append(row)
+    if not rows:
+        raise JsonlError(f"Empty benchmark at {path}")
+    return rows
+
+
+def _validate_benchmark_row(row: dict[str, Any], *, path: Path, line_no: int) -> None:
+    for key in ("id", "candidate", "target"):
+        value = row.get(key)
+        if not isinstance(value, str) or not value.strip():
+            raise JsonlError(
+                f"Expected non-empty string field {key!r} at {path}:{line_no}"
+            )
+    for key in ("nl", "ctx", "corruption"):
+        value = row.get(key)
+        if value is not None and not isinstance(value, str):
+            raise JsonlError(
+                f"Expected string field {key!r} at {path}:{line_no}, got {type(value).__name__}"
+            )
 
 
 def _warmup(timeout_s: float) -> None:
