@@ -132,6 +132,42 @@ class StrictReplayAnalysisTests(unittest.TestCase):
         self.assertEqual(summary["recovered_after_degenerate"], 1)
         self.assertEqual(summary["changed_accepted_output"], 1)
 
+    def test_replay_records_returns_row_level_decisions(self):
+        rows = sra.replay_records(
+            [
+                {
+                    "id": "loss",
+                    "policy": "research",
+                    "corruption": "not_proposition",
+                    "ok": True,
+                    "final": "theorem loss : True := by sorry",
+                    "target": "theorem loss (n : Nat) : n = n",
+                    "trace": [{"ok": True, "candidate": "theorem loss : True := by sorry"}],
+                },
+                {
+                    "id": "strict",
+                    "policy": "research",
+                    "corruption": "parse",
+                    "ok": True,
+                    "final": "theorem strict (n : Nat) : n = n := by sorry",
+                    "target": "theorem strict (n : Nat) : n = n",
+                    "trace": [
+                        {
+                            "ok": True,
+                            "candidate": "theorem strict (n : Nat) : n = n := by sorry",
+                        }
+                    ],
+                },
+            ]
+        )
+
+        by_id = {row["id"]: row for row in rows}
+        self.assertTrue(by_id["loss"]["raw_ok"])
+        self.assertFalse(by_id["loss"]["strict_ok"])
+        self.assertEqual(by_id["loss"]["raw_reason"], "goal_true")
+        self.assertTrue(by_id["strict"]["strict_ok"])
+        self.assertTrue(by_id["strict"]["strict_exact"])
+
     def test_strict_replay_cli_writes_outputs(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp)
@@ -159,6 +195,7 @@ class StrictReplayAnalysisTests(unittest.TestCase):
 
             output_json = root / "strict.json"
             output_md = root / "strict.md"
+            output_records = root / "strict_records.jsonl"
             asr.main(
                 [
                     "--root",
@@ -169,13 +206,54 @@ class StrictReplayAnalysisTests(unittest.TestCase):
                     str(output_json),
                     "--output-md",
                     str(output_md),
+                    "--output-records-jsonl",
+                    str(output_records),
                 ]
             )
 
             payload = json.loads(output_json.read_text(encoding="utf-8"))
+            records = [
+                json.loads(line)
+                for line in output_records.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
             self.assertEqual(payload["policies"]["research"]["raw_to_strict_loss"], 1)
             self.assertEqual(payload["policies"]["research"]["strict_not_exact"], 0)
             self.assertIn("Strict Replay Audit", output_md.read_text(encoding="utf-8"))
+            self.assertEqual(len(records), 1)
+            self.assertEqual(records[0]["run"], "run_001")
+            self.assertFalse(records[0]["strict_ok"])
+
+    def test_replay_root_exports_all_runs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            for run_name, record_id in [("run_001", "a"), ("run_002", "b")]:
+                run_dir = root / run_name
+                run_dir.mkdir()
+                self._write_jsonl(
+                    run_dir / "research.jsonl",
+                    [
+                        {
+                            "id": record_id,
+                            "corruption": "parse",
+                            "ok": True,
+                            "final": f"theorem {record_id} (n : Nat) : n = n := by sorry",
+                            "target": f"theorem {record_id} (n : Nat) : n = n",
+                            "trace": [
+                                {
+                                    "ok": True,
+                                    "candidate": f"theorem {record_id} (n : Nat) : n = n := by sorry",
+                                }
+                            ],
+                        }
+                    ],
+                )
+
+            rows = sra.replay_root(root, ["research"])
+
+            self.assertEqual([row["id"] for row in rows], ["a", "b"])
+            self.assertEqual([row["run"] for row in rows], ["run_001", "run_002"])
+            self.assertEqual({row["policy"] for row in rows}, {"research"})
 
     def _write_jsonl(self, path: pathlib.Path, rows: list[dict]) -> None:
         path.write_text(

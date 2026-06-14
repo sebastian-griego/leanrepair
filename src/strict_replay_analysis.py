@@ -24,11 +24,19 @@ def analyze_records(
     token_recall_floor: float = 0.2,
     max_examples: int = 20,
 ) -> dict[str, Any]:
-    replays = [
+    replays = replay_records(records, token_recall_floor=token_recall_floor)
+    return _summarize_replays(replays, max_examples=max_examples)
+
+
+def replay_records(
+    records: Iterable[dict[str, Any]],
+    *,
+    token_recall_floor: float = 0.2,
+) -> list[dict[str, Any]]:
+    return [
         replay_record(row, token_recall_floor=token_recall_floor)
         for row in records
     ]
-    return _summarize_replays(replays, max_examples=max_examples)
 
 
 def replay_record(
@@ -125,6 +133,26 @@ def analyze_run_dir(
     }
 
 
+def replay_run_dir(
+    run_dir: Path,
+    policies: Iterable[str],
+    *,
+    token_recall_floor: float = 0.2,
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for policy in policies:
+        path = run_dir / f"{policy}.jsonl"
+        if not path.exists():
+            continue
+        for row in load_jsonl(path):
+            replay = replay_record(row, token_recall_floor=token_recall_floor)
+            replay["run"] = run_dir.name
+            if not replay["policy"]:
+                replay["policy"] = str(policy)
+            rows.append(replay)
+    return rows
+
+
 def analyze_root(
     root: Path,
     policies: Iterable[str],
@@ -189,6 +217,46 @@ def analyze_root(
         "policies": aggregate,
         "missing_policy_run_counts": dict(sorted(aggregate_missing.items())),
     }
+
+
+def replay_root(
+    root: Path,
+    policies: Iterable[str],
+    *,
+    token_recall_floor: float = 0.2,
+) -> list[dict[str, Any]]:
+    policies = [str(policy) for policy in policies]
+    direct_policy_files = [root / f"{policy}.jsonl" for policy in policies]
+    if any(path.exists() for path in direct_policy_files):
+        return replay_run_dir(
+            root,
+            policies,
+            token_recall_floor=token_recall_floor,
+        )
+
+    run_dirs = sorted(path for path in root.iterdir() if path.is_dir() and path.name.startswith("run_"))
+    if not run_dirs:
+        raise ValueError(f"no run_* directories or policy JSONL files found under {root}")
+
+    rows: list[dict[str, Any]] = []
+    for run_dir in run_dirs:
+        rows.extend(
+            replay_run_dir(
+                run_dir,
+                policies,
+                token_recall_floor=token_recall_floor,
+            )
+        )
+    if not rows:
+        raise ValueError(f"no policy JSONL records found under {root}")
+    return rows
+
+
+def write_replay_records_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
+    path.write_text(
+        "".join(json.dumps(row, ensure_ascii=True) + "\n" for row in rows),
+        encoding="utf-8",
+    )
 
 
 def format_markdown(summary: dict[str, Any]) -> str:
@@ -540,4 +608,8 @@ __all__ = [
     "format_markdown",
     "load_jsonl",
     "replay_record",
+    "replay_records",
+    "replay_root",
+    "replay_run_dir",
+    "write_replay_records_jsonl",
 ]

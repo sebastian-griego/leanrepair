@@ -332,6 +332,7 @@ def _write_quality_summary(run_dir: Path, policies: list[str]) -> None:
 
 def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
     summary = sra.analyze_run_dir(run_dir, policies, max_examples=20)
+    replay_rows = sra.replay_run_dir(run_dir, policies)
     (run_dir / "strict_replay.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
         encoding="utf-8",
@@ -340,6 +341,7 @@ def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
         sra.format_markdown(summary) + "\n",
         encoding="utf-8",
     )
+    sra.write_replay_records_jsonl(run_dir / "strict_replay_records.jsonl", replay_rows)
 
 
 if __name__ == "__main__":
