@@ -251,6 +251,8 @@ Write a machine-readable command report:
 python scripts/verify_reproducibility.py --report-json results/reproducibility_report.json
 ```
 
+CI uploads this report as an artifact for each supported Python version.
+
 Verify the checked-in snapshot is current without rewriting it:
 
 ```bash
