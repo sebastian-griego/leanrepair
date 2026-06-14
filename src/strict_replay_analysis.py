@@ -283,15 +283,14 @@ def format_markdown(summary: dict[str, Any]) -> str:
             f"{row['recovered_after_degenerate']} |"
         )
 
+    reason_names = list(sda.DEGENERATE_REASONS)
     lines.extend(["", "## Raw Degenerate Reasons", ""])
-    lines.extend(["| Policy | goal_true | reflexive_equality | low_target_token_recall |", "|---|---:|---:|---:|"])
+    lines.append("| Policy | " + " | ".join(reason_names) + " |")
+    lines.append("|---" + "|---:" * len(reason_names) + "|")
     for policy, row in sorted(policies.items()):
         reasons = row.get("raw_degenerate_reasons", {})
-        lines.append(
-            f"| {policy} | {int(reasons.get('goal_true', 0))} | "
-            f"{int(reasons.get('reflexive_equality', 0))} | "
-            f"{int(reasons.get('low_target_token_recall', 0))} |"
-        )
+        counts = " | ".join(str(int(reasons.get(name, 0))) for name in reason_names)
+        lines.append(f"| {policy} | {counts} |")
 
     lines.extend(["", "## By Corruption", ""])
     for policy, row in sorted(policies.items()):

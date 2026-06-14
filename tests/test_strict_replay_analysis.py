@@ -100,6 +100,30 @@ class StrictReplayAnalysisTests(unittest.TestCase):
         self.assertEqual(summary["strict_nonexact_examples"][0]["id"], "nonexact")
         self.assertEqual(summary["by_corruption"]["parse"]["strict_not_exact"], 1)
 
+    def test_strict_replay_rejects_bare_identifier_goal(self):
+        summary = sra.analyze_records(
+            [
+                {
+                    "id": "bare",
+                    "policy": "research",
+                    "corruption": "not_proposition",
+                    "ok": True,
+                    "final": "theorem bare (a b : Int) (b : Prop) : b := by sorry",
+                    "target": "theorem bare (a b : Int) : (¬a ≤ b) = (b + 1 ≤ a)",
+                    "trace": [
+                        {
+                            "ok": True,
+                            "candidate": "theorem bare (a b : Int) (b : Prop) : b := by sorry",
+                        },
+                    ],
+                }
+            ]
+        )
+
+        self.assertEqual(summary["raw_solved"], 1)
+        self.assertEqual(summary["strict_solved"], 0)
+        self.assertEqual(summary["raw_degenerate_reasons"]["bare_identifier_goal"], 1)
+
     def test_strict_replay_can_recover_after_degenerate_trace_step(self):
         summary = sra.analyze_records(
             [

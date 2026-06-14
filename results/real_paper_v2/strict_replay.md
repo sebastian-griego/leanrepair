@@ -8,15 +8,15 @@
 
 | Policy | Records | Raw Solved | Strict Solved | Raw Exact | Strict Exact | Strict Nonexact | Exact Given Strict | Raw Degenerate | Lost Under Strict | Strict Retention | Recovered Later |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| heuristic | 900 | 90 | 5 | 0 | 0 | 5 | 0.0% | 85 | 85 | 5.6% | 0 |
-| research | 900 | 756 | 255 | 249 | 249 | 6 | 97.6% | 501 | 501 | 33.7% | 0 |
+| heuristic | 900 | 90 | 0 | 0 | 0 | 0 | 0.0% | 90 | 90 | 0.0% | 0 |
+| research | 900 | 756 | 252 | 251 | 251 | 1 | 99.6% | 504 | 504 | 33.3% | 0 |
 
 ## Raw Degenerate Reasons
 
-| Policy | goal_true | reflexive_equality | low_target_token_recall |
-|---|---:|---:|---:|
-| heuristic | 0 | 78 | 7 |
-| research | 338 | 157 | 6 |
+| Policy | goal_true | reflexive_equality | bare_identifier_goal | low_target_token_recall |
+|---|---:|---:|---:|---:|
+| heuristic | 0 | 78 | 12 | 0 |
+| research | 338 | 157 | 9 | 0 |
 
 ## By Corruption
 
@@ -25,9 +25,9 @@
 | Corruption | N | Raw Solved | Strict Solved | Strict Exact | Strict Nonexact | Exact Given Strict | Raw Degenerate | Lost | Retention |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | lowercase_type | 118 | 0 | 0 | 0 | 0 | 0.0% | 0 | 0 | 0.0% |
-| not_proposition | 194 | 86 | 3 | 0 | 3 | 0.0% | 83 | 83 | 3.5% |
+| not_proposition | 194 | 86 | 0 | 0 | 0 | 0.0% | 86 | 86 | 0.0% |
 | parse_missing_colon | 176 | 0 | 0 | 0 | 0 | 0.0% | 0 | 0 | 0.0% |
-| parse_unbalanced_paren | 143 | 2 | 2 | 0 | 2 | 0.0% | 0 | 0 | 100.0% |
+| parse_unbalanced_paren | 143 | 2 | 0 | 0 | 0 | 0.0% | 2 | 2 | 0.0% |
 | type_mismatch | 140 | 2 | 0 | 0 | 0 | 0.0% | 2 | 2 | 0.0% |
 | unknown_type_symbol | 129 | 0 | 0 | 0 | 0 | 0.0% | 0 | 0 | 0.0% |
 
@@ -36,8 +36,8 @@
 | Corruption | N | Raw Solved | Strict Solved | Strict Exact | Strict Nonexact | Exact Given Strict | Raw Degenerate | Lost | Retention |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | lowercase_type | 118 | 107 | 84 | 84 | 0 | 100.0% | 23 | 23 | 78.5% |
-| not_proposition | 194 | 185 | 3 | 0 | 3 | 0.0% | 182 | 182 | 1.6% |
-| parse_missing_colon | 176 | 122 | 91 | 89 | 2 | 97.8% | 31 | 31 | 74.6% |
+| not_proposition | 194 | 185 | 0 | 0 | 0 | 0.0% | 185 | 185 | 0.0% |
+| parse_missing_colon | 176 | 122 | 91 | 91 | 0 | 100.0% | 31 | 31 | 74.6% |
 | parse_unbalanced_paren | 143 | 127 | 71 | 71 | 0 | 100.0% | 56 | 56 | 55.9% |
 | type_mismatch | 140 | 136 | 0 | 0 | 0 | 0.0% | 136 | 136 | 0.0% |
 | unknown_type_symbol | 129 | 79 | 6 | 5 | 1 | 83.3% | 73 | 73 | 7.6% |
@@ -48,53 +48,42 @@
 
 | id | corruption | reason | raw step | raw final goal | target goal |
 |---|---|---|---:|---|---|
-| real_00026 | not_proposition | low_target_token_recall | 2 | y | x % y = if 0 < y ∧ y ≤ x then (x - y) % y else x |
-| real_00048 | not_proposition | low_target_token_recall | 2 | m | n * (m - 1) = n * m - n |
-| real_00059 | not_proposition | low_target_token_recall | 2 | b | a.toUInt32 = b.toUInt32 ↔ a % 4294967296 = b % 4294967296 |
-| real_00082 | not_proposition | low_target_token_recall | 2 | b | (a + b).bmod n = (a.bmod n + b.bmod n).bmod n |
-| real_00109 | not_proposition | low_target_token_recall | 2 | c | (a * b + c) % b = c % b |
-| real_00263 | not_proposition | low_target_token_recall | 2 | b | (a * b).fmod n = (a.fmod n * b.fmod n).fmod n |
-| real_00244 | type_mismatch | low_target_token_recall | 3 | y | y != 0 → -1 * (x % y) ≤ 0 |
-| real_00002 | not_proposition | reflexive_equality | 2 | Nat = Nat | max a (b + a) = b + a |
-| real_00008 | not_proposition | reflexive_equality | 2 | Nat = Nat | (-1 : UInt32) = 4294967295 |
-| real_00010 | not_proposition | reflexive_equality | 2 | Nat = Nat | ∀ (x y z : Bool), (x && (y ^^ z)) = ((x && y) ^^ (x && z)) |
+| real_00026 | not_proposition | bare_identifier_goal | 2 | y | x % y = if 0 < y ∧ y ≤ x then (x - y) % y else x |
+| real_00048 | not_proposition | bare_identifier_goal | 2 | m | n * (m - 1) = n * m - n |
+| real_00059 | not_proposition | bare_identifier_goal | 2 | b | a.toUInt32 = b.toUInt32 ↔ a % 4294967296 = b % 4294967296 |
+| real_00082 | not_proposition | bare_identifier_goal | 2 | b | (a + b).bmod n = (a.bmod n + b.bmod n).bmod n |
+| real_00109 | not_proposition | bare_identifier_goal | 2 | c | (a * b + c) % b = c % b |
+| real_00111 | not_proposition | bare_identifier_goal | 2 | m | 1 ≤ m ^ n |
+| real_00255 | not_proposition | bare_identifier_goal | 2 | b | (¬a ≤ b) = (b + 1 ≤ a) |
+| real_00263 | not_proposition | bare_identifier_goal | 2 | b | (a * b).fmod n = (a.fmod n * b.fmod n).fmod n |
+| real_00296 | not_proposition | bare_identifier_goal | 2 | y | (x - y) % y = x % y |
+| real_00066 | parse_unbalanced_paren | bare_identifier_goal | 4 | d | d * (n / d) = n ↔ d ∣ n |
 
 ### research
 
 | id | corruption | reason | raw step | raw final goal | target goal |
 |---|---|---|---:|---|---|
+| real_00026 | not_proposition | bare_identifier_goal | 2 | y | x % y = if 0 < y ∧ y ≤ x then (x - y) % y else x |
+| real_00048 | not_proposition | bare_identifier_goal | 2 | m | n * (m - 1) = n * m - n |
+| real_00059 | not_proposition | bare_identifier_goal | 2 | b | a.toUInt32 = b.toUInt32 ↔ a % 4294967296 = b % 4294967296 |
+| real_00082 | not_proposition | bare_identifier_goal | 2 | b | (a + b).bmod n = (a.bmod n + b.bmod n).bmod n |
+| real_00109 | not_proposition | bare_identifier_goal | 2 | c | (a * b + c) % b = c % b |
+| real_00111 | not_proposition | bare_identifier_goal | 2 | m | 1 ≤ m ^ n |
+| real_00255 | not_proposition | bare_identifier_goal | 2 | b | (¬a ≤ b) = (b + 1 ≤ a) |
+| real_00263 | not_proposition | bare_identifier_goal | 2 | b | (a * b).fmod n = (a.fmod n * b.fmod n).fmod n |
+| real_00296 | not_proposition | bare_identifier_goal | 2 | y | (x - y) % y = x % y |
 | real_00000 | lowercase_type | goal_true | 2 | True | x.toInt = y.toInt ↔ x = y |
-| real_00016 | lowercase_type | goal_true | 2 | True | x.toInt.toNat = x.toNat |
-| real_00036 | lowercase_type | goal_true | 2 | True | a < b ↔ a.toFin < b.toFin |
-| real_00041 | lowercase_type | goal_true | 2 | True | a.toInt64 ≠ Int64.minValue |
-| real_00043 | lowercase_type | goal_true | 2 | True | a.fmod b + (a.fdiv b) * b = a |
-| real_00054 | lowercase_type | goal_true | 2 | True | (a ^^^ b) >>> c = (a >>> c) ^^^ (b >>> c) |
-| real_00087 | lowercase_type | goal_true | 2 | True | (a &&& b) >>> c = (a >>> c) &&& (b >>> c) |
-| real_00107 | lowercase_type | goal_true | 2 | True | (a ^^^ b) <<< c = (a <<< c) ^^^ (b <<< c) |
-| real_00111 | lowercase_type | goal_true | 2 | True | x.toInt = y.toInt → x = y |
-| real_00116 | lowercase_type | goal_true | 2 | True | c.toNat ≤ 1 |
 
 ## Strict Nonexact Accepts
 
 ### heuristic
 
-| id | corruption | strict step | strict final header | target header |
-|---|---|---:|---|---|
-| real_00111 | not_proposition | 2 | theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m | theorem bench_real_00111 (n m : Nat) (h : 0 < m) : 1 ≤ m ^ n |
-| real_00255 | not_proposition | 2 | theorem bench_real_00255 (a b : Int) (b : Prop): b | theorem bench_real_00255 (a b : Int) : (¬a ≤ b) = (b + 1 ≤ a) |
-| real_00296 | not_proposition | 2 | theorem bench_real_00296 (x y : Int) (y : Prop): y | theorem bench_real_00296 (x y : Int) : (x - y) % y = x % y |
-| real_00066 | parse_unbalanced_paren | 4 | theorem bench_real_00066 {n d : Nat} (d : Prop): d | theorem bench_real_00066 {n d : Nat} : d * (n / d) = n ↔ d ∣ n |
-| real_00288 | parse_unbalanced_paren | 3 | theorem bench_real_00288 [Decidable a] : a | theorem bench_real_00288 [Decidable a] : a ∨ b ↔ (¬a → b) |
+Every strict accepted candidate is exact.
 
 ### research
 
 | id | corruption | strict step | strict final header | target header |
 |---|---|---:|---|---|
-| real_00111 | not_proposition | 2 | theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m | theorem bench_real_00111 (n m : Nat) (h : 0 < m) : 1 ≤ m ^ n |
-| real_00255 | not_proposition | 2 | theorem bench_real_00255 (a b : Int) (b : Prop): b | theorem bench_real_00255 (a b : Int) : (¬a ≤ b) = (b + 1 ≤ a) |
-| real_00296 | not_proposition | 2 | theorem bench_real_00296 (x y : Int) (y : Prop): y | theorem bench_real_00296 (x y : Int) : (x - y) % y = x % y |
-| real_00139 | parse_missing_colon | 2 | theorem bench_real_00139 (a : α) : a = a ↔ True | theorem bench_real_00139 (a : α) : a = a ↔ True |
-| real_00230 | parse_missing_colon | 2 | theorem bench_real_00230 : ∀ (x y z : Bool), (x && (y \|\| z)) = (x && y \|\| x && z) | theorem bench_real_00230 : ∀ (x y z : Bool), (x && (y \|\| z)) = (x && y \|\| x && z) |
 | real_00075 | unknown_type_symbol | 2 | theorem bench_real_00075 {a b : Nat} (hab : b ≤ a) : Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b | theorem bench_real_00075 {a b : Nat} (hab : b ≤ a) : UInt8.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b |
 
 ## Later Nondegenerate Recoveries

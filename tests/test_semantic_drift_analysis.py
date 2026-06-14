@@ -79,6 +79,40 @@ class SemanticDriftAnalysisTests(unittest.TestCase):
         self.assertEqual(summary["degenerate_solved"], 1)
         self.assertEqual(summary["degenerate_reasons"]["low_target_token_recall"], 1)
 
+    def test_bare_identifier_goal_is_counted_as_degenerate(self):
+        summary = sda.analyze_records(
+            [
+                {
+                    "id": "bare",
+                    "corruption": "not_proposition",
+                    "ok": True,
+                    "exact": False,
+                    "final_header": "theorem bare (a b : Int) (b : Prop) : b",
+                    "target_header": "theorem bare (a b : Int) : (¬a ≤ b) = (b + 1 ≤ a)",
+                }
+            ]
+        )
+
+        self.assertEqual(summary["degenerate_solved"], 1)
+        self.assertEqual(summary["degenerate_reasons"]["bare_identifier_goal"], 1)
+
+    def test_header_spacing_does_not_create_nonexact_drift(self):
+        summary = sda.analyze_records(
+            [
+                {
+                    "id": "spaces",
+                    "corruption": "parse_missing_colon",
+                    "ok": True,
+                    "exact": False,
+                    "final_header": "theorem spaces (a : α) : a = a ↔ True",
+                    "target_header": "theorem spaces (a : α)  : a = a ↔ True",
+                }
+            ]
+        )
+
+        self.assertEqual(summary["exact"], 1)
+        self.assertEqual(summary["degenerate_solved"], 0)
+
     def test_semantic_drift_cli_writes_outputs(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp)

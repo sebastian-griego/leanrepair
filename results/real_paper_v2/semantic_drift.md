@@ -8,15 +8,15 @@
 
 | Policy | Records | Solved | Exact | Degenerate Solved | Nondegenerate Solved | Degenerate Given Solved | Avg Target Token Recall | Avg Binder Retention |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| heuristic | 900 | 90 | 0 | 85 | 5 | 94.4% | 14.7% | 100.0% |
-| research | 900 | 756 | 249 | 501 | 255 | 66.3% | 37.9% | 95.5% |
+| heuristic | 900 | 90 | 0 | 90 | 0 | 100.0% | 14.7% | 100.0% |
+| research | 900 | 756 | 251 | 504 | 252 | 66.7% | 37.9% | 95.5% |
 
 ## Degenerate Reasons
 
-| Policy | goal_true | reflexive_equality | low_target_token_recall |
-|---|---:|---:|---:|
-| heuristic | 0 | 78 | 7 |
-| research | 338 | 157 | 6 |
+| Policy | goal_true | reflexive_equality | bare_identifier_goal | low_target_token_recall |
+|---|---:|---:|---:|---:|
+| heuristic | 0 | 78 | 12 | 0 |
+| research | 338 | 157 | 9 | 0 |
 
 ## By Corruption
 
@@ -25,9 +25,9 @@
 | Corruption | N | Solved | Exact | Degenerate | Degenerate Given Solved | Avg Token Recall |
 |---|---:|---:|---:|---:|---:|---:|
 | lowercase_type | 118 | 0 | 0 | 0 | 0.0% | - |
-| not_proposition | 194 | 86 | 0 | 83 | 96.5% | 14.3% |
+| not_proposition | 194 | 86 | 0 | 86 | 100.0% | 14.3% |
 | parse_missing_colon | 176 | 0 | 0 | 0 | 0.0% | - |
-| parse_unbalanced_paren | 143 | 2 | 0 | 0 | 0.0% | 35.0% |
+| parse_unbalanced_paren | 143 | 2 | 0 | 2 | 100.0% | 35.0% |
 | type_mismatch | 140 | 2 | 0 | 2 | 100.0% | 12.5% |
 | unknown_type_symbol | 129 | 0 | 0 | 0 | 0.0% | - |
 
@@ -36,8 +36,8 @@
 | Corruption | N | Solved | Exact | Degenerate | Degenerate Given Solved | Avg Token Recall |
 |---|---:|---:|---:|---:|---:|---:|
 | lowercase_type | 118 | 107 | 84 | 23 | 21.5% | 78.5% |
-| not_proposition | 194 | 185 | 0 | 182 | 98.4% | 7.3% |
-| parse_missing_colon | 176 | 122 | 89 | 31 | 25.4% | 74.6% |
+| not_proposition | 194 | 185 | 0 | 185 | 100.0% | 7.3% |
+| parse_missing_colon | 176 | 122 | 91 | 31 | 25.4% | 74.6% |
 | parse_unbalanced_paren | 143 | 127 | 71 | 56 | 44.1% | 56.3% |
 | type_mismatch | 140 | 136 | 0 | 136 | 100.0% | 14.9% |
 | unknown_type_symbol | 129 | 79 | 5 | 73 | 92.4% | 7.9% |

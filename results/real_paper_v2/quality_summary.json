@@ -8,8 +8,8 @@
           "count": 300,
           "solved": 26,
           "exact": 0,
-          "degenerate_solved": 25,
-          "nondegenerate_solved": 1,
+          "degenerate_solved": 26,
+          "nondegenerate_solved": 0,
           "solve_rate": 0.08666666666666667,
           "solve_rate_ci95": [
             0.059828489954770976,
@@ -20,21 +20,21 @@
             0.0,
             0.012643429997735661
           ],
-          "degenerate_solved_rate": 0.08333333333333333,
+          "degenerate_solved_rate": 0.08666666666666667,
           "degenerate_solved_rate_ci95": [
-            0.057080477356320006,
-            0.12012238097512637
+            0.059828489954770976,
+            0.12395674551002386
           ],
-          "nondegenerate_solved_rate": 0.0033333333333333335,
+          "nondegenerate_solved_rate": 0.0,
           "nondegenerate_solved_rate_ci95": [
-            0.0005886425761407378,
-            0.018637164554943353
+            0.0,
+            0.012643429997735661
           ],
-          "degenerate_given_solved": 0.9615384615384616,
+          "degenerate_given_solved": 1.0,
           "avg_target_token_recall": 0.12936507936507938,
           "avg_binder_retention": 1.0,
           "degenerate_reasons": {
-            "low_target_token_recall": 1,
+            "bare_identifier_goal": 2,
             "reflexive_equality": 24
           },
           "by_corruption": {
@@ -54,13 +54,13 @@
               "count": 63,
               "solved": 26,
               "exact": 0,
-              "degenerate_solved": 25,
-              "nondegenerate_solved": 1,
+              "degenerate_solved": 26,
+              "nondegenerate_solved": 0,
               "solve_rate": 0.4126984126984127,
               "exact_rate": 0.0,
-              "degenerate_solved_rate": 0.3968253968253968,
-              "nondegenerate_solved_rate": 0.015873015873015872,
-              "degenerate_given_solved": 0.9615384615384616
+              "degenerate_solved_rate": 0.4126984126984127,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
             },
             "parse_missing_colon": {
               "count": 71,
@@ -115,35 +115,35 @@
         "research": {
           "count": 300,
           "solved": 252,
-          "exact": 96,
-          "degenerate_solved": 154,
-          "nondegenerate_solved": 98,
+          "exact": 97,
+          "degenerate_solved": 155,
+          "nondegenerate_solved": 97,
           "solve_rate": 0.84,
           "solve_rate_ci95": [
             0.7942554091313135,
             0.8771470584702261
           ],
-          "exact_rate": 0.32,
+          "exact_rate": 0.3233333333333333,
           "exact_rate_ci95": [
-            0.26977448682270544,
-            0.3747771479764794
+            0.2729245203260525,
+            0.37820949160648065
           ],
-          "degenerate_solved_rate": 0.5133333333333333,
+          "degenerate_solved_rate": 0.5166666666666667,
           "degenerate_solved_rate_ci95": [
-            0.4569629909718754,
-            0.5693665175615182
+            0.46026528666991656,
+            0.5726465989968257
           ],
-          "nondegenerate_solved_rate": 0.32666666666666666,
+          "nondegenerate_solved_rate": 0.3233333333333333,
           "nondegenerate_solved_rate_ci95": [
-            0.2760775592234982,
-            0.38163882984238345
+            0.2729245203260525,
+            0.37820949160648065
           ],
-          "degenerate_given_solved": 0.6111111111111112,
+          "degenerate_given_solved": 0.6150793650793651,
           "avg_target_token_recall": 0.4283604182413706,
           "avg_binder_retention": 0.9603174603174603,
           "degenerate_reasons": {
+            "bare_identifier_goal": 2,
             "goal_true": 108,
-            "low_target_token_recall": 1,
             "reflexive_equality": 45
           },
           "by_corruption": {
@@ -163,22 +163,22 @@
               "count": 63,
               "solved": 59,
               "exact": 0,
-              "degenerate_solved": 58,
-              "nondegenerate_solved": 1,
+              "degenerate_solved": 59,
+              "nondegenerate_solved": 0,
               "solve_rate": 0.9365079365079365,
               "exact_rate": 0.0,
-              "degenerate_solved_rate": 0.9206349206349206,
-              "nondegenerate_solved_rate": 0.015873015873015872,
-              "degenerate_given_solved": 0.9830508474576272
+              "degenerate_solved_rate": 0.9365079365079365,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
             },
             "parse_missing_colon": {
               "count": 71,
               "solved": 47,
-              "exact": 37,
+              "exact": 38,
               "degenerate_solved": 9,
               "nondegenerate_solved": 38,
               "solve_rate": 0.6619718309859155,
-              "exact_rate": 0.5211267605633803,
+              "exact_rate": 0.5352112676056338,
               "degenerate_solved_rate": 0.1267605633802817,
               "nondegenerate_solved_rate": 0.5352112676056338,
               "degenerate_given_solved": 0.19148936170212766
@@ -229,8 +229,8 @@
           "count": 300,
           "solved": 29,
           "exact": 0,
-          "degenerate_solved": 28,
-          "nondegenerate_solved": 1,
+          "degenerate_solved": 29,
+          "nondegenerate_solved": 0,
           "solve_rate": 0.09666666666666666,
           "solve_rate_ci95": [
             0.06814985592393716,
@@ -241,21 +241,21 @@
             0.0,
             0.012643429997735661
           ],
-          "degenerate_solved_rate": 0.09333333333333334,
+          "degenerate_solved_rate": 0.09666666666666666,
           "degenerate_solved_rate_ci95": [
-            0.06536379092760147,
-            0.13158619880389022
+            0.06814985592393716,
+            0.13538251094090295
           ],
-          "nondegenerate_solved_rate": 0.0033333333333333335,
+          "nondegenerate_solved_rate": 0.0,
           "nondegenerate_solved_rate_ci95": [
-            0.0005886425761407378,
-            0.018637164554943353
+            0.0,
+            0.012643429997735661
           ],
-          "degenerate_given_solved": 0.9655172413793104,
+          "degenerate_given_solved": 1.0,
           "avg_target_token_recall": 0.14640120415982485,
           "avg_binder_retention": 1.0,
           "degenerate_reasons": {
-            "low_target_token_recall": 5,
+            "bare_identifier_goal": 6,
             "reflexive_equality": 23
           },
           "by_corruption": {
@@ -275,13 +275,13 @@
               "count": 64,
               "solved": 29,
               "exact": 0,
-              "degenerate_solved": 28,
-              "nondegenerate_solved": 1,
+              "degenerate_solved": 29,
+              "nondegenerate_solved": 0,
               "solve_rate": 0.453125,
               "exact_rate": 0.0,
-              "degenerate_solved_rate": 0.4375,
-              "nondegenerate_solved_rate": 0.015625,
-              "degenerate_given_solved": 0.9655172413793104
+              "degenerate_solved_rate": 0.453125,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
             },
             "parse_missing_colon": {
               "count": 49,
@@ -336,35 +336,35 @@
         "research": {
           "count": 300,
           "solved": 256,
-          "exact": 79,
-          "degenerate_solved": 174,
-          "nondegenerate_solved": 82,
+          "exact": 80,
+          "degenerate_solved": 175,
+          "nondegenerate_solved": 81,
           "solve_rate": 0.8533333333333334,
           "solve_rate_ci95": [
             0.8088365903800316,
             0.888895385754902
           ],
-          "exact_rate": 0.2633333333333333,
+          "exact_rate": 0.26666666666666666,
           "exact_rate_ci95": [
-            0.216710708085638,
-            0.3159405154466235
+            0.21980519258939785,
+            0.3194284080762121
           ],
-          "degenerate_solved_rate": 0.58,
+          "degenerate_solved_rate": 0.5833333333333334,
           "degenerate_solved_rate_ci95": [
-            0.5234821059002049,
-            0.6344949453001573
+            0.5268345519290606,
+            0.6377248764046503
           ],
-          "nondegenerate_solved_rate": 0.2733333333333333,
+          "nondegenerate_solved_rate": 0.27,
           "nondegenerate_solved_rate_ci95": [
-            0.22600476318273952,
-            0.3263935917495673
+            0.22290322460653217,
+            0.3229127531924263
           ],
-          "degenerate_given_solved": 0.6796875,
+          "degenerate_given_solved": 0.68359375,
           "avg_target_token_recall": 0.3737211681547619,
           "avg_binder_retention": 0.953125,
           "degenerate_reasons": {
+            "bare_identifier_goal": 6,
             "goal_true": 117,
-            "low_target_token_recall": 5,
             "reflexive_equality": 52
           },
           "by_corruption": {
@@ -384,22 +384,22 @@
               "count": 64,
               "solved": 63,
               "exact": 0,
-              "degenerate_solved": 62,
-              "nondegenerate_solved": 1,
+              "degenerate_solved": 63,
+              "nondegenerate_solved": 0,
               "solve_rate": 0.984375,
               "exact_rate": 0.0,
-              "degenerate_solved_rate": 0.96875,
-              "nondegenerate_solved_rate": 0.015625,
-              "degenerate_given_solved": 0.9841269841269841
+              "degenerate_solved_rate": 0.984375,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
             },
             "parse_missing_colon": {
               "count": 49,
               "solved": 38,
-              "exact": 26,
+              "exact": 27,
               "degenerate_solved": 11,
               "nondegenerate_solved": 27,
               "solve_rate": 0.7755102040816326,
-              "exact_rate": 0.5306122448979592,
+              "exact_rate": 0.5510204081632653,
               "degenerate_solved_rate": 0.22448979591836735,
               "nondegenerate_solved_rate": 0.5510204081632653,
               "degenerate_given_solved": 0.2894736842105263
@@ -450,8 +450,8 @@
           "count": 300,
           "solved": 35,
           "exact": 0,
-          "degenerate_solved": 32,
-          "nondegenerate_solved": 3,
+          "degenerate_solved": 35,
+          "nondegenerate_solved": 0,
           "solve_rate": 0.11666666666666667,
           "solve_rate_ci95": [
             0.08509263799927806,
@@ -462,21 +462,21 @@
             0.0,
             0.012643429997735661
           ],
-          "degenerate_solved_rate": 0.10666666666666667,
+          "degenerate_solved_rate": 0.11666666666666667,
           "degenerate_solved_rate_ci95": [
-            0.07657538053068277,
-            0.1467041177342026
+            0.08509263799927806,
+            0.1579339916656526
           ],
-          "nondegenerate_solved_rate": 0.01,
+          "nondegenerate_solved_rate": 0.0,
           "nondegenerate_solved_rate_ci95": [
-            0.003406556762718113,
-            0.028984004635062833
+            0.0,
+            0.012643429997735661
           ],
-          "degenerate_given_solved": 0.9142857142857143,
+          "degenerate_given_solved": 1.0,
           "avg_target_token_recall": 0.16009173366316223,
           "avg_binder_retention": 1.0,
           "degenerate_reasons": {
-            "low_target_token_recall": 1,
+            "bare_identifier_goal": 4,
             "reflexive_equality": 31
           },
           "by_corruption": {
@@ -496,13 +496,13 @@
               "count": 67,
               "solved": 31,
               "exact": 0,
-              "degenerate_solved": 30,
-              "nondegenerate_solved": 1,
+              "degenerate_solved": 31,
+              "nondegenerate_solved": 0,
               "solve_rate": 0.4626865671641791,
               "exact_rate": 0.0,
-              "degenerate_solved_rate": 0.44776119402985076,
-              "nondegenerate_solved_rate": 0.014925373134328358,
-              "degenerate_given_solved": 0.967741935483871
+              "degenerate_solved_rate": 0.4626865671641791,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
             },
             "parse_missing_colon": {
               "count": 56,
@@ -520,13 +520,13 @@
               "count": 47,
               "solved": 2,
               "exact": 0,
-              "degenerate_solved": 0,
-              "nondegenerate_solved": 2,
+              "degenerate_solved": 2,
+              "nondegenerate_solved": 0,
               "solve_rate": 0.0425531914893617,
               "exact_rate": 0.0,
-              "degenerate_solved_rate": 0.0,
-              "nondegenerate_solved_rate": 0.0425531914893617,
-              "degenerate_given_solved": 0.0
+              "degenerate_solved_rate": 0.0425531914893617,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
             },
             "type_mismatch": {
               "count": 47,
@@ -558,8 +558,8 @@
           "count": 300,
           "solved": 248,
           "exact": 74,
-          "degenerate_solved": 173,
-          "nondegenerate_solved": 75,
+          "degenerate_solved": 174,
+          "nondegenerate_solved": 74,
           "solve_rate": 0.8266666666666667,
           "solve_rate_ci95": [
             0.7797729263389721,
@@ -570,20 +570,21 @@
             0.20129303378573715,
             0.29844630407978223
           ],
-          "degenerate_solved_rate": 0.5766666666666667,
+          "degenerate_solved_rate": 0.58,
           "degenerate_solved_rate_ci95": [
-            0.5201322236304367,
-            0.6312624504365772
+            0.5234821059002049,
+            0.6344949453001573
           ],
-          "nondegenerate_solved_rate": 0.25,
+          "nondegenerate_solved_rate": 0.24666666666666667,
           "nondegenerate_solved_rate_ci95": [
-            0.2043691149121153,
-            0.30195260008675257
+            0.20129303378573715,
+            0.29844630407978223
           ],
-          "degenerate_given_solved": 0.6975806451612904,
+          "degenerate_given_solved": 0.7016129032258065,
           "avg_target_token_recall": 0.33415273122934414,
           "avg_binder_retention": 0.9502688172043011,
           "degenerate_reasons": {
+            "bare_identifier_goal": 1,
             "goal_true": 113,
             "reflexive_equality": 60
           },
@@ -604,13 +605,13 @@
               "count": 67,
               "solved": 63,
               "exact": 0,
-              "degenerate_solved": 62,
-              "nondegenerate_solved": 1,
+              "degenerate_solved": 63,
+              "nondegenerate_solved": 0,
               "solve_rate": 0.9402985074626866,
               "exact_rate": 0.0,
-              "degenerate_solved_rate": 0.9253731343283582,
-              "nondegenerate_solved_rate": 0.014925373134328358,
-              "degenerate_given_solved": 0.9841269841269841
+              "degenerate_solved_rate": 0.9402985074626866,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
             },
             "parse_missing_colon": {
               "count": 56,
@@ -671,8 +672,8 @@
         "count": 900,
         "solved": 90,
         "exact": 0,
-        "degenerate_solved": 85,
-        "nondegenerate_solved": 5,
+        "degenerate_solved": 90,
+        "nondegenerate_solved": 0,
         "solve_rate": 0.1,
         "solve_rate_ci95": [
           0.0820680651050478,
@@ -683,21 +684,21 @@
           4.318375942142756e-19,
           0.0042503022653526895
         ],
-        "degenerate_solved_rate": 0.09444444444444444,
+        "degenerate_solved_rate": 0.1,
         "degenerate_solved_rate_ci95": [
-          0.07702458790089523,
-          0.11531176838100192
+          0.0820680651050478,
+          0.12133217670723434
         ],
-        "nondegenerate_solved_rate": 0.005555555555555556,
+        "nondegenerate_solved_rate": 0.0,
         "nondegenerate_solved_rate_ci95": [
-          0.002375231385591594,
-          0.012938956410146066
+          4.318375942142756e-19,
+          0.0042503022653526895
         ],
-        "degenerate_given_solved": 0.9444444444444444,
+        "degenerate_given_solved": 1.0,
         "avg_target_token_recall": 0.1468037518037518,
         "avg_binder_retention": 1.0,
         "degenerate_reasons": {
-          "low_target_token_recall": 7,
+          "bare_identifier_goal": 12,
           "reflexive_equality": 78
         },
         "by_corruption": {
@@ -717,13 +718,13 @@
             "count": 194,
             "solved": 86,
             "exact": 0,
-            "degenerate_solved": 83,
-            "nondegenerate_solved": 3,
+            "degenerate_solved": 86,
+            "nondegenerate_solved": 0,
             "solve_rate": 0.44329896907216493,
             "exact_rate": 0.0,
-            "degenerate_solved_rate": 0.42783505154639173,
-            "nondegenerate_solved_rate": 0.015463917525773196,
-            "degenerate_given_solved": 0.9651162790697675
+            "degenerate_solved_rate": 0.44329896907216493,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 1.0
           },
           "parse_missing_colon": {
             "count": 176,
@@ -741,13 +742,13 @@
             "count": 143,
             "solved": 2,
             "exact": 0,
-            "degenerate_solved": 0,
-            "nondegenerate_solved": 2,
+            "degenerate_solved": 2,
+            "nondegenerate_solved": 0,
             "solve_rate": 0.013986013986013986,
             "exact_rate": 0.0,
-            "degenerate_solved_rate": 0.0,
-            "nondegenerate_solved_rate": 0.013986013986013986,
-            "degenerate_given_solved": 0.0
+            "degenerate_solved_rate": 0.013986013986013986,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 1.0
           },
           "type_mismatch": {
             "count": 140,
@@ -780,44 +781,44 @@
       "solve_rate_std": 0.015275252316519466,
       "exact_rate_mean": 0.0,
       "exact_rate_std": 0.0,
-      "nondegenerate_solved_rate_mean": 0.005555555555555556,
-      "nondegenerate_solved_rate_std": 0.003849001794597505,
-      "degenerate_solved_rate_mean": 0.09444444444444444,
-      "degenerate_solved_rate_std": 0.01170628194761416
+      "nondegenerate_solved_rate_mean": 0.0,
+      "nondegenerate_solved_rate_std": 0.0,
+      "degenerate_solved_rate_mean": 0.1,
+      "degenerate_solved_rate_std": 0.015275252316519466
     },
     "research": {
       "pooled": {
         "count": 900,
         "solved": 756,
-        "exact": 249,
-        "degenerate_solved": 501,
-        "nondegenerate_solved": 255,
+        "exact": 251,
+        "degenerate_solved": 504,
+        "nondegenerate_solved": 252,
         "solve_rate": 0.84,
         "solve_rate_ci95": [
           0.8146106088402726,
           0.8624991856192874
         ],
-        "exact_rate": 0.27666666666666667,
+        "exact_rate": 0.2788888888888889,
         "exact_rate_ci95": [
-          0.24843575382159014,
-          0.306796047856934
+          0.2505769947915951,
+          0.30908036109908305
         ],
-        "degenerate_solved_rate": 0.5566666666666666,
+        "degenerate_solved_rate": 0.56,
         "degenerate_solved_rate_ci95": [
-          0.5240377723854731,
-          0.5888138600244536
+          0.5273823566239573,
+          0.5921076071042005
         ],
-        "nondegenerate_solved_rate": 0.2833333333333333,
+        "nondegenerate_solved_rate": 0.28,
         "nondegenerate_solved_rate_ci95": [
-          0.2548621321574154,
-          0.3136463321575707
+          0.2516479484077991,
+          0.31022218458895606
         ],
-        "degenerate_given_solved": 0.6626984126984127,
+        "degenerate_given_solved": 0.6666666666666666,
         "avg_target_token_recall": 0.37895412935095474,
         "avg_binder_retention": 0.9545855379188712,
         "degenerate_reasons": {
+          "bare_identifier_goal": 9,
           "goal_true": 338,
-          "low_target_token_recall": 6,
           "reflexive_equality": 157
         },
         "by_corruption": {
@@ -837,22 +838,22 @@
             "count": 194,
             "solved": 185,
             "exact": 0,
-            "degenerate_solved": 182,
-            "nondegenerate_solved": 3,
+            "degenerate_solved": 185,
+            "nondegenerate_solved": 0,
             "solve_rate": 0.9536082474226805,
             "exact_rate": 0.0,
-            "degenerate_solved_rate": 0.9381443298969072,
-            "nondegenerate_solved_rate": 0.015463917525773196,
-            "degenerate_given_solved": 0.9837837837837838
+            "degenerate_solved_rate": 0.9536082474226805,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 1.0
           },
           "parse_missing_colon": {
             "count": 176,
             "solved": 122,
-            "exact": 89,
+            "exact": 91,
             "degenerate_solved": 31,
             "nondegenerate_solved": 91,
             "solve_rate": 0.6931818181818182,
-            "exact_rate": 0.5056818181818182,
+            "exact_rate": 0.5170454545454546,
             "degenerate_solved_rate": 0.17613636363636365,
             "nondegenerate_solved_rate": 0.5170454545454546,
             "degenerate_given_solved": 0.2540983606557377
@@ -898,12 +899,12 @@
       "runs": 3,
       "solve_rate_mean": 0.84,
       "solve_rate_std": 0.013333333333333364,
-      "exact_rate_mean": 0.27666666666666667,
-      "exact_rate_std": 0.03844187531556933,
-      "nondegenerate_solved_rate_mean": 0.2833333333333333,
-      "nondegenerate_solved_rate_std": 0.03929942040850532,
-      "degenerate_solved_rate_mean": 0.5566666666666666,
-      "degenerate_solved_rate_std": 0.037564758898615484
+      "exact_rate_mean": 0.27888888888888885,
+      "exact_rate_std": 0.039767844818162826,
+      "nondegenerate_solved_rate_mean": 0.28,
+      "nondegenerate_solved_rate_std": 0.0392994204085053,
+      "degenerate_solved_rate_mean": 0.56,
+      "degenerate_solved_rate_std": 0.037564758898615457
     }
   },
   "missing_policy_run_counts": {}

@@ -11,6 +11,7 @@ from typing import Any, Iterable
 DEGENERATE_REASONS = (
     "goal_true",
     "reflexive_equality",
+    "bare_identifier_goal",
     "low_target_token_recall",
 )
 
@@ -228,15 +229,14 @@ def format_markdown(summary: dict[str, Any]) -> str:
             f"{_fmt_optional_pct(row['avg_binder_retention'])} |"
         )
 
+    reason_names = list(DEGENERATE_REASONS)
     lines.extend(["", "## Degenerate Reasons", ""])
-    lines.extend(["| Policy | goal_true | reflexive_equality | low_target_token_recall |", "|---|---:|---:|---:|"])
+    lines.append("| Policy | " + " | ".join(reason_names) + " |")
+    lines.append("|---" + "|---:" * len(reason_names) + "|")
     for policy, row in sorted(policies.items()):
         reasons = row.get("degenerate_reasons", {})
-        lines.append(
-            f"| {policy} | {int(reasons.get('goal_true', 0))} | "
-            f"{int(reasons.get('reflexive_equality', 0))} | "
-            f"{int(reasons.get('low_target_token_recall', 0))} |"
-        )
+        counts = " | ".join(str(int(reasons.get(name, 0))) for name in reason_names)
+        lines.append(f"| {policy} | {counts} |")
 
     lines.extend(["", "## By Corruption", ""])
     for policy, row in sorted(policies.items()):
@@ -325,7 +325,7 @@ def _prepare_record(row: dict[str, Any], *, token_recall_floor: float) -> dict[s
     target_goal = _goal(target_header)
     has_target = bool(target_goal)
     exact = bool(row.get("exact", False))
-    if ok and has_target and final_header == target_header:
+    if ok and has_target and _headers_equivalent(final_header, target_header):
         exact = True
 
     target_token_recall = _token_recall(final_goal, target_goal) if ok and has_target else 0.0
@@ -372,6 +372,8 @@ def _degenerate_reason(
         return "goal_true"
     if _is_reflexive_equality(normalized_goal) and not _is_reflexive_equality(_normalize_spaces(target_goal)):
         return "reflexive_equality"
+    if _is_bare_identifier_goal(normalized_goal, _normalize_spaces(target_goal)):
+        return "bare_identifier_goal"
     if target_goal and token_recall < float(token_recall_floor):
         return "low_target_token_recall"
     return None
@@ -423,6 +425,16 @@ def _token_recall(final_goal: str, target_goal: str) -> float:
 
 def _tokens(text: str) -> list[str]:
     return re.findall(r"[^\W\d]\w*'?|[0-9]+|->|=>|:=|[=<>+\-*/%]+", text)
+
+
+def _headers_equivalent(left: str, right: str) -> bool:
+    return _normalize_spaces(left) == _normalize_spaces(right)
+
+
+def _is_bare_identifier_goal(final_goal: str, target_goal: str) -> bool:
+    if _normalize_spaces(final_goal) == _normalize_spaces(target_goal):
+        return False
+    return re.fullmatch(r"[^\W\d]\w*'?", final_goal) is not None
 
 
 def _binder_retention(final_header: str, target_header: str) -> float:

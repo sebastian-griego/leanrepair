@@ -5,25 +5,25 @@
 - Paired records: `900`
 - Unpaired records: `0` heuristic-only, `0` research-only
 - Raw solve lift: `+74.0 pp` (research only `666`, heuristic only `0`)
-- Strict solve lift: `+27.8 pp` (research only `252`, heuristic only `2`)
-- Strict exact lift: `+27.7 pp` (research only `249`, heuristic only `0`)
-- Strict solve sign-test p-value: `2.238e-72`
-- Strict exact sign-test p-value: `2.211e-75`
+- Strict solve lift: `+28.0 pp` (research only `252`, heuristic only `0`)
+- Strict exact lift: `+27.9 pp` (research only `251`, heuristic only `0`)
+- Strict solve sign-test p-value: `2.764e-76`
+- Strict exact sign-test p-value: `5.527e-76`
 
 ## Metric Table
 
 | Metric | Both | Baseline only | Compared only | Neither | Baseline rate | Compared rate | Lift | p-value |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | `raw_ok` | 90 | 0 | 666 | 144 | 10.0% | 84.0% | +74.0 pp | 6.532e-201 |
-| `strict_ok` | 3 | 2 | 252 | 643 | 0.6% | 28.3% | +27.8 pp | 2.238e-72 |
-| `strict_exact` | 0 | 0 | 249 | 651 | 0.0% | 27.7% | +27.7 pp | 2.211e-75 |
+| `strict_ok` | 0 | 0 | 252 | 648 | 0.0% | 28.0% | +28.0 pp | 2.764e-76 |
+| `strict_exact` | 0 | 0 | 251 | 649 | 0.0% | 27.9% | +27.9 pp | 5.527e-76 |
 
 ## Policy Strictness
 
 | Policy | Raw solved | Strict solved | Strict exact | Raw degenerate | Lost under strict | Strict retention |
 |---|---:|---:|---:|---:|---:|---:|
-| `heuristic` | 90 | 5 | 0 | 85 | 85 | 5.6% |
-| `research` | 756 | 255 | 249 | 501 | 501 | 33.7% |
+| `heuristic` | 90 | 0 | 0 | 90 | 90 | 0.0% |
+| `research` | 756 | 252 | 251 | 504 | 504 | 33.3% |
 
 ## By Corruption
 
@@ -31,8 +31,8 @@
 |---|---:|---:|---:|---:|---:|---:|
 | `lowercase_type` | 118 | 0 | 84 | +71.2 pp | +71.2 pp | 1.034e-25 |
 | `not_proposition` | 194 | 0 | 0 | +0.0 pp | +0.0 pp | 1.000e+00 |
-| `parse_missing_colon` | 176 | 0 | 91 | +51.7 pp | +50.6 pp | 8.078e-28 |
-| `parse_unbalanced_paren` | 143 | 2 | 71 | +48.3 pp | +49.7 pp | 5.722e-19 |
+| `parse_missing_colon` | 176 | 0 | 91 | +51.7 pp | +51.7 pp | 8.078e-28 |
+| `parse_unbalanced_paren` | 143 | 0 | 71 | +49.7 pp | +49.7 pp | 8.470e-22 |
 | `type_mismatch` | 140 | 0 | 0 | +0.0 pp | +0.0 pp | 1.000e+00 |
 | `unknown_type_symbol` | 129 | 0 | 6 | +4.7 pp | +3.9 pp | 3.125e-02 |
 
@@ -68,10 +68,7 @@
 
 ## heuristic Strict Wins
 
-| run | id | corruption | baseline raw/strict/exact | compared raw/strict/exact | compared reason | compared strict header |
-|---|---|---|---:|---:|---|---|
-| run_20260211_002639 | real_00066 | parse_unbalanced_paren | yes/yes/no | yes/no/no | goal_true | theorem bench_real_00066 {n d : Nat} : True |
-| run_20260211_002639 | real_00288 | parse_unbalanced_paren | yes/yes/no | yes/no/no | goal_true | theorem bench_real_00288 [Decidable a] : True |
+No cases.
 
 ## research Strict Exact Wins
 
