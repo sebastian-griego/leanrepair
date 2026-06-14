@@ -366,6 +366,7 @@ def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
             "Inconsistent source artifact strict_casebook.by_policy: "
             f"{sorted(casebook_policies)} is not a subset of {sorted(policies)}"
         )
+    _validate_casebook(loaded["strict_casebook"])
 
     paired = loaded["strict_paired"]
     policy_a = paired["policy_a"]
@@ -386,6 +387,7 @@ def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
         int(paired["coverage"]["policy_b_records"]),
         int(aggregate["policies"][policy_b]["pooled"]["count"]),
     )
+    _validate_paired_metrics(paired)
 
 
 def _validate_aggregate_policy(policy: str, row: dict[str, Any]) -> None:
@@ -546,6 +548,146 @@ def _validate_trace_policy(policy: str, row: dict[str, Any]) -> None:
     _require_rate(f"trace_taxonomy.{policy}.lean_ok_rate", row["lean_ok_rate"], lean_ok, count)
 
 
+def _validate_casebook(casebook: dict[str, Any]) -> None:
+    dataset = casebook["dataset"]
+    flag_counts = {name: int(count) for name, count in casebook["flag_counts"].items()}
+    by_policy = casebook["by_policy"]
+    focused_cases = int(dataset["focused_cases"])
+    _require_equal("strict_casebook.flag_counts", sum(flag_counts.values()), focused_cases)
+    if "policies" in dataset:
+        policy_records = {name: int(count) for name, count in dataset["policies"].items()}
+        _require_equal(
+            "strict_casebook.dataset.policy_records",
+            sum(policy_records.values()),
+            int(dataset["records"]),
+        )
+    primary_counts = {name: int(count) for name, count in casebook["primary_case_counts"].items()}
+    if "unsolved" in primary_counts:
+        _require_equal(
+            "strict_casebook.primary_case_counts",
+            sum(primary_counts.values()),
+            int(dataset["records"]),
+        )
+    for flag, count in flag_counts.items():
+        _require_equal(
+            f"strict_casebook.by_policy.{flag}",
+            sum(int(row.get(flag, 0)) for row in by_policy.values()),
+            count,
+        )
+    if "raw_to_strict_loss" in flag_counts:
+        _require_equal(
+            "strict_casebook.raw_loss_reasons",
+            sum(int(count) for count in casebook["raw_loss_reasons"].values()),
+            flag_counts["raw_to_strict_loss"],
+        )
+
+
+def _validate_paired_metrics(paired: dict[str, Any]) -> None:
+    coverage = paired["coverage"]
+    paired_records = int(coverage["paired_records"])
+    _require_equal(
+        "strict_paired.coverage.policy_a_total",
+        paired_records + int(coverage["policy_a_unpaired"]),
+        int(coverage["policy_a_records"]),
+    )
+    _require_equal(
+        "strict_paired.coverage.policy_b_total",
+        paired_records + int(coverage["policy_b_unpaired"]),
+        int(coverage["policy_b_records"]),
+    )
+    for name, row in paired["metrics"].items():
+        _validate_paired_metric(f"strict_paired.metrics.{name}", row, paired_records)
+
+    by_policy = paired.get("by_policy", {})
+    for policy, expected_records in (
+        (paired["policy_a"], int(coverage["policy_a_records"])),
+        (paired["policy_b"], int(coverage["policy_b_records"])),
+    ):
+        if policy not in by_policy:
+            continue
+        row = by_policy[policy]
+        records = int(row["records"])
+        raw_ok = int(row["raw_ok"])
+        strict_ok = int(row["strict_ok"])
+        strict_exact = int(row["strict_exact"])
+        raw_loss = int(row["raw_to_strict_loss"])
+        _require_equal(f"strict_paired.by_policy.{policy}.records", records, expected_records)
+        _require_bounds(f"strict_paired.by_policy.{policy}.raw_ok", raw_ok, records)
+        _require_bounds(f"strict_paired.by_policy.{policy}.strict_ok", strict_ok, raw_ok)
+        _require_bounds(f"strict_paired.by_policy.{policy}.strict_exact", strict_exact, strict_ok)
+        _require_equal(
+            f"strict_paired.by_policy.{policy}.raw_to_strict_loss",
+            raw_loss,
+            raw_ok - strict_ok,
+        )
+        _require_equal(
+            f"strict_paired.by_policy.{policy}.raw_degenerate",
+            int(row["raw_degenerate"]),
+            raw_loss,
+        )
+        _require_rate(
+            f"strict_paired.by_policy.{policy}.strict_retention",
+            row["strict_retention"],
+            strict_ok,
+            raw_ok,
+        )
+
+    raw_win_loss = paired.get("raw_win_loss", {})
+    if raw_win_loss:
+        total = int(raw_win_loss["total"])
+        if "policy_b_raw_wins_lost_by_strict" in paired.get("case_counts", {}):
+            _require_equal(
+                "strict_paired.case_counts.policy_b_raw_wins_lost_by_strict",
+                int(paired["case_counts"]["policy_b_raw_wins_lost_by_strict"]),
+                total,
+            )
+        for label in ("by_reason", "by_corruption", "by_reason_and_corruption"):
+            if label in raw_win_loss:
+                _validate_count_share_rows(
+                    f"strict_paired.raw_win_loss.{label}",
+                    raw_win_loss[label],
+                    total,
+                )
+
+
+def _validate_paired_metric(label: str, row: dict[str, Any], expected_total: int) -> None:
+    total = int(row["n_total"])
+    both = int(row["both_success"])
+    policy_a_only = int(row["policy_a_only"])
+    policy_b_only = int(row["policy_b_only"])
+    neither = int(row["neither_success"])
+    policy_a_successes = int(row["policy_a_successes"])
+    policy_b_successes = int(row["policy_b_successes"])
+    _require_equal(f"{label}.n_total", total, expected_total)
+    _require_equal(f"{label}.outcome_partition", both + policy_a_only + policy_b_only + neither, total)
+    _require_equal(f"{label}.policy_a_successes", both + policy_a_only, policy_a_successes)
+    _require_equal(f"{label}.policy_b_successes", both + policy_b_only, policy_b_successes)
+    _require_equal(f"{label}.discordant_total", int(row["discordant_total"]), policy_a_only + policy_b_only)
+    _require_rate(f"{label}.policy_a_rate", row["policy_a_rate"], policy_a_successes, total)
+    _require_rate(f"{label}.policy_b_rate", row["policy_b_rate"], policy_b_successes, total)
+    _require_close(
+        f"{label}.policy_b_lift",
+        float(row["policy_b_lift"]),
+        float(row["policy_b_rate"]) - float(row["policy_a_rate"]),
+    )
+    discordant_total = policy_a_only + policy_b_only
+    _require_rate(
+        f"{label}.policy_b_win_rate_on_discordant",
+        row["policy_b_win_rate_on_discordant"],
+        policy_b_only,
+        discordant_total,
+    )
+
+
+def _validate_count_share_rows(label: str, rows: list[dict[str, Any]], total: int) -> None:
+    _require_equal(label, sum(int(row["count"]) for row in rows), total)
+    for row in rows:
+        name = str(row.get("name") or row.get("reason") or "row")
+        if "corruption" in row:
+            name += f".{row['corruption']}"
+        _require_rate(f"{label}.{name}.share", row["share"], int(row["count"]), total)
+
+
 def _require_equal(label: str, actual: int, expected: int) -> None:
     if actual != expected:
         raise ValueError(f"Inconsistent source artifact {label}: {actual} != {expected}")
@@ -558,6 +700,20 @@ def _require_bounds(label: str, value: int, total: int) -> None:
 
 def _require_rate(label: str, actual: Any, successes: int, total: int) -> None:
     expected = 0.0 if total == 0 else float(successes) / float(total)
+    _require_rate_bounds(label, actual)
+    _require_rate_bounds(f"{label}.expected", expected)
+    _require_close(label, float(actual), expected)
+
+
+def _require_rate_bounds(label: str, value: Any) -> None:
+    numeric = float(value)
+    if numeric < -1e-12 or numeric > 1.0 + 1e-12:
+        raise ValueError(
+            f"Inconsistent source artifact {label}: {numeric} outside [0, 1]"
+        )
+
+
+def _require_close(label: str, actual: float, expected: float) -> None:
     if abs(float(actual) - expected) > 1e-9:
         raise ValueError(
             f"Inconsistent source artifact {label}: {float(actual)} != {expected}"

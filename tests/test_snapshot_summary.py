@@ -75,6 +75,28 @@ def test_snapshot_rollup_rejects_inconsistent_rates(tmp_path):
         build_snapshot(root)
 
 
+def test_snapshot_rollup_rejects_inconsistent_casebook_flags(tmp_path):
+    root = tmp_path / "real_paper_v2"
+    _write_snapshot_inputs(root)
+    casebook = _casebook()
+    casebook["flag_counts"]["raw_to_strict_loss"] = 12
+    _write(root / "strict_replay_casebook.json", casebook)
+
+    with pytest.raises(ValueError, match="strict_casebook.flag_counts"):
+        build_snapshot(root)
+
+
+def test_snapshot_rollup_rejects_inconsistent_paired_metric(tmp_path):
+    root = tmp_path / "real_paper_v2"
+    _write_snapshot_inputs(root)
+    paired = _paired()
+    paired["metrics"]["strict_ok"]["policy_b_successes"] = 7
+    _write(root / "strict_replay_paired.json", paired)
+
+    with pytest.raises(ValueError, match="strict_paired.metrics.strict_ok.policy_b_successes"):
+        build_snapshot(root)
+
+
 def test_snapshot_check_cli_fails_without_rewriting_stale_outputs(tmp_path):
     root = tmp_path / "real_paper_v2"
     _write_snapshot_inputs(root)
@@ -422,12 +444,22 @@ def _paired() -> dict:
 
 
 def _paired_metric(a_success, b_success, b_only, a_only, lift, pvalue) -> dict:
+    total = 20
+    both = a_success - a_only
+    neither = total - both - a_only - b_only
     return {
         "policy_a_successes": a_success,
         "policy_b_successes": b_success,
+        "n_total": total,
+        "both_success": both,
         "policy_a_only": a_only,
         "policy_b_only": b_only,
+        "neither_success": neither,
+        "policy_a_rate": a_success / total,
+        "policy_b_rate": b_success / total,
         "policy_b_lift": lift,
+        "discordant_total": a_only + b_only,
+        "policy_b_win_rate_on_discordant": b_only / (a_only + b_only) if a_only + b_only else 0.0,
         "paired_exact_sign_p_two_sided": pvalue,
     }
 
