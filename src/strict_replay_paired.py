@@ -6,14 +6,14 @@ from pathlib import Path
 from typing import Any, Iterable
 
 import eval_utils as eu
-from jsonl_io import load_jsonl_objects
+from strict_replay_records import load_records_jsonl as load_strict_replay_records
 
 
 PAIRED_METRICS = ("raw_ok", "strict_ok", "strict_exact")
 
 
 def load_records_jsonl(path: Path) -> list[dict[str, Any]]:
-    return load_jsonl_objects(path)
+    return load_strict_replay_records(path)
 
 
 def analyze_records(

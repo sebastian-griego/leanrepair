@@ -204,6 +204,10 @@ fail a run with missing policy outputs, and tune `--bootstrap-samples`/`--seed`
 to reproduce confidence intervals for solve-rate and exact-rate lift. Per-policy
 result files also reject duplicate `id` rows with physical line numbers, so
 accidental concatenation cannot silently overwrite earlier results.
+Strict replay ledgers are schema-validated when loaded from JSONL and reject
+duplicate `(run, id, policy)` rows with the physical line number, so the
+casebook and paired replay reports cannot double-count a replay decision from a
+corrupted or resumed ledger.
 
 Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 

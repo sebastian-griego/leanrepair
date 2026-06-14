@@ -101,25 +101,22 @@ class StrictReplayCasebookTests(unittest.TestCase):
             self._write_jsonl(
                 records,
                 [
-                    {
-                        "run": "run_001",
-                        "id": "loss",
-                        "policy": "research",
-                        "corruption": "not_proposition",
-                        "raw_ok": True,
-                        "strict_ok": False,
-                        "strict_exact": False,
-                        "raw_reason": "goal_true",
-                    },
-                    {
-                        "run": "run_001",
-                        "id": "nonexact",
-                        "policy": "research",
-                        "corruption": "parse",
-                        "raw_ok": True,
-                        "strict_ok": True,
-                        "strict_exact": False,
-                    },
+                    self._strict_row(
+                        "run_001",
+                        "loss",
+                        "research",
+                        corruption="not_proposition",
+                        strict_ok=False,
+                        strict_exact=False,
+                        raw_reason="goal_true",
+                    ),
+                    self._strict_row(
+                        "run_001",
+                        "nonexact",
+                        "research",
+                        strict_ok=True,
+                        strict_exact=False,
+                    ),
                 ],
             )
             output_json = root / "casebook.json"
@@ -189,6 +186,43 @@ class StrictReplayCasebookTests(unittest.TestCase):
             "".join(json.dumps(row) + "\n" for row in rows),
             encoding="utf-8",
         )
+
+    def _strict_row(
+        self,
+        run: str,
+        item_id: str,
+        policy: str,
+        *,
+        raw_ok: bool = True,
+        strict_ok: bool = True,
+        strict_exact: bool = True,
+        raw_reason: str = "",
+        corruption: str = "parse",
+    ) -> dict:
+        return {
+            "run": run,
+            "id": item_id,
+            "policy": policy,
+            "corruption": corruption,
+            "reported_ok": raw_ok,
+            "raw_ok": raw_ok,
+            "raw_exact": strict_exact,
+            "raw_degenerate": bool(raw_reason),
+            "raw_reason": raw_reason,
+            "raw_step_index": 1 if raw_ok else None,
+            "raw_final_header": f"theorem {item_id} : True" if raw_ok else "",
+            "raw_final_goal": "True" if raw_ok else "",
+            "target_header": f"theorem {item_id} : True",
+            "target_goal": "True",
+            "strict_ok": strict_ok,
+            "strict_exact": strict_exact,
+            "strict_step_index": 1 if strict_ok else None,
+            "strict_final_header": f"theorem {item_id} : True" if strict_ok else "",
+            "strict_final_goal": "True" if strict_ok else "",
+            "discarded_degenerate_ok_steps": 0,
+            "recovered_after_degenerate": False,
+            "changed_accepted_output": False,
+        }
 
 
 if __name__ == "__main__":

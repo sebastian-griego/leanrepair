@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Any, Iterable
 
-from jsonl_io import load_jsonl_objects
+from strict_replay_records import load_records_jsonl as load_strict_replay_records
 
 
 INTERESTING_FLAGS = (
@@ -17,7 +17,7 @@ INTERESTING_FLAGS = (
 
 
 def load_records_jsonl(path: Path) -> list[dict[str, Any]]:
-    return load_jsonl_objects(path)
+    return load_strict_replay_records(path)
 
 
 def analyze_records(
