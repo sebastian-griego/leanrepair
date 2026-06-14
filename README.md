@@ -172,6 +172,7 @@ done
 
 python scripts/analyze_paired_results.py --root results/real_paper --policy-a heuristic --policy-b research
 python scripts/analyze_trace_taxonomy.py --root results/real_paper --policies heuristic research
+python scripts/analyze_budget_curve.py --root results/real_paper --policies heuristic research
 ```
 
 The paired analyzer reports coverage before comparing policies, so unmatched
@@ -185,6 +186,7 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Aggregates: `summary.json`, `<policy>.summary.json`
 - Table-ready report: `report.md`
 - Trace taxonomy: `trace_taxonomy.json`, `trace_taxonomy.md`
+- Repair budget curve: `budget_curve.json`, `budget_curve.md`
 
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
