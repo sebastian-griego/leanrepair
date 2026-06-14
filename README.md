@@ -245,6 +245,12 @@ Run the full local reproducibility gate used by CI:
 python scripts/verify_reproducibility.py
 ```
 
+Write a machine-readable command report:
+
+```bash
+python scripts/verify_reproducibility.py --report-json results/reproducibility_report.json
+```
+
 Verify the checked-in snapshot is current without rewriting it:
 
 ```bash
