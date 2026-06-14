@@ -184,6 +184,7 @@ python scripts/analyze_exactness_gap.py --root results/real_paper --policies heu
 python scripts/analyze_semantic_drift.py --root results/real_paper --policies heuristic research
 python scripts/analyze_quality_summary.py --root results/real_paper --policies heuristic research
 python scripts/analyze_strict_replay.py --root results/real_paper --policies heuristic research
+python scripts/analyze_strict_replay_casebook.py --root results/real_paper --policies heuristic research
 ```
 
 The paired analyzer reports coverage before comparing policies, so unmatched
@@ -202,6 +203,7 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Semantic drift audit: `semantic_drift.json`, `semantic_drift.md`
 - Quality-adjusted summary: `quality_summary.json`, `quality_summary.md`
 - Strict replay audit: `strict_replay.json`, `strict_replay.md`, `strict_replay_records.jsonl`
+- Strict replay casebook: `strict_replay_casebook.json`, `strict_replay_casebook.md`, `strict_replay_casebook_cases.jsonl`
 
 Trace taxonomy reports are acceptance-aware: on strict-acceptance runs they
 separate raw Lean-ok candidates from candidates actually accepted by the repair
@@ -219,6 +221,7 @@ loop, and count rejection reasons such as `goal_true`.
 - Paired test (`research` vs `heuristic`): exact two-sided binomial `p = 6.532e-201`
 - Semantic drift audit: `research` has `501/756` solved outputs classified as degenerate (`338` `True` goals, `157` reflexive equalities, `6` low-retention goals), leaving `255/900` nondegenerate solved headers.
 - Strict replay audit: filtering degenerate accepted fixes preserves all `249` exact `research` repairs while reducing raw `research` solves from `756/900` to `255/900`; `249/255` strict accepted repairs are exact, with only `6` nondegenerate-but-nonexact accepts. `results/real_paper_v2/strict_replay_records.jsonl` contains the 1,800 row-level replay decisions behind the aggregate report.
+- Strict replay casebook: `results/real_paper_v2/strict_replay_casebook.md` extracts `597` focused rows from the replay ledger (`586` raw solves lost under strict replay and `11` strict nonexact accepts), with loss reasons split into `338` `goal_true`, `235` reflexive equalities, and `13` low-token-recall goals.
 
 Per-run artifacts are available under `results/real_paper_v2/run_*/`.
 
