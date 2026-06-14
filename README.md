@@ -216,7 +216,7 @@ loop, and count rejection reasons such as `goal_true`.
 - Generated snapshot: `results/real_paper_v2/snapshot_summary.md`
 - Snapshot rollup includes aggregate outcomes, repair-budget curve, exactness
   gap, quality adjustment, trace taxonomy, strict replay, and paired replay
-  with source provenance.
+  with source paths and SHA-256 provenance for the exact component artifacts.
 - Aggregate report: `results/real_paper_v2/aggregate_report.md`
 - Quality-adjusted report: `results/real_paper_v2/quality_summary.md`
 - Baseline `heuristic`: solve rate `10.0% +/- 1.2%`, exact rate `0.0% +/- 0.0%`

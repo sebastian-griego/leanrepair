@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -22,7 +23,8 @@ ARTIFACTS = {
 
 def build_snapshot(root: Path) -> dict[str, Any]:
     root = Path(root)
-    loaded = {name: _load_json(root / filename) for name, filename in ARTIFACTS.items()}
+    source_paths = {name: root / filename for name, filename in ARTIFACTS.items()}
+    loaded = {name: _load_json(path) for name, path in source_paths.items()}
     aggregate = loaded["aggregate"]
     budget = loaded["budget_curve"]
     exactness = loaded["exactness_gap"]
@@ -39,8 +41,12 @@ def build_snapshot(root: Path) -> dict[str, Any]:
         "provenance": {
             "generator": "scripts/summarize_real_paper_snapshot.py",
             "sources": {
-                name: str((root / filename)).replace("\\", "/")
-                for name, filename in ARTIFACTS.items()
+                name: str(path).replace("\\", "/")
+                for name, path in source_paths.items()
+            },
+            "source_sha256": {
+                name: _file_sha256(path)
+                for name, path in source_paths.items()
             },
         },
         "dataset": {
@@ -284,8 +290,13 @@ def format_markdown(snapshot: dict[str, Any]) -> str:
             "",
         ]
     )
+    source_hashes = snapshot["provenance"].get("source_sha256", {})
     for name, path in snapshot["provenance"]["sources"].items():
-        lines.append(f"- `{name}`: `{path}`")
+        digest = source_hashes.get(name)
+        if digest:
+            lines.append(f"- `{name}`: `{path}` (`sha256:{digest}`)")
+        else:
+            lines.append(f"- `{name}`: `{path}`")
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -478,6 +489,10 @@ def _trace_corruption(row: dict[str, Any]) -> dict[str, Any]:
 
 def _load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _optional_float(value: Any) -> float | None:

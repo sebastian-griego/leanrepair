@@ -22,6 +22,11 @@ def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
     markdown = format_markdown(snapshot)
 
     assert snapshot["dataset"]["n_runs"] == 2
+    assert set(snapshot["provenance"]["source_sha256"]) == set(snapshot["provenance"]["sources"])
+    assert all(
+        len(digest) == 64
+        for digest in snapshot["provenance"]["source_sha256"].values()
+    )
     assert snapshot["aggregate"]["research"]["solved"] == 16
     assert snapshot["budget_curve"]["research"]["final_budget"]["budget"] == 3
     assert snapshot["exactness_gap"]["research"]["solved_not_exact"] == 10
@@ -41,6 +46,7 @@ def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
     assert "Trace Taxonomy" in markdown
     assert "Corruption Highlights" in markdown
     assert "Strict Paired Comparison" in markdown
+    assert "sha256:" in markdown
 
 
 def test_snapshot_check_cli_fails_without_rewriting_stale_outputs(tmp_path):

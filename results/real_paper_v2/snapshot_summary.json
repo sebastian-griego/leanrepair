@@ -12,6 +12,17 @@
       "strict_casebook": "results/real_paper_v2/strict_replay_casebook.json",
       "strict_paired": "results/real_paper_v2/strict_replay_paired.json",
       "trace_taxonomy": "results/real_paper_v2/trace_taxonomy.json"
+    },
+    "source_sha256": {
+      "aggregate": "501baeaa431b22698391ae311ec8bc60ef28af57e79110204d20d2d1ee93572b",
+      "budget_curve": "64820df3374990c283df78c4f80a90c2b789a8c67aa15c75c34775143d5181fb",
+      "exactness_gap": "4972b267fbe02953a729bb57b3d01b75065f6865f088ad58103c396f70eac3d0",
+      "quality": "850e90625600279fe188e3fd5c7a82f2249eb83797c3e93845de4549f7cc7141",
+      "semantic_drift": "54902099925c33bbf489aa4b6c60cbacd01851dfa93d1f555d27e28deb5cd87b",
+      "strict_replay": "4292094dbd8438714b8440639f97f79591d5ade1024b863494d16d257bb06dff",
+      "strict_casebook": "b9513fa63b9d72ea5cd65353854f5e8cb7cc4ce2befc155245d725add1e221af",
+      "strict_paired": "1d59bdd5095b80b3f3f826800ac5772da55f80155ed5fd4bca27fed216c2f43a",
+      "trace_taxonomy": "7596cf03e26302fccf7299758629c05b05f9b42a09747d85aece2c23e1475439"
     }
   },
   "dataset": {
