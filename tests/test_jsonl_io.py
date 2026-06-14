@@ -7,7 +7,12 @@ import pytest
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT / "src"))
 
-from jsonl_io import JsonlError, iter_jsonl_objects, load_jsonl_objects  # noqa: E402
+from jsonl_io import (  # noqa: E402
+    JsonlError,
+    iter_jsonl_objects,
+    load_jsonl_map_by_key,
+    load_jsonl_objects,
+)
 
 
 def test_load_jsonl_objects_skips_blank_lines(tmp_path):
@@ -47,3 +52,27 @@ def test_load_jsonl_objects_requires_object_rows(tmp_path):
 
     assert f"{path}:2" in str(excinfo.value)
     assert "Expected JSON object" in str(excinfo.value)
+
+
+def test_load_jsonl_map_by_key_rejects_missing_key(tmp_path):
+    path = tmp_path / "rows.jsonl"
+    path.write_text('{"id": "a"}\n{"missing": true}\n', encoding="utf-8")
+
+    with pytest.raises(JsonlError) as excinfo:
+        load_jsonl_map_by_key(path, "id")
+
+    assert f"{path}:2" in str(excinfo.value)
+    assert "missing id" in str(excinfo.value)
+
+
+def test_load_jsonl_map_by_key_rejects_duplicate_key(tmp_path):
+    path = tmp_path / "rows.jsonl"
+    path.write_text('{"id": "a"}\n\n{"id": "a"}\n', encoding="utf-8")
+
+    with pytest.raises(JsonlError) as excinfo:
+        load_jsonl_map_by_key(path, "id")
+
+    message = str(excinfo.value)
+    assert f"{path}:3" in message
+    assert "duplicate id 'a'" in message
+    assert "first seen at line 1" in message

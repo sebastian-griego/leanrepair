@@ -6,7 +6,14 @@ import json
 import math
 import random
 from pathlib import Path
+import sys
 from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from jsonl_io import load_jsonl_map_by_key  # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -154,13 +161,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _load_policy_rows(path: Path) -> dict[str, dict[str, Any]]:
-    rows: dict[str, dict[str, Any]] = {}
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            row = json.loads(line)
-            item_id = str(row.get("id", ""))
-            rows[item_id] = row
-    return rows
+    return load_jsonl_map_by_key(path, "id")
 
 
 def _solve_rate(rows: Any) -> float:

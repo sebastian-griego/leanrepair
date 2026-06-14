@@ -9,6 +9,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT))
 
 from scripts import analyze_paired_results as apr  # noqa: E402
+from jsonl_io import JsonlError  # noqa: E402
 
 
 class PairedAnalysisTests(unittest.TestCase):
@@ -88,6 +89,29 @@ class PairedAnalysisTests(unittest.TestCase):
 
             with self.assertRaises(SystemExit):
                 apr.main(["--root", str(root), "--strict-pairs"])
+
+    def test_main_rejects_duplicate_ids_with_line_numbers(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            run_dir = root / "run_001"
+            run_dir.mkdir()
+            heuristic_path = run_dir / "heuristic.jsonl"
+            self._write_jsonl(
+                heuristic_path,
+                [
+                    {"id": "dup", "ok": True},
+                    {"id": "dup", "ok": False},
+                ],
+            )
+            self._write_jsonl(run_dir / "research.jsonl", [{"id": "dup", "ok": True}])
+
+            with self.assertRaises(JsonlError) as context:
+                apr.main(["--root", str(root)])
+
+            message = str(context.exception)
+            self.assertIn(f"{heuristic_path}:2", message)
+            self.assertIn("duplicate id 'dup'", message)
+            self.assertIn("first seen at line 1", message)
 
     def _write_jsonl(self, path: pathlib.Path, rows: list[dict]) -> None:
         path.write_text(

@@ -201,7 +201,9 @@ python scripts/analyze_strict_replay_paired.py --records-jsonl results/real_pape
 The paired analyzer reports coverage before comparing policies, so unmatched
 rows are visible instead of being silently dropped. Use `--strict-pairs` to
 fail a run with missing policy outputs, and tune `--bootstrap-samples`/`--seed`
-to reproduce confidence intervals for solve-rate and exact-rate lift.
+to reproduce confidence intervals for solve-rate and exact-rate lift. Per-policy
+result files also reject duplicate `id` rows with physical line numbers, so
+accidental concatenation cannot silently overwrite earlier results.
 
 Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 
