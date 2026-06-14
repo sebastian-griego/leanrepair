@@ -31,6 +31,25 @@ def load_jsonl_objects(path: str | Path) -> list[dict[str, Any]]:
     return [row for _line_no, row in iter_jsonl_objects(path)]
 
 
+def load_jsonl_objects_unique_by_key(path: str | Path, key: str) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    first_lines: dict[str, int] = {}
+    path = Path(path)
+    for line_no, row in iter_jsonl_objects(path):
+        value = row.get(key)
+        if value is None:
+            raise JsonlError(f"missing {key} at {path}:{line_no}")
+        map_key = str(value)
+        if map_key in first_lines:
+            raise JsonlError(
+                f"duplicate {key} {map_key!r} at {path}:{line_no}; "
+                f"first seen at line {first_lines[map_key]}"
+            )
+        first_lines[map_key] = line_no
+        rows.append(row)
+    return rows
+
+
 def load_jsonl_map_by_key(path: str | Path, key: str) -> dict[str, dict[str, Any]]:
     rows: dict[str, dict[str, Any]] = {}
     first_lines: dict[str, int] = {}
@@ -55,4 +74,5 @@ __all__ = [
     "iter_jsonl_objects",
     "load_jsonl_map_by_key",
     "load_jsonl_objects",
+    "load_jsonl_objects_unique_by_key",
 ]

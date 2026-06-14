@@ -6,7 +6,7 @@ from pathlib import Path
 from statistics import mean
 from typing import Any, Iterable
 
-from jsonl_io import load_jsonl_objects
+from jsonl_io import load_jsonl_objects_unique_by_key
 
 
 DEGENERATE_REASONS = (
@@ -18,7 +18,7 @@ DEGENERATE_REASONS = (
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
-    return load_jsonl_objects(path)
+    return load_jsonl_objects_unique_by_key(path, "id")
 
 
 def analyze_records(

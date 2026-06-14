@@ -12,6 +12,7 @@ from jsonl_io import (  # noqa: E402
     iter_jsonl_objects,
     load_jsonl_map_by_key,
     load_jsonl_objects,
+    load_jsonl_objects_unique_by_key,
 )
 
 
@@ -71,6 +72,29 @@ def test_load_jsonl_map_by_key_rejects_duplicate_key(tmp_path):
 
     with pytest.raises(JsonlError) as excinfo:
         load_jsonl_map_by_key(path, "id")
+
+    message = str(excinfo.value)
+    assert f"{path}:3" in message
+    assert "duplicate id 'a'" in message
+    assert "first seen at line 1" in message
+
+
+def test_load_jsonl_objects_unique_by_key_preserves_order(tmp_path):
+    path = tmp_path / "rows.jsonl"
+    path.write_text('{"id": "a"}\n{"id": "b"}\n', encoding="utf-8")
+
+    assert load_jsonl_objects_unique_by_key(path, "id") == [{"id": "a"}, {"id": "b"}]
+
+
+def test_load_jsonl_objects_unique_by_key_rejects_duplicates(tmp_path):
+    path = tmp_path / "rows.jsonl"
+    path.write_text(
+        '{"id": "a", "value": 1}\n\n{"id": "a", "value": 2}\n',
+        encoding="utf-8",
+    )
+
+    with pytest.raises(JsonlError) as excinfo:
+        load_jsonl_objects_unique_by_key(path, "id")
 
     message = str(excinfo.value)
     assert f"{path}:3" in message

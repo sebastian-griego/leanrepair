@@ -202,8 +202,9 @@ The paired analyzer reports coverage before comparing policies, so unmatched
 rows are visible instead of being silently dropped. Use `--strict-pairs` to
 fail a run with missing policy outputs, and tune `--bootstrap-samples`/`--seed`
 to reproduce confidence intervals for solve-rate and exact-rate lift. Per-policy
-result files also reject duplicate `id` rows with physical line numbers, so
-accidental concatenation cannot silently overwrite earlier results.
+result files are loaded through duplicate-`id` checks across the aggregate
+analyzers, with physical line numbers in failures, so accidental concatenation
+cannot silently inflate or overwrite reported results.
 Strict replay ledgers are schema-validated when loaded from JSONL and reject
 duplicate `(run, id, policy)` rows with the physical line number, so the
 casebook and paired replay reports cannot double-count a replay decision from a
