@@ -322,6 +322,13 @@ def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
 
     for policy in sorted(policies):
         records = int(aggregate["policies"][policy]["pooled"]["count"])
+        _validate_aggregate_policy(policy, aggregate["policies"][policy])
+        _validate_budget_policy(policy, loaded["budget_curve"]["policies"][policy])
+        _validate_exactness_policy(policy, loaded["exactness_gap"]["policies"][policy])
+        _validate_quality_policy(policy, loaded["quality"]["policies"][policy])
+        _validate_semantic_policy(policy, loaded["semantic_drift"]["policies"][policy])
+        _validate_strict_policy(policy, loaded["strict_replay"]["policies"][policy])
+        _validate_trace_policy(policy, loaded["trace_taxonomy"]["policies"][policy])
         _require_equal(
             f"budget_curve.{policy}.count",
             int(loaded["budget_curve"]["policies"][policy]["count"]),
@@ -381,9 +388,180 @@ def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
     )
 
 
+def _validate_aggregate_policy(policy: str, row: dict[str, Any]) -> None:
+    pooled = row["pooled"]
+    count = int(pooled["count"])
+    solved = int(pooled["solved"])
+    exact = int(pooled["exact"])
+    _require_bounds(f"aggregate.{policy}.solved", solved, count)
+    _require_bounds(f"aggregate.{policy}.exact", exact, solved)
+    _require_rate(f"aggregate.{policy}.solve_rate", pooled["solve_rate"], solved, count)
+    _require_rate(f"aggregate.{policy}.exact_rate", pooled["exact_rate"], exact, count)
+
+
+def _validate_budget_policy(policy: str, row: dict[str, Any]) -> None:
+    count = int(row["count"])
+    previous_solved = 0
+    previous_exact = 0
+    for point in row["budgets"]:
+        budget = int(point["budget"])
+        solved = int(point["solved"])
+        exact = int(point["exact"])
+        _require_equal(f"budget_curve.{policy}.budget_{budget}.count", int(point["count"]), count)
+        _require_bounds(f"budget_curve.{policy}.budget_{budget}.solved", solved, count)
+        _require_bounds(f"budget_curve.{policy}.budget_{budget}.exact", exact, solved)
+        if solved < previous_solved:
+            raise ValueError(
+                f"Inconsistent source artifact budget_curve.{policy}.budget_{budget}.solved: "
+                f"{solved} < previous {previous_solved}"
+            )
+        if exact < previous_exact:
+            raise ValueError(
+                f"Inconsistent source artifact budget_curve.{policy}.budget_{budget}.exact: "
+                f"{exact} < previous {previous_exact}"
+            )
+        _require_rate(f"budget_curve.{policy}.budget_{budget}.solve_rate", point["solve_rate"], solved, count)
+        _require_rate(f"budget_curve.{policy}.budget_{budget}.exact_rate", point["exact_rate"], exact, count)
+        _require_equal(
+            f"budget_curve.{policy}.marginal_solves.{budget}",
+            int(row["marginal_solves"].get(str(budget), 0)),
+            solved - previous_solved,
+        )
+        previous_solved = solved
+        previous_exact = exact
+
+
+def _validate_exactness_policy(policy: str, row: dict[str, Any]) -> None:
+    count = int(row["count"])
+    solved = int(row["solved"])
+    exact = int(row["exact"])
+    solved_not_exact = int(row["solved_not_exact"])
+    _require_bounds(f"exactness_gap.{policy}.solved", solved, count)
+    _require_bounds(f"exactness_gap.{policy}.exact", exact, solved)
+    _require_equal(f"exactness_gap.{policy}.solved_not_exact", solved_not_exact, solved - exact)
+    _require_rate(f"exactness_gap.{policy}.solve_rate", row["solve_rate"], solved, count)
+    _require_rate(f"exactness_gap.{policy}.exact_rate", row["exact_rate"], exact, count)
+    _require_rate(f"exactness_gap.{policy}.exact_given_solved", row["exact_given_solved"], exact, solved)
+    _require_rate(
+        f"exactness_gap.{policy}.drift_given_solved",
+        row["drift_given_solved"],
+        solved_not_exact,
+        solved,
+    )
+
+
+def _validate_quality_policy(policy: str, row: dict[str, Any]) -> None:
+    pooled = row["pooled"]
+    count = int(pooled["count"])
+    solved = int(pooled["solved"])
+    exact = int(pooled["exact"])
+    nondegenerate = int(pooled["nondegenerate_solved"])
+    degenerate = int(pooled["degenerate_solved"])
+    _require_bounds(f"quality.{policy}.solved", solved, count)
+    _require_bounds(f"quality.{policy}.exact", exact, solved)
+    _require_equal(f"quality.{policy}.solved_breakdown", nondegenerate + degenerate, solved)
+    _require_rate(
+        f"quality.{policy}.nondegenerate_solved_rate",
+        pooled["nondegenerate_solved_rate"],
+        nondegenerate,
+        count,
+    )
+    _require_rate(
+        f"quality.{policy}.degenerate_given_solved",
+        pooled["degenerate_given_solved"],
+        degenerate,
+        solved,
+    )
+
+
+def _validate_semantic_policy(policy: str, row: dict[str, Any]) -> None:
+    count = int(row["count"])
+    solved = int(row["solved"])
+    exact = int(row["exact"])
+    degenerate = int(row["degenerate_solved"])
+    nondegenerate = int(row["nondegenerate_solved"])
+    _require_bounds(f"semantic_drift.{policy}.solved", solved, count)
+    _require_bounds(f"semantic_drift.{policy}.exact", exact, solved)
+    _require_equal(f"semantic_drift.{policy}.solved_breakdown", degenerate + nondegenerate, solved)
+    _require_equal(
+        f"semantic_drift.{policy}.degenerate_reasons",
+        sum(int(value) for value in row["degenerate_reasons"].values()),
+        degenerate,
+    )
+    _require_rate(
+        f"semantic_drift.{policy}.degenerate_given_solved",
+        row["degenerate_given_solved"],
+        degenerate,
+        solved,
+    )
+
+
+def _validate_strict_policy(policy: str, row: dict[str, Any]) -> None:
+    count = int(row["count"])
+    raw_solved = int(row["raw_solved"])
+    strict_solved = int(row["strict_solved"])
+    raw_exact = int(row["raw_exact"])
+    strict_exact = int(row["strict_exact"])
+    strict_not_exact = int(row["strict_not_exact"])
+    raw_to_strict_loss = int(row["raw_to_strict_loss"])
+    _require_bounds(f"strict_replay.{policy}.raw_solved", raw_solved, count)
+    _require_bounds(f"strict_replay.{policy}.strict_solved", strict_solved, raw_solved)
+    _require_bounds(f"strict_replay.{policy}.raw_exact", raw_exact, raw_solved)
+    _require_bounds(f"strict_replay.{policy}.strict_exact", strict_exact, strict_solved)
+    _require_equal(
+        f"strict_replay.{policy}.strict_nonexact_breakdown",
+        strict_exact + strict_not_exact,
+        strict_solved,
+    )
+    _require_equal(
+        f"strict_replay.{policy}.raw_to_strict_loss",
+        raw_to_strict_loss,
+        raw_solved - strict_solved,
+    )
+    _require_rate(
+        f"strict_replay.{policy}.strict_retention_given_raw",
+        row["strict_retention_given_raw"],
+        strict_solved,
+        raw_solved,
+    )
+    _require_rate(
+        f"strict_replay.{policy}.strict_exact_given_strict",
+        row["strict_exact_given_strict"],
+        strict_exact,
+        strict_solved,
+    )
+
+
+def _validate_trace_policy(policy: str, row: dict[str, Any]) -> None:
+    count = int(row["count"])
+    solved = int(row["solved"])
+    exact = int(row["exact"])
+    lean_ok = int(row["lean_ok_records"])
+    _require_bounds(f"trace_taxonomy.{policy}.records_with_trace", int(row["records_with_trace"]), count)
+    _require_bounds(f"trace_taxonomy.{policy}.solved", solved, count)
+    _require_bounds(f"trace_taxonomy.{policy}.exact", exact, solved)
+    _require_bounds(f"trace_taxonomy.{policy}.lean_ok_records", lean_ok, count)
+    _require_rate(f"trace_taxonomy.{policy}.solve_rate", row["solve_rate"], solved, count)
+    _require_rate(f"trace_taxonomy.{policy}.exact_rate", row["exact_rate"], exact, count)
+    _require_rate(f"trace_taxonomy.{policy}.lean_ok_rate", row["lean_ok_rate"], lean_ok, count)
+
+
 def _require_equal(label: str, actual: int, expected: int) -> None:
     if actual != expected:
         raise ValueError(f"Inconsistent source artifact {label}: {actual} != {expected}")
+
+
+def _require_bounds(label: str, value: int, total: int) -> None:
+    if value < 0 or value > total:
+        raise ValueError(f"Inconsistent source artifact {label}: {value} outside [0, {total}]")
+
+
+def _require_rate(label: str, actual: Any, successes: int, total: int) -> None:
+    expected = 0.0 if total == 0 else float(successes) / float(total)
+    if abs(float(actual) - expected) > 1e-9:
+        raise ValueError(
+            f"Inconsistent source artifact {label}: {float(actual)} != {expected}"
+        )
 
 
 def _aggregate_policy(row: dict[str, Any]) -> dict[str, Any]:

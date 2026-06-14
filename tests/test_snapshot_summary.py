@@ -60,7 +60,18 @@ def test_snapshot_rollup_rejects_inconsistent_policy_counts(tmp_path):
     budget["policies"]["research"]["count"] = 21
     _write(root / "budget_curve.json", budget)
 
-    with pytest.raises(ValueError, match="budget_curve.research.count"):
+    with pytest.raises(ValueError, match="budget_curve.research"):
+        build_snapshot(root)
+
+
+def test_snapshot_rollup_rejects_inconsistent_rates(tmp_path):
+    root = tmp_path / "real_paper_v2"
+    _write_snapshot_inputs(root)
+    aggregate = _aggregate()
+    aggregate["policies"]["research"]["pooled"]["solve_rate"] = 0.5
+    _write(root / "aggregate_summary.json", aggregate)
+
+    with pytest.raises(ValueError, match="aggregate.research.solve_rate"):
         build_snapshot(root)
 
 
