@@ -1,24 +1,19 @@
 from __future__ import annotations
 
 from collections import Counter
-import json
 from math import exp, lgamma, log
 from pathlib import Path
 from typing import Any, Iterable
 
 import eval_utils as eu
+from jsonl_io import load_jsonl_objects
 
 
 PAIRED_METRICS = ("raw_ok", "strict_ok", "strict_exact")
 
 
 def load_records_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            if line.strip():
-                rows.append(json.loads(line))
-    return rows
+    return load_jsonl_objects(path)
 
 
 def analyze_records(

@@ -5,17 +5,12 @@ import json
 from pathlib import Path
 from typing import Any, Iterable
 
+from jsonl_io import load_jsonl_objects
 import semantic_drift_analysis as sda
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            stripped = line.strip()
-            if stripped:
-                rows.append(json.loads(stripped))
-    return rows
+    return load_jsonl_objects(path)
 
 
 def analyze_records(
