@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import Counter
 import json
 from math import exp, lgamma, log
 from pathlib import Path
@@ -64,6 +65,7 @@ def analyze_records(
         if bool(b.get("raw_ok")) and not bool(a.get("raw_ok")) and not bool(b.get("strict_ok"))
     ]
     raw_win_lost.sort(key=_case_sort_key)
+    raw_win_loss = _raw_win_loss_summary(raw_win_lost)
     b_strict_wins = [
         _paired_case(a, b)
         for a, b in pairs
@@ -115,6 +117,7 @@ def analyze_records(
             "policy_b_exact_wins": len(b_exact_wins),
             "policy_b_raw_wins_lost_by_strict": len(raw_win_lost),
         },
+        "raw_win_loss": raw_win_loss,
         "casebook": {
             "policy_b_strict_wins": b_strict_wins[: max(0, int(max_cases))],
             "policy_a_strict_wins": a_strict_wins[: max(0, int(max_cases))],
@@ -153,6 +156,8 @@ def format_markdown(summary: dict[str, Any]) -> str:
         f"({b} only `{exact['policy_b_only']}`, {a} only `{exact['policy_a_only']}`)",
         f"- Strict solve sign-test p-value: `{strict['paired_exact_sign_p_two_sided']:.3e}`",
         f"- Strict exact sign-test p-value: `{exact['paired_exact_sign_p_two_sided']:.3e}`",
+        f"- Compared raw wins lost under strict replay: "
+        f"`{summary['raw_win_loss']['total']}`",
         "",
         "## Metric Table",
         "",
@@ -204,6 +209,7 @@ def format_markdown(summary: dict[str, Any]) -> str:
             f"{strict_row['paired_exact_sign_p_two_sided']:.3e} |"
         )
 
+    _append_raw_win_loss_breakdown(lines, summary["raw_win_loss"])
     _append_case_table(
         lines,
         f"{b} Strict Wins",
@@ -307,6 +313,54 @@ def _policy_summary(rows: Iterable[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _raw_win_loss_summary(cases: list[dict[str, Any]]) -> dict[str, Any]:
+    total = len(cases)
+    reason_counts: Counter[str] = Counter()
+    corruption_counts: Counter[str] = Counter()
+    reason_corruption_counts: Counter[tuple[str, str]] = Counter()
+    for case in cases:
+        reason = _case_reason(case)
+        corruption = str(case.get("corruption") or "unknown")
+        reason_counts[reason] += 1
+        corruption_counts[corruption] += 1
+        reason_corruption_counts[(reason, corruption)] += 1
+    return {
+        "total": total,
+        "by_reason": _counter_rows(reason_counts, total),
+        "by_corruption": _counter_rows(corruption_counts, total),
+        "by_reason_and_corruption": [
+            {
+                "reason": reason,
+                "corruption": corruption,
+                "count": count,
+                "share": count / float(total) if total else 0.0,
+            }
+            for (reason, corruption), count in sorted(
+                reason_corruption_counts.items(),
+                key=lambda item: (-item[1], item[0][0], item[0][1]),
+            )
+        ],
+    }
+
+
+def _case_reason(case: dict[str, Any]) -> str:
+    policy_b = case.get("policy_b", {})
+    reason = policy_b.get("raw_reason") if isinstance(policy_b, dict) else ""
+    reason = str(reason or "").strip()
+    return reason or "unknown"
+
+
+def _counter_rows(counter: Counter[str], total: int) -> list[dict[str, Any]]:
+    return [
+        {
+            "name": name,
+            "count": count,
+            "share": count / float(total) if total else 0.0,
+        }
+        for name, count in sorted(counter.items(), key=lambda item: (-item[1], item[0]))
+    ]
+
+
 def _paired_case(a: dict[str, Any], b: dict[str, Any]) -> dict[str, Any]:
     return {
         "run": str(b.get("run") or a.get("run") or ""),
@@ -374,6 +428,62 @@ def _append_case_table(
             f"{_flags(a)} | {_flags(b)} | {_md(_short(b.get('raw_reason', '')))} | "
             f"{_md(_short(b.get('strict_final_header', '') or b.get('raw_final_header', '')))} |"
         )
+
+
+def _append_raw_win_loss_breakdown(
+    lines: list[str],
+    summary: dict[str, Any],
+) -> None:
+    lines.extend(
+        [
+            "",
+            "## Raw Wins Lost By Strict Replay Breakdown",
+            "",
+            "Raw wins lost by strict replay are cases where the compared policy "
+            "solved under raw Lean-ok, the baseline did not, and strict replay "
+            "rejected the compared output.",
+            "",
+            f"- Total lost compared-policy raw wins: `{summary['total']}`",
+            "",
+            "| Rejection reason | Count | Share |",
+            "|---|---:|---:|",
+        ]
+    )
+    for row in summary["by_reason"]:
+        lines.append(
+            f"| `{_md(row['name'])}` | {row['count']} | {_pct(row['share'])} |"
+        )
+    if not summary["by_reason"]:
+        lines.append("| - | 0 | 0.0% |")
+
+    lines.extend(
+        [
+            "",
+            "| Corruption | Count | Share |",
+            "|---|---:|---:|",
+        ]
+    )
+    for row in summary["by_corruption"]:
+        lines.append(
+            f"| `{_md(row['name'])}` | {row['count']} | {_pct(row['share'])} |"
+        )
+    if not summary["by_corruption"]:
+        lines.append("| - | 0 | 0.0% |")
+
+    lines.extend(
+        [
+            "",
+            "| Rejection reason | Corruption | Count | Share |",
+            "|---|---|---:|---:|",
+        ]
+    )
+    for row in summary["by_reason_and_corruption"]:
+        lines.append(
+            f"| `{_md(row['reason'])}` | `{_md(row['corruption'])}` | "
+            f"{row['count']} | {_pct(row['share'])} |"
+        )
+    if not summary["by_reason_and_corruption"]:
+        lines.append("| - | - | 0 | 0.0% |")
 
 
 def _case_sort_key(row: dict[str, Any]) -> tuple[str, str, str]:

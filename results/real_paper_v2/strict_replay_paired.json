@@ -554,6 +554,97 @@
     "policy_b_exact_wins": 251,
     "policy_b_raw_wins_lost_by_strict": 414
   },
+  "raw_win_loss": {
+    "total": 414,
+    "by_reason": [
+      {
+        "name": "goal_true",
+        "count": 334,
+        "share": 0.8067632850241546
+      },
+      {
+        "name": "reflexive_equality",
+        "count": 80,
+        "share": 0.1932367149758454
+      }
+    ],
+    "by_corruption": [
+      {
+        "name": "type_mismatch",
+        "count": 134,
+        "share": 0.32367149758454106
+      },
+      {
+        "name": "not_proposition",
+        "count": 99,
+        "share": 0.2391304347826087
+      },
+      {
+        "name": "unknown_type_symbol",
+        "count": 73,
+        "share": 0.17632850241545894
+      },
+      {
+        "name": "parse_unbalanced_paren",
+        "count": 54,
+        "share": 0.13043478260869565
+      },
+      {
+        "name": "parse_missing_colon",
+        "count": 31,
+        "share": 0.0748792270531401
+      },
+      {
+        "name": "lowercase_type",
+        "count": 23,
+        "share": 0.05555555555555555
+      }
+    ],
+    "by_reason_and_corruption": [
+      {
+        "reason": "goal_true",
+        "corruption": "not_proposition",
+        "count": 99,
+        "share": 0.2391304347826087
+      },
+      {
+        "reason": "reflexive_equality",
+        "corruption": "type_mismatch",
+        "count": 80,
+        "share": 0.1932367149758454
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "unknown_type_symbol",
+        "count": 73,
+        "share": 0.17632850241545894
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "parse_unbalanced_paren",
+        "count": 54,
+        "share": 0.13043478260869565
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "type_mismatch",
+        "count": 54,
+        "share": 0.13043478260869565
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "parse_missing_colon",
+        "count": 31,
+        "share": 0.0748792270531401
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "lowercase_type",
+        "count": 23,
+        "share": 0.05555555555555555
+      }
+    ]
+  },
   "casebook": {
     "policy_b_strict_wins": [
       {

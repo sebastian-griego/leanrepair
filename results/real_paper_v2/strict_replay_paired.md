@@ -9,6 +9,7 @@
 - Strict exact lift: `+27.9 pp` (research only `251`, heuristic only `0`)
 - Strict solve sign-test p-value: `2.764e-76`
 - Strict exact sign-test p-value: `5.527e-76`
+- Compared raw wins lost under strict replay: `414`
 
 ## Metric Table
 
@@ -35,6 +36,36 @@
 | `parse_unbalanced_paren` | 143 | 0 | 71 | +49.7 pp | +49.7 pp | 8.470e-22 |
 | `type_mismatch` | 140 | 0 | 0 | +0.0 pp | +0.0 pp | 1.000e+00 |
 | `unknown_type_symbol` | 129 | 0 | 6 | +4.7 pp | +3.9 pp | 3.125e-02 |
+
+## Raw Wins Lost By Strict Replay Breakdown
+
+Raw wins lost by strict replay are cases where the compared policy solved under raw Lean-ok, the baseline did not, and strict replay rejected the compared output.
+
+- Total lost compared-policy raw wins: `414`
+
+| Rejection reason | Count | Share |
+|---|---:|---:|
+| `goal_true` | 334 | 80.7% |
+| `reflexive_equality` | 80 | 19.3% |
+
+| Corruption | Count | Share |
+|---|---:|---:|
+| `type_mismatch` | 134 | 32.4% |
+| `not_proposition` | 99 | 23.9% |
+| `unknown_type_symbol` | 73 | 17.6% |
+| `parse_unbalanced_paren` | 54 | 13.0% |
+| `parse_missing_colon` | 31 | 7.5% |
+| `lowercase_type` | 23 | 5.6% |
+
+| Rejection reason | Corruption | Count | Share |
+|---|---|---:|---:|
+| `goal_true` | `not_proposition` | 99 | 23.9% |
+| `reflexive_equality` | `type_mismatch` | 80 | 19.3% |
+| `goal_true` | `unknown_type_symbol` | 73 | 17.6% |
+| `goal_true` | `parse_unbalanced_paren` | 54 | 13.0% |
+| `goal_true` | `type_mismatch` | 54 | 13.0% |
+| `goal_true` | `parse_missing_colon` | 31 | 7.5% |
+| `goal_true` | `lowercase_type` | 23 | 5.6% |
 
 ## research Strict Wins
 

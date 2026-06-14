@@ -32,6 +32,24 @@ class StrictReplayPairedTests(unittest.TestCase):
                     raw_degenerate=True,
                     raw_reason="goal_true",
                 ),
+                self._row(
+                    "run_001",
+                    "raw_lost_reflexive",
+                    "heuristic",
+                    raw_ok=False,
+                    strict_ok=False,
+                    corruption="type_mismatch",
+                ),
+                self._row(
+                    "run_001",
+                    "raw_lost_reflexive",
+                    "research",
+                    raw_ok=True,
+                    strict_ok=False,
+                    raw_degenerate=True,
+                    raw_reason="reflexive_equality",
+                    corruption="type_mismatch",
+                ),
                 self._row("run_001", "exact_win", "heuristic", raw_ok=True, strict_ok=True),
                 self._row(
                     "run_001",
@@ -46,14 +64,27 @@ class StrictReplayPairedTests(unittest.TestCase):
         )
         markdown = srp.format_markdown(summary)
 
-        self.assertEqual(summary["coverage"]["paired_records"], 4)
+        self.assertEqual(summary["coverage"]["paired_records"], 5)
         self.assertEqual(summary["metrics"]["strict_ok"]["policy_a_only"], 1)
         self.assertEqual(summary["metrics"]["strict_ok"]["policy_b_only"], 1)
         self.assertEqual(summary["metrics"]["strict_exact"]["policy_b_only"], 2)
-        self.assertEqual(summary["case_counts"]["policy_b_raw_wins_lost_by_strict"], 1)
+        self.assertEqual(summary["case_counts"]["policy_b_raw_wins_lost_by_strict"], 2)
+        self.assertEqual(summary["raw_win_loss"]["total"], 2)
+        self.assertEqual(
+            {row["name"]: row["count"] for row in summary["raw_win_loss"]["by_reason"]},
+            {"goal_true": 1, "reflexive_equality": 1},
+        )
+        self.assertEqual(
+            {
+                (row["reason"], row["corruption"]): row["count"]
+                for row in summary["raw_win_loss"]["by_reason_and_corruption"]
+            },
+            {("goal_true", "parse"): 1, ("reflexive_equality", "type_mismatch"): 1},
+        )
         self.assertEqual(summary["casebook"]["policy_b_strict_wins"][0]["id"], "b_win")
         self.assertIn("Strict Replay Paired Analysis", markdown)
-        self.assertIn("Raw Wins Lost By Strict Replay", markdown)
+        self.assertIn("Raw Wins Lost By Strict Replay Breakdown", markdown)
+        self.assertIn("reflexive_equality", markdown)
 
     def test_cli_writes_paired_outputs_from_records_jsonl(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -135,12 +166,13 @@ class StrictReplayPairedTests(unittest.TestCase):
         strict_exact: bool = False,
         raw_degenerate: bool = False,
         raw_reason: str = "",
+        corruption: str = "parse",
     ) -> dict:
         return {
             "run": run,
             "id": item_id,
             "policy": policy,
-            "corruption": "parse",
+            "corruption": corruption,
             "raw_ok": raw_ok,
             "raw_exact": strict_exact,
             "raw_degenerate": raw_degenerate,
