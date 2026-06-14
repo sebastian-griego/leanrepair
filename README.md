@@ -20,7 +20,7 @@ LeanRepair takes incomplete or incorrect Lean theorem/lemma declarations and:
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/leanrepair.git
+git clone https://github.com/sebastian-griego/leanrepair.git
 cd leanrepair
 pip install -r requirements.txt
 ```
@@ -39,7 +39,8 @@ python repair_cli.py \
     --output results.jsonl \
     --Tmax 6 \
     --timeout-s 20 \
-    --policy research
+    --policy research \
+    --acceptance strict
 ```
 
 #### Arguments
@@ -50,7 +51,9 @@ python repair_cli.py \
 | `--output` | Path to output JSONL file | Required |
 | `--Tmax` | Maximum repair iterations per theorem | 3 |
 | `--timeout-s` | Lean compiler timeout in seconds | 20.0 |
-| `--policy` | Repair policy: `heuristic`, `research`, or `openai` | heuristic |
+| `--policy` | Repair policy: `heuristic`, `research`, `research_strict`, or `openai` | heuristic |
+| `--acceptance` | Acceptance rule: `lean_ok` accepts any typechecking candidate; `strict` rejects degenerate typechecking candidates such as `True` goals and reflexive equalities | lean_ok |
+| `--token-recall-floor` | Minimum target-token recall for strict acceptance | 0.2 |
 
 ### Input Format
 
@@ -75,6 +78,7 @@ Output JSONL contains:
 {
   "id": "theorem_1",
   "ok": true,
+  "acceptance": "lean_ok",
   "final": "theorem foo : Nat := by sorry",
   "steps": 2,
   "trace": [...]
@@ -100,6 +104,8 @@ The baseline heuristic policy applies rule-based repairs for common error patter
 - Applies syntax repairs for missing top-level `:` and unbalanced binder parentheses
 - Repairs common corruption patterns (`nat` -> `Nat`, `x = True` -> `x = x`, inferred type replacement for unknown type symbols)
 
+Use `research_strict` to run the same search without trivial `True` and reflexive-equality fallback proposals. Use `--acceptance strict` when LeanRepair should also reject any degenerate Lean-ok candidate during the repair loop and continue to later queued candidates when available.
+
 ### OpenAI Policy
 
 Uses OpenAI's API to generate repairs:
@@ -119,6 +125,7 @@ Environment variables:
 - `OPENAI_PROJECT`: Project ID (optional)
 
 The OpenAI policy falls back to heuristic repairs if the API is unavailable or returns invalid responses.
+When a model returns a Lean code block with imports or a proof body, LeanRepair extracts the theorem/lemma header and then runs the same sanitizer used by the local policies.
 
 ## Research Workflow
 
@@ -158,6 +165,7 @@ python scripts/run_experiments.py \
   --policies heuristic research \
   --Tmax 6 \
   --timeout-s 25 \
+  --acceptance lean_ok \
   --warmup
 ```
 
@@ -170,23 +178,53 @@ for s in 7 17 27; do
 done
 
 python scripts/analyze_paired_results.py --root results/real_paper --policy-a heuristic --policy-b research
+python scripts/analyze_trace_taxonomy.py --root results/real_paper --policies heuristic research
+python scripts/analyze_budget_curve.py --root results/real_paper --policies heuristic research
+python scripts/analyze_exactness_gap.py --root results/real_paper --policies heuristic research
+python scripts/analyze_semantic_drift.py --root results/real_paper --policies heuristic research
+python scripts/analyze_quality_summary.py --root results/real_paper --policies heuristic research
+python scripts/analyze_strict_replay.py --root results/real_paper --policies heuristic research
+python scripts/analyze_strict_replay_casebook.py --root results/real_paper --policies heuristic research
+python scripts/analyze_strict_replay_paired.py --records-jsonl results/real_paper/strict_replay_records.jsonl --policy-a heuristic --policy-b research
 ```
+
+The paired analyzer reports coverage before comparing policies, so unmatched
+rows are visible instead of being silently dropped. Use `--strict-pairs` to
+fail a run with missing policy outputs, and tune `--bootstrap-samples`/`--seed`
+to reproduce confidence intervals for solve-rate and exact-rate lift.
 
 Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 
 - Per-policy traces: `heuristic.jsonl`, `research.jsonl`
 - Aggregates: `summary.json`, `<policy>.summary.json`
 - Table-ready report: `report.md`
+- Trace taxonomy: `trace_taxonomy.json`, `trace_taxonomy.md`
+- Repair budget curve: `budget_curve.json`, `budget_curve.md`
+- Exactness gap: `exactness_gap.json`, `exactness_gap.md`
+- Semantic drift audit: `semantic_drift.json`, `semantic_drift.md`
+- Quality-adjusted summary: `quality_summary.json`, `quality_summary.md`
+- Strict replay audit: `strict_replay.json`, `strict_replay.md`, `strict_replay_records.jsonl`
+- Strict replay casebook: `strict_replay_casebook.json`, `strict_replay_casebook.md`, `strict_replay_casebook_cases.jsonl`
+- Strict replay paired comparison: `strict_replay_paired.json`, `strict_replay_paired.md`
+
+Trace taxonomy reports are acceptance-aware: on strict-acceptance runs they
+separate raw Lean-ok candidates from candidates actually accepted by the repair
+loop, and count rejection reasons such as `goal_true`.
 
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
 - Aggregate report: `results/real_paper_v2/aggregate_report.md`
+- Quality-adjusted report: `results/real_paper_v2/quality_summary.md`
 - Baseline `heuristic`: solve rate `10.0% +/- 1.2%`, exact rate `0.0% +/- 0.0%`
 - `research`: solve rate `84.0% +/- 1.1%`, exact rate `27.7% +/- 3.1%`
 - Pooled across all 900 items:
 - `heuristic` solve `10.0%` (95% CI `[8.2, 12.1]`)
 - `research` solve `84.0%` (95% CI `[81.5, 86.2]`)
 - Paired test (`research` vs `heuristic`): exact two-sided binomial `p = 6.532e-201`
+- Semantic drift audit: `research` has `504/756` solved outputs classified as degenerate (`338` `True` goals, `157` reflexive equalities, `9` bare-identifier goals), leaving `252/900` nondegenerate solved headers; the same stricter classifier marks all `90` heuristic solves as degenerate.
+- Strict replay audit: filtering degenerate accepted fixes preserves all `251` exact `research` repairs while reducing raw `research` solves from `756/900` to `252/900`; `251/252` strict accepted repairs are exact, with only one nondegenerate-but-nonexact accept. `results/real_paper_v2/strict_replay_records.jsonl` contains the 1,800 row-level replay decisions behind the aggregate report.
+- Strict replay casebook: `results/real_paper_v2/strict_replay_casebook.md` extracts `595` focused rows from the replay ledger (`594` raw solves lost under strict replay and `1` strict nonexact accept), with loss reasons split into `338` `goal_true`, `235` reflexive equalities, and `21` bare-identifier goals.
+- Strict paired replay: `results/real_paper_v2/strict_replay_paired.md` shows that the raw `research` solve lift of `+74.0` percentage points becomes a strict solve lift of `+28.0` points (`252` `research`-only strict solves vs `0` `heuristic`-only; sign-test `p = 2.764e-76`) and a strict exact lift of `+27.9` points (`251` `research`-only exact repairs vs `0`; `p = 5.527e-76`). It also identifies `414` raw `research`-only wins that strict replay rejects as degenerate, now split by rejection reason (`334` `goal_true`, `80` `reflexive_equality`) and corruption type.
 
 Per-run artifacts are available under `results/real_paper_v2/run_*/`.
 
@@ -251,6 +289,9 @@ leanrepair/
 pip install pytest
 python -m pytest tests/ -v
 ```
+
+CI runs the unit tests on supported Python versions. The tests mock Lean calls
+where possible so they can exercise repair logic without requiring API keys.
 
 ## License
 

@@ -1,0 +1,2991 @@
+{
+  "policy_a": "heuristic",
+  "policy_b": "research",
+  "coverage": {
+    "policy_a_records": 900,
+    "policy_b_records": 900,
+    "paired_records": 900,
+    "policy_a_unpaired": 0,
+    "policy_b_unpaired": 0
+  },
+  "metrics": {
+    "raw_ok": {
+      "metric": "raw_ok",
+      "n_total": 900,
+      "both_success": 90,
+      "policy_a_only": 0,
+      "policy_b_only": 666,
+      "neither_success": 144,
+      "policy_a_successes": 90,
+      "policy_b_successes": 756,
+      "policy_a_rate": 0.1,
+      "policy_b_rate": 0.84,
+      "policy_a_rate_ci95": [
+        0.0820680651050478,
+        0.12133217670723434
+      ],
+      "policy_b_rate_ci95": [
+        0.8146106088402726,
+        0.8624991856192874
+      ],
+      "policy_b_lift": 0.74,
+      "discordant_total": 666,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_sign_p_two_sided": 6.532100883151361e-201
+    },
+    "strict_ok": {
+      "metric": "strict_ok",
+      "n_total": 900,
+      "both_success": 0,
+      "policy_a_only": 0,
+      "policy_b_only": 252,
+      "neither_success": 648,
+      "policy_a_successes": 0,
+      "policy_b_successes": 252,
+      "policy_a_rate": 0.0,
+      "policy_b_rate": 0.28,
+      "policy_a_rate_ci95": [
+        4.318375942142756e-19,
+        0.0042503022653526895
+      ],
+      "policy_b_rate_ci95": [
+        0.2516479484077991,
+        0.31022218458895606
+      ],
+      "policy_b_lift": 0.28,
+      "discordant_total": 252,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_sign_p_two_sided": 2.763573937630259e-76
+    },
+    "strict_exact": {
+      "metric": "strict_exact",
+      "n_total": 900,
+      "both_success": 0,
+      "policy_a_only": 0,
+      "policy_b_only": 251,
+      "neither_success": 649,
+      "policy_a_successes": 0,
+      "policy_b_successes": 251,
+      "policy_a_rate": 0.0,
+      "policy_b_rate": 0.2788888888888889,
+      "policy_a_rate_ci95": [
+        4.318375942142756e-19,
+        0.0042503022653526895
+      ],
+      "policy_b_rate_ci95": [
+        0.2505769947915951,
+        0.30908036109908305
+      ],
+      "policy_b_lift": 0.2788888888888889,
+      "discordant_total": 251,
+      "policy_b_win_rate_on_discordant": 1.0,
+      "paired_exact_sign_p_two_sided": 5.527147875260529e-76
+    }
+  },
+  "by_policy": {
+    "heuristic": {
+      "records": 900,
+      "raw_ok": 90,
+      "strict_ok": 0,
+      "strict_exact": 0,
+      "raw_degenerate": 90,
+      "raw_to_strict_loss": 90,
+      "strict_retention": 0.0
+    },
+    "research": {
+      "records": 900,
+      "raw_ok": 756,
+      "strict_ok": 252,
+      "strict_exact": 251,
+      "raw_degenerate": 504,
+      "raw_to_strict_loss": 504,
+      "strict_retention": 0.3333333333333333
+    }
+  },
+  "by_corruption": {
+    "lowercase_type": {
+      "raw_ok": {
+        "metric": "raw_ok",
+        "n_total": 118,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 107,
+        "neither_success": 11,
+        "policy_a_successes": 0,
+        "policy_b_successes": 107,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.9067796610169492,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.03152946120208532
+        ],
+        "policy_b_rate_ci95": [
+          0.8407592905282243,
+          0.9471489444260114
+        ],
+        "policy_b_lift": 0.9067796610169492,
+        "discordant_total": 107,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 1.2325951644078303e-32
+      },
+      "strict_ok": {
+        "metric": "strict_ok",
+        "n_total": 118,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 84,
+        "neither_success": 34,
+        "policy_a_successes": 0,
+        "policy_b_successes": 84,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.711864406779661,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.03152946120208532
+        ],
+        "policy_b_rate_ci95": [
+          0.6244890874940097,
+          0.7858797848779879
+        ],
+        "policy_b_lift": 0.711864406779661,
+        "discordant_total": 84,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 1.0339757656912844e-25
+      },
+      "strict_exact": {
+        "metric": "strict_exact",
+        "n_total": 118,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 84,
+        "neither_success": 34,
+        "policy_a_successes": 0,
+        "policy_b_successes": 84,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.711864406779661,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.03152946120208532
+        ],
+        "policy_b_rate_ci95": [
+          0.6244890874940097,
+          0.7858797848779879
+        ],
+        "policy_b_lift": 0.711864406779661,
+        "discordant_total": 84,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 1.0339757656912844e-25
+      }
+    },
+    "not_proposition": {
+      "raw_ok": {
+        "metric": "raw_ok",
+        "n_total": 194,
+        "both_success": 86,
+        "policy_a_only": 0,
+        "policy_b_only": 99,
+        "neither_success": 9,
+        "policy_a_successes": 86,
+        "policy_b_successes": 185,
+        "policy_a_rate": 0.44329896907216493,
+        "policy_b_rate": 0.9536082474226805,
+        "policy_a_rate_ci95": [
+          0.3751672179656137,
+          0.5136327108663409
+        ],
+        "policy_b_rate_ci95": [
+          0.9141962943678029,
+          0.9754042749765617
+        ],
+        "policy_b_lift": 0.5103092783505154,
+        "discordant_total": 99,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 3.155443620884048e-30
+      },
+      "strict_ok": {
+        "metric": "strict_ok",
+        "n_total": 194,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 0,
+        "neither_success": 194,
+        "policy_a_successes": 0,
+        "policy_b_successes": 0,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.0,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.019417554245416534
+        ],
+        "policy_b_rate_ci95": [
+          0.0,
+          0.019417554245416534
+        ],
+        "policy_b_lift": 0.0,
+        "discordant_total": 0,
+        "policy_b_win_rate_on_discordant": 0.5,
+        "paired_exact_sign_p_two_sided": 1.0
+      },
+      "strict_exact": {
+        "metric": "strict_exact",
+        "n_total": 194,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 0,
+        "neither_success": 194,
+        "policy_a_successes": 0,
+        "policy_b_successes": 0,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.0,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.019417554245416534
+        ],
+        "policy_b_rate_ci95": [
+          0.0,
+          0.019417554245416534
+        ],
+        "policy_b_lift": 0.0,
+        "discordant_total": 0,
+        "policy_b_win_rate_on_discordant": 0.5,
+        "paired_exact_sign_p_two_sided": 1.0
+      }
+    },
+    "parse_missing_colon": {
+      "raw_ok": {
+        "metric": "raw_ok",
+        "n_total": 176,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 122,
+        "neither_success": 54,
+        "policy_a_successes": 0,
+        "policy_b_successes": 122,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.6931818181818182,
+        "policy_a_rate_ci95": [
+          1.6976680132512056e-18,
+          0.021361019919751596
+        ],
+        "policy_b_rate_ci95": [
+          0.6215266932592246,
+          0.7565838217717805
+        ],
+        "policy_b_lift": 0.6931818181818182,
+        "discordant_total": 122,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 3.7615819226313196e-37
+      },
+      "strict_ok": {
+        "metric": "strict_ok",
+        "n_total": 176,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 91,
+        "neither_success": 85,
+        "policy_a_successes": 0,
+        "policy_b_successes": 91,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.5170454545454546,
+        "policy_a_rate_ci95": [
+          1.6976680132512056e-18,
+          0.021361019919751596
+        ],
+        "policy_b_rate_ci95": [
+          0.4436458674522853,
+          0.5897168250504505
+        ],
+        "policy_b_lift": 0.5170454545454546,
+        "discordant_total": 91,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 8.077935669463168e-28
+      },
+      "strict_exact": {
+        "metric": "strict_exact",
+        "n_total": 176,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 91,
+        "neither_success": 85,
+        "policy_a_successes": 0,
+        "policy_b_successes": 91,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.5170454545454546,
+        "policy_a_rate_ci95": [
+          1.6976680132512056e-18,
+          0.021361019919751596
+        ],
+        "policy_b_rate_ci95": [
+          0.4436458674522853,
+          0.5897168250504505
+        ],
+        "policy_b_lift": 0.5170454545454546,
+        "discordant_total": 91,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 8.077935669463168e-28
+      }
+    },
+    "parse_unbalanced_paren": {
+      "raw_ok": {
+        "metric": "raw_ok",
+        "n_total": 143,
+        "both_success": 2,
+        "policy_a_only": 0,
+        "policy_b_only": 125,
+        "neither_success": 16,
+        "policy_a_successes": 2,
+        "policy_b_successes": 127,
+        "policy_a_rate": 0.013986013986013986,
+        "policy_b_rate": 0.8881118881118881,
+        "policy_a_rate_ci95": [
+          0.003843806098051972,
+          0.04955795471087411
+        ],
+        "policy_b_rate_ci95": [
+          0.8259703656182174,
+          0.9299462138796906
+        ],
+        "policy_b_lift": 0.8741258741258742,
+        "discordant_total": 125,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 4.701977403289191e-38
+      },
+      "strict_ok": {
+        "metric": "strict_ok",
+        "n_total": 143,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 71,
+        "neither_success": 72,
+        "policy_a_successes": 0,
+        "policy_b_successes": 71,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.4965034965034965,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.02616152370990237
+        ],
+        "policy_b_rate_ci95": [
+          0.41572427445690957,
+          0.5774656662683346
+        ],
+        "policy_b_lift": 0.4965034965034965,
+        "discordant_total": 71,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 8.470329472543026e-22
+      },
+      "strict_exact": {
+        "metric": "strict_exact",
+        "n_total": 143,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 71,
+        "neither_success": 72,
+        "policy_a_successes": 0,
+        "policy_b_successes": 71,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.4965034965034965,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.02616152370990237
+        ],
+        "policy_b_rate_ci95": [
+          0.41572427445690957,
+          0.5774656662683346
+        ],
+        "policy_b_lift": 0.4965034965034965,
+        "discordant_total": 71,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 8.470329472543026e-22
+      }
+    },
+    "type_mismatch": {
+      "raw_ok": {
+        "metric": "raw_ok",
+        "n_total": 140,
+        "both_success": 2,
+        "policy_a_only": 0,
+        "policy_b_only": 134,
+        "neither_success": 4,
+        "policy_a_successes": 2,
+        "policy_b_successes": 136,
+        "policy_a_rate": 0.014285714285714285,
+        "policy_b_rate": 0.9714285714285714,
+        "policy_a_rate_ci95": [
+          0.003926358459994088,
+          0.05058916417045497
+        ],
+        "policy_b_rate_ci95": [
+          0.928841706594433,
+          0.9888344037936606
+        ],
+        "policy_b_lift": 0.9571428571428572,
+        "discordant_total": 134,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 9.183549615799176e-41
+      },
+      "strict_ok": {
+        "metric": "strict_ok",
+        "n_total": 140,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 0,
+        "neither_success": 140,
+        "policy_a_successes": 0,
+        "policy_b_successes": 0,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.0,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.02670715564899167
+        ],
+        "policy_b_rate_ci95": [
+          0.0,
+          0.02670715564899167
+        ],
+        "policy_b_lift": 0.0,
+        "discordant_total": 0,
+        "policy_b_win_rate_on_discordant": 0.5,
+        "paired_exact_sign_p_two_sided": 1.0
+      },
+      "strict_exact": {
+        "metric": "strict_exact",
+        "n_total": 140,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 0,
+        "neither_success": 140,
+        "policy_a_successes": 0,
+        "policy_b_successes": 0,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.0,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.02670715564899167
+        ],
+        "policy_b_rate_ci95": [
+          0.0,
+          0.02670715564899167
+        ],
+        "policy_b_lift": 0.0,
+        "discordant_total": 0,
+        "policy_b_win_rate_on_discordant": 0.5,
+        "paired_exact_sign_p_two_sided": 1.0
+      }
+    },
+    "unknown_type_symbol": {
+      "raw_ok": {
+        "metric": "raw_ok",
+        "n_total": 129,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 79,
+        "neither_success": 50,
+        "policy_a_successes": 0,
+        "policy_b_successes": 79,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.6124031007751938,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.028918651988533713
+        ],
+        "policy_b_rate_ci95": [
+          0.5262377936886841,
+          0.6920673155542038
+        ],
+        "policy_b_lift": 0.6124031007751938,
+        "discordant_total": 79,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 3.308722450212117e-24
+      },
+      "strict_ok": {
+        "metric": "strict_ok",
+        "n_total": 129,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 6,
+        "neither_success": 123,
+        "policy_a_successes": 0,
+        "policy_b_successes": 6,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.046511627906976744,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.028918651988533713
+        ],
+        "policy_b_rate_ci95": [
+          0.02148829302617625,
+          0.09776350761458688
+        ],
+        "policy_b_lift": 0.046511627906976744,
+        "discordant_total": 6,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 0.031250000000000014
+      },
+      "strict_exact": {
+        "metric": "strict_exact",
+        "n_total": 129,
+        "both_success": 0,
+        "policy_a_only": 0,
+        "policy_b_only": 5,
+        "neither_success": 124,
+        "policy_a_successes": 0,
+        "policy_b_successes": 5,
+        "policy_a_rate": 0.0,
+        "policy_b_rate": 0.03875968992248062,
+        "policy_a_rate_ci95": [
+          0.0,
+          0.028918651988533713
+        ],
+        "policy_b_rate_ci95": [
+          0.016667257386622298,
+          0.08752901847876926
+        ],
+        "policy_b_lift": 0.03875968992248062,
+        "discordant_total": 5,
+        "policy_b_win_rate_on_discordant": 1.0,
+        "paired_exact_sign_p_two_sided": 0.0625
+      }
+    }
+  },
+  "case_counts": {
+    "policy_b_strict_wins": 252,
+    "policy_a_strict_wins": 0,
+    "policy_b_exact_wins": 251,
+    "policy_b_raw_wins_lost_by_strict": 414
+  },
+  "raw_win_loss": {
+    "total": 414,
+    "by_reason": [
+      {
+        "name": "goal_true",
+        "count": 334,
+        "share": 0.8067632850241546
+      },
+      {
+        "name": "reflexive_equality",
+        "count": 80,
+        "share": 0.1932367149758454
+      }
+    ],
+    "by_corruption": [
+      {
+        "name": "type_mismatch",
+        "count": 134,
+        "share": 0.32367149758454106
+      },
+      {
+        "name": "not_proposition",
+        "count": 99,
+        "share": 0.2391304347826087
+      },
+      {
+        "name": "unknown_type_symbol",
+        "count": 73,
+        "share": 0.17632850241545894
+      },
+      {
+        "name": "parse_unbalanced_paren",
+        "count": 54,
+        "share": 0.13043478260869565
+      },
+      {
+        "name": "parse_missing_colon",
+        "count": 31,
+        "share": 0.0748792270531401
+      },
+      {
+        "name": "lowercase_type",
+        "count": 23,
+        "share": 0.05555555555555555
+      }
+    ],
+    "by_reason_and_corruption": [
+      {
+        "reason": "goal_true",
+        "corruption": "not_proposition",
+        "count": 99,
+        "share": 0.2391304347826087
+      },
+      {
+        "reason": "reflexive_equality",
+        "corruption": "type_mismatch",
+        "count": 80,
+        "share": 0.1932367149758454
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "unknown_type_symbol",
+        "count": 73,
+        "share": 0.17632850241545894
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "parse_unbalanced_paren",
+        "count": 54,
+        "share": 0.13043478260869565
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "type_mismatch",
+        "count": 54,
+        "share": 0.13043478260869565
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "parse_missing_colon",
+        "count": 31,
+        "share": 0.0748792270531401
+      },
+      {
+        "reason": "goal_true",
+        "corruption": "lowercase_type",
+        "count": 23,
+        "share": 0.05555555555555555
+      }
+    ]
+  },
+  "casebook": {
+    "policy_b_strict_wins": [
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00016",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00016 {a b c : Nat} (h : a + b < c) : a < c - b",
+          "strict_final_header": "theorem bench_real_00016 {a b c : Nat} (h : a + b < c) : a < c - b"
+        },
+        "target_header": "theorem bench_real_00016 {a b c : Nat} (h : a + b < c) : a < c - b",
+        "target_goal": "a < c - b"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00036",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00036 {l : List \u03b1} {p q : \u03b1 \u2192 Bool} (h : \u2200 x \u2208 l, p x \u2192 q x) : l.findIdx q \u2264 l.findIdx p",
+          "strict_final_header": "theorem bench_real_00036 {l : List \u03b1} {p q : \u03b1 \u2192 Bool} (h : \u2200 x \u2208 l, p x \u2192 q x) : l.findIdx q \u2264 l.findIdx p"
+        },
+        "target_header": "theorem bench_real_00036 {l : List \u03b1} {p q : \u03b1 \u2192 Bool} (h : \u2200 x \u2208 l, p x \u2192 q x) : l.findIdx q \u2264 l.findIdx p",
+        "target_goal": "l.findIdx q \u2264 l.findIdx p"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00040",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00040 (a b : Nat) : (NatCast.natCast (a + b : Nat) : Int) = (NatCast.natCast a : Int) + (NatCast.natCast b : Int)",
+          "strict_final_header": "theorem bench_real_00040 (a b : Nat) : (NatCast.natCast (a + b : Nat) : Int) = (NatCast.natCast a : Int) + (NatCast.natCast b : Int)"
+        },
+        "target_header": "theorem bench_real_00040 (a b : Nat) : (NatCast.natCast (a + b : Nat) : Int) = (NatCast.natCast a : Int) + (NatCast.natCast b : Int)",
+        "target_goal": "(NatCast.natCast (a + b : Nat) : Int) = (NatCast.natCast a : Int) + (NatCast.natCast b : Int)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00058",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00058 {m n : Nat} (H : n % m = 0) : m \u2223 n",
+          "strict_final_header": "theorem bench_real_00058 {m n : Nat} (H : n % m = 0) : m \u2223 n"
+        },
+        "target_header": "theorem bench_real_00058 {m n : Nat} (H : n % m = 0) : m \u2223 n",
+        "target_goal": "m \u2223 n"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00073",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00073 {a : Int} (b : Int) (Ha : 0 \u2264 a) : a.tdiv b \u2264 a",
+          "strict_final_header": "theorem bench_real_00073 {a : Int} (b : Int) (Ha : 0 \u2264 a) : a.tdiv b \u2264 a"
+        },
+        "target_header": "theorem bench_real_00073 {a : Int} (b : Int) (Ha : 0 \u2264 a) : a.tdiv b \u2264 a",
+        "target_goal": "a.tdiv b \u2264 a"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00097",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00097 {p : Fin 1 \u2192 Prop} : (\u2200 i, p i) \u2194 p 0",
+          "strict_final_header": "theorem bench_real_00097 {p : Fin 1 \u2192 Prop} : (\u2200 i, p i) \u2194 p 0"
+        },
+        "target_header": "theorem bench_real_00097 {p : Fin 1 \u2192 Prop} : (\u2200 i, p i) \u2194 p 0",
+        "target_goal": "(\u2200 i, p i) \u2194 p 0"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00105",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00105 {z : Int} (hz : z \u2260 0) : z.sign.natAbs = 1",
+          "strict_final_header": "theorem bench_real_00105 {z : Int} (hz : z \u2260 0) : z.sign.natAbs = 1"
+        },
+        "target_header": "theorem bench_real_00105 {z : Int} (hz : z \u2260 0) : z.sign.natAbs = 1",
+        "target_goal": "z.sign.natAbs = 1"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00134",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00134 {a b : Int} (hab : b \u2223 a) : (a / b).natAbs = a.natAbs / b.natAbs",
+          "strict_final_header": "theorem bench_real_00134 {a b : Int} (hab : b \u2223 a) : (a / b).natAbs = a.natAbs / b.natAbs"
+        },
+        "target_header": "theorem bench_real_00134 {a b : Int} (hab : b \u2223 a) : (a / b).natAbs = a.natAbs / b.natAbs",
+        "target_goal": "(a / b).natAbs = a.natAbs / b.natAbs"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00138",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00138 (a : Int16) (ha : a \u2260 -1) : a.toInt32 \u2260 -1",
+          "strict_final_header": "theorem bench_real_00138 (a : Int16) (ha : a \u2260 -1) : a.toInt32 \u2260 -1"
+        },
+        "target_header": "theorem bench_real_00138 (a : Int16) (ha : a \u2260 -1) : a.toInt32 \u2260 -1",
+        "target_goal": "a.toInt32 \u2260 -1"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00141",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00141 : \u2200 {b : Bool}, (b = false \u2192 b = true) \u2194 (b = true)",
+          "strict_final_header": "theorem bench_real_00141 : \u2200 {b : Bool}, (b = false \u2192 b = true) \u2194 (b = true)"
+        },
+        "target_header": "theorem bench_real_00141 : \u2200 {b : Bool}, (b = false \u2192 b = true) \u2194 (b = true)",
+        "target_goal": "\u2200 {b : Bool}, (b = false \u2192 b = true) \u2194 (b = true)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00146",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00146 {a b : Prop} (h : b = True) : (a = b) = a",
+          "strict_final_header": "theorem bench_real_00146 {a b : Prop} (h : b = True) : (a = b) = a"
+        },
+        "target_header": "theorem bench_real_00146 {a b : Prop} (h : b = True) : (a = b) = a",
+        "target_goal": "(a = b) = a"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00148",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00148 (m k : Nat) : m % k = m - k * (m / k)",
+          "strict_final_header": "theorem bench_real_00148 (m k : Nat) : m % k = m - k * (m / k)"
+        },
+        "target_header": "theorem bench_real_00148 (m k : Nat) : m % k = m - k * (m / k)",
+        "target_goal": "m % k = m - k * (m / k)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00151",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00151 {n m : Nat} (h : n \u2223 m) : m / n \u2223 m",
+          "strict_final_header": "theorem bench_real_00151 {n m : Nat} (h : n \u2223 m) : m / n \u2223 m"
+        },
+        "target_header": "theorem bench_real_00151 {n m : Nat} (h : n \u2223 m) : m / n \u2223 m",
+        "target_goal": "m / n \u2223 m"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00153",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem getElem!_of_getElem? [Inhabited \u03b1] : \u2200 {l : List \u03b1} {i : Nat}, l[i]? = some a \u2192 l[i]! = a",
+          "strict_final_header": "theorem getElem!_of_getElem? [Inhabited \u03b1] : \u2200 {l : List \u03b1} {i : Nat}, l[i]? = some a \u2192 l[i]! = a"
+        },
+        "target_header": "theorem getElem!_of_getElem? [Inhabited \u03b1] : \u2200 {l : List \u03b1} {i : Nat}, l[i]? = some a \u2192 l[i]! = a",
+        "target_goal": "\u2200 {l : List \u03b1} {i : Nat}, l[i]? = some a \u2192 l[i]! = a"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00159",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00159 (b : Prop) : \u00aca \u2192 \u00ac(a \u2227 b)",
+          "strict_final_header": "theorem bench_real_00159 (b : Prop) : \u00aca \u2192 \u00ac(a \u2227 b)"
+        },
+        "target_header": "theorem bench_real_00159 (b : Prop) : \u00aca \u2192 \u00ac(a \u2227 b)",
+        "target_goal": "\u00aca \u2192 \u00ac(a \u2227 b)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00173",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00173 (a : Int8) : -a = -1 * a",
+          "strict_final_header": "theorem bench_real_00173 (a : Int8) : -a = -1 * a"
+        },
+        "target_header": "theorem bench_real_00173 (a : Int8) : -a = -1 * a",
+        "target_goal": "-a = -1 * a"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00187",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00187 {p q : Prop} (hp : p) (hq : q) : HEq hp hq",
+          "strict_final_header": "theorem bench_real_00187 {p q : Prop} (hp : p) (hq : q) : HEq hp hq"
+        },
+        "target_header": "theorem bench_real_00187 {p q : Prop} (hp : p) (hq : q) : HEq hp hq",
+        "target_goal": "HEq hp hq"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00190",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00190 {c : Prop} {h : Decidable c} (hc : c) {\u03b1 : Sort u} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} : (dite c t e) = t hc",
+          "strict_final_header": "theorem bench_real_00190 {c : Prop} {h : Decidable c} (hc : c) {\u03b1 : Sort u} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} : (dite c t e) = t hc"
+        },
+        "target_header": "theorem bench_real_00190 {c : Prop} {h : Decidable c} (hc : c) {\u03b1 : Sort u} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} : (dite c t e) = t hc",
+        "target_goal": "(dite c t e) = t hc"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00212",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00212 {m n : Nat} (H : m \u2223 n) : n % m = 0",
+          "strict_final_header": "theorem bench_real_00212 {m n : Nat} (H : m \u2223 n) : n % m = 0"
+        },
+        "target_header": "theorem bench_real_00212 {m n : Nat} (H : m \u2223 n) : n % m = 0",
+        "target_goal": "n % m = 0"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00265",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00265 {n : Int} : -n < n \u2194 0 < n",
+          "strict_final_header": "theorem bench_real_00265 {n : Int} : -n < n \u2194 0 < n"
+        },
+        "target_header": "theorem bench_real_00265 {n : Int} : -n < n \u2194 0 < n",
+        "target_goal": "-n < n \u2194 0 < n"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00269",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00269 {a b : Int} {hab\u2081 hab\u2082} : Int8.ofIntLE (a * b) hab\u2081 hab\u2082 = Int8.ofInt a * Int8.ofInt b",
+          "strict_final_header": "theorem bench_real_00269 {a b : Int} {hab\u2081 hab\u2082} : Int8.ofIntLE (a * b) hab\u2081 hab\u2082 = Int8.ofInt a * Int8.ofInt b"
+        },
+        "target_header": "theorem bench_real_00269 {a b : Int} {hab\u2081 hab\u2082} : Int8.ofIntLE (a * b) hab\u2081 hab\u2082 = Int8.ofInt a * Int8.ofInt b",
+        "target_goal": "Int8.ofIntLE (a * b) hab\u2081 hab\u2082 = Int8.ofInt a * Int8.ofInt b"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00277",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00277 : \u2200 {x y z : Bool}, (x ^^ y) = (x ^^ z) \u2194 y = z",
+          "strict_final_header": "theorem bench_real_00277 : \u2200 {x y z : Bool}, (x ^^ y) = (x ^^ z) \u2194 y = z"
+        },
+        "target_header": "theorem bench_real_00277 : \u2200 {x y z : Bool}, (x ^^ y) = (x ^^ z) \u2194 y = z",
+        "target_goal": "\u2200 {x y z : Bool}, (x ^^ y) = (x ^^ z) \u2194 y = z"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00279",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00279 (m n : Nat) : \u2200 k, m >>> (n + k) = (m >>> n) >>> k",
+          "strict_final_header": "theorem bench_real_00279 (m n : Nat) : \u2200 k, m >>> (n + k) = (m >>> n) >>> k"
+        },
+        "target_header": "theorem bench_real_00279 (m n : Nat) : \u2200 k, m >>> (n + k) = (m >>> n) >>> k",
+        "target_goal": "\u2200 k, m >>> (n + k) = (m >>> n) >>> k"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00283",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00283 [LE \u03b1] (le_refl : \u2200 x : \u03b1, x \u2264 x) {o : Option \u03b1} {p : \u03b1 \u2192 Bool} : o \u2264 o.filter p \u2194 o.all p",
+          "strict_final_header": "theorem bench_real_00283 [LE \u03b1] (le_refl : \u2200 x : \u03b1, x \u2264 x) {o : Option \u03b1} {p : \u03b1 \u2192 Bool} : o \u2264 o.filter p \u2194 o.all p"
+        },
+        "target_header": "theorem bench_real_00283 [LE \u03b1] (le_refl : \u2200 x : \u03b1, x \u2264 x) {o : Option \u03b1} {p : \u03b1 \u2192 Bool} : o \u2264 o.filter p \u2194 o.all p",
+        "target_goal": "o \u2264 o.filter p \u2194 o.all p"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00292",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00292 {m n : Nat} : m % n.succ = m \u2194 m < n.succ",
+          "strict_final_header": "theorem bench_real_00292 {m n : Nat} : m % n.succ = m \u2194 m < n.succ"
+        },
+        "target_header": "theorem bench_real_00292 {m n : Nat} : m % n.succ = m \u2194 m < n.succ",
+        "target_goal": "m % n.succ = m \u2194 m < n.succ"
+      }
+    ],
+    "policy_a_strict_wins": [],
+    "policy_b_exact_wins": [
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00016",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00016 {a b c : Nat} (h : a + b < c) : a < c - b",
+          "strict_final_header": "theorem bench_real_00016 {a b c : Nat} (h : a + b < c) : a < c - b"
+        },
+        "target_header": "theorem bench_real_00016 {a b c : Nat} (h : a + b < c) : a < c - b",
+        "target_goal": "a < c - b"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00036",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00036 {l : List \u03b1} {p q : \u03b1 \u2192 Bool} (h : \u2200 x \u2208 l, p x \u2192 q x) : l.findIdx q \u2264 l.findIdx p",
+          "strict_final_header": "theorem bench_real_00036 {l : List \u03b1} {p q : \u03b1 \u2192 Bool} (h : \u2200 x \u2208 l, p x \u2192 q x) : l.findIdx q \u2264 l.findIdx p"
+        },
+        "target_header": "theorem bench_real_00036 {l : List \u03b1} {p q : \u03b1 \u2192 Bool} (h : \u2200 x \u2208 l, p x \u2192 q x) : l.findIdx q \u2264 l.findIdx p",
+        "target_goal": "l.findIdx q \u2264 l.findIdx p"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00040",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00040 (a b : Nat) : (NatCast.natCast (a + b : Nat) : Int) = (NatCast.natCast a : Int) + (NatCast.natCast b : Int)",
+          "strict_final_header": "theorem bench_real_00040 (a b : Nat) : (NatCast.natCast (a + b : Nat) : Int) = (NatCast.natCast a : Int) + (NatCast.natCast b : Int)"
+        },
+        "target_header": "theorem bench_real_00040 (a b : Nat) : (NatCast.natCast (a + b : Nat) : Int) = (NatCast.natCast a : Int) + (NatCast.natCast b : Int)",
+        "target_goal": "(NatCast.natCast (a + b : Nat) : Int) = (NatCast.natCast a : Int) + (NatCast.natCast b : Int)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00058",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00058 {m n : Nat} (H : n % m = 0) : m \u2223 n",
+          "strict_final_header": "theorem bench_real_00058 {m n : Nat} (H : n % m = 0) : m \u2223 n"
+        },
+        "target_header": "theorem bench_real_00058 {m n : Nat} (H : n % m = 0) : m \u2223 n",
+        "target_goal": "m \u2223 n"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00073",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00073 {a : Int} (b : Int) (Ha : 0 \u2264 a) : a.tdiv b \u2264 a",
+          "strict_final_header": "theorem bench_real_00073 {a : Int} (b : Int) (Ha : 0 \u2264 a) : a.tdiv b \u2264 a"
+        },
+        "target_header": "theorem bench_real_00073 {a : Int} (b : Int) (Ha : 0 \u2264 a) : a.tdiv b \u2264 a",
+        "target_goal": "a.tdiv b \u2264 a"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00097",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00097 {p : Fin 1 \u2192 Prop} : (\u2200 i, p i) \u2194 p 0",
+          "strict_final_header": "theorem bench_real_00097 {p : Fin 1 \u2192 Prop} : (\u2200 i, p i) \u2194 p 0"
+        },
+        "target_header": "theorem bench_real_00097 {p : Fin 1 \u2192 Prop} : (\u2200 i, p i) \u2194 p 0",
+        "target_goal": "(\u2200 i, p i) \u2194 p 0"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00105",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00105 {z : Int} (hz : z \u2260 0) : z.sign.natAbs = 1",
+          "strict_final_header": "theorem bench_real_00105 {z : Int} (hz : z \u2260 0) : z.sign.natAbs = 1"
+        },
+        "target_header": "theorem bench_real_00105 {z : Int} (hz : z \u2260 0) : z.sign.natAbs = 1",
+        "target_goal": "z.sign.natAbs = 1"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00134",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00134 {a b : Int} (hab : b \u2223 a) : (a / b).natAbs = a.natAbs / b.natAbs",
+          "strict_final_header": "theorem bench_real_00134 {a b : Int} (hab : b \u2223 a) : (a / b).natAbs = a.natAbs / b.natAbs"
+        },
+        "target_header": "theorem bench_real_00134 {a b : Int} (hab : b \u2223 a) : (a / b).natAbs = a.natAbs / b.natAbs",
+        "target_goal": "(a / b).natAbs = a.natAbs / b.natAbs"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00138",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00138 (a : Int16) (ha : a \u2260 -1) : a.toInt32 \u2260 -1",
+          "strict_final_header": "theorem bench_real_00138 (a : Int16) (ha : a \u2260 -1) : a.toInt32 \u2260 -1"
+        },
+        "target_header": "theorem bench_real_00138 (a : Int16) (ha : a \u2260 -1) : a.toInt32 \u2260 -1",
+        "target_goal": "a.toInt32 \u2260 -1"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00141",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00141 : \u2200 {b : Bool}, (b = false \u2192 b = true) \u2194 (b = true)",
+          "strict_final_header": "theorem bench_real_00141 : \u2200 {b : Bool}, (b = false \u2192 b = true) \u2194 (b = true)"
+        },
+        "target_header": "theorem bench_real_00141 : \u2200 {b : Bool}, (b = false \u2192 b = true) \u2194 (b = true)",
+        "target_goal": "\u2200 {b : Bool}, (b = false \u2192 b = true) \u2194 (b = true)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00146",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00146 {a b : Prop} (h : b = True) : (a = b) = a",
+          "strict_final_header": "theorem bench_real_00146 {a b : Prop} (h : b = True) : (a = b) = a"
+        },
+        "target_header": "theorem bench_real_00146 {a b : Prop} (h : b = True) : (a = b) = a",
+        "target_goal": "(a = b) = a"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00148",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00148 (m k : Nat) : m % k = m - k * (m / k)",
+          "strict_final_header": "theorem bench_real_00148 (m k : Nat) : m % k = m - k * (m / k)"
+        },
+        "target_header": "theorem bench_real_00148 (m k : Nat) : m % k = m - k * (m / k)",
+        "target_goal": "m % k = m - k * (m / k)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00151",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00151 {n m : Nat} (h : n \u2223 m) : m / n \u2223 m",
+          "strict_final_header": "theorem bench_real_00151 {n m : Nat} (h : n \u2223 m) : m / n \u2223 m"
+        },
+        "target_header": "theorem bench_real_00151 {n m : Nat} (h : n \u2223 m) : m / n \u2223 m",
+        "target_goal": "m / n \u2223 m"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00153",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem getElem!_of_getElem? [Inhabited \u03b1] : \u2200 {l : List \u03b1} {i : Nat}, l[i]? = some a \u2192 l[i]! = a",
+          "strict_final_header": "theorem getElem!_of_getElem? [Inhabited \u03b1] : \u2200 {l : List \u03b1} {i : Nat}, l[i]? = some a \u2192 l[i]! = a"
+        },
+        "target_header": "theorem getElem!_of_getElem? [Inhabited \u03b1] : \u2200 {l : List \u03b1} {i : Nat}, l[i]? = some a \u2192 l[i]! = a",
+        "target_goal": "\u2200 {l : List \u03b1} {i : Nat}, l[i]? = some a \u2192 l[i]! = a"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00159",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00159 (b : Prop) : \u00aca \u2192 \u00ac(a \u2227 b)",
+          "strict_final_header": "theorem bench_real_00159 (b : Prop) : \u00aca \u2192 \u00ac(a \u2227 b)"
+        },
+        "target_header": "theorem bench_real_00159 (b : Prop) : \u00aca \u2192 \u00ac(a \u2227 b)",
+        "target_goal": "\u00aca \u2192 \u00ac(a \u2227 b)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00173",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00173 (a : Int8) : -a = -1 * a",
+          "strict_final_header": "theorem bench_real_00173 (a : Int8) : -a = -1 * a"
+        },
+        "target_header": "theorem bench_real_00173 (a : Int8) : -a = -1 * a",
+        "target_goal": "-a = -1 * a"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00187",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00187 {p q : Prop} (hp : p) (hq : q) : HEq hp hq",
+          "strict_final_header": "theorem bench_real_00187 {p q : Prop} (hp : p) (hq : q) : HEq hp hq"
+        },
+        "target_header": "theorem bench_real_00187 {p q : Prop} (hp : p) (hq : q) : HEq hp hq",
+        "target_goal": "HEq hp hq"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00190",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00190 {c : Prop} {h : Decidable c} (hc : c) {\u03b1 : Sort u} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} : (dite c t e) = t hc",
+          "strict_final_header": "theorem bench_real_00190 {c : Prop} {h : Decidable c} (hc : c) {\u03b1 : Sort u} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} : (dite c t e) = t hc"
+        },
+        "target_header": "theorem bench_real_00190 {c : Prop} {h : Decidable c} (hc : c) {\u03b1 : Sort u} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} : (dite c t e) = t hc",
+        "target_goal": "(dite c t e) = t hc"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00212",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00212 {m n : Nat} (H : m \u2223 n) : n % m = 0",
+          "strict_final_header": "theorem bench_real_00212 {m n : Nat} (H : m \u2223 n) : n % m = 0"
+        },
+        "target_header": "theorem bench_real_00212 {m n : Nat} (H : m \u2223 n) : n % m = 0",
+        "target_goal": "n % m = 0"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00265",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00265 {n : Int} : -n < n \u2194 0 < n",
+          "strict_final_header": "theorem bench_real_00265 {n : Int} : -n < n \u2194 0 < n"
+        },
+        "target_header": "theorem bench_real_00265 {n : Int} : -n < n \u2194 0 < n",
+        "target_goal": "-n < n \u2194 0 < n"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00269",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00269 {a b : Int} {hab\u2081 hab\u2082} : Int8.ofIntLE (a * b) hab\u2081 hab\u2082 = Int8.ofInt a * Int8.ofInt b",
+          "strict_final_header": "theorem bench_real_00269 {a b : Int} {hab\u2081 hab\u2082} : Int8.ofIntLE (a * b) hab\u2081 hab\u2082 = Int8.ofInt a * Int8.ofInt b"
+        },
+        "target_header": "theorem bench_real_00269 {a b : Int} {hab\u2081 hab\u2082} : Int8.ofIntLE (a * b) hab\u2081 hab\u2082 = Int8.ofInt a * Int8.ofInt b",
+        "target_goal": "Int8.ofIntLE (a * b) hab\u2081 hab\u2082 = Int8.ofInt a * Int8.ofInt b"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00277",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00277 : \u2200 {x y z : Bool}, (x ^^ y) = (x ^^ z) \u2194 y = z",
+          "strict_final_header": "theorem bench_real_00277 : \u2200 {x y z : Bool}, (x ^^ y) = (x ^^ z) \u2194 y = z"
+        },
+        "target_header": "theorem bench_real_00277 : \u2200 {x y z : Bool}, (x ^^ y) = (x ^^ z) \u2194 y = z",
+        "target_goal": "\u2200 {x y z : Bool}, (x ^^ y) = (x ^^ z) \u2194 y = z"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00279",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00279 (m n : Nat) : \u2200 k, m >>> (n + k) = (m >>> n) >>> k",
+          "strict_final_header": "theorem bench_real_00279 (m n : Nat) : \u2200 k, m >>> (n + k) = (m >>> n) >>> k"
+        },
+        "target_header": "theorem bench_real_00279 (m n : Nat) : \u2200 k, m >>> (n + k) = (m >>> n) >>> k",
+        "target_goal": "\u2200 k, m >>> (n + k) = (m >>> n) >>> k"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00283",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00283 [LE \u03b1] (le_refl : \u2200 x : \u03b1, x \u2264 x) {o : Option \u03b1} {p : \u03b1 \u2192 Bool} : o \u2264 o.filter p \u2194 o.all p",
+          "strict_final_header": "theorem bench_real_00283 [LE \u03b1] (le_refl : \u2200 x : \u03b1, x \u2264 x) {o : Option \u03b1} {p : \u03b1 \u2192 Bool} : o \u2264 o.filter p \u2194 o.all p"
+        },
+        "target_header": "theorem bench_real_00283 [LE \u03b1] (le_refl : \u2200 x : \u03b1, x \u2264 x) {o : Option \u03b1} {p : \u03b1 \u2192 Bool} : o \u2264 o.filter p \u2194 o.all p",
+        "target_goal": "o \u2264 o.filter p \u2194 o.all p"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00292",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": true,
+          "strict_exact": true,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00292 {m n : Nat} : m % n.succ = m \u2194 m < n.succ",
+          "strict_final_header": "theorem bench_real_00292 {m n : Nat} : m % n.succ = m \u2194 m < n.succ"
+        },
+        "target_header": "theorem bench_real_00292 {m n : Nat} : m % n.succ = m \u2194 m < n.succ",
+        "target_goal": "m % n.succ = m \u2194 m < n.succ"
+      }
+    ],
+    "policy_b_raw_wins_lost_by_strict": [
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00111",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00111 {x y : BitVec n} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00111 {x y : BitVec n} : x.toInt = y.toInt \u2192 x = y",
+        "target_goal": "x.toInt = y.toInt \u2192 x = y"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00165",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00165 : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00165 : (1 : UInt8).toNat = 1",
+        "target_goal": "(1 : UInt8).toNat = 1"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00166",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00166 (a : int8) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00166 (a : Int8) : a.toInt32 \u2260 Int32.minValue",
+        "target_goal": "a.toInt32 \u2260 Int32.minValue"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00188",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00188 (x : Int64) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00188 (x : Int64) : x.toNatClampNeg < 2 ^ 63",
+        "target_goal": "x.toNatClampNeg < 2 ^ 63"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00201",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00201 {a b : Uint16} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00201 {a b : UInt16} : ~~~a ^^^ b = ~~~(a ^^^ b)",
+        "target_goal": "~~~a ^^^ b = ~~~(a ^^^ b)"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00260",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00260 : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00260 : \u2200 a b : Int, a.fmod b + b * a.fdiv b = a",
+        "target_goal": "\u2200 a b : Int, a.fmod b + b * a.fdiv b = a"
+      },
+      {
+        "run": "run_20260211_002407",
+        "id": "real_00000",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00000 {x y : BitVec n} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00000 {x y : BitVec n} : x.toInt = y.toInt \u2194 x = y",
+        "target_goal": "x.toInt = y.toInt \u2194 x = y"
+      },
+      {
+        "run": "run_20260211_002407",
+        "id": "real_00036",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00036 {a b : Uint8} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00036 {a b : UInt8} : a < b \u2194 a.toFin < b.toFin",
+        "target_goal": "a < b \u2194 a.toFin < b.toFin"
+      },
+      {
+        "run": "run_20260211_002407",
+        "id": "real_00054",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00054 {a b c : Uint8} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00054 {a b c : UInt8} : (a ^^^ b) >>> c = (a >>> c) ^^^ (b >>> c)",
+        "target_goal": "(a ^^^ b) >>> c = (a >>> c) ^^^ (b >>> c)"
+      },
+      {
+        "run": "run_20260211_002407",
+        "id": "real_00116",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00116 (c : Bool) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00116 (c : Bool) : c.toNat \u2264 1",
+        "target_goal": "c.toNat \u2264 1"
+      },
+      {
+        "run": "run_20260211_002407",
+        "id": "real_00131",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00131 {a b : Uint32} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00131 {a b : UInt32} : a \u2264 a ||| b",
+        "target_goal": "a \u2264 a ||| b"
+      },
+      {
+        "run": "run_20260211_002407",
+        "id": "real_00162",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00162 (x : Int16) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00162 (x : Int16) : x.toNatClampNeg < 2 ^ 15",
+        "target_goal": "x.toNatClampNeg < 2 ^ 15"
+      },
+      {
+        "run": "run_20260211_002407",
+        "id": "real_00297",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00297 (a b : Uint32) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00297 (a b : UInt32) : a <<< b = a <<< (b % 32)",
+        "target_goal": "a <<< b = a <<< (b % 32)"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00016",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00016 {w : Nat} {x : BitVec w} (hx : BitVec.sle 0#w x) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00016 {w : Nat} {x : BitVec w} (hx : BitVec.sle 0#w x) : x.toInt.toNat = x.toNat",
+        "target_goal": "x.toInt.toNat = x.toNat"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00041",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00041 (a : ISize) (ha : a \u2260 minValue) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00041 (a : ISize) (ha : a \u2260 minValue) : a.toInt64 \u2260 Int64.minValue",
+        "target_goal": "a.toInt64 \u2260 Int64.minValue"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00043",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem fmod_add_fdiv' (a b : int) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem fmod_add_fdiv' (a b : Int) : a.fmod b + (a.fdiv b) * b = a",
+        "target_goal": "a.fmod b + (a.fdiv b) * b = a"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00087",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00087 {a b c : Uint64} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00087 {a b c : UInt64} : (a &&& b) >>> c = (a >>> c) &&& (b >>> c)",
+        "target_goal": "(a &&& b) >>> c = (a >>> c) &&& (b >>> c)"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00107",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00107 {a b c : Uint8} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00107 {a b c : UInt8} : (a ^^^ b) <<< c = (a <<< c) ^^^ (b <<< c)",
+        "target_goal": "(a ^^^ b) <<< c = (a <<< c) ^^^ (b <<< c)"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00192",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00192 {x y : BitVec w} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00192 {x y : BitVec w} : - (2 ^ (w * 2 - 2)) \u2264 x.toInt * y.toInt",
+        "target_goal": "- (2 ^ (w * 2 - 2)) \u2264 x.toInt * y.toInt"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00200",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00200 (a b : int) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00200 (a b : Int) : (a.fmod b).fmod b = a.fmod b",
+        "target_goal": "(a.fmod b).fmod b = a.fmod b"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00207",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00207 : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00207 : (1 : UInt32).toNat = 1",
+        "target_goal": "(1 : UInt32).toNat = 1"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00215",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00215 {x y : BitVec w} : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00215 {x y : BitVec w} : x.ule y = decide (x.toNat \u2264 y.toNat)",
+        "target_goal": "x.ule y = decide (x.toNat \u2264 y.toNat)"
+      },
+      {
+        "run": "run_20260211_002639",
+        "id": "real_00256",
+        "corruption": "lowercase_type",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00256 (x : int8) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00256 (x : Int8) : x.toBitVec.toNat = x.toUInt8.toNat",
+        "target_goal": "x.toBitVec.toNat = x.toUInt8.toNat"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00008",
+        "corruption": "not_proposition",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00008 {x : Option \u03b1} {p : \u03b1 \u2192 Bool} (h : x.any p) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00008 {x : Option \u03b1} {p : \u03b1 \u2192 Bool} (h : x.any p) : x.isSome",
+        "target_goal": "x.isSome"
+      },
+      {
+        "run": "run_20260211_002138",
+        "id": "real_00015",
+        "corruption": "not_proposition",
+        "policy_a": {
+          "policy": "heuristic",
+          "raw_ok": false,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": false,
+          "raw_reason": "",
+          "raw_step_index": null,
+          "strict_step_index": null,
+          "raw_final_header": "",
+          "strict_final_header": ""
+        },
+        "policy_b": {
+          "policy": "research",
+          "raw_ok": true,
+          "strict_ok": false,
+          "strict_exact": false,
+          "raw_degenerate": true,
+          "raw_reason": "goal_true",
+          "raw_step_index": 2,
+          "strict_step_index": null,
+          "raw_final_header": "theorem bench_real_00015 (a b : Int16) (hb : b \u2260 -1) : True",
+          "strict_final_header": ""
+        },
+        "target_header": "theorem bench_real_00015 (a b : Int16) (hb : b \u2260 -1) : (a / b).toInt64 = a.toInt64 / b.toInt64",
+        "target_goal": "(a / b).toInt64 = a.toInt64 / b.toInt64"
+      }
+    ]
+  },
+  "config": {
+    "paired_metrics": [
+      "raw_ok",
+      "strict_ok",
+      "strict_exact"
+    ],
+    "strict_pairs": false,
+    "max_cases": 25
+  }
+}

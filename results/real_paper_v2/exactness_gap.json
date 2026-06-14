@@ -1,0 +1,2183 @@
+{
+  "root": "results\\real_paper_v2",
+  "runs": {
+    "run_20260211_002138": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "solved": 26,
+          "exact": 0,
+          "solved_with_target": 26,
+          "solved_not_exact": 26,
+          "solved_missing_target": 0,
+          "solve_rate": 0.08666666666666667,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 1.0,
+          "avg_header_similarity": 0.5658256102851505,
+          "avg_token_jaccard": 0.4216683953764211,
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 36,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "not_proposition": {
+              "count": 63,
+              "solved": 26,
+              "exact": 0,
+              "solved_not_exact": 26,
+              "solve_rate": 0.4126984126984127,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.5658256102851505,
+              "avg_token_jaccard": 0.4216683953764211
+            },
+            "parse_missing_colon": {
+              "count": 71,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "parse_unbalanced_paren": {
+              "count": 46,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "type_mismatch": {
+              "count": 43,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "unknown_type_symbol": {
+              "count": 41,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            }
+          },
+          "drift_examples": [
+            {
+              "id": "real_00136",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00136 : Nat = Nat",
+              "target_header": "theorem bench_real_00136 : \u2200 {o\u2081 o\u2082 : Ordering}, (o\u2081.then o\u2082).isGT = (o\u2081.isGT || o\u2081.isEq && o\u2082.isGT)",
+              "char_similarity": 0.31000000000000005,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00077",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00077  : Nat = Nat",
+              "target_header": "theorem bench_real_00077  : \u2200 (x y z : Bool), (x || y && z) = ((x || y) && (x || z))",
+              "char_similarity": 0.36904761904761907,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00091",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00091 : Nat = Nat",
+              "target_header": "theorem bench_real_00091 : \u2200 {o\u2081 o\u2082 : Ordering}, (o\u2081.then o\u2082).isGE \u2192 o\u2081.isGE",
+              "char_similarity": 0.39473684210526316,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00098",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00098 : Nat = Nat",
+              "target_header": "theorem bench_real_00098 : \u2200 {x y : Bool}, (x || y) = true \u2194 x = true \u2228 y = true",
+              "char_similarity": 0.4,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00209",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00209 : Nat = Nat",
+              "target_header": "theorem bench_real_00209 : \u2200 {a b c : Int}, a \u2223 b \u2192 b \u2223 c \u2192 b.fdiv a \u2223 c.fdiv a",
+              "char_similarity": 0.40506329113924056,
+              "token_jaccard": 0.2
+            },
+            {
+              "id": "real_00185",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00185 : Nat = Nat",
+              "target_header": "theorem bench_real_00185 : {x y : Int8} \u2192 x.toBitVec = y.toBitVec \u2192 x = y",
+              "char_similarity": 0.4383561643835616,
+              "token_jaccard": 0.3333333333333333
+            },
+            {
+              "id": "real_00120",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00120 : Nat = Nat",
+              "target_header": "theorem bench_real_00120 : (a ^^^ b) / 2 ^ n = a / 2 ^ n ^^^ b / 2 ^ n",
+              "char_similarity": 0.44285714285714284,
+              "token_jaccard": 0.2857142857142857
+            },
+            {
+              "id": "real_00241",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00241 {a b : Int} : Nat = Nat",
+              "target_header": "theorem bench_real_00241 {a b : Int} : (-a).fdiv b = -(a.fdiv b) - if b = 0 \u2228 b \u2223 a then 0 else 1",
+              "char_similarity": 0.4639175257731959,
+              "token_jaccard": 0.35
+            },
+            {
+              "id": "real_00112",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00112 : Nat = Nat",
+              "target_header": "theorem bench_real_00112 : (a::as).enum = (0, a) :: as.enumFrom 1",
+              "char_similarity": 0.49230769230769234,
+              "token_jaccard": 0.36363636363636365
+            },
+            {
+              "id": "real_00222",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00222 : Nat = Nat",
+              "target_header": "theorem bench_real_00222 : Or (Eq numBits 32) (Eq numBits 64)",
+              "char_similarity": 0.5081967213114754,
+              "token_jaccard": 0.3
+            },
+            {
+              "id": "real_00064",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00064 {xs : Array \u03b1} : Nat = Nat",
+              "target_header": "theorem bench_real_00064 {xs : Array \u03b1} : xs[i]? = some b \u2194 \u2203 h : i < xs.size, xs[i] = b",
+              "char_similarity": 0.5113636363636364,
+              "token_jaccard": 0.3888888888888889
+            },
+            {
+              "id": "real_00245",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00245 : Nat = Nat",
+              "target_header": "theorem bench_real_00245 : Subsingleton (Fin n) \u2194 n \u2264 1",
+              "char_similarity": 0.5454545454545454,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00162",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00162 {l : BitVec w} : Nat = Nat",
+              "target_header": "theorem bench_real_00162 {l : BitVec w} : some a = l[n]? \u2194 \u2203 h : n < w, l[n] = a",
+              "char_similarity": 0.5625,
+              "token_jaccard": 0.3888888888888889
+            },
+            {
+              "id": "real_00229",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00229 {a : \u03b1} {i : Nat} : Nat = Nat",
+              "target_header": "theorem bench_real_00229 {a : \u03b1} {i : Nat} : [a][i]? = if i = 0 then some a else none",
+              "char_similarity": 0.5882352941176471,
+              "token_jaccard": 0.4444444444444444
+            },
+            {
+              "id": "real_00070",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00070 {\u03b1 \u03b2 : Sort u} : Nat = Nat",
+              "target_header": "theorem bench_real_00070 {\u03b1 \u03b2 : Sort u} : (h : \u03b1 = \u03b2) \u2192 (a : \u03b1) \u2192 cast h a \u224d a",
+              "char_similarity": 0.6025641025641026,
+              "token_jaccard": 0.42105263157894735
+            },
+            {
+              "id": "real_00174",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00174 {a b : Int16} : Nat = Nat",
+              "target_header": "theorem bench_real_00174 {a b : Int16} : a \u2264 b \u2194 a.toBitVec.sle b.toBitVec",
+              "char_similarity": 0.6081081081081081,
+              "token_jaccard": 0.46153846153846156
+            },
+            {
+              "id": "real_00288",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00288 {a b : Fin UInt8.size} : Nat = Nat",
+              "target_header": "theorem bench_real_00288 {a b : Fin UInt8.size} : UInt8.ofFin a \u2264 UInt8.ofFin b \u2194 a \u2264 b",
+              "char_similarity": 0.632183908045977,
+              "token_jaccard": 0.5384615384615384
+            },
+            {
+              "id": "real_00255",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+              "target_header": "theorem bench_real_00255 (a b : Int) : (\u00aca \u2264 b) = (b + 1 \u2264 a)",
+              "char_similarity": 0.6885245901639344,
+              "token_jaccard": 0.4666666666666667
+            },
+            {
+              "id": "real_00048",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00048 (n m : Nat) (m : Prop): m",
+              "target_header": "theorem bench_real_00048 (n m : Nat) : n * (m - 1) = n * m - n",
+              "char_similarity": 0.6935483870967742,
+              "token_jaccard": 0.5384615384615384
+            },
+            {
+              "id": "real_00219",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00219 {a b : UInt8} : Nat = Nat",
+              "target_header": "theorem bench_real_00219 {a b : UInt8} : a \u2264 b \u2194 a.toFin \u2264 b.toFin",
+              "char_similarity": 0.696969696969697,
+              "token_jaccard": 0.46153846153846156
+            }
+          ]
+        },
+        "research": {
+          "count": 300,
+          "solved": 252,
+          "exact": 96,
+          "solved_with_target": 252,
+          "solved_not_exact": 156,
+          "solved_missing_target": 0,
+          "solve_rate": 0.84,
+          "exact_rate": 0.32,
+          "exact_given_solved": 0.38095238095238093,
+          "drift_given_solved": 0.6190476190476191,
+          "avg_header_similarity": 0.7772293706995178,
+          "avg_token_jaccard": 0.6867328989951643,
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 36,
+              "solved": 32,
+              "exact": 26,
+              "solved_not_exact": 6,
+              "solve_rate": 0.8888888888888888,
+              "exact_rate": 0.7222222222222222,
+              "exact_given_solved": 0.8125,
+              "drift_given_solved": 0.1875,
+              "avg_header_similarity": 0.9206063177336017,
+              "avg_token_jaccard": 0.8869809877622378
+            },
+            "not_proposition": {
+              "count": 63,
+              "solved": 59,
+              "exact": 0,
+              "solved_not_exact": 59,
+              "solve_rate": 0.9365079365079365,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.6652416569175233,
+              "avg_token_jaccard": 0.5486582024291266
+            },
+            "parse_missing_colon": {
+              "count": 71,
+              "solved": 47,
+              "exact": 37,
+              "solved_not_exact": 10,
+              "solve_rate": 0.6619718309859155,
+              "exact_rate": 0.5211267605633803,
+              "exact_given_solved": 0.7872340425531915,
+              "drift_given_solved": 0.2127659574468085,
+              "avg_header_similarity": 0.8940623256909458,
+              "avg_token_jaccard": 0.8613677811550152
+            },
+            "parse_unbalanced_paren": {
+              "count": 46,
+              "solved": 44,
+              "exact": 30,
+              "solved_not_exact": 14,
+              "solve_rate": 0.9565217391304348,
+              "exact_rate": 0.6521739130434783,
+              "exact_given_solved": 0.6818181818181818,
+              "drift_given_solved": 0.3181818181818182,
+              "avg_header_similarity": 0.8433746183101604,
+              "avg_token_jaccard": 0.8099427377435399
+            },
+            "type_mismatch": {
+              "count": 43,
+              "solved": 42,
+              "exact": 0,
+              "solved_not_exact": 42,
+              "solve_rate": 0.9767441860465116,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.720442910852313,
+              "avg_token_jaccard": 0.5739965469482277
+            },
+            "unknown_type_symbol": {
+              "count": 41,
+              "solved": 28,
+              "exact": 3,
+              "solved_not_exact": 25,
+              "solve_rate": 0.6829268292682927,
+              "exact_rate": 0.07317073170731707,
+              "exact_given_solved": 0.10714285714285714,
+              "drift_given_solved": 0.8928571428571429,
+              "avg_header_similarity": 0.634468811491096,
+              "avg_token_jaccard": 0.4311729945801538
+            }
+          },
+          "drift_examples": [
+            {
+              "id": "real_00254",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00254 : True",
+              "target_header": "theorem bench_real_00254 (a b : UInt64) (ha : a < 4294967296) (hb : b < 4294967296) : (a % b).toUSize = a.toUSize % b.toUSize",
+              "char_similarity": 0.22399999999999998,
+              "token_jaccard": 0.17647058823529413
+            },
+            {
+              "id": "real_00030",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00030 : True",
+              "target_header": "theorem bench_real_00030 {\u03b1 : Sort u} {\u03b2 : \u03b1 \u2192 Sort v} {f g : (x : \u03b1) \u2192 \u03b2 x} (h : Eq f g) (a : \u03b1) : Eq (f a) (g a)",
+              "char_similarity": 0.2543859649122807,
+              "token_jaccard": 0.12
+            },
+            {
+              "id": "real_00044",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00044 : True",
+              "target_header": "theorem bench_real_00044 (x : BitVec w) (i : Nat) : x.getLsbD i = (decide (i < w) && x.getMsbD (w - 1 - i))",
+              "char_similarity": 0.26168224299065423,
+              "token_jaccard": 0.15
+            },
+            {
+              "id": "real_00083",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00083 : True",
+              "target_header": "theorem bench_real_00083 {w : Nat} {x : BitVec w} (h : x.msb = false) : x.toNat < 2 ^ (w - 1)",
+              "char_similarity": 0.30107526881720426,
+              "token_jaccard": 0.15
+            },
+            {
+              "id": "real_00136",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00136 : Nat = Nat",
+              "target_header": "theorem bench_real_00136 : \u2200 {o\u2081 o\u2082 : Ordering}, (o\u2081.then o\u2082).isGT = (o\u2081.isGT || o\u2081.isEq && o\u2082.isGT)",
+              "char_similarity": 0.31000000000000005,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00145",
+              "policy": "research",
+              "corruption": "unknown_type_symbol",
+              "final_header": "theorem bench_real_00145 {n : Type} (x y : Foo) : True",
+              "target_header": "theorem bench_real_00145 {n} (x y : Nat) : BitVec.ofNat n x - BitVec.ofNat n y = .ofNat n ((2^n - y % 2^n) + x)",
+              "char_similarity": 0.36036036036036034,
+              "token_jaccard": 0.22727272727272727
+            },
+            {
+              "id": "real_00077",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00077  : Nat = Nat",
+              "target_header": "theorem bench_real_00077  : \u2200 (x y z : Bool), (x || y && z) = ((x || y) && (x || z))",
+              "char_similarity": 0.36904761904761907,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00071",
+              "policy": "research",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00071 : True",
+              "target_header": "theorem bench_real_00071 : \u2200 {l : List \u03b1}, l \u2260 [] \u2192 \u2203 b l', l = b :: l'",
+              "char_similarity": 0.3802816901408451,
+              "token_jaccard": 0.16666666666666666
+            },
+            {
+              "id": "real_00213",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00213 : True",
+              "target_header": "theorem bench_real_00213 {x y : BitVec w} : x.sle y = (x.slt y || x == y)",
+              "char_similarity": 0.3835616438356164,
+              "token_jaccard": 0.2
+            },
+            {
+              "id": "real_00091",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00091 : Nat = Nat",
+              "target_header": "theorem bench_real_00091 : \u2200 {o\u2081 o\u2082 : Ordering}, (o\u2081.then o\u2082).isGE \u2192 o\u2081.isGE",
+              "char_similarity": 0.39473684210526316,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00098",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00098 : Nat = Nat",
+              "target_header": "theorem bench_real_00098 : \u2200 {x y : Bool}, (x || y) = true \u2194 x = true \u2228 y = true",
+              "char_similarity": 0.4,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00260",
+              "policy": "research",
+              "corruption": "lowercase_type",
+              "final_header": "theorem bench_real_00260 : True",
+              "target_header": "theorem bench_real_00260 : \u2200 a b : Int, a.fmod b + b * a.fdiv b = a",
+              "char_similarity": 0.4029850746268657,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00209",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00209 : Nat = Nat",
+              "target_header": "theorem bench_real_00209 : \u2200 {a b c : Int}, a \u2223 b \u2192 b \u2223 c \u2192 b.fdiv a \u2223 c.fdiv a",
+              "char_similarity": 0.40506329113924056,
+              "token_jaccard": 0.2
+            },
+            {
+              "id": "real_00100",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00100 : True",
+              "target_header": "theorem bench_real_00100 (a b : BitVec w) : (a == b + a) = (b == 0#w)",
+              "char_similarity": 0.4057971014492754,
+              "token_jaccard": 0.21428571428571427
+            },
+            {
+              "id": "real_00050",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00050 : True",
+              "target_header": "theorem bench_real_00050 {xs : Array \u03b1} (h : xs.isEmpty) : xs = #[]",
+              "char_similarity": 0.417910447761194,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00195",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00195 : True",
+              "target_header": "theorem bench_real_00195 : \u2200 (x y : Bool), (!x ^^ y) = !(x ^^ y)",
+              "char_similarity": 0.421875,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00063",
+              "policy": "research",
+              "corruption": "unknown_type_symbol",
+              "final_header": "theorem bench_real_00063 : True",
+              "target_header": "theorem bench_real_00063 : \u2200 {a b : Bool}, (a = (!b)) \u2194 (a \u2260 b)",
+              "char_similarity": 0.4285714285714286,
+              "token_jaccard": 0.21428571428571427
+            },
+            {
+              "id": "real_00295",
+              "policy": "research",
+              "corruption": "unknown_type_symbol",
+              "final_header": "theorem bench_real_00295 : True",
+              "target_header": "theorem bench_real_00295 : \u2200 {x y : Bool}, (!x) = (!y) \u2194 x = y",
+              "char_similarity": 0.4354838709677419,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00185",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00185 : Nat = Nat",
+              "target_header": "theorem bench_real_00185 : {x y : Int8} \u2192 x.toBitVec = y.toBitVec \u2192 x = y",
+              "char_similarity": 0.4383561643835616,
+              "token_jaccard": 0.3333333333333333
+            },
+            {
+              "id": "real_00120",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00120 : Nat = Nat",
+              "target_header": "theorem bench_real_00120 : (a ^^^ b) / 2 ^ n = a / 2 ^ n ^^^ b / 2 ^ n",
+              "char_similarity": 0.44285714285714284,
+              "token_jaccard": 0.2857142857142857
+            }
+          ]
+        }
+      },
+      "missing_policies": []
+    },
+    "run_20260211_002407": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "solved": 29,
+          "exact": 0,
+          "solved_with_target": 29,
+          "solved_not_exact": 29,
+          "solved_missing_target": 0,
+          "solve_rate": 0.09666666666666666,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 1.0,
+          "avg_header_similarity": 0.6073196593815758,
+          "avg_token_jaccard": 0.47540794565188715,
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 42,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "not_proposition": {
+              "count": 64,
+              "solved": 29,
+              "exact": 0,
+              "solved_not_exact": 29,
+              "solve_rate": 0.453125,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.6073196593815758,
+              "avg_token_jaccard": 0.47540794565188715
+            },
+            "parse_missing_colon": {
+              "count": 49,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "parse_unbalanced_paren": {
+              "count": 50,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "type_mismatch": {
+              "count": 50,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "unknown_type_symbol": {
+              "count": 45,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            }
+          },
+          "drift_examples": [
+            {
+              "id": "real_00010",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00010  : Nat = Nat",
+              "target_header": "theorem bench_real_00010  : \u2200 (x y z : Bool), (x && (y ^^ z)) = ((x && y) ^^ (x && z))",
+              "char_similarity": 0.36046511627906974,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00059",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00059 (a b : UInt64) (b : Prop): b",
+              "target_header": "theorem bench_real_00059 (a b : UInt64) : a.toUInt32 = b.toUInt32 \u2194 a % 4294967296 = b % 4294967296",
+              "char_similarity": 0.4545454545454546,
+              "token_jaccard": 0.4
+            },
+            {
+              "id": "real_00293",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00293 : Nat = Nat",
+              "target_header": "theorem bench_real_00293 : \u2200 {o : Ordering}, o.isLT = (o == .lt)",
+              "char_similarity": 0.484375,
+              "token_jaccard": 0.3333333333333333
+            },
+            {
+              "id": "real_00026",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00026 (x y : Nat) (y : Prop): y",
+              "target_header": "theorem bench_real_00026 (x y : Nat) : x % y = if 0 < y \u2227 y \u2264 x then (x - y) % y else x",
+              "char_similarity": 0.49425287356321834,
+              "token_jaccard": 0.3
+            },
+            {
+              "id": "real_00137",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00137 : Nat = Nat",
+              "target_header": "theorem bench_real_00137 : \u2200 {o : Ordering}, o.isGE \u2194 \u00aco = .lt",
+              "char_similarity": 0.5,
+              "token_jaccard": 0.3333333333333333
+            },
+            {
+              "id": "real_00064",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00064 {b : Bool} : Nat = Nat",
+              "target_header": "theorem bench_real_00064 {b : Bool} : b.toInt8.toBitVec = (BitVec.ofBool b).setWidth 8",
+              "char_similarity": 0.5,
+              "token_jaccard": 0.5454545454545454
+            },
+            {
+              "id": "real_00263",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00263 (a b n : Int) (b : Prop): b",
+              "target_header": "theorem bench_real_00263 (a b n : Int) : (a * b).fmod n = (a.fmod n * b.fmod n).fmod n",
+              "char_similarity": 0.5348837209302326,
+              "token_jaccard": 0.4666666666666667
+            },
+            {
+              "id": "real_00122",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00122 {a : \u03b1} : Nat = Nat",
+              "target_header": "theorem bench_real_00122 {a : \u03b1} : (a::l).getLast? = some (l.getLast?.getD a)",
+              "char_similarity": 0.5454545454545454,
+              "token_jaccard": 0.5454545454545454
+            },
+            {
+              "id": "real_00100",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00100 {a b c : Nat} : Nat = Nat",
+              "target_header": "theorem bench_real_00100 {a b c : Nat} : a &&& (b ^^^ c) = (a &&& b) ^^^ (a &&& c)",
+              "char_similarity": 0.5487804878048781,
+              "token_jaccard": 0.5
+            },
+            {
+              "id": "real_00066",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00066 {a b c : ISize} : Nat = Nat",
+              "target_header": "theorem bench_real_00066 {a b c : ISize} : (a &&& b) >>> c = (a >>> c) &&& (b >>> c)",
+              "char_similarity": 0.5714285714285714,
+              "token_jaccard": 0.5333333333333333
+            },
+            {
+              "id": "real_00082",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00082 (a b : Int) (n : Nat) (b : Prop): b",
+              "target_header": "theorem bench_real_00082 (a b : Int) (n : Nat) : (a + b).bmod n = (a.bmod n + b.bmod n).bmod n",
+              "char_similarity": 0.574468085106383,
+              "token_jaccard": 0.47058823529411764
+            },
+            {
+              "id": "real_00008",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00008 : Nat = Nat",
+              "target_header": "theorem bench_real_00008 : (-1 : UInt32) = 4294967295",
+              "char_similarity": 0.5849056603773585,
+              "token_jaccard": 0.5
+            },
+            {
+              "id": "real_00221",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00221 {xs ys : List \u03b1} {i : Nat} : Nat = Nat",
+              "target_header": "theorem bench_real_00221 {xs ys : List \u03b1} {i : Nat} : xs <+: ys.take i \u2194 xs <+: ys \u2227 xs.length \u2264 i",
+              "char_similarity": 0.5918367346938775,
+              "token_jaccard": 0.47368421052631576
+            },
+            {
+              "id": "real_00279",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00279 {\u03b1 : Sort u} {b : \u03b1 \u2192 Sort v} {p : \u2200 x, b x \u2192 Prop} : Nat = Nat",
+              "target_header": "theorem bench_real_00279 {\u03b1 : Sort u} {b : \u03b1 \u2192 Sort v} {p : \u2200 x, b x \u2192 Prop} : (\u2200 x, \u2203 y, p x y) \u2194 \u2203 (f : \u2200 x, b x), \u2200 x, p x (f x)",
+              "char_similarity": 0.6183206106870229,
+              "token_jaccard": 0.5925925925925926
+            },
+            {
+              "id": "real_00187",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00187 {a : \u03b1} {l : List \u03b1} : Nat = Nat",
+              "target_header": "theorem bench_real_00187 {a : \u03b1} {l : List \u03b1} : a \u2208 l \u2192 \u2203 s t : List \u03b1, l = s ++ a :: t",
+              "char_similarity": 0.6206896551724138,
+              "token_jaccard": 0.42105263157894735
+            },
+            {
+              "id": "real_00038",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00038 {a b : Fin UInt32.size} : Nat = Nat",
+              "target_header": "theorem bench_real_00038 {a b : Fin UInt32.size} : UInt32.ofFin a \u2264 UInt32.ofFin b \u2194 a \u2264 b",
+              "char_similarity": 0.6222222222222222,
+              "token_jaccard": 0.5384615384615384
+            },
+            {
+              "id": "real_00170",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00170 {as bs : List \u03b1} : Nat = Nat",
+              "target_header": "theorem bench_real_00170 {as bs : List \u03b1} : as.reverse = bs \u2194 as = bs.reverse",
+              "char_similarity": 0.6233766233766234,
+              "token_jaccard": 0.6153846153846154
+            },
+            {
+              "id": "real_00013",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00013 [Decidable a] : Nat = Nat",
+              "target_header": "theorem bench_real_00013 [Decidable a] : (a \u2192 b \u2228 c) \u2194 (a \u2192 b) \u2228 (a \u2192 c)",
+              "char_similarity": 0.625,
+              "token_jaccard": 0.35714285714285715
+            },
+            {
+              "id": "real_00152",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00152 {x : BitVec w} : Nat = Nat",
+              "target_header": "theorem bench_real_00152 {x : BitVec w} : x.msb = false \u2194 2 * x.toNat < 2^w",
+              "char_similarity": 0.64,
+              "token_jaccard": 0.4375
+            },
+            {
+              "id": "real_00235",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem pow_succ' {m n : Nat} : Nat = Nat",
+              "target_header": "theorem pow_succ' {m n : Nat} : m ^ n.succ = m * m ^ n",
+              "char_similarity": 0.6481481481481481,
+              "token_jaccard": 0.5833333333333334
+            }
+          ]
+        },
+        "research": {
+          "count": 300,
+          "solved": 256,
+          "exact": 79,
+          "solved_with_target": 256,
+          "solved_not_exact": 177,
+          "solved_missing_target": 0,
+          "solve_rate": 0.8533333333333334,
+          "exact_rate": 0.2633333333333333,
+          "exact_given_solved": 0.30859375,
+          "drift_given_solved": 0.69140625,
+          "avg_header_similarity": 0.7579660582724421,
+          "avg_token_jaccard": 0.6649760692232998,
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 42,
+              "solved": 38,
+              "exact": 31,
+              "solved_not_exact": 7,
+              "solve_rate": 0.9047619047619048,
+              "exact_rate": 0.7380952380952381,
+              "exact_given_solved": 0.8157894736842105,
+              "drift_given_solved": 0.18421052631578946,
+              "avg_header_similarity": 0.935499200825149,
+              "avg_token_jaccard": 0.8978912169701644
+            },
+            "not_proposition": {
+              "count": 64,
+              "solved": 63,
+              "exact": 0,
+              "solved_not_exact": 63,
+              "solve_rate": 0.984375,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.6768318962773336,
+              "avg_token_jaccard": 0.5715124229919797
+            },
+            "parse_missing_colon": {
+              "count": 49,
+              "solved": 38,
+              "exact": 26,
+              "solved_not_exact": 12,
+              "solve_rate": 0.7755102040816326,
+              "exact_rate": 0.5306122448979592,
+              "exact_given_solved": 0.6842105263157895,
+              "drift_given_solved": 0.3157894736842105,
+              "avg_header_similarity": 0.8231832012550993,
+              "avg_token_jaccard": 0.7735313543118659
+            },
+            "parse_unbalanced_paren": {
+              "count": 50,
+              "solved": 42,
+              "exact": 20,
+              "solved_not_exact": 22,
+              "solve_rate": 0.84,
+              "exact_rate": 0.4,
+              "exact_given_solved": 0.47619047619047616,
+              "drift_given_solved": 0.5238095238095238,
+              "avg_header_similarity": 0.7574324986550341,
+              "avg_token_jaccard": 0.6941543633770525
+            },
+            "type_mismatch": {
+              "count": 50,
+              "solved": 49,
+              "exact": 0,
+              "solved_not_exact": 49,
+              "solve_rate": 0.98,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.723235569794229,
+              "avg_token_jaccard": 0.5809830615036908
+            },
+            "unknown_type_symbol": {
+              "count": 45,
+              "solved": 26,
+              "exact": 2,
+              "solved_not_exact": 24,
+              "solve_rate": 0.5777777777777777,
+              "exact_rate": 0.044444444444444446,
+              "exact_given_solved": 0.07692307692307693,
+              "drift_given_solved": 0.9230769230769231,
+              "avg_header_similarity": 0.6660870119151956,
+              "avg_token_jaccard": 0.5035338495552237
+            }
+          },
+          "drift_examples": [
+            {
+              "id": "real_00210",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem any_eq' : True",
+              "target_header": "theorem any_eq' {xs : Vector \u03b1 n} {p : \u03b1 \u2192 Bool} : xs.any p = decide (\u2203 x, x \u2208 xs \u2227 p x)",
+              "char_similarity": 0.2272727272727273,
+              "token_jaccard": 0.13636363636363635
+            },
+            {
+              "id": "real_00182",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00182 : True",
+              "target_header": "theorem bench_real_00182 (x : BitVec w) (i : Nat) : x.getMsbD i = (decide (i < w) && x.getLsbD (w - 1 - i))",
+              "char_similarity": 0.26168224299065423,
+              "token_jaccard": 0.15
+            },
+            {
+              "id": "real_00115",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00115 : True",
+              "target_header": "theorem bench_real_00115 (a c : Nat) {b d : Nat} (h : b \u2264 d) : (a + b \u2264 c + d) = (a \u2264 c + (d - b))",
+              "char_similarity": 0.2755102040816326,
+              "token_jaccard": 0.15789473684210525
+            },
+            {
+              "id": "real_00022",
+              "policy": "research",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00022 : True",
+              "target_header": "theorem bench_real_00022 : (a::as).find? p = match p a with | true => some a | false => as.find? p",
+              "char_similarity": 0.30612244897959184,
+              "token_jaccard": 0.1875
+            },
+            {
+              "id": "real_00223",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem forM_nil' : True",
+              "target_header": "theorem forM_nil' [Monad m] : ([] : List \u03b1).forM f = (pure .unit : m PUnit)",
+              "char_similarity": 0.30666666666666664,
+              "token_jaccard": 0.2
+            },
+            {
+              "id": "real_00065",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00065 : True",
+              "target_header": "theorem bench_real_00065 {\u03b1 : Type u} {p : \u03b1 \u2192 Prop} : { x // p x } \u2192 Exists (fun x => p x)",
+              "char_similarity": 0.3296703296703297,
+              "token_jaccard": 0.15
+            },
+            {
+              "id": "real_00177",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00177 : True",
+              "target_header": "theorem bench_real_00177 : \u2200 (x y z : Bool), ((x ^^ y) ^^ z) = ((x ^^ z) ^^ y)",
+              "char_similarity": 0.34615384615384615,
+              "token_jaccard": 0.21428571428571427
+            },
+            {
+              "id": "real_00087",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00087 : True",
+              "target_header": "theorem bench_real_00087 {c d : Char} (h : Not (Eq c.val d.val)) : Not (Eq c d)",
+              "char_similarity": 0.35443037974683544,
+              "token_jaccard": 0.21428571428571427
+            },
+            {
+              "id": "real_00015",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00015 : True",
+              "target_header": "theorem bench_real_00015 (h\u2081 : a \u2194 c) (h\u2082 : c \u2192 (b \u2194 d)) : (a \u2192 b) \u2194 (c \u2192 d)",
+              "char_similarity": 0.35526315789473684,
+              "token_jaccard": 0.17647058823529413
+            },
+            {
+              "id": "real_00010",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00010  : Nat = Nat",
+              "target_header": "theorem bench_real_00010  : \u2200 (x y z : Bool), (x && (y ^^ z)) = ((x && y) ^^ (x && z))",
+              "char_similarity": 0.36046511627906974,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00275",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem BitVec.zero_ult' : True",
+              "target_header": "theorem BitVec.zero_ult' (a : BitVec w) : (BitVec.ult 0#w a) = (!a == 0#w)",
+              "char_similarity": 0.3783783783783784,
+              "token_jaccard": 0.21428571428571427
+            },
+            {
+              "id": "real_00176",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00176 : True",
+              "target_header": "theorem bench_real_00176 (hb : 0 < b) : a / b \u2264 c \u2194 a \u2264 b * c + (b - 1)",
+              "char_similarity": 0.3802816901408451,
+              "token_jaccard": 0.15789473684210525
+            },
+            {
+              "id": "real_00258",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00258 : True",
+              "target_header": "theorem bench_real_00258 : (a ^^^ b) / 2 ^ n = a / 2 ^ n ^^^ b / 2 ^ n",
+              "char_similarity": 0.3857142857142857,
+              "token_jaccard": 0.21428571428571427
+            },
+            {
+              "id": "real_00080",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00080 : True",
+              "target_header": "theorem bench_real_00080 (h : Not (Eq (Nat.ble n m) true)) : Not (LE.le n m)",
+              "char_similarity": 0.39473684210526316,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00120",
+              "policy": "research",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00120 : True",
+              "target_header": "theorem bench_real_00120 : l\u2081 <:+ a :: l\u2082 \u2194 l\u2081 = a :: l\u2082 \u2228 l\u2081 <:+ l\u2082",
+              "char_similarity": 0.3970588235294118,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00145",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00145 : True",
+              "target_header": "theorem bench_real_00145 : \u2200 {o : Ordering}, o.isNe = (o.isLT || o.isGT)",
+              "char_similarity": 0.4027777777777778,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00231",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00231 : True",
+              "target_header": "theorem bench_real_00231 {xs : Array \u03b1} : xs.attach \u2260 #[] \u2194 xs \u2260 #[]",
+              "char_similarity": 0.4117647058823529,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00012",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00012 : True",
+              "target_header": "theorem bench_real_00012 : \u2200 (x y : Bool), (x && y) = (y && x)",
+              "char_similarity": 0.4354838709677419,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00112",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00112 (a b : USize) : True",
+              "target_header": "theorem bench_real_00112 (a b : USize) : a >>> b = a >>> (b % USize.ofNat System.Platform.numBits)",
+              "char_similarity": 0.4387755102040817,
+              "token_jaccard": 0.42857142857142855
+            },
+            {
+              "id": "real_00256",
+              "policy": "research",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00256 : True",
+              "target_header": "theorem bench_real_00256 : \u2200 {o : Ordering}, o = o.swap \u2194 o = .eq",
+              "char_similarity": 0.4461538461538461,
+              "token_jaccard": 0.25
+            }
+          ]
+        }
+      },
+      "missing_policies": []
+    },
+    "run_20260211_002639": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "solved": 35,
+          "exact": 0,
+          "solved_with_target": 35,
+          "solved_not_exact": 35,
+          "solved_missing_target": 0,
+          "solve_rate": 0.11666666666666667,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 1.0,
+          "avg_header_similarity": 0.6517510573809361,
+          "avg_token_jaccard": 0.48459430502663586,
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 40,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "not_proposition": {
+              "count": 67,
+              "solved": 31,
+              "exact": 0,
+              "solved_not_exact": 31,
+              "solve_rate": 0.4626865671641791,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.65399813840712,
+              "avg_token_jaccard": 0.498735505675234
+            },
+            "parse_missing_colon": {
+              "count": 56,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            },
+            "parse_unbalanced_paren": {
+              "count": 47,
+              "solved": 2,
+              "exact": 0,
+              "solved_not_exact": 2,
+              "solve_rate": 0.0425531914893617,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.7151952461799661,
+              "avg_token_jaccard": 0.4375
+            },
+            "type_mismatch": {
+              "count": 47,
+              "solved": 2,
+              "exact": 0,
+              "solved_not_exact": 2,
+              "solve_rate": 0.0425531914893617,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.5534771126760563,
+              "avg_token_jaccard": 0.3125
+            },
+            "unknown_type_symbol": {
+              "count": 43,
+              "solved": 0,
+              "exact": 0,
+              "solved_not_exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 0.0,
+              "avg_header_similarity": null,
+              "avg_token_jaccard": null
+            }
+          },
+          "drift_examples": [
+            {
+              "id": "real_00272",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00272 : Nat = Nat",
+              "target_header": "theorem bench_real_00272 : (a :: l)[i]? = if i = 0 then some a else l[i-1]?",
+              "char_similarity": 0.42666666666666664,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00266",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00266 : Nat = Nat",
+              "target_header": "theorem bench_real_00266 : o.join = none \u2194 o = none \u2228 o = some none",
+              "char_similarity": 0.4477611940298507,
+              "token_jaccard": 0.36363636363636365
+            },
+            {
+              "id": "real_00102",
+              "policy": "heuristic",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00102 : p = p",
+              "target_header": "theorem bench_real_00102 : p 0 \u2228 (Exists fun n => p (n + 1)) \u2194 Exists p",
+              "char_similarity": 0.45070422535211263,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00067",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00067 : Nat = Nat",
+              "target_header": "theorem bench_real_00067 : \u2200 {as : List \u03b1} {i}, as = [] \u2192 as.drop i = []",
+              "char_similarity": 0.45833333333333337,
+              "token_jaccard": 0.26666666666666666
+            },
+            {
+              "id": "real_00137",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00137 : Nat = Nat",
+              "target_header": "theorem bench_real_00137 : {b : Bool} \u2192 Not (Eq b false) \u2192 Eq b true",
+              "char_similarity": 0.4852941176470589,
+              "token_jaccard": 0.21428571428571427
+            },
+            {
+              "id": "real_00024",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00024 : Nat = Nat",
+              "target_header": "theorem bench_real_00024 : \u2200 a b : Int, a % b + b * (a / b) = a",
+              "char_similarity": 0.5079365079365079,
+              "token_jaccard": 0.26666666666666666
+            },
+            {
+              "id": "real_00040",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00040 {x : BitVec w} {k : Nat} : Nat = Nat",
+              "target_header": "theorem bench_real_00040 {x : BitVec w} {k : Nat} : x.sshiftRight' (BitVec.ofNat w k) = x.sshiftRight (k % 2^w)",
+              "char_similarity": 0.5315315315315315,
+              "token_jaccard": 0.5
+            },
+            {
+              "id": "real_00027",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00027 {a b : BitVec 8} : Nat = Nat",
+              "target_header": "theorem bench_real_00027 {a b : BitVec 8} : UInt8.ofBitVec a < UInt8.ofBitVec b \u2194 a < b",
+              "char_similarity": 0.5632183908045977,
+              "token_jaccard": 0.5384615384615384
+            },
+            {
+              "id": "real_00233",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00233 {a b : Nat} : Nat = Nat",
+              "target_header": "theorem bench_real_00233 {a b : Nat} : (a &&& b) >>> i = a >>> i &&& b >>> i",
+              "char_similarity": 0.5657894736842105,
+              "token_jaccard": 0.5
+            },
+            {
+              "id": "real_00289",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00289 {l : List \u03b1} : Nat = Nat",
+              "target_header": "theorem bench_real_00289 {l : List \u03b1} : l.drop (i + 1) = (l.drop i).tail",
+              "char_similarity": 0.6111111111111112,
+              "token_jaccard": 0.5
+            },
+            {
+              "id": "real_00101",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00101 {a b : Int} : Nat = Nat",
+              "target_header": "theorem bench_real_00101 {a b : Int} : a.natAbs = b.natAbs \u2194 a = b \u2228 a = -b",
+              "char_similarity": 0.6133333333333333,
+              "token_jaccard": 0.5
+            },
+            {
+              "id": "real_00129",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem any_eq' {xs : Vector \u03b1 n} {p : \u03b1 \u2192 Bool} : Nat = Nat",
+              "target_header": "theorem any_eq' {xs : Vector \u03b1 n} {p : \u03b1 \u2192 Bool} : xs.any p = decide (\u2203 x, x \u2208 xs \u2227 p x)",
+              "char_similarity": 0.625,
+              "token_jaccard": 0.5
+            },
+            {
+              "id": "real_00220",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00220 [BEq \u03b1] {xs : Array \u03b1} {a : \u03b1} : Nat = Nat",
+              "target_header": "theorem bench_real_00220 [BEq \u03b1] {xs : Array \u03b1} {a : \u03b1} : (xs.any fun x => a == x) = xs.contains a",
+              "char_similarity": 0.6428571428571428,
+              "token_jaccard": 0.5263157894736842
+            },
+            {
+              "id": "real_00088",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00088 {o : Option \u03b1} {p : \u03b1 \u2192 Bool} : Nat = Nat",
+              "target_header": "theorem bench_real_00088 {o : Option \u03b1} {p : \u03b1 \u2192 Bool} : (o.filter p).toList = o.toList.filter p",
+              "char_similarity": 0.6458333333333333,
+              "token_jaccard": 0.6875
+            },
+            {
+              "id": "real_00244",
+              "policy": "heuristic",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00244 (x y : Int) (y : Prop): y",
+              "target_header": "theorem bench_real_00244 (x y : Int) : y != 0 \u2192 -1 * (x % y) \u2264 0",
+              "char_similarity": 0.65625,
+              "token_jaccard": 0.375
+            },
+            {
+              "id": "real_00050",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00050 {x y : BitVec w} : Nat = Nat",
+              "target_header": "theorem bench_real_00050 {x y : BitVec w} : x.slt y = (x.sle y && x != y)",
+              "char_similarity": 0.6575342465753424,
+              "token_jaccard": 0.5333333333333333
+            },
+            {
+              "id": "real_00292",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00292 : Nat = Nat",
+              "target_header": "theorem bench_real_00292 : -((0 : Nat) : Int) = 0",
+              "char_similarity": 0.6734693877551021,
+              "token_jaccard": 0.4444444444444444
+            },
+            {
+              "id": "real_00167",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00167 {o : Option \u03b1} : Nat = Nat",
+              "target_header": "theorem bench_real_00167 {o : Option \u03b1} : o.toArray = #[] \u2194 o = none",
+              "char_similarity": 0.6764705882352942,
+              "token_jaccard": 0.5384615384615384
+            },
+            {
+              "id": "real_00073",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00073 {l : List \u03b1} {a : \u03b1} : Nat = Nat",
+              "target_header": "theorem bench_real_00073 {l : List \u03b1} {a : \u03b1} : (l ++ [a])[l.length]? = some a",
+              "char_similarity": 0.6794871794871795,
+              "token_jaccard": 0.5714285714285714
+            },
+            {
+              "id": "real_00055",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00055 {x y : Int16} : Nat = Nat",
+              "target_header": "theorem bench_real_00055 {x y : Int16} : x < y \u2194 x.toInt < y.toInt",
+              "char_similarity": 0.6818181818181819,
+              "token_jaccard": 0.46153846153846156
+            }
+          ]
+        },
+        "research": {
+          "count": 300,
+          "solved": 248,
+          "exact": 74,
+          "solved_with_target": 248,
+          "solved_not_exact": 174,
+          "solved_missing_target": 0,
+          "solve_rate": 0.8266666666666667,
+          "exact_rate": 0.24666666666666667,
+          "exact_given_solved": 0.29838709677419356,
+          "drift_given_solved": 0.7016129032258065,
+          "avg_header_similarity": 0.7443544057326588,
+          "avg_token_jaccard": 0.6422765189427903,
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 40,
+              "solved": 37,
+              "exact": 27,
+              "solved_not_exact": 10,
+              "solve_rate": 0.925,
+              "exact_rate": 0.675,
+              "exact_given_solved": 0.7297297297297297,
+              "drift_given_solved": 0.2702702702702703,
+              "avg_header_similarity": 0.8861552316721419,
+              "avg_token_jaccard": 0.8557807807807808
+            },
+            "not_proposition": {
+              "count": 67,
+              "solved": 63,
+              "exact": 0,
+              "solved_not_exact": 63,
+              "solve_rate": 0.9402985074626866,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.6976076962508497,
+              "avg_token_jaccard": 0.5675833678118802
+            },
+            "parse_missing_colon": {
+              "count": 56,
+              "solved": 37,
+              "exact": 26,
+              "solved_not_exact": 11,
+              "solve_rate": 0.6607142857142857,
+              "exact_rate": 0.4642857142857143,
+              "exact_given_solved": 0.7027027027027027,
+              "drift_given_solved": 0.2972972972972973,
+              "avg_header_similarity": 0.8172614597052698,
+              "avg_token_jaccard": 0.76748487998488
+            },
+            "parse_unbalanced_paren": {
+              "count": 47,
+              "solved": 41,
+              "exact": 21,
+              "solved_not_exact": 20,
+              "solve_rate": 0.8723404255319149,
+              "exact_rate": 0.44680851063829785,
+              "exact_given_solved": 0.5121951219512195,
+              "drift_given_solved": 0.4878048780487805,
+              "avg_header_similarity": 0.794206500128834,
+              "avg_token_jaccard": 0.7340224897557073
+            },
+            "type_mismatch": {
+              "count": 47,
+              "solved": 45,
+              "exact": 0,
+              "solved_not_exact": 45,
+              "solve_rate": 0.9574468085106383,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.6849772873594732,
+              "avg_token_jaccard": 0.5045571295081099
+            },
+            "unknown_type_symbol": {
+              "count": 43,
+              "solved": 25,
+              "exact": 0,
+              "solved_not_exact": 25,
+              "solve_rate": 0.5813953488372093,
+              "exact_rate": 0.0,
+              "exact_given_solved": 0.0,
+              "drift_given_solved": 1.0,
+              "avg_header_similarity": 0.5695098296189247,
+              "avg_token_jaccard": 0.4266400867794057
+            }
+          },
+          "drift_examples": [
+            {
+              "id": "real_00161",
+              "policy": "research",
+              "corruption": "unknown_type_symbol",
+              "final_header": "theorem bench_real_00161 (a b : Foo) : True",
+              "target_header": "theorem bench_real_00161 (a b : Nat) : (NatCast.natCast (a * b : Nat) : Int) = (NatCast.natCast a : Int) * (NatCast.natCast b : Int)",
+              "char_similarity": 0.2727272727272727,
+              "token_jaccard": 0.38461538461538464
+            },
+            {
+              "id": "real_00217",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00217 : True",
+              "target_header": "theorem bench_real_00217 (x n p : Nat) (h\u2081 : x < n*p) : (n * p - (x + 1)) / n = p - ((x / n) + 1)",
+              "char_similarity": 0.27835051546391754,
+              "token_jaccard": 0.13636363636363635
+            },
+            {
+              "id": "real_00133",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00133 : True",
+              "target_header": "theorem bench_real_00133 {n : Nat} {a b : Fin n} (h : a < b) : (a : Nat) + 1 \u2264 (b : Nat)",
+              "char_similarity": 0.30681818181818177,
+              "token_jaccard": 0.15
+            },
+            {
+              "id": "real_00153",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00153 : True",
+              "target_header": "theorem bench_real_00153 {a b c : UInt16} : (a &&& b) <<< c = (a <<< c) &&& (b <<< c)",
+              "char_similarity": 0.3176470588235294,
+              "token_jaccard": 0.2
+            },
+            {
+              "id": "real_00248",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00248 : True",
+              "target_header": "theorem bench_real_00248 : \u2200 (x y z : Bool), (x || (y || z)) = (y || (x || z))",
+              "char_similarity": 0.34615384615384615,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00071",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00071 : True",
+              "target_header": "theorem bench_real_00071 {s : List \u03b1} (h : s \u2260 []) (t : List \u03b1) : s ++ t \u2260 []",
+              "char_similarity": 0.35064935064935066,
+              "token_jaccard": 0.1875
+            },
+            {
+              "id": "real_00231",
+              "policy": "research",
+              "corruption": "unknown_type_symbol",
+              "final_header": "theorem bench_real_00231 {a b c : Foo} : True",
+              "target_header": "theorem bench_real_00231 {a b c : Nat} : a % c + b % c = (a + b) % c + if a % c + b % c < c then 0 else c",
+              "char_similarity": 0.37142857142857144,
+              "token_jaccard": 0.3
+            },
+            {
+              "id": "real_00072",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00072 : True",
+              "target_header": "theorem bench_real_00072 [Decidable a] : (a \u2192 b \u2228 c) \u2194 (a \u2192 b) \u2228 (a \u2192 c)",
+              "char_similarity": 0.375,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00165",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00165 : True",
+              "target_header": "theorem bench_real_00165 (lhs rhs : Bool) (h : (lhs && rhs) = true) : rhs = true",
+              "char_similarity": 0.375,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00172",
+              "policy": "research",
+              "corruption": "unknown_type_symbol",
+              "final_header": "theorem bench_real_00172 : True",
+              "target_header": "theorem bench_real_00172 : \u2200 {a b : Int}, 0 \u2264 a \u2192 b \u2264 0 \u2192 a.fdiv b \u2264 0",
+              "char_similarity": 0.3857142857142857,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00102",
+              "policy": "research",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00102 : True",
+              "target_header": "theorem bench_real_00102 : p 0 \u2228 (Exists fun n => p (n + 1)) \u2194 Exists p",
+              "char_similarity": 0.3943661971830986,
+              "token_jaccard": 0.1875
+            },
+            {
+              "id": "real_00183",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00183 : True",
+              "target_header": "theorem bench_real_00183 (a b : BitVec w) : (a + b == b) = (a == 0#w)",
+              "char_similarity": 0.4057971014492754,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00278",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00278 : True",
+              "target_header": "theorem bench_real_00278 (a b : BitVec w) : (~~~a == b) = (a == ~~~b)",
+              "char_similarity": 0.4057971014492754,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00163",
+              "policy": "research",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00163 : True",
+              "target_header": "theorem bench_real_00163 : \u2200 (a b : Bool), (a || b) = !(!a && !b)",
+              "char_similarity": 0.41538461538461535,
+              "token_jaccard": 0.21428571428571427
+            },
+            {
+              "id": "real_00014",
+              "policy": "research",
+              "corruption": "parse_unbalanced_paren",
+              "final_header": "theorem bench_real_00014 {xs : Vector \u03b1 n} : True",
+              "target_header": "theorem bench_real_00014 {xs : Vector \u03b1 n} : (xs.push a).find? p = (xs.find? p).or (if p a then some a else none)",
+              "char_similarity": 0.415929203539823,
+              "token_jaccard": 0.35
+            },
+            {
+              "id": "real_00189",
+              "policy": "research",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00189 {\u03b1 : Type u} : True",
+              "target_header": "theorem bench_real_00189 {\u03b1 : Type u} : \u2200 {x y : Option \u03b1}, (\u2200 z, x = some z \u2194 y = some z) \u2192 x = y",
+              "char_similarity": 0.41836734693877553,
+              "token_jaccard": 0.2857142857142857
+            },
+            {
+              "id": "real_00268",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "final_header": "theorem bench_real_00268 : True",
+              "target_header": "theorem bench_real_00268 {xs : Array \u03b1} : xs.reverse \u2260 #[] \u2194 xs \u2260 #[]",
+              "char_similarity": 0.42028985507246375,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00164",
+              "policy": "research",
+              "corruption": "type_mismatch",
+              "final_header": "theorem bench_real_00164 : True",
+              "target_header": "theorem bench_real_00164 : \u2200 (x y : Bool), (!x ^^ y) = !(x ^^ y)",
+              "char_similarity": 0.421875,
+              "token_jaccard": 0.23076923076923078
+            },
+            {
+              "id": "real_00272",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "final_header": "theorem bench_real_00272 : Nat = Nat",
+              "target_header": "theorem bench_real_00272 : (a :: l)[i]? = if i = 0 then some a else l[i-1]?",
+              "char_similarity": 0.42666666666666664,
+              "token_jaccard": 0.25
+            },
+            {
+              "id": "real_00116",
+              "policy": "research",
+              "corruption": "unknown_type_symbol",
+              "final_header": "theorem bench_real_00116 {a b c : Nat} : True",
+              "target_header": "theorem bench_real_00116 {a b c : Nat} : ((a - b - c : Nat) : Int) = ((a - (b + c) : Nat) : Int)",
+              "char_similarity": 0.42708333333333337,
+              "token_jaccard": 0.4375
+            }
+          ]
+        }
+      },
+      "missing_policies": []
+    }
+  },
+  "policies": {
+    "heuristic": {
+      "count": 900,
+      "solved": 90,
+      "exact": 0,
+      "solved_with_target": 90,
+      "solved_not_exact": 90,
+      "solved_missing_target": 0,
+      "solve_rate": 0.1,
+      "exact_rate": 0.0,
+      "exact_given_solved": 0.0,
+      "drift_given_solved": 1.0,
+      "avg_header_similarity": 0.6126113666423597,
+      "avg_token_jaccard": 0.4634556597735992,
+      "by_corruption": {
+        "lowercase_type": {
+          "count": 118,
+          "solved": 0,
+          "exact": 0,
+          "solved_not_exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 0.0,
+          "avg_header_similarity": null,
+          "avg_token_jaccard": null
+        },
+        "not_proposition": {
+          "count": 194,
+          "solved": 86,
+          "exact": 0,
+          "solved_not_exact": 86,
+          "solve_rate": 0.44329896907216493,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 1.0,
+          "avg_header_similarity": 0.6116009102337248,
+          "avg_token_jaccard": 0.467569876507255
+        },
+        "parse_missing_colon": {
+          "count": 176,
+          "solved": 0,
+          "exact": 0,
+          "solved_not_exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 0.0,
+          "avg_header_similarity": null,
+          "avg_token_jaccard": null
+        },
+        "parse_unbalanced_paren": {
+          "count": 143,
+          "solved": 2,
+          "exact": 0,
+          "solved_not_exact": 2,
+          "solve_rate": 0.013986013986013986,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 1.0,
+          "avg_header_similarity": 0.7151952461799661,
+          "avg_token_jaccard": 0.4375
+        },
+        "type_mismatch": {
+          "count": 140,
+          "solved": 2,
+          "exact": 0,
+          "solved_not_exact": 2,
+          "solve_rate": 0.014285714285714285,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 1.0,
+          "avg_header_similarity": 0.5534771126760563,
+          "avg_token_jaccard": 0.3125
+        },
+        "unknown_type_symbol": {
+          "count": 129,
+          "solved": 0,
+          "exact": 0,
+          "solved_not_exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 0.0,
+          "avg_header_similarity": null,
+          "avg_token_jaccard": null
+        }
+      },
+      "drift_examples": [
+        {
+          "id": "real_00136",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00136 : Nat = Nat",
+          "target_header": "theorem bench_real_00136 : \u2200 {o\u2081 o\u2082 : Ordering}, (o\u2081.then o\u2082).isGT = (o\u2081.isGT || o\u2081.isEq && o\u2082.isGT)",
+          "char_similarity": 0.31000000000000005,
+          "token_jaccard": 0.25
+        },
+        {
+          "id": "real_00010",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00010  : Nat = Nat",
+          "target_header": "theorem bench_real_00010  : \u2200 (x y z : Bool), (x && (y ^^ z)) = ((x && y) ^^ (x && z))",
+          "char_similarity": 0.36046511627906974,
+          "token_jaccard": 0.25
+        },
+        {
+          "id": "real_00077",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00077  : Nat = Nat",
+          "target_header": "theorem bench_real_00077  : \u2200 (x y z : Bool), (x || y && z) = ((x || y) && (x || z))",
+          "char_similarity": 0.36904761904761907,
+          "token_jaccard": 0.25
+        },
+        {
+          "id": "real_00091",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00091 : Nat = Nat",
+          "target_header": "theorem bench_real_00091 : \u2200 {o\u2081 o\u2082 : Ordering}, (o\u2081.then o\u2082).isGE \u2192 o\u2081.isGE",
+          "char_similarity": 0.39473684210526316,
+          "token_jaccard": 0.23076923076923078
+        },
+        {
+          "id": "real_00098",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00098 : Nat = Nat",
+          "target_header": "theorem bench_real_00098 : \u2200 {x y : Bool}, (x || y) = true \u2194 x = true \u2228 y = true",
+          "char_similarity": 0.4,
+          "token_jaccard": 0.25
+        },
+        {
+          "id": "real_00209",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00209 : Nat = Nat",
+          "target_header": "theorem bench_real_00209 : \u2200 {a b c : Int}, a \u2223 b \u2192 b \u2223 c \u2192 b.fdiv a \u2223 c.fdiv a",
+          "char_similarity": 0.40506329113924056,
+          "token_jaccard": 0.2
+        },
+        {
+          "id": "real_00272",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00272 : Nat = Nat",
+          "target_header": "theorem bench_real_00272 : (a :: l)[i]? = if i = 0 then some a else l[i-1]?",
+          "char_similarity": 0.42666666666666664,
+          "token_jaccard": 0.25
+        },
+        {
+          "id": "real_00185",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00185 : Nat = Nat",
+          "target_header": "theorem bench_real_00185 : {x y : Int8} \u2192 x.toBitVec = y.toBitVec \u2192 x = y",
+          "char_similarity": 0.4383561643835616,
+          "token_jaccard": 0.3333333333333333
+        },
+        {
+          "id": "real_00120",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00120 : Nat = Nat",
+          "target_header": "theorem bench_real_00120 : (a ^^^ b) / 2 ^ n = a / 2 ^ n ^^^ b / 2 ^ n",
+          "char_similarity": 0.44285714285714284,
+          "token_jaccard": 0.2857142857142857
+        },
+        {
+          "id": "real_00266",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00266 : Nat = Nat",
+          "target_header": "theorem bench_real_00266 : o.join = none \u2194 o = none \u2228 o = some none",
+          "char_similarity": 0.4477611940298507,
+          "token_jaccard": 0.36363636363636365
+        },
+        {
+          "id": "real_00102",
+          "policy": "heuristic",
+          "corruption": "type_mismatch",
+          "final_header": "theorem bench_real_00102 : p = p",
+          "target_header": "theorem bench_real_00102 : p 0 \u2228 (Exists fun n => p (n + 1)) \u2194 Exists p",
+          "char_similarity": 0.45070422535211263,
+          "token_jaccard": 0.25
+        },
+        {
+          "id": "real_00059",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00059 (a b : UInt64) (b : Prop): b",
+          "target_header": "theorem bench_real_00059 (a b : UInt64) : a.toUInt32 = b.toUInt32 \u2194 a % 4294967296 = b % 4294967296",
+          "char_similarity": 0.4545454545454546,
+          "token_jaccard": 0.4
+        },
+        {
+          "id": "real_00067",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00067 : Nat = Nat",
+          "target_header": "theorem bench_real_00067 : \u2200 {as : List \u03b1} {i}, as = [] \u2192 as.drop i = []",
+          "char_similarity": 0.45833333333333337,
+          "token_jaccard": 0.26666666666666666
+        },
+        {
+          "id": "real_00241",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00241 {a b : Int} : Nat = Nat",
+          "target_header": "theorem bench_real_00241 {a b : Int} : (-a).fdiv b = -(a.fdiv b) - if b = 0 \u2228 b \u2223 a then 0 else 1",
+          "char_similarity": 0.4639175257731959,
+          "token_jaccard": 0.35
+        },
+        {
+          "id": "real_00293",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00293 : Nat = Nat",
+          "target_header": "theorem bench_real_00293 : \u2200 {o : Ordering}, o.isLT = (o == .lt)",
+          "char_similarity": 0.484375,
+          "token_jaccard": 0.3333333333333333
+        },
+        {
+          "id": "real_00137",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00137 : Nat = Nat",
+          "target_header": "theorem bench_real_00137 : {b : Bool} \u2192 Not (Eq b false) \u2192 Eq b true",
+          "char_similarity": 0.4852941176470589,
+          "token_jaccard": 0.21428571428571427
+        },
+        {
+          "id": "real_00112",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00112 : Nat = Nat",
+          "target_header": "theorem bench_real_00112 : (a::as).enum = (0, a) :: as.enumFrom 1",
+          "char_similarity": 0.49230769230769234,
+          "token_jaccard": 0.36363636363636365
+        },
+        {
+          "id": "real_00026",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00026 (x y : Nat) (y : Prop): y",
+          "target_header": "theorem bench_real_00026 (x y : Nat) : x % y = if 0 < y \u2227 y \u2264 x then (x - y) % y else x",
+          "char_similarity": 0.49425287356321834,
+          "token_jaccard": 0.3
+        },
+        {
+          "id": "real_00137",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00137 : Nat = Nat",
+          "target_header": "theorem bench_real_00137 : \u2200 {o : Ordering}, o.isGE \u2194 \u00aco = .lt",
+          "char_similarity": 0.5,
+          "token_jaccard": 0.3333333333333333
+        },
+        {
+          "id": "real_00064",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00064 {b : Bool} : Nat = Nat",
+          "target_header": "theorem bench_real_00064 {b : Bool} : b.toInt8.toBitVec = (BitVec.ofBool b).setWidth 8",
+          "char_similarity": 0.5,
+          "token_jaccard": 0.5454545454545454
+        }
+      ]
+    },
+    "research": {
+      "count": 900,
+      "solved": 756,
+      "exact": 249,
+      "solved_with_target": 756,
+      "solved_not_exact": 507,
+      "solved_missing_target": 0,
+      "solve_rate": 0.84,
+      "exact_rate": 0.27666666666666667,
+      "exact_given_solved": 0.32936507936507936,
+      "drift_given_solved": 0.6706349206349206,
+      "avg_header_similarity": 0.7599219642271469,
+      "avg_token_jaccard": 0.6647819324943891,
+      "by_corruption": {
+        "lowercase_type": {
+          "count": 118,
+          "solved": 107,
+          "exact": 84,
+          "solved_not_exact": 23,
+          "solve_rate": 0.9067796610169492,
+          "exact_rate": 0.711864406779661,
+          "exact_given_solved": 0.7850467289719626,
+          "drift_given_solved": 0.21495327102803738,
+          "avg_header_similarity": 0.9139823866420577,
+          "avg_token_jaccard": 0.8800667919826798
+        },
+        "not_proposition": {
+          "count": 194,
+          "solved": 185,
+          "exact": 0,
+          "solved_not_exact": 185,
+          "solve_rate": 0.9536082474226805,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 1.0,
+          "avg_header_similarity": 0.6802105518238348,
+          "avg_token_jaccard": 0.5628857771024953
+        },
+        "parse_missing_colon": {
+          "count": 176,
+          "solved": 122,
+          "exact": 89,
+          "solved_not_exact": 33,
+          "solve_rate": 0.6931818181818182,
+          "exact_rate": 0.5056818181818182,
+          "exact_given_solved": 0.7295081967213115,
+          "drift_given_solved": 0.27049180327868855,
+          "avg_header_similarity": 0.8486931554447803,
+          "avg_token_jaccard": 0.8055362109637474
+        },
+        "parse_unbalanced_paren": {
+          "count": 143,
+          "solved": 127,
+          "exact": 71,
+          "solved_not_exact": 56,
+          "solve_rate": 0.8881118881118881,
+          "exact_rate": 0.4965034965034965,
+          "exact_given_solved": 0.5590551181102362,
+          "drift_given_solved": 0.4409448818897638,
+          "avg_header_similarity": 0.7990796429483519,
+          "avg_token_jaccard": 0.7471408330908343
+        },
+        "type_mismatch": {
+          "count": 140,
+          "solved": 136,
+          "exact": 0,
+          "solved_not_exact": 136,
+          "solve_rate": 0.9714285714285714,
+          "exact_rate": 0.0,
+          "exact_given_solved": 0.0,
+          "drift_given_solved": 1.0,
+          "avg_header_similarity": 0.7097141404918431,
+          "avg_token_jaccard": 0.5535374692159658
+        },
+        "unknown_type_symbol": {
+          "count": 129,
+          "solved": 79,
+          "exact": 5,
+          "solved_not_exact": 74,
+          "solve_rate": 0.6124031007751938,
+          "exact_rate": 0.03875968992248062,
+          "exact_given_solved": 0.06329113924050633,
+          "drift_given_solved": 0.9367088607594937,
+          "avg_header_similarity": 0.6243181616711252,
+          "avg_token_jaccard": 0.4535534950147502
+        }
+      },
+      "drift_examples": [
+        {
+          "id": "real_00254",
+          "policy": "research",
+          "corruption": "parse_unbalanced_paren",
+          "final_header": "theorem bench_real_00254 : True",
+          "target_header": "theorem bench_real_00254 (a b : UInt64) (ha : a < 4294967296) (hb : b < 4294967296) : (a % b).toUSize = a.toUSize % b.toUSize",
+          "char_similarity": 0.22399999999999998,
+          "token_jaccard": 0.17647058823529413
+        },
+        {
+          "id": "real_00210",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem any_eq' : True",
+          "target_header": "theorem any_eq' {xs : Vector \u03b1 n} {p : \u03b1 \u2192 Bool} : xs.any p = decide (\u2203 x, x \u2208 xs \u2227 p x)",
+          "char_similarity": 0.2272727272727273,
+          "token_jaccard": 0.13636363636363635
+        },
+        {
+          "id": "real_00030",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00030 : True",
+          "target_header": "theorem bench_real_00030 {\u03b1 : Sort u} {\u03b2 : \u03b1 \u2192 Sort v} {f g : (x : \u03b1) \u2192 \u03b2 x} (h : Eq f g) (a : \u03b1) : Eq (f a) (g a)",
+          "char_similarity": 0.2543859649122807,
+          "token_jaccard": 0.12
+        },
+        {
+          "id": "real_00044",
+          "policy": "research",
+          "corruption": "parse_unbalanced_paren",
+          "final_header": "theorem bench_real_00044 : True",
+          "target_header": "theorem bench_real_00044 (x : BitVec w) (i : Nat) : x.getLsbD i = (decide (i < w) && x.getMsbD (w - 1 - i))",
+          "char_similarity": 0.26168224299065423,
+          "token_jaccard": 0.15
+        },
+        {
+          "id": "real_00182",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00182 : True",
+          "target_header": "theorem bench_real_00182 (x : BitVec w) (i : Nat) : x.getMsbD i = (decide (i < w) && x.getLsbD (w - 1 - i))",
+          "char_similarity": 0.26168224299065423,
+          "token_jaccard": 0.15
+        },
+        {
+          "id": "real_00161",
+          "policy": "research",
+          "corruption": "unknown_type_symbol",
+          "final_header": "theorem bench_real_00161 (a b : Foo) : True",
+          "target_header": "theorem bench_real_00161 (a b : Nat) : (NatCast.natCast (a * b : Nat) : Int) = (NatCast.natCast a : Int) * (NatCast.natCast b : Int)",
+          "char_similarity": 0.2727272727272727,
+          "token_jaccard": 0.38461538461538464
+        },
+        {
+          "id": "real_00115",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00115 : True",
+          "target_header": "theorem bench_real_00115 (a c : Nat) {b d : Nat} (h : b \u2264 d) : (a + b \u2264 c + d) = (a \u2264 c + (d - b))",
+          "char_similarity": 0.2755102040816326,
+          "token_jaccard": 0.15789473684210525
+        },
+        {
+          "id": "real_00217",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00217 : True",
+          "target_header": "theorem bench_real_00217 (x n p : Nat) (h\u2081 : x < n*p) : (n * p - (x + 1)) / n = p - ((x / n) + 1)",
+          "char_similarity": 0.27835051546391754,
+          "token_jaccard": 0.13636363636363635
+        },
+        {
+          "id": "real_00083",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00083 : True",
+          "target_header": "theorem bench_real_00083 {w : Nat} {x : BitVec w} (h : x.msb = false) : x.toNat < 2 ^ (w - 1)",
+          "char_similarity": 0.30107526881720426,
+          "token_jaccard": 0.15
+        },
+        {
+          "id": "real_00022",
+          "policy": "research",
+          "corruption": "type_mismatch",
+          "final_header": "theorem bench_real_00022 : True",
+          "target_header": "theorem bench_real_00022 : (a::as).find? p = match p a with | true => some a | false => as.find? p",
+          "char_similarity": 0.30612244897959184,
+          "token_jaccard": 0.1875
+        },
+        {
+          "id": "real_00223",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem forM_nil' : True",
+          "target_header": "theorem forM_nil' [Monad m] : ([] : List \u03b1).forM f = (pure .unit : m PUnit)",
+          "char_similarity": 0.30666666666666664,
+          "token_jaccard": 0.2
+        },
+        {
+          "id": "real_00133",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00133 : True",
+          "target_header": "theorem bench_real_00133 {n : Nat} {a b : Fin n} (h : a < b) : (a : Nat) + 1 \u2264 (b : Nat)",
+          "char_similarity": 0.30681818181818177,
+          "token_jaccard": 0.15
+        },
+        {
+          "id": "real_00136",
+          "policy": "research",
+          "corruption": "not_proposition",
+          "final_header": "theorem bench_real_00136 : Nat = Nat",
+          "target_header": "theorem bench_real_00136 : \u2200 {o\u2081 o\u2082 : Ordering}, (o\u2081.then o\u2082).isGT = (o\u2081.isGT || o\u2081.isEq && o\u2082.isGT)",
+          "char_similarity": 0.31000000000000005,
+          "token_jaccard": 0.25
+        },
+        {
+          "id": "real_00153",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00153 : True",
+          "target_header": "theorem bench_real_00153 {a b c : UInt16} : (a &&& b) <<< c = (a <<< c) &&& (b <<< c)",
+          "char_similarity": 0.3176470588235294,
+          "token_jaccard": 0.2
+        },
+        {
+          "id": "real_00065",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00065 : True",
+          "target_header": "theorem bench_real_00065 {\u03b1 : Type u} {p : \u03b1 \u2192 Prop} : { x // p x } \u2192 Exists (fun x => p x)",
+          "char_similarity": 0.3296703296703297,
+          "token_jaccard": 0.15
+        },
+        {
+          "id": "real_00177",
+          "policy": "research",
+          "corruption": "parse_unbalanced_paren",
+          "final_header": "theorem bench_real_00177 : True",
+          "target_header": "theorem bench_real_00177 : \u2200 (x y z : Bool), ((x ^^ y) ^^ z) = ((x ^^ z) ^^ y)",
+          "char_similarity": 0.34615384615384615,
+          "token_jaccard": 0.21428571428571427
+        },
+        {
+          "id": "real_00248",
+          "policy": "research",
+          "corruption": "parse_unbalanced_paren",
+          "final_header": "theorem bench_real_00248 : True",
+          "target_header": "theorem bench_real_00248 : \u2200 (x y z : Bool), (x || (y || z)) = (y || (x || z))",
+          "char_similarity": 0.34615384615384615,
+          "token_jaccard": 0.23076923076923078
+        },
+        {
+          "id": "real_00071",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00071 : True",
+          "target_header": "theorem bench_real_00071 {s : List \u03b1} (h : s \u2260 []) (t : List \u03b1) : s ++ t \u2260 []",
+          "char_similarity": 0.35064935064935066,
+          "token_jaccard": 0.1875
+        },
+        {
+          "id": "real_00087",
+          "policy": "research",
+          "corruption": "parse_unbalanced_paren",
+          "final_header": "theorem bench_real_00087 : True",
+          "target_header": "theorem bench_real_00087 {c d : Char} (h : Not (Eq c.val d.val)) : Not (Eq c d)",
+          "char_similarity": 0.35443037974683544,
+          "token_jaccard": 0.21428571428571427
+        },
+        {
+          "id": "real_00015",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "final_header": "theorem bench_real_00015 : True",
+          "target_header": "theorem bench_real_00015 (h\u2081 : a \u2194 c) (h\u2082 : c \u2192 (b \u2194 d)) : (a \u2192 b) \u2194 (c \u2192 d)",
+          "char_similarity": 0.35526315789473684,
+          "token_jaccard": 0.17647058823529413
+        }
+      ]
+    }
+  },
+  "missing_policy_run_counts": {}
+}

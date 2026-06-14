@@ -1,0 +1,911 @@
+{
+  "root": "results\\real_paper_v2",
+  "token_recall_floor": 0.2,
+  "runs": {
+    "run_20260211_002138": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "solved": 26,
+          "exact": 0,
+          "degenerate_solved": 26,
+          "nondegenerate_solved": 0,
+          "solve_rate": 0.08666666666666667,
+          "solve_rate_ci95": [
+            0.059828489954770976,
+            0.12395674551002386
+          ],
+          "exact_rate": 0.0,
+          "exact_rate_ci95": [
+            0.0,
+            0.012643429997735661
+          ],
+          "degenerate_solved_rate": 0.08666666666666667,
+          "degenerate_solved_rate_ci95": [
+            0.059828489954770976,
+            0.12395674551002386
+          ],
+          "nondegenerate_solved_rate": 0.0,
+          "nondegenerate_solved_rate_ci95": [
+            0.0,
+            0.012643429997735661
+          ],
+          "degenerate_given_solved": 1.0,
+          "avg_target_token_recall": 0.12936507936507938,
+          "avg_binder_retention": 1.0,
+          "degenerate_reasons": {
+            "bare_identifier_goal": 2,
+            "reflexive_equality": 24
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 36,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "not_proposition": {
+              "count": 63,
+              "solved": 26,
+              "exact": 0,
+              "degenerate_solved": 26,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.4126984126984127,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.4126984126984127,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "parse_missing_colon": {
+              "count": 71,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "parse_unbalanced_paren": {
+              "count": 46,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "type_mismatch": {
+              "count": 43,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "unknown_type_symbol": {
+              "count": 41,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            }
+          }
+        },
+        "research": {
+          "count": 300,
+          "solved": 252,
+          "exact": 97,
+          "degenerate_solved": 155,
+          "nondegenerate_solved": 97,
+          "solve_rate": 0.84,
+          "solve_rate_ci95": [
+            0.7942554091313135,
+            0.8771470584702261
+          ],
+          "exact_rate": 0.3233333333333333,
+          "exact_rate_ci95": [
+            0.2729245203260525,
+            0.37820949160648065
+          ],
+          "degenerate_solved_rate": 0.5166666666666667,
+          "degenerate_solved_rate_ci95": [
+            0.46026528666991656,
+            0.5726465989968257
+          ],
+          "nondegenerate_solved_rate": 0.3233333333333333,
+          "nondegenerate_solved_rate_ci95": [
+            0.2729245203260525,
+            0.37820949160648065
+          ],
+          "degenerate_given_solved": 0.6150793650793651,
+          "avg_target_token_recall": 0.4283604182413706,
+          "avg_binder_retention": 0.9603174603174603,
+          "degenerate_reasons": {
+            "bare_identifier_goal": 2,
+            "goal_true": 108,
+            "reflexive_equality": 45
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 36,
+              "solved": 32,
+              "exact": 26,
+              "degenerate_solved": 6,
+              "nondegenerate_solved": 26,
+              "solve_rate": 0.8888888888888888,
+              "exact_rate": 0.7222222222222222,
+              "degenerate_solved_rate": 0.16666666666666666,
+              "nondegenerate_solved_rate": 0.7222222222222222,
+              "degenerate_given_solved": 0.1875
+            },
+            "not_proposition": {
+              "count": 63,
+              "solved": 59,
+              "exact": 0,
+              "degenerate_solved": 59,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.9365079365079365,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.9365079365079365,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "parse_missing_colon": {
+              "count": 71,
+              "solved": 47,
+              "exact": 38,
+              "degenerate_solved": 9,
+              "nondegenerate_solved": 38,
+              "solve_rate": 0.6619718309859155,
+              "exact_rate": 0.5352112676056338,
+              "degenerate_solved_rate": 0.1267605633802817,
+              "nondegenerate_solved_rate": 0.5352112676056338,
+              "degenerate_given_solved": 0.19148936170212766
+            },
+            "parse_unbalanced_paren": {
+              "count": 46,
+              "solved": 44,
+              "exact": 30,
+              "degenerate_solved": 14,
+              "nondegenerate_solved": 30,
+              "solve_rate": 0.9565217391304348,
+              "exact_rate": 0.6521739130434783,
+              "degenerate_solved_rate": 0.30434782608695654,
+              "nondegenerate_solved_rate": 0.6521739130434783,
+              "degenerate_given_solved": 0.3181818181818182
+            },
+            "type_mismatch": {
+              "count": 43,
+              "solved": 42,
+              "exact": 0,
+              "degenerate_solved": 42,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.9767441860465116,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.9767441860465116,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "unknown_type_symbol": {
+              "count": 41,
+              "solved": 28,
+              "exact": 3,
+              "degenerate_solved": 25,
+              "nondegenerate_solved": 3,
+              "solve_rate": 0.6829268292682927,
+              "exact_rate": 0.07317073170731707,
+              "degenerate_solved_rate": 0.6097560975609756,
+              "nondegenerate_solved_rate": 0.07317073170731707,
+              "degenerate_given_solved": 0.8928571428571429
+            }
+          }
+        }
+      }
+    },
+    "run_20260211_002407": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "solved": 29,
+          "exact": 0,
+          "degenerate_solved": 29,
+          "nondegenerate_solved": 0,
+          "solve_rate": 0.09666666666666666,
+          "solve_rate_ci95": [
+            0.06814985592393716,
+            0.13538251094090295
+          ],
+          "exact_rate": 0.0,
+          "exact_rate_ci95": [
+            0.0,
+            0.012643429997735661
+          ],
+          "degenerate_solved_rate": 0.09666666666666666,
+          "degenerate_solved_rate_ci95": [
+            0.06814985592393716,
+            0.13538251094090295
+          ],
+          "nondegenerate_solved_rate": 0.0,
+          "nondegenerate_solved_rate_ci95": [
+            0.0,
+            0.012643429997735661
+          ],
+          "degenerate_given_solved": 1.0,
+          "avg_target_token_recall": 0.14640120415982485,
+          "avg_binder_retention": 1.0,
+          "degenerate_reasons": {
+            "bare_identifier_goal": 6,
+            "reflexive_equality": 23
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 42,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "not_proposition": {
+              "count": 64,
+              "solved": 29,
+              "exact": 0,
+              "degenerate_solved": 29,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.453125,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.453125,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "parse_missing_colon": {
+              "count": 49,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "parse_unbalanced_paren": {
+              "count": 50,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "type_mismatch": {
+              "count": 50,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "unknown_type_symbol": {
+              "count": 45,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            }
+          }
+        },
+        "research": {
+          "count": 300,
+          "solved": 256,
+          "exact": 80,
+          "degenerate_solved": 175,
+          "nondegenerate_solved": 81,
+          "solve_rate": 0.8533333333333334,
+          "solve_rate_ci95": [
+            0.8088365903800316,
+            0.888895385754902
+          ],
+          "exact_rate": 0.26666666666666666,
+          "exact_rate_ci95": [
+            0.21980519258939785,
+            0.3194284080762121
+          ],
+          "degenerate_solved_rate": 0.5833333333333334,
+          "degenerate_solved_rate_ci95": [
+            0.5268345519290606,
+            0.6377248764046503
+          ],
+          "nondegenerate_solved_rate": 0.27,
+          "nondegenerate_solved_rate_ci95": [
+            0.22290322460653217,
+            0.3229127531924263
+          ],
+          "degenerate_given_solved": 0.68359375,
+          "avg_target_token_recall": 0.3737211681547619,
+          "avg_binder_retention": 0.953125,
+          "degenerate_reasons": {
+            "bare_identifier_goal": 6,
+            "goal_true": 117,
+            "reflexive_equality": 52
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 42,
+              "solved": 38,
+              "exact": 31,
+              "degenerate_solved": 7,
+              "nondegenerate_solved": 31,
+              "solve_rate": 0.9047619047619048,
+              "exact_rate": 0.7380952380952381,
+              "degenerate_solved_rate": 0.16666666666666666,
+              "nondegenerate_solved_rate": 0.7380952380952381,
+              "degenerate_given_solved": 0.18421052631578946
+            },
+            "not_proposition": {
+              "count": 64,
+              "solved": 63,
+              "exact": 0,
+              "degenerate_solved": 63,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.984375,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.984375,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "parse_missing_colon": {
+              "count": 49,
+              "solved": 38,
+              "exact": 27,
+              "degenerate_solved": 11,
+              "nondegenerate_solved": 27,
+              "solve_rate": 0.7755102040816326,
+              "exact_rate": 0.5510204081632653,
+              "degenerate_solved_rate": 0.22448979591836735,
+              "nondegenerate_solved_rate": 0.5510204081632653,
+              "degenerate_given_solved": 0.2894736842105263
+            },
+            "parse_unbalanced_paren": {
+              "count": 50,
+              "solved": 42,
+              "exact": 20,
+              "degenerate_solved": 22,
+              "nondegenerate_solved": 20,
+              "solve_rate": 0.84,
+              "exact_rate": 0.4,
+              "degenerate_solved_rate": 0.44,
+              "nondegenerate_solved_rate": 0.4,
+              "degenerate_given_solved": 0.5238095238095238
+            },
+            "type_mismatch": {
+              "count": 50,
+              "solved": 49,
+              "exact": 0,
+              "degenerate_solved": 49,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.98,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.98,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "unknown_type_symbol": {
+              "count": 45,
+              "solved": 26,
+              "exact": 2,
+              "degenerate_solved": 23,
+              "nondegenerate_solved": 3,
+              "solve_rate": 0.5777777777777777,
+              "exact_rate": 0.044444444444444446,
+              "degenerate_solved_rate": 0.5111111111111111,
+              "nondegenerate_solved_rate": 0.06666666666666667,
+              "degenerate_given_solved": 0.8846153846153846
+            }
+          }
+        }
+      }
+    },
+    "run_20260211_002639": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "solved": 35,
+          "exact": 0,
+          "degenerate_solved": 35,
+          "nondegenerate_solved": 0,
+          "solve_rate": 0.11666666666666667,
+          "solve_rate_ci95": [
+            0.08509263799927806,
+            0.1579339916656526
+          ],
+          "exact_rate": 0.0,
+          "exact_rate_ci95": [
+            0.0,
+            0.012643429997735661
+          ],
+          "degenerate_solved_rate": 0.11666666666666667,
+          "degenerate_solved_rate_ci95": [
+            0.08509263799927806,
+            0.1579339916656526
+          ],
+          "nondegenerate_solved_rate": 0.0,
+          "nondegenerate_solved_rate_ci95": [
+            0.0,
+            0.012643429997735661
+          ],
+          "degenerate_given_solved": 1.0,
+          "avg_target_token_recall": 0.16009173366316223,
+          "avg_binder_retention": 1.0,
+          "degenerate_reasons": {
+            "bare_identifier_goal": 4,
+            "reflexive_equality": 31
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 40,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "not_proposition": {
+              "count": 67,
+              "solved": 31,
+              "exact": 0,
+              "degenerate_solved": 31,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.4626865671641791,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.4626865671641791,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "parse_missing_colon": {
+              "count": 56,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            },
+            "parse_unbalanced_paren": {
+              "count": 47,
+              "solved": 2,
+              "exact": 0,
+              "degenerate_solved": 2,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0425531914893617,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0425531914893617,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "type_mismatch": {
+              "count": 47,
+              "solved": 2,
+              "exact": 0,
+              "degenerate_solved": 2,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0425531914893617,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0425531914893617,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "unknown_type_symbol": {
+              "count": 43,
+              "solved": 0,
+              "exact": 0,
+              "degenerate_solved": 0,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.0,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 0.0
+            }
+          }
+        },
+        "research": {
+          "count": 300,
+          "solved": 248,
+          "exact": 74,
+          "degenerate_solved": 174,
+          "nondegenerate_solved": 74,
+          "solve_rate": 0.8266666666666667,
+          "solve_rate_ci95": [
+            0.7797729263389721,
+            0.865300032729174
+          ],
+          "exact_rate": 0.24666666666666667,
+          "exact_rate_ci95": [
+            0.20129303378573715,
+            0.29844630407978223
+          ],
+          "degenerate_solved_rate": 0.58,
+          "degenerate_solved_rate_ci95": [
+            0.5234821059002049,
+            0.6344949453001573
+          ],
+          "nondegenerate_solved_rate": 0.24666666666666667,
+          "nondegenerate_solved_rate_ci95": [
+            0.20129303378573715,
+            0.29844630407978223
+          ],
+          "degenerate_given_solved": 0.7016129032258065,
+          "avg_target_token_recall": 0.33415273122934414,
+          "avg_binder_retention": 0.9502688172043011,
+          "degenerate_reasons": {
+            "bare_identifier_goal": 1,
+            "goal_true": 113,
+            "reflexive_equality": 60
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 40,
+              "solved": 37,
+              "exact": 27,
+              "degenerate_solved": 10,
+              "nondegenerate_solved": 27,
+              "solve_rate": 0.925,
+              "exact_rate": 0.675,
+              "degenerate_solved_rate": 0.25,
+              "nondegenerate_solved_rate": 0.675,
+              "degenerate_given_solved": 0.2702702702702703
+            },
+            "not_proposition": {
+              "count": 67,
+              "solved": 63,
+              "exact": 0,
+              "degenerate_solved": 63,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.9402985074626866,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.9402985074626866,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "parse_missing_colon": {
+              "count": 56,
+              "solved": 37,
+              "exact": 26,
+              "degenerate_solved": 11,
+              "nondegenerate_solved": 26,
+              "solve_rate": 0.6607142857142857,
+              "exact_rate": 0.4642857142857143,
+              "degenerate_solved_rate": 0.19642857142857142,
+              "nondegenerate_solved_rate": 0.4642857142857143,
+              "degenerate_given_solved": 0.2972972972972973
+            },
+            "parse_unbalanced_paren": {
+              "count": 47,
+              "solved": 41,
+              "exact": 21,
+              "degenerate_solved": 20,
+              "nondegenerate_solved": 21,
+              "solve_rate": 0.8723404255319149,
+              "exact_rate": 0.44680851063829785,
+              "degenerate_solved_rate": 0.425531914893617,
+              "nondegenerate_solved_rate": 0.44680851063829785,
+              "degenerate_given_solved": 0.4878048780487805
+            },
+            "type_mismatch": {
+              "count": 47,
+              "solved": 45,
+              "exact": 0,
+              "degenerate_solved": 45,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.9574468085106383,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.9574468085106383,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            },
+            "unknown_type_symbol": {
+              "count": 43,
+              "solved": 25,
+              "exact": 0,
+              "degenerate_solved": 25,
+              "nondegenerate_solved": 0,
+              "solve_rate": 0.5813953488372093,
+              "exact_rate": 0.0,
+              "degenerate_solved_rate": 0.5813953488372093,
+              "nondegenerate_solved_rate": 0.0,
+              "degenerate_given_solved": 1.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "policies": {
+    "heuristic": {
+      "pooled": {
+        "count": 900,
+        "solved": 90,
+        "exact": 0,
+        "degenerate_solved": 90,
+        "nondegenerate_solved": 0,
+        "solve_rate": 0.1,
+        "solve_rate_ci95": [
+          0.0820680651050478,
+          0.12133217670723434
+        ],
+        "exact_rate": 0.0,
+        "exact_rate_ci95": [
+          4.318375942142756e-19,
+          0.0042503022653526895
+        ],
+        "degenerate_solved_rate": 0.1,
+        "degenerate_solved_rate_ci95": [
+          0.0820680651050478,
+          0.12133217670723434
+        ],
+        "nondegenerate_solved_rate": 0.0,
+        "nondegenerate_solved_rate_ci95": [
+          4.318375942142756e-19,
+          0.0042503022653526895
+        ],
+        "degenerate_given_solved": 1.0,
+        "avg_target_token_recall": 0.1468037518037518,
+        "avg_binder_retention": 1.0,
+        "degenerate_reasons": {
+          "bare_identifier_goal": 12,
+          "reflexive_equality": 78
+        },
+        "by_corruption": {
+          "lowercase_type": {
+            "count": 118,
+            "solved": 0,
+            "exact": 0,
+            "degenerate_solved": 0,
+            "nondegenerate_solved": 0,
+            "solve_rate": 0.0,
+            "exact_rate": 0.0,
+            "degenerate_solved_rate": 0.0,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 0.0
+          },
+          "not_proposition": {
+            "count": 194,
+            "solved": 86,
+            "exact": 0,
+            "degenerate_solved": 86,
+            "nondegenerate_solved": 0,
+            "solve_rate": 0.44329896907216493,
+            "exact_rate": 0.0,
+            "degenerate_solved_rate": 0.44329896907216493,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 1.0
+          },
+          "parse_missing_colon": {
+            "count": 176,
+            "solved": 0,
+            "exact": 0,
+            "degenerate_solved": 0,
+            "nondegenerate_solved": 0,
+            "solve_rate": 0.0,
+            "exact_rate": 0.0,
+            "degenerate_solved_rate": 0.0,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 0.0
+          },
+          "parse_unbalanced_paren": {
+            "count": 143,
+            "solved": 2,
+            "exact": 0,
+            "degenerate_solved": 2,
+            "nondegenerate_solved": 0,
+            "solve_rate": 0.013986013986013986,
+            "exact_rate": 0.0,
+            "degenerate_solved_rate": 0.013986013986013986,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 1.0
+          },
+          "type_mismatch": {
+            "count": 140,
+            "solved": 2,
+            "exact": 0,
+            "degenerate_solved": 2,
+            "nondegenerate_solved": 0,
+            "solve_rate": 0.014285714285714285,
+            "exact_rate": 0.0,
+            "degenerate_solved_rate": 0.014285714285714285,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 1.0
+          },
+          "unknown_type_symbol": {
+            "count": 129,
+            "solved": 0,
+            "exact": 0,
+            "degenerate_solved": 0,
+            "nondegenerate_solved": 0,
+            "solve_rate": 0.0,
+            "exact_rate": 0.0,
+            "degenerate_solved_rate": 0.0,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 0.0
+          }
+        }
+      },
+      "runs": 3,
+      "solve_rate_mean": 0.1,
+      "solve_rate_std": 0.015275252316519466,
+      "exact_rate_mean": 0.0,
+      "exact_rate_std": 0.0,
+      "nondegenerate_solved_rate_mean": 0.0,
+      "nondegenerate_solved_rate_std": 0.0,
+      "degenerate_solved_rate_mean": 0.1,
+      "degenerate_solved_rate_std": 0.015275252316519466
+    },
+    "research": {
+      "pooled": {
+        "count": 900,
+        "solved": 756,
+        "exact": 251,
+        "degenerate_solved": 504,
+        "nondegenerate_solved": 252,
+        "solve_rate": 0.84,
+        "solve_rate_ci95": [
+          0.8146106088402726,
+          0.8624991856192874
+        ],
+        "exact_rate": 0.2788888888888889,
+        "exact_rate_ci95": [
+          0.2505769947915951,
+          0.30908036109908305
+        ],
+        "degenerate_solved_rate": 0.56,
+        "degenerate_solved_rate_ci95": [
+          0.5273823566239573,
+          0.5921076071042005
+        ],
+        "nondegenerate_solved_rate": 0.28,
+        "nondegenerate_solved_rate_ci95": [
+          0.2516479484077991,
+          0.31022218458895606
+        ],
+        "degenerate_given_solved": 0.6666666666666666,
+        "avg_target_token_recall": 0.37895412935095474,
+        "avg_binder_retention": 0.9545855379188712,
+        "degenerate_reasons": {
+          "bare_identifier_goal": 9,
+          "goal_true": 338,
+          "reflexive_equality": 157
+        },
+        "by_corruption": {
+          "lowercase_type": {
+            "count": 118,
+            "solved": 107,
+            "exact": 84,
+            "degenerate_solved": 23,
+            "nondegenerate_solved": 84,
+            "solve_rate": 0.9067796610169492,
+            "exact_rate": 0.711864406779661,
+            "degenerate_solved_rate": 0.19491525423728814,
+            "nondegenerate_solved_rate": 0.711864406779661,
+            "degenerate_given_solved": 0.21495327102803738
+          },
+          "not_proposition": {
+            "count": 194,
+            "solved": 185,
+            "exact": 0,
+            "degenerate_solved": 185,
+            "nondegenerate_solved": 0,
+            "solve_rate": 0.9536082474226805,
+            "exact_rate": 0.0,
+            "degenerate_solved_rate": 0.9536082474226805,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 1.0
+          },
+          "parse_missing_colon": {
+            "count": 176,
+            "solved": 122,
+            "exact": 91,
+            "degenerate_solved": 31,
+            "nondegenerate_solved": 91,
+            "solve_rate": 0.6931818181818182,
+            "exact_rate": 0.5170454545454546,
+            "degenerate_solved_rate": 0.17613636363636365,
+            "nondegenerate_solved_rate": 0.5170454545454546,
+            "degenerate_given_solved": 0.2540983606557377
+          },
+          "parse_unbalanced_paren": {
+            "count": 143,
+            "solved": 127,
+            "exact": 71,
+            "degenerate_solved": 56,
+            "nondegenerate_solved": 71,
+            "solve_rate": 0.8881118881118881,
+            "exact_rate": 0.4965034965034965,
+            "degenerate_solved_rate": 0.3916083916083916,
+            "nondegenerate_solved_rate": 0.4965034965034965,
+            "degenerate_given_solved": 0.4409448818897638
+          },
+          "type_mismatch": {
+            "count": 140,
+            "solved": 136,
+            "exact": 0,
+            "degenerate_solved": 136,
+            "nondegenerate_solved": 0,
+            "solve_rate": 0.9714285714285714,
+            "exact_rate": 0.0,
+            "degenerate_solved_rate": 0.9714285714285714,
+            "nondegenerate_solved_rate": 0.0,
+            "degenerate_given_solved": 1.0
+          },
+          "unknown_type_symbol": {
+            "count": 129,
+            "solved": 79,
+            "exact": 5,
+            "degenerate_solved": 73,
+            "nondegenerate_solved": 6,
+            "solve_rate": 0.6124031007751938,
+            "exact_rate": 0.03875968992248062,
+            "degenerate_solved_rate": 0.5658914728682171,
+            "nondegenerate_solved_rate": 0.046511627906976744,
+            "degenerate_given_solved": 0.9240506329113924
+          }
+        }
+      },
+      "runs": 3,
+      "solve_rate_mean": 0.84,
+      "solve_rate_std": 0.013333333333333364,
+      "exact_rate_mean": 0.27888888888888885,
+      "exact_rate_std": 0.039767844818162826,
+      "nondegenerate_solved_rate_mean": 0.28,
+      "nondegenerate_solved_rate_std": 0.0392994204085053,
+      "degenerate_solved_rate_mean": 0.56,
+      "degenerate_solved_rate_std": 0.037564758898615457
+    }
+  },
+  "missing_policy_run_counts": {}
+}

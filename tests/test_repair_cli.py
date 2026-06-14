@@ -12,6 +12,7 @@ sys.path.append(str(ROOT / "src"))
 
 import lean_check as lc  # noqa: E402
 import repair_cli as rc  # noqa: E402
+from llm_policy import ResearchHeuristicPolicy  # noqa: E402
 
 
 class RepairCLITests(unittest.TestCase):
@@ -39,6 +40,53 @@ class RepairCLITests(unittest.TestCase):
             self.assertIn("trace", record)
             self.assertIsInstance(record["trace"], list)
             self.assertIsInstance(record["steps"], int)
+
+    def test_make_policy_supports_research_strict(self):
+        policy = rc._make_policy("research_strict")
+
+        self.assertIsInstance(policy, ResearchHeuristicPolicy)
+        self.assertFalse(policy.allow_degenerate_fallbacks)
+
+    def test_cli_strict_acceptance_rejects_degenerate_typecheck(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            input_path.write_text(
+                json.dumps(
+                    {
+                        "id": "degenerate",
+                        "nl": "",
+                        "ctx": "",
+                        "candidate": "theorem degenerate : True",
+                        "target": "theorem degenerate (n : Nat) : n = n",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            def fake_lean_check(ctx: str, theorem: str, timeout_s: float) -> lc.CheckResult:
+                return lc.CheckResult(ok=True, errors=[], raw="", elapsed_ms=1, timed_out=False)
+
+            with mock.patch.object(rc.rl.lc, "lean_check", fake_lean_check):
+                rc.main(
+                    [
+                        "--input",
+                        str(input_path),
+                        "--output",
+                        str(output_path),
+                        "--acceptance",
+                        "strict",
+                    ]
+                )
+
+            record = json.loads(output_path.read_text(encoding="utf-8").strip())
+            self.assertFalse(record["ok"])
+            self.assertEqual(record["acceptance"], "strict")
+            self.assertTrue(record["trace"][0]["ok"])
+            self.assertFalse(record["trace"][0]["accepted"])
+            self.assertEqual(record["trace"][0]["acceptance_reason"], "goal_true")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,3849 @@
+{
+  "root": "results\\real_paper_v2",
+  "runs": {
+    "run_20260211_002138": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "records_with_trace": 300,
+          "solved": 26,
+          "exact": 0,
+          "lean_ok_records": 26,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.08666666666666667,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.08666666666666667,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 1.2733333333333334,
+          "median_steps": 1.0,
+          "median_solve_step": 2.0,
+          "avg_elapsed_ms": 246.94666666666666,
+          "timeout_records": 0,
+          "first_error_kind": {
+            "parse_error": 120,
+            "type_mismatch": 95,
+            "failed_typeclass": 44,
+            "not_proposition": 24,
+            "other": 14,
+            "unknown_identifier": 3
+          },
+          "terminal_error_kind": {
+            "parse_error": 117,
+            "type_mismatch": 95,
+            "failed_typeclass": 45,
+            "solved": 26,
+            "other": 14,
+            "unknown_identifier": 3
+          },
+          "acceptance_rejection_reasons": {},
+          "failure_transitions": {
+            "parse_error->parse_error": 117,
+            "type_mismatch->type_mismatch": 92,
+            "failed_typeclass->failed_typeclass": 44,
+            "other->other": 14,
+            "parse_error->type_mismatch": 3,
+            "unknown_identifier->unknown_identifier": 3,
+            "type_mismatch->failed_typeclass": 1
+          },
+          "solved_by_step": {
+            "2": 26
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 36,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1,
+              "avg_elapsed_ms": 196.55555555555554,
+              "first_error_kind": {
+                "failed_typeclass": 19,
+                "type_mismatch": 9,
+                "other": 8
+              },
+              "terminal_error_kind": {
+                "failed_typeclass": 19,
+                "type_mismatch": 9,
+                "other": 8
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 19,
+                "type_mismatch->type_mismatch": 9,
+                "other->other": 8
+              }
+            },
+            "not_proposition": {
+              "count": 63,
+              "solved": 26,
+              "exact": 0,
+              "lean_ok_records": 26,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.4126984126984127,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.4126984126984127,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.4126984126984128,
+              "avg_elapsed_ms": 271.3968253968254,
+              "first_error_kind": {
+                "type_mismatch": 37,
+                "not_proposition": 24,
+                "other": 2
+              },
+              "terminal_error_kind": {
+                "type_mismatch": 35,
+                "solved": 26,
+                "other": 2
+              },
+              "failure_transitions": {
+                "type_mismatch->type_mismatch": 35,
+                "other->other": 2
+              }
+            },
+            "parse_missing_colon": {
+              "count": 71,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.028169014084507,
+              "avg_elapsed_ms": 196.80281690140845,
+              "first_error_kind": {
+                "parse_error": 71
+              },
+              "terminal_error_kind": {
+                "parse_error": 71
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 71
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 46,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.0434782608695654,
+              "avg_elapsed_ms": 393.04347826086956,
+              "first_error_kind": {
+                "parse_error": 46
+              },
+              "terminal_error_kind": {
+                "parse_error": 43,
+                "type_mismatch": 3
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 43,
+                "parse_error->type_mismatch": 3
+              }
+            },
+            "type_mismatch": {
+              "count": 43,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.0930232558139534,
+              "avg_elapsed_ms": 217.0,
+              "first_error_kind": {
+                "type_mismatch": 35,
+                "failed_typeclass": 5,
+                "parse_error": 3
+              },
+              "terminal_error_kind": {
+                "type_mismatch": 35,
+                "failed_typeclass": 5,
+                "parse_error": 3
+              },
+              "failure_transitions": {
+                "type_mismatch->type_mismatch": 35,
+                "failed_typeclass->failed_typeclass": 5,
+                "parse_error->parse_error": 3
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 41,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.048780487804878,
+              "avg_elapsed_ms": 207.9512195121951,
+              "first_error_kind": {
+                "failed_typeclass": 20,
+                "type_mismatch": 14,
+                "other": 4,
+                "unknown_identifier": 3
+              },
+              "terminal_error_kind": {
+                "failed_typeclass": 21,
+                "type_mismatch": 13,
+                "other": 4,
+                "unknown_identifier": 3
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 20,
+                "type_mismatch->type_mismatch": 13,
+                "other->other": 4,
+                "unknown_identifier->unknown_identifier": 3,
+                "type_mismatch->failed_typeclass": 1
+              }
+            }
+          },
+          "failure_examples": [
+            {
+              "id": "real_00000",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00000 {\u03b1 : Sort u} {c : Prop} {_ : Decidable c} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} (h : c = False : (dite c t e) = e (of_eq_false h)",
+              "final": "theorem bench_real_00000 {\u03b1 : Sort u} {c : Prop} {_ : Decidable c} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00001",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) + 1#w = ~~~y * x",
+              "final": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) + 1#w = ~~~y * x := by sorry",
+              "terminal_errors": [
+                "unexpected token '~~~'; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00002",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00002 {a : \u03b1} {xs : Array \u03b1} (h : a \u2208 xs : \u2203 as bs : Array \u03b1, xs = as.push a ++ bs",
+              "final": "theorem bench_real_00002 {a : \u03b1} {xs : Array \u03b1} := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00003",
+              "corruption": "type_mismatch",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00003 {n : Nat} : Nat = True",
+              "final": "theorem bench_real_00003 {n : Nat} : Nat = True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00004",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00004 {a b : Int} : (-a % b = if b \u2223 a then 0 else b.natAbs - (a % b)",
+              "final": "theorem bench_real_00004 {a b : Int} : (-a := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ')', ',' or ':'"
+              ]
+            },
+            {
+              "id": "real_00005",
+              "corruption": "type_mismatch",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00005 : \u2200 {o : Ordering}, o.isLE \u2194 \u00aco = False",
+              "final": "theorem bench_real_00005 : \u2200 {o : Ordering}, o.isLE \u2194 \u00aco = False := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00006",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00006 {a : Foo} (H : 0 \u2264 a) (H' : a \u2223 1) : a = 1",
+              "final": "theorem bench_real_00006 {a : Foo} (H : 0 \u2264 a) (H' : a \u2223 1) : a = 1 := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00007",
+              "corruption": "type_mismatch",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00007 {xs ys : Array \u03b1} : #[] = False",
+              "final": "theorem bench_real_00007 {xs ys : Array \u03b1} : #[] = False := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00008",
+              "corruption": "not_proposition",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00008 {x : Option \u03b1} {p : \u03b1 \u2192 Bool} (h : x.any p) : h",
+              "final": "theorem bench_real_00008 {x : Option \u03b1} {p : \u03b1 \u2192 Bool} (h : x.any p) : h := by sorry",
+              "terminal_errors": [
+                "type expected, got"
+              ]
+            },
+            {
+              "id": "real_00009",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00009   (a \u2228 b) \u2228 c \u2194 a \u2228 (b \u2228 c)",
+              "final": "theorem bench_real_00009   (a \u2228 b) \u2228 c \u2194 a \u2228 (b \u2228 c) := by sorry",
+              "terminal_errors": [
+                "unexpected token '\u2228'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00010",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "unknown_identifier",
+              "terminal_error_kind": "unknown_identifier",
+              "candidate0": "theorem bench_real_00010 (a b : BitVec 32) : Foo32.ofBitVec a < Int32.ofBitVec b \u2194 a.slt b",
+              "final": "theorem bench_real_00010 (a b : BitVec 32) : Foo32.ofBitVec a < Int32.ofBitVec b \u2194 a.slt b := by sorry",
+              "terminal_errors": [
+                "unknown identifier 'Foo32.ofBitVec'"
+              ]
+            },
+            {
+              "id": "real_00011",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00011 (a : Foo) : a \u2227 \u00aca \u2194 False",
+              "final": "theorem bench_real_00011 (a : Foo) : a \u2227 \u00aca \u2194 False := by sorry",
+              "terminal_errors": [
+                "Application type mismatch: In the application",
+                "Application type mismatch: In the application"
+              ]
+            },
+            {
+              "id": "real_00012",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00012 {l : List \u03b1}   l.enum = l.enumFrom 0",
+              "final": "theorem bench_real_00012 {l : List \u03b1}   l.enum = l.enumFrom 0 := by sorry",
+              "terminal_errors": [
+                "unexpected token '='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00013",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00013 {a b : Foo} (h : b = False) : (a \u2227 b) = False",
+              "final": "theorem bench_real_00013 {a b : Foo} (h : b = False) : (a \u2227 b) = False := by sorry",
+              "terminal_errors": [
+                "type mismatch",
+                "Application type mismatch: In the application"
+              ]
+            },
+            {
+              "id": "real_00014",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00014   (0 : ISize) \u2260 1",
+              "final": "theorem bench_real_00014   (0 : ISize) \u2260 1 := by sorry",
+              "terminal_errors": [
+                "unexpected token; expected '_' or identifier"
+              ]
+            },
+            {
+              "id": "real_00015",
+              "corruption": "not_proposition",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00015 (a b : Int16) (hb : b \u2260 -1) : hb",
+              "final": "theorem bench_real_00015 (a b : Int16) (hb : b \u2260 -1) : hb := by sorry",
+              "terminal_errors": [
+                "type expected, got"
+              ]
+            },
+            {
+              "id": "real_00016",
+              "corruption": "lowercase_type",
+              "steps": 1,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00016 {a b c : nat} (h : a + b < c) : a < c - b",
+              "final": "theorem bench_real_00016 {a b c : nat} (h : a + b < c) : a < c - b := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00017",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00017 {a b c : Foo64} : (a &&& b) <<< c = (a <<< c) &&& (b <<< c)",
+              "final": "theorem bench_real_00017 {a b c : Foo64} : (a &&& b) <<< c = (a <<< c) &&& (b <<< c) := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00018",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) = false",
+              "final": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) = false := by sorry",
+              "terminal_errors": [
+                "unexpected token '('; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00019",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00019 (a : Foo) {b : Int} (H : 0 < b) : a < (a / b + 1) * b",
+              "final": "theorem bench_real_00019 (a : Foo) {b : Int} (H : 0 < b) : a < (a / b + 1) * b := by sorry",
+              "terminal_errors": [
+                "failed to synthesize"
+              ]
+            }
+          ]
+        },
+        "research": {
+          "count": 300,
+          "records_with_trace": 300,
+          "solved": 252,
+          "exact": 96,
+          "lean_ok_records": 252,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.84,
+          "exact_rate": 0.32,
+          "lean_ok_rate": 0.84,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.5366666666666666,
+          "median_steps": 2.0,
+          "median_solve_step": 2.0,
+          "avg_elapsed_ms": 491.28333333333336,
+          "timeout_records": 0,
+          "first_error_kind": {
+            "parse_error": 120,
+            "type_mismatch": 95,
+            "failed_typeclass": 44,
+            "not_proposition": 24,
+            "other": 14,
+            "unknown_identifier": 3
+          },
+          "terminal_error_kind": {
+            "solved": 252,
+            "parse_error": 22,
+            "other": 12,
+            "failed_typeclass": 9,
+            "type_mismatch": 5
+          },
+          "acceptance_rejection_reasons": {},
+          "failure_transitions": {
+            "parse_error->parse_error": 22,
+            "failed_typeclass->failed_typeclass": 8,
+            "other->other": 6,
+            "type_mismatch->type_mismatch": 4,
+            "parse_error->other": 3,
+            "failed_typeclass->other": 2,
+            "parse_error->type_mismatch": 1,
+            "type_mismatch->failed_typeclass": 1,
+            "type_mismatch->other": 1
+          },
+          "solved_by_step": {
+            "2": 187,
+            "4": 36,
+            "3": 26,
+            "6": 2,
+            "5": 1
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 36,
+              "solved": 32,
+              "exact": 26,
+              "lean_ok_records": 32,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.8888888888888888,
+              "exact_rate": 0.7222222222222222,
+              "lean_ok_rate": 0.8888888888888888,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2,
+              "avg_elapsed_ms": 390.80555555555554,
+              "first_error_kind": {
+                "failed_typeclass": 19,
+                "type_mismatch": 9,
+                "other": 8
+              },
+              "terminal_error_kind": {
+                "solved": 32,
+                "other": 3,
+                "failed_typeclass": 1
+              },
+              "failure_transitions": {
+                "other->other": 3,
+                "failed_typeclass->failed_typeclass": 1
+              }
+            },
+            "not_proposition": {
+              "count": 63,
+              "solved": 59,
+              "exact": 0,
+              "lean_ok_records": 59,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.9365079365079365,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.9365079365079365,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.0317460317460316,
+              "avg_elapsed_ms": 391.23809523809524,
+              "first_error_kind": {
+                "type_mismatch": 37,
+                "not_proposition": 24,
+                "other": 2
+              },
+              "terminal_error_kind": {
+                "solved": 59,
+                "other": 3,
+                "failed_typeclass": 1
+              },
+              "failure_transitions": {
+                "other->other": 2,
+                "type_mismatch->failed_typeclass": 1,
+                "type_mismatch->other": 1
+              }
+            },
+            "parse_missing_colon": {
+              "count": 71,
+              "solved": 47,
+              "exact": 37,
+              "lean_ok_records": 47,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.6619718309859155,
+              "exact_rate": 0.5211267605633803,
+              "lean_ok_rate": 0.6619718309859155,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.8028169014084505,
+              "avg_elapsed_ms": 538.8169014084507,
+              "first_error_kind": {
+                "parse_error": 71
+              },
+              "terminal_error_kind": {
+                "solved": 47,
+                "parse_error": 21,
+                "other": 2,
+                "type_mismatch": 1
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 21,
+                "parse_error->other": 2,
+                "parse_error->type_mismatch": 1
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 46,
+              "solved": 44,
+              "exact": 30,
+              "lean_ok_records": 44,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.9565217391304348,
+              "exact_rate": 0.6521739130434783,
+              "lean_ok_rate": 0.9565217391304348,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 3.891304347826087,
+              "avg_elapsed_ms": 750.7826086956521,
+              "first_error_kind": {
+                "parse_error": 46
+              },
+              "terminal_error_kind": {
+                "solved": 44,
+                "other": 1,
+                "parse_error": 1
+              },
+              "failure_transitions": {
+                "parse_error->other": 1,
+                "parse_error->parse_error": 1
+              }
+            },
+            "type_mismatch": {
+              "count": 43,
+              "solved": 42,
+              "exact": 0,
+              "lean_ok_records": 42,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.9767441860465116,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.9767441860465116,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.1627906976744184,
+              "avg_elapsed_ms": 423.95348837209303,
+              "first_error_kind": {
+                "type_mismatch": 35,
+                "failed_typeclass": 5,
+                "parse_error": 3
+              },
+              "terminal_error_kind": {
+                "solved": 42,
+                "other": 1
+              },
+              "failure_transitions": {
+                "failed_typeclass->other": 1
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 41,
+              "solved": 28,
+              "exact": 3,
+              "lean_ok_records": 28,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.6829268292682927,
+              "exact_rate": 0.07317073170731707,
+              "lean_ok_rate": 0.6829268292682927,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.1951219512195124,
+              "avg_elapsed_ms": 430.390243902439,
+              "first_error_kind": {
+                "failed_typeclass": 20,
+                "type_mismatch": 14,
+                "other": 4,
+                "unknown_identifier": 3
+              },
+              "terminal_error_kind": {
+                "solved": 28,
+                "failed_typeclass": 7,
+                "type_mismatch": 4,
+                "other": 2
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 7,
+                "type_mismatch->type_mismatch": 4,
+                "failed_typeclass->other": 1,
+                "other->other": 1
+              }
+            }
+          },
+          "failure_examples": [
+            {
+              "id": "real_00001",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) + 1#w = ~~~y * x",
+              "final": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '~~~'; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00006",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00006 {a : Foo} (H : 0 \u2264 a) (H' : a \u2223 1) : a = 1",
+              "final": "theorem bench_real_00006 {a : Foo} (H : 0 \u2264 a) (H' : a \u2223 1) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00013",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00013 {a b : Foo} (h : b = False) : (a \u2227 b) = False",
+              "final": "theorem bench_real_00013 {a b : Foo} (h : b = False) : True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00014",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00014   (0 : ISize) \u2260 1",
+              "final": "theorem bench_real_00014   (0 : ISize) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token; expected '_' or identifier"
+              ]
+            },
+            {
+              "id": "real_00018",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) = false",
+              "final": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '('; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00035",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00035   (0 : Int8) \u2260 1",
+              "final": "theorem bench_real_00035   (0 : Int8) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token; expected '_' or identifier"
+              ]
+            },
+            {
+              "id": "real_00038",
+              "corruption": "parse_missing_colon",
+              "steps": 3,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00038 {P : Fin (n + 1) \u2192 Prop}   (\u2200 i, P i) \u2194 P 0 \u2227 \u2200 i : Fin n, P i.succ",
+              "final": "theorem bench_real_00038 {P : Fin (n + 1) \u2192 Prop}   (\u2200 i, P i) \u2194 P 0 \u2227 \u2200 i : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '\u2200'; expected '_' or identifier"
+              ]
+            },
+            {
+              "id": "real_00043",
+              "corruption": "not_proposition",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00043 {xs : Array \u03b1} (h : \u2200 i, (h : i < xs.size) \u2192 \u00acp xs[i]) : h",
+              "final": "theorem bench_real_00043 {xs : Array \u03b1} (h : \u2200 i, (h : i < xs.size) \u2192 \u00acp xs[i]) : True := by sorry",
+              "terminal_errors": [
+                "function expected at"
+              ]
+            },
+            {
+              "id": "real_00045",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00045 {p q : Foo} (h\u2081 : p = q) (h\u2082 : q)  : p",
+              "final": "theorem bench_real_00045 {p q : Foo} (h\u2081 : p = q) (h\u2082 : q)  : True := by sorry",
+              "terminal_errors": [
+                "type expected, got"
+              ]
+            },
+            {
+              "id": "real_00068",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00068 (x : Foo32) (hx : 0 \u2264 x) : Int32.ofNat x.toNatClampNeg = x",
+              "final": "theorem bench_real_00068 (x : Foo32) (hx : 0 \u2264 x) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00069",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00069 {a b : Foo} (h : b = false) : (a || b) = a",
+              "final": "theorem bench_real_00069 {a b : Foo} (h : b = false) : True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00072",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00072 {x y : BitVec w}   (x ^^^ y = 0#w) \u2194 x = y",
+              "final": "theorem bench_real_00072 {x y : BitVec w}   (x ^^^ y = 0#w) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '^^^'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00076",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00076 (h : 0 < w)   (BitVec.ofNat w 1)[0] = true",
+              "final": "theorem bench_real_00076 (h : 0 < w)   (BitVec.ofNat w 1)[0] : True := by sorry",
+              "terminal_errors": [
+                "unexpected token; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00078",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00078 {o : Option \u03b1}   o.toList = [] \u2194 o = none",
+              "final": "theorem bench_real_00078 {o : Option \u03b1}   o.toList = [] : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00081",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00081 {n : Foo} (hn : n \u2260 0) : Int.sign n = 1",
+              "final": "theorem bench_real_00081 {n : Foo} (hn : n \u2260 0) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00089",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00089   \u2200 {o\u2081 o\u2082 : Ordering}, o\u2081.then o\u2082 = lt \u2194 o\u2081 = lt \u2228 o\u2081 = eq \u2227 o\u2082 = lt",
+              "final": "theorem bench_real_00089   \u2200 {o\u2081 o\u2082 : Ordering} : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '\u2200'; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00090",
+              "corruption": "lowercase_type",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00090 (a b : Uint8) (hb : b < 8) : (a <<< b).toUInt64 = (a.toUInt64 <<< b.toUInt64) % 256",
+              "final": "theorem bench_real_00090 (a b : Uint8) (hb : b < 8) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00103",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00103 {w start len : Nat}   (0#w).extractLsb' start len = 0#len",
+              "final": "theorem bench_real_00103 {w start len : Nat}   (0#w) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token; expected '_' or identifier"
+              ]
+            },
+            {
+              "id": "real_00104",
+              "corruption": "type_mismatch",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00104 {xs : Array \u03b1} (h : \u2200 a, a \u2208 xs \u2192 \u00acp a) : xs.eraseP p = 0",
+              "final": "theorem bench_real_00104 {xs : Array \u03b1} (h : \u2200 a, a \u2208 xs \u2192 \u00acp a) : True := by sorry",
+              "terminal_errors": [
+                "function expected at"
+              ]
+            },
+            {
+              "id": "real_00116",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00116 {b : BitVec w}   ~~~(~~~b) = b",
+              "final": "theorem bench_real_00116 {b : BitVec w}   ~~~(~~~b) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '~~~'; expected ':'"
+              ]
+            }
+          ]
+        }
+      },
+      "missing_policies": []
+    },
+    "run_20260211_002407": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "records_with_trace": 300,
+          "solved": 29,
+          "exact": 0,
+          "lean_ok_records": 29,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.09666666666666666,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.09666666666666666,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 1.34,
+          "median_steps": 1.0,
+          "median_solve_step": 2,
+          "avg_elapsed_ms": 260.51,
+          "timeout_records": 0,
+          "first_error_kind": {
+            "parse_error": 104,
+            "type_mismatch": 102,
+            "failed_typeclass": 51,
+            "not_proposition": 23,
+            "other": 13,
+            "unknown_identifier": 7
+          },
+          "terminal_error_kind": {
+            "parse_error": 101,
+            "type_mismatch": 98,
+            "failed_typeclass": 52,
+            "solved": 29,
+            "other": 13,
+            "unknown_identifier": 7
+          },
+          "acceptance_rejection_reasons": {},
+          "failure_transitions": {
+            "parse_error->parse_error": 101,
+            "type_mismatch->type_mismatch": 95,
+            "failed_typeclass->failed_typeclass": 51,
+            "other->other": 13,
+            "unknown_identifier->unknown_identifier": 7,
+            "parse_error->type_mismatch": 3,
+            "type_mismatch->failed_typeclass": 1
+          },
+          "solved_by_step": {
+            "2": 29
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 42,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.0476190476190477,
+              "avg_elapsed_ms": 205.0952380952381,
+              "first_error_kind": {
+                "failed_typeclass": 24,
+                "type_mismatch": 11,
+                "other": 4,
+                "unknown_identifier": 3
+              },
+              "terminal_error_kind": {
+                "failed_typeclass": 24,
+                "type_mismatch": 11,
+                "other": 4,
+                "unknown_identifier": 3
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 24,
+                "type_mismatch->type_mismatch": 11,
+                "other->other": 4,
+                "unknown_identifier->unknown_identifier": 3
+              }
+            },
+            "not_proposition": {
+              "count": 64,
+              "solved": 29,
+              "exact": 0,
+              "lean_ok_records": 29,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.453125,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.453125,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.484375,
+              "avg_elapsed_ms": 285.015625,
+              "first_error_kind": {
+                "type_mismatch": 41,
+                "not_proposition": 23
+              },
+              "terminal_error_kind": {
+                "type_mismatch": 34,
+                "solved": 29,
+                "failed_typeclass": 1
+              },
+              "failure_transitions": {
+                "type_mismatch->type_mismatch": 34,
+                "type_mismatch->failed_typeclass": 1
+              }
+            },
+            "parse_missing_colon": {
+              "count": 49,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.0408163265306123,
+              "avg_elapsed_ms": 199.73469387755102,
+              "first_error_kind": {
+                "parse_error": 49
+              },
+              "terminal_error_kind": {
+                "parse_error": 49
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 49
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 50,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.22,
+              "avg_elapsed_ms": 428.0,
+              "first_error_kind": {
+                "parse_error": 50
+              },
+              "terminal_error_kind": {
+                "parse_error": 47,
+                "type_mismatch": 3
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 47,
+                "parse_error->type_mismatch": 3
+              }
+            },
+            "type_mismatch": {
+              "count": 50,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.12,
+              "avg_elapsed_ms": 222.48,
+              "first_error_kind": {
+                "type_mismatch": 39,
+                "failed_typeclass": 5,
+                "parse_error": 5,
+                "unknown_identifier": 1
+              },
+              "terminal_error_kind": {
+                "type_mismatch": 39,
+                "failed_typeclass": 5,
+                "parse_error": 5,
+                "unknown_identifier": 1
+              },
+              "failure_transitions": {
+                "type_mismatch->type_mismatch": 39,
+                "failed_typeclass->failed_typeclass": 5,
+                "parse_error->parse_error": 5,
+                "unknown_identifier->unknown_identifier": 1
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 45,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1,
+              "avg_elapsed_ms": 199.7111111111111,
+              "first_error_kind": {
+                "failed_typeclass": 22,
+                "type_mismatch": 11,
+                "other": 9,
+                "unknown_identifier": 3
+              },
+              "terminal_error_kind": {
+                "failed_typeclass": 22,
+                "type_mismatch": 11,
+                "other": 9,
+                "unknown_identifier": 3
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 22,
+                "type_mismatch->type_mismatch": 11,
+                "other->other": 9,
+                "unknown_identifier->unknown_identifier": 3
+              }
+            }
+          },
+          "failure_examples": [
+            {
+              "id": "real_00000",
+              "corruption": "lowercase_type",
+              "steps": 1,
+              "first_error_kind": "other",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00000 {x y : BitVec n} : x.toint = y.toInt \u2194 x = y",
+              "final": "theorem bench_real_00000 {x y : BitVec n} : x.toint = y.toInt \u2194 x = y := by sorry",
+              "terminal_errors": [
+                "invalid field 'toint', the environment does not contain 'BitVec.toint'"
+              ]
+            },
+            {
+              "id": "real_00001",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00001 (a b : Foo8) (hb : b \u2260 -1) : (a / b).toInt64 = a.toInt64 / b.toInt64",
+              "final": "theorem bench_real_00001 (a b : Foo8) (hb : b \u2260 -1) : (a / b).toInt64 = a.toInt64 / b.toInt64 := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "invalid field notation, type is not of the form (C ...) where C is a constant",
+                "invalid field notation, type is not of the form (C ...) where C is a constant"
+              ]
+            },
+            {
+              "id": "real_00003",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00003 (a : UInt8 : -a = -1 * a",
+              "final": "theorem bench_real_00003 := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00004",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00004 {k x y : Int} (h : 0 < k : x / k \u2264 y \u2194 x < y * k + k",
+              "final": "theorem bench_real_00004 {k x y : Int} := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00005",
+              "corruption": "lowercase_type",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00005 {p q : prop} (h\u2081 : p = q) (h\u2082 : q)  : p",
+              "final": "theorem bench_real_00005 {p q : prop} (h\u2081 : p = q) (h\u2082 : q)  : p := by sorry",
+              "terminal_errors": [
+                "type expected, got"
+              ]
+            },
+            {
+              "id": "real_00006",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00006 : \u2200 (x : Foo), (x ^^ x) = false",
+              "final": "theorem bench_real_00006 : \u2200 (x : Foo), (x ^^ x) = false := by sorry",
+              "terminal_errors": [
+                "Application type mismatch: In the application"
+              ]
+            },
+            {
+              "id": "real_00007",
+              "corruption": "lowercase_type",
+              "steps": 1,
+              "first_error_kind": "unknown_identifier",
+              "terminal_error_kind": "unknown_identifier",
+              "candidate0": "theorem bench_real_00007 {n} (h\u2081 h\u2082) : (ISize.ofintLE n h\u2081 h\u2082).toInt16 = Int16.ofInt n",
+              "final": "theorem bench_real_00007 {n} (h\u2081 h\u2082) : (ISize.ofintLE n h\u2081 h\u2082).toInt16 = Int16.ofInt n := by sorry",
+              "terminal_errors": [
+                "unknown constant 'ISize.ofintLE'"
+              ]
+            },
+            {
+              "id": "real_00009",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00009 (H : m * n = 1 : m = 1",
+              "final": "theorem bench_real_00009 := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00011",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00011 {b : Foo} (h : 3 \u2264 b) : Int.bmod 1 b = 1",
+              "final": "theorem bench_real_00011 {b : Foo} (h : 3 \u2264 b) : Int.bmod 1 b = 1 := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "Application type mismatch: In the application",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00012",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00012 : \u2200 (x y : Bool, (x && y) = (y && x)",
+              "final": "theorem bench_real_00012 : \u2200 := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected '(', '[', '_', '{', '\u2983' or identifier"
+              ]
+            },
+            {
+              "id": "real_00014",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00014 {a b : Int} (h : b \u2223 a : a.fdiv b = a / b",
+              "final": "theorem bench_real_00014 {a b : Int} := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00015",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00015 (h\u2081 : a \u2194 c) (h\u2082 : c \u2192 (b \u2194 d))   (a \u2192 b) \u2194 (c \u2192 d)",
+              "final": "theorem bench_real_00015 (h\u2081 : a \u2194 c) (h\u2082 : c \u2192 (b \u2194 d))   (a \u2192 b) \u2194 (c \u2192 d) := by sorry",
+              "terminal_errors": [
+                "unexpected token '\u2192'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00016",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00016 {a b : Int64} (hab : a \u2264 b : a.toNatClampNeg \u2264 b.toNatClampNeg",
+              "final": "theorem bench_real_00016 {a b : Int64} := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00017",
+              "corruption": "not_proposition",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem toNat_sub'' {a b : Int} (ha : 0 \u2264 a) (hb : 0 \u2264 b) : hb",
+              "final": "theorem toNat_sub'' {a b : Int} (ha : 0 \u2264 a) (hb : 0 \u2264 b) : hb := by sorry",
+              "terminal_errors": [
+                "type expected, got"
+              ]
+            },
+            {
+              "id": "real_00018",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "other",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00018 {a : Int} : a.toFoo = a \u2194 0 \u2264 a",
+              "final": "theorem bench_real_00018 {a : Int} : a.toFoo = a \u2194 0 \u2264 a := by sorry",
+              "terminal_errors": [
+                "invalid field 'toFoo', the environment does not contain 'Int.toFoo'"
+              ]
+            },
+            {
+              "id": "real_00019",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00019 {a b : Fin n} : (\u2191(a - b) : Foo) = a - b \u2194 b \u2264 a",
+              "final": "theorem bench_real_00019 {a b : Fin n} : (\u2191(a - b) : Foo) = a - b \u2194 b \u2264 a := by sorry",
+              "terminal_errors": [
+                "type mismatch",
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00020",
+              "corruption": "type_mismatch",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00020 {\u03b1 \u03b2 : Prop} (h : \u03b1) : Nat = True",
+              "final": "theorem bench_real_00020 {\u03b1 \u03b2 : Prop} (h : \u03b1) : Nat = True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00021",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00021 (n : USize (h) : UInt32.ofNatLT n.toNat h = n.toUInt32",
+              "final": "theorem bench_real_00021 := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00022",
+              "corruption": "type_mismatch",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00022 : (a::as).find? p = False",
+              "final": "theorem bench_real_00022 : (a::as).find? p = False := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00023",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00023 {a b : Fin UInt8.size}   UInt8.ofFin a < UInt8.ofFin b \u2194 a < b",
+              "final": "theorem bench_real_00023 {a b : Fin UInt8.size}   UInt8.ofFin a < UInt8.ofFin b \u2194 a < b := by sorry",
+              "terminal_errors": [
+                "unexpected token '<'; expected ':'"
+              ]
+            }
+          ]
+        },
+        "research": {
+          "count": 300,
+          "records_with_trace": 300,
+          "solved": 256,
+          "exact": 79,
+          "lean_ok_records": 256,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.8533333333333334,
+          "exact_rate": 0.2633333333333333,
+          "lean_ok_rate": 0.8533333333333334,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.5566666666666666,
+          "median_steps": 2.0,
+          "median_solve_step": 2.0,
+          "avg_elapsed_ms": 496.03333333333336,
+          "timeout_records": 0,
+          "first_error_kind": {
+            "parse_error": 104,
+            "type_mismatch": 102,
+            "failed_typeclass": 51,
+            "not_proposition": 23,
+            "other": 13,
+            "unknown_identifier": 7
+          },
+          "terminal_error_kind": {
+            "solved": 256,
+            "parse_error": 18,
+            "failed_typeclass": 11,
+            "other": 6,
+            "type_mismatch": 5,
+            "unknown_identifier": 4
+          },
+          "acceptance_rejection_reasons": {},
+          "failure_transitions": {
+            "parse_error->parse_error": 18,
+            "failed_typeclass->failed_typeclass": 11,
+            "type_mismatch->type_mismatch": 5,
+            "unknown_identifier->unknown_identifier": 4,
+            "other->other": 3,
+            "failed_typeclass->other": 1,
+            "parse_error->other": 1,
+            "type_mismatch->other": 1
+          },
+          "solved_by_step": {
+            "2": 188,
+            "3": 40,
+            "4": 24,
+            "5": 3,
+            "6": 1
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 42,
+              "solved": 38,
+              "exact": 31,
+              "lean_ok_records": 38,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.9047619047619048,
+              "exact_rate": 0.7380952380952381,
+              "lean_ok_rate": 0.9047619047619048,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.3333333333333335,
+              "avg_elapsed_ms": 454.8809523809524,
+              "first_error_kind": {
+                "failed_typeclass": 24,
+                "type_mismatch": 11,
+                "other": 4,
+                "unknown_identifier": 3
+              },
+              "terminal_error_kind": {
+                "solved": 38,
+                "unknown_identifier": 3,
+                "other": 1
+              },
+              "failure_transitions": {
+                "unknown_identifier->unknown_identifier": 3,
+                "other->other": 1
+              }
+            },
+            "not_proposition": {
+              "count": 64,
+              "solved": 63,
+              "exact": 0,
+              "lean_ok_records": 63,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.984375,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.984375,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.046875,
+              "avg_elapsed_ms": 393.40625,
+              "first_error_kind": {
+                "type_mismatch": 41,
+                "not_proposition": 23
+              },
+              "terminal_error_kind": {
+                "solved": 63,
+                "other": 1
+              },
+              "failure_transitions": {
+                "type_mismatch->other": 1
+              }
+            },
+            "parse_missing_colon": {
+              "count": 49,
+              "solved": 38,
+              "exact": 26,
+              "lean_ok_records": 38,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.7755102040816326,
+              "exact_rate": 0.5306122448979592,
+              "lean_ok_rate": 0.7755102040816326,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.6530612244897958,
+              "avg_elapsed_ms": 510.85714285714283,
+              "first_error_kind": {
+                "parse_error": 49
+              },
+              "terminal_error_kind": {
+                "solved": 38,
+                "parse_error": 10,
+                "other": 1
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 10,
+                "parse_error->other": 1
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 50,
+              "solved": 42,
+              "exact": 20,
+              "lean_ok_records": 42,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.84,
+              "exact_rate": 0.4,
+              "lean_ok_rate": 0.84,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 4.02,
+              "avg_elapsed_ms": 775.52,
+              "first_error_kind": {
+                "parse_error": 50
+              },
+              "terminal_error_kind": {
+                "solved": 42,
+                "parse_error": 8
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 8
+              }
+            },
+            "type_mismatch": {
+              "count": 50,
+              "solved": 49,
+              "exact": 0,
+              "lean_ok_records": 49,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.98,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.98,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.3,
+              "avg_elapsed_ms": 451.86,
+              "first_error_kind": {
+                "type_mismatch": 39,
+                "failed_typeclass": 5,
+                "parse_error": 5,
+                "unknown_identifier": 1
+              },
+              "terminal_error_kind": {
+                "solved": 49,
+                "unknown_identifier": 1
+              },
+              "failure_transitions": {
+                "unknown_identifier->unknown_identifier": 1
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 45,
+              "solved": 26,
+              "exact": 2,
+              "lean_ok_records": 26,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.5777777777777777,
+              "exact_rate": 0.044444444444444446,
+              "lean_ok_rate": 0.5777777777777777,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.0444444444444443,
+              "avg_elapsed_ms": 402.8,
+              "first_error_kind": {
+                "failed_typeclass": 22,
+                "type_mismatch": 11,
+                "other": 9,
+                "unknown_identifier": 3
+              },
+              "terminal_error_kind": {
+                "solved": 26,
+                "failed_typeclass": 11,
+                "type_mismatch": 5,
+                "other": 3
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 11,
+                "type_mismatch->type_mismatch": 5,
+                "other->other": 2,
+                "failed_typeclass->other": 1
+              }
+            }
+          },
+          "failure_examples": [
+            {
+              "id": "real_00001",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00001 (a b : Foo8) (hb : b \u2260 -1) : (a / b).toInt64 = a.toInt64 / b.toInt64",
+              "final": "theorem bench_real_00001 (a b : Foo8) (hb : b \u2260 -1) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00007",
+              "corruption": "lowercase_type",
+              "steps": 6,
+              "first_error_kind": "unknown_identifier",
+              "terminal_error_kind": "unknown_identifier",
+              "candidate0": "theorem bench_real_00007 {n} (h\u2081 h\u2082) : (ISize.ofintLE n h\u2081 h\u2082).toInt16 = Int16.ofInt n",
+              "final": "theorem bench_real_00007 {n} (h\u2081 h\u2082) : (Type.ofintLE n h\u2081 h\u2082).toInt16 = Int16.ofInt n := by sorry",
+              "terminal_errors": [
+                "unknown identifier '\u00abType\u00bb.ofintLE'"
+              ]
+            },
+            {
+              "id": "real_00011",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00011 {b : Foo} (h : 3 \u2264 b) : Int.bmod 1 b = 1",
+              "final": "theorem bench_real_00011 {b : Foo} (h : 3 \u2264 b) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00021",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 6,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00021 (n : USize (h) : UInt32.ofNatLT n.toNat h = n.toUInt32",
+              "final": "theorem bench_real_00021 (n : USize (h) : : : : : UInt32.ofNatLT n.toNat h = n.toUInt32 := by sorry",
+              "terminal_errors": [
+                "unexpected token ':'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00027",
+              "corruption": "parse_missing_colon",
+              "steps": 3,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00027 {P : Fin (n + 1) \u2192 Prop}   (\u2203 i, P i) \u2194 P 0 \u2228 \u2203 i : Fin n, P i.succ",
+              "final": "theorem bench_real_00027 {P : Fin (n + 1) \u2192 Prop}   (\u2203 i, P i) \u2194 P 0 \u2228 \u2203 i : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '\u2203'; expected '_' or identifier"
+              ]
+            },
+            {
+              "id": "real_00034",
+              "corruption": "parse_missing_colon",
+              "steps": 3,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00034 {l : List \u03b1} {i j : Nat} (h : i < j)   (l.take j)[i]? = l[i]?",
+              "final": "theorem bench_real_00034 {l : List \u03b1} {i j : Nat} (h : i < j)   (l.take j)[i]? = l[i] : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '?'; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00037",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00037 (a b : Foo) [Decidable a] : ((a \u2192 b) \u2192 a) \u2192 a",
+              "final": "theorem bench_real_00037 (a b : Foo) [Decidable a] : True := by sorry",
+              "terminal_errors": [
+                "Application type mismatch: In the application"
+              ]
+            },
+            {
+              "id": "real_00051",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 6,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00051 {a b : Int} (ha : 0 \u2264 a (hb : 0 \u2264 b) : (a + b).toNat = a.toNat + b.toNat",
+              "final": "theorem bench_real_00051 : {a := by sorry",
+              "terminal_errors": [
+                "unexpected end of input; expected '}'"
+              ]
+            },
+            {
+              "id": "real_00053",
+              "corruption": "parse_missing_colon",
+              "steps": 3,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00053 [Min \u03b1] {o o' : Option \u03b1}   (min o o').isSome \u2192 o.isSome",
+              "final": "theorem bench_real_00053 [Min \u03b1] {o o' : Option \u03b1}   (min o o') : True := by sorry",
+              "terminal_errors": [
+                "failed to infer binder type",
+                "failed to infer binder type",
+                "failed to infer binder type"
+              ]
+            },
+            {
+              "id": "real_00055",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 6,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00055 (h : w = 0 {x y : BitVec w} : x \u2264 y",
+              "final": "theorem bench_real_00055 (h : w = 0 {x y) : BitVec w} : : x \u2264 y := by sorry",
+              "terminal_errors": [
+                "unexpected token ')'; expected '}' or structInstFieldDecl"
+              ]
+            },
+            {
+              "id": "real_00078",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00078 {x k : Foo} (h : 0 < k) : x < k * (x.tdiv k) + k",
+              "final": "theorem bench_real_00078 {x k : Foo} (h : 0 < k) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00081",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00081 {a b : Foo} {hab\u2081 hab\u2082} : Int64.ofIntLE (a + b) hab\u2081 hab\u2082 = Int64.ofInt a + Int64.ofInt b",
+              "final": "theorem bench_real_00081 {a b : Foo} {hab\u2081 hab\u2082} : True := by sorry",
+              "terminal_errors": [
+                "failed to infer binder type",
+                "failed to infer binder type"
+              ]
+            },
+            {
+              "id": "real_00090",
+              "corruption": "not_proposition",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00090 (x : Int16) {h\u2081 h\u2082} : x",
+              "final": "theorem bench_real_00090 (x : Int16) {h\u2081 h\u2082} : True := by sorry",
+              "terminal_errors": [
+                "failed to infer binder type",
+                "failed to infer binder type"
+              ]
+            },
+            {
+              "id": "real_00092",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00092 {a b : Foo} (H1 : 0 \u2264 a) (H2 : a < b) : a.tdiv b = 0",
+              "final": "theorem bench_real_00092 {a b : Foo} (H1 : 0 \u2264 a) (H2 : a < b) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00095",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 6,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00095 (a b : USize (ha : a < 65536) (hb : b < 65536) : (a % b).toUInt16 = a.toUInt16 % b.toUInt16",
+              "final": "theorem bench_real_00095 (a b : USize (ha : a < 65536) (hb : b < 65536) : (a % b) : : : : .toUInt16 = a.toUInt16 % b.toUInt16 := by sorry",
+              "terminal_errors": [
+                "unexpected token ':'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00108",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00108 {a : Foo} (b : Nat) {c : Nat} (h : c \u2264 a) : (a = b + c) = (b = a - c)",
+              "final": "theorem bench_real_00108 {a : Foo} (b : Nat) {c : Nat} (h : c \u2264 a) : True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00128",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00128 (n : Foo) [NeZero n] : 0 < n",
+              "final": "theorem bench_real_00128 (n : Foo) [NeZero n] : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00132",
+              "corruption": "lowercase_type",
+              "steps": 2,
+              "first_error_kind": "other",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00132 {x y : ISize} (h : x.toint = y.toInt) : x = y",
+              "final": "theorem bench_real_00132 {x y : ISize} (h : x.toint = y.toInt) : True := by sorry",
+              "terminal_errors": [
+                "invalid field 'toint', the environment does not contain 'ISize.toint'"
+              ]
+            },
+            {
+              "id": "real_00134",
+              "corruption": "lowercase_type",
+              "steps": 6,
+              "first_error_kind": "unknown_identifier",
+              "terminal_error_kind": "unknown_identifier",
+              "candidate0": "theorem bench_real_00134 : USize.size \u2264 Uint64.size",
+              "final": "theorem bench_real_00134 : USize.size \u2264 Type.size := by sorry",
+              "terminal_errors": [
+                "unknown identifier '\u00abType\u00bb.size'"
+              ]
+            },
+            {
+              "id": "real_00136",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00136 {a b c : Foo} (H : c \u2223 a) : (a + b).fdiv c = a.fdiv c + b.fdiv c",
+              "final": "theorem bench_real_00136 {a b c : Foo} (H : c \u2223 a) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize"
+              ]
+            }
+          ]
+        }
+      },
+      "missing_policies": []
+    },
+    "run_20260211_002639": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "records_with_trace": 300,
+          "solved": 35,
+          "exact": 0,
+          "lean_ok_records": 35,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.11666666666666667,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.11666666666666667,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 1.34,
+          "median_steps": 1.0,
+          "median_solve_step": 2,
+          "avg_elapsed_ms": 260.14,
+          "timeout_records": 0,
+          "first_error_kind": {
+            "parse_error": 107,
+            "type_mismatch": 90,
+            "failed_typeclass": 46,
+            "not_proposition": 30,
+            "other": 24,
+            "unknown_identifier": 3
+          },
+          "terminal_error_kind": {
+            "parse_error": 97,
+            "type_mismatch": 95,
+            "failed_typeclass": 46,
+            "solved": 35,
+            "other": 25,
+            "unknown_identifier": 2
+          },
+          "acceptance_rejection_reasons": {},
+          "failure_transitions": {
+            "parse_error->parse_error": 97,
+            "type_mismatch->type_mismatch": 89,
+            "failed_typeclass->failed_typeclass": 46,
+            "other->other": 24,
+            "parse_error->type_mismatch": 6,
+            "unknown_identifier->unknown_identifier": 2,
+            "unknown_identifier->other": 1
+          },
+          "solved_by_step": {
+            "2": 31,
+            "3": 2,
+            "4": 2
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 40,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.05,
+              "avg_elapsed_ms": 206.425,
+              "first_error_kind": {
+                "failed_typeclass": 22,
+                "other": 9,
+                "type_mismatch": 7,
+                "unknown_identifier": 2
+              },
+              "terminal_error_kind": {
+                "failed_typeclass": 22,
+                "other": 10,
+                "type_mismatch": 7,
+                "unknown_identifier": 1
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 22,
+                "other->other": 9,
+                "type_mismatch->type_mismatch": 7,
+                "unknown_identifier->other": 1,
+                "unknown_identifier->unknown_identifier": 1
+              }
+            },
+            "not_proposition": {
+              "count": 67,
+              "solved": 31,
+              "exact": 0,
+              "lean_ok_records": 31,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.4626865671641791,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.4626865671641791,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.4776119402985075,
+              "avg_elapsed_ms": 283.9850746268657,
+              "first_error_kind": {
+                "type_mismatch": 33,
+                "not_proposition": 30,
+                "other": 4
+              },
+              "terminal_error_kind": {
+                "type_mismatch": 32,
+                "solved": 31,
+                "other": 4
+              },
+              "failure_transitions": {
+                "type_mismatch->type_mismatch": 32,
+                "other->other": 4
+              }
+            },
+            "parse_missing_colon": {
+              "count": 56,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1,
+              "avg_elapsed_ms": 191.60714285714286,
+              "first_error_kind": {
+                "parse_error": 56
+              },
+              "terminal_error_kind": {
+                "parse_error": 56
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 56
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 47,
+              "solved": 2,
+              "exact": 0,
+              "lean_ok_records": 2,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0425531914893617,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0425531914893617,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.234042553191489,
+              "avg_elapsed_ms": 431.48936170212767,
+              "first_error_kind": {
+                "parse_error": 47
+              },
+              "terminal_error_kind": {
+                "parse_error": 39,
+                "type_mismatch": 6,
+                "solved": 2
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 39,
+                "parse_error->type_mismatch": 6
+              }
+            },
+            "type_mismatch": {
+              "count": 47,
+              "solved": 2,
+              "exact": 0,
+              "lean_ok_records": 2,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0425531914893617,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0425531914893617,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1.2127659574468086,
+              "avg_elapsed_ms": 239.19148936170214,
+              "first_error_kind": {
+                "type_mismatch": 38,
+                "failed_typeclass": 5,
+                "parse_error": 4
+              },
+              "terminal_error_kind": {
+                "type_mismatch": 38,
+                "failed_typeclass": 5,
+                "parse_error": 2,
+                "solved": 2
+              },
+              "failure_transitions": {
+                "type_mismatch->type_mismatch": 38,
+                "failed_typeclass->failed_typeclass": 5,
+                "parse_error->parse_error": 2
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 43,
+              "solved": 0,
+              "exact": 0,
+              "lean_ok_records": 0,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.0,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 1,
+              "avg_elapsed_ms": 197.8139534883721,
+              "first_error_kind": {
+                "failed_typeclass": 19,
+                "type_mismatch": 12,
+                "other": 11,
+                "unknown_identifier": 1
+              },
+              "terminal_error_kind": {
+                "failed_typeclass": 19,
+                "type_mismatch": 12,
+                "other": 11,
+                "unknown_identifier": 1
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 19,
+                "type_mismatch->type_mismatch": 12,
+                "other->other": 11,
+                "unknown_identifier->unknown_identifier": 1
+              }
+            }
+          },
+          "failure_examples": [
+            {
+              "id": "real_00000",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00000 (a i : Nat) (h : i < a : a - (i + 1) < a - i",
+              "final": "theorem bench_real_00000 (a i : Nat) := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00001",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00001 (a b : Fin n : (a + b).val = (a.val + b.val) % n",
+              "final": "theorem bench_real_00001 := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00002",
+              "corruption": "lowercase_type",
+              "steps": 2,
+              "first_error_kind": "unknown_identifier",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00002 (h : LE.le n m) : Eq (nat.ble n m) true",
+              "final": "theorem bench_real_00002 (h : LE.le n m) (nat.ble : Type): Eq (nat.ble n m) true := by sorry",
+              "terminal_errors": [
+                "invalid binder name 'nat.ble', it must be atomic"
+              ]
+            },
+            {
+              "id": "real_00003",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00003 (a b : UFoo64) (ha : a < 65536) (hb : b < 65536) : (a % b).toUInt16 = a.toUInt16 % b.toUInt16",
+              "final": "theorem bench_real_00003 (a b : UFoo64) (ha : a < 65536) (hb : b < 65536) : (a % b).toUInt16 = a.toUInt16 % b.toUInt16 := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize",
+                "invalid field notation, type is not of the form (C ...) where C is a constant"
+              ]
+            },
+            {
+              "id": "real_00004",
+              "corruption": "type_mismatch",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00004 (x : Int16) (hx : 0 \u2264 x) : Int16.ofNat x.toNatClampNeg = True",
+              "final": "theorem bench_real_00004 (x : Int16) (hx : 0 \u2264 x) : Int16.ofNat x.toNatClampNeg = True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00005",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00005  {b : Foo} [Decidable (true = b)]  : decide (true  = b) =  b",
+              "final": "theorem bench_real_00005  {b : Foo} [Decidable (true = b)]  : decide (true  = b) =  b := by sorry",
+              "terminal_errors": [
+                "type mismatch",
+                "type mismatch",
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00006",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00006 (x : Int8) (hx : 0 \u2264 x : Int8.ofNat x.toNatClampNeg = x",
+              "final": "theorem bench_real_00006 (x : Int8) := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00007",
+              "corruption": "unknown_type_symbol",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00007 (a : Foo) (b : USize) : USize.ofNat a = b \u2194 a % 2 ^ System.Platform.numBits = b.toNat",
+              "final": "theorem bench_real_00007 (a : Foo) (b : USize) : USize.ofNat a = b \u2194 a % 2 ^ System.Platform.numBits = b.toNat := by sorry",
+              "terminal_errors": [
+                "Application type mismatch: In the application",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00008",
+              "corruption": "type_mismatch",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00008 (i : Fin b) (h : b \u2264 n) : Nat = True",
+              "final": "theorem bench_real_00008 (i : Fin b) (h : b \u2264 n) : Nat = True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00009",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00009 {n : Nat} {a b : Fin n} (h : a > b) : (b : Nat + 1 \u2264 (a : Nat)",
+              "final": "theorem bench_real_00009 {n : Nat} {a b : Fin n} (h : a > b) : (b := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ')', ',' or ':'"
+              ]
+            },
+            {
+              "id": "real_00010",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00010 (a b n : Int)   (a - b).fmod n = (a.fmod n - b.fmod n).fmod n",
+              "final": "theorem bench_real_00010 (a b n : Int)   (a - b).fmod n = (a.fmod n - b.fmod n).fmod n := by sorry",
+              "terminal_errors": [
+                "unexpected token '-'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00011",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00011   true = true",
+              "final": "theorem bench_real_00011   true = true := by sorry",
+              "terminal_errors": [
+                "unexpected token '='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00012",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00012 {l : List \u03b1} (h : l.isEmpty)   l = []",
+              "final": "theorem bench_real_00012 {l : List \u03b1} (h : l.isEmpty)   l = [] := by sorry",
+              "terminal_errors": [
+                "unexpected token '='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00013",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00013 (h : w = 0) (x : BitVec w : x.toInt = 0",
+              "final": "theorem bench_real_00013 (h : w = 0) := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00014",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 3,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00014 {xs : Vector \u03b1 n} : (xs.push a).find? p = (xs.find? p.or (if p a then some a else none)",
+              "final": "theorem bench_real_00014 {xs : Vector \u03b1 n} : (xs.push := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ')', ',' or ':'"
+              ]
+            },
+            {
+              "id": "real_00015",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 2,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00015 {a b : Int} (H1 : 0 \u2264 a (H2 : a < b) : a % b = a",
+              "final": "theorem bench_real_00015 {a b : Int} := by sorry",
+              "terminal_errors": [
+                "unexpected token ':='; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00016",
+              "corruption": "lowercase_type",
+              "steps": 1,
+              "first_error_kind": "other",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00016 {w : Nat} {x : BitVec w} (hx : BitVec.sle 0#w x) : x.toint.toNat = x.toNat",
+              "final": "theorem bench_real_00016 {w : Nat} {x : BitVec w} (hx : BitVec.sle 0#w x) : x.toint.toNat = x.toNat := by sorry",
+              "terminal_errors": [
+                "invalid field 'toint', the environment does not contain 'BitVec.toint'"
+              ]
+            },
+            {
+              "id": "real_00018",
+              "corruption": "parse_missing_colon",
+              "steps": 1,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00018 (h : c \u2223 a + b + 1)   (a + b) / c = a / c + b / c",
+              "final": "theorem bench_real_00018 (h : c \u2223 a + b + 1)   (a + b) / c = a / c + b / c := by sorry",
+              "terminal_errors": [
+                "unexpected token '+'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00019",
+              "corruption": "lowercase_type",
+              "steps": 1,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00019 {m n k : nat} (hkn : k \u2264 n) (h : m \u2223 n) : m \u2223 n - k \u2194 m \u2223 k",
+              "final": "theorem bench_real_00019 {m n k : nat} (hkn : k \u2264 n) (h : m \u2223 n) : m \u2223 n - k \u2194 m \u2223 k := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00020",
+              "corruption": "not_proposition",
+              "steps": 1,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00020 (x : Int8) : x",
+              "final": "theorem bench_real_00020 (x : Int8) : x := by sorry",
+              "terminal_errors": [
+                "type expected, got"
+              ]
+            }
+          ]
+        },
+        "research": {
+          "count": 300,
+          "records_with_trace": 300,
+          "solved": 248,
+          "exact": 74,
+          "lean_ok_records": 248,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.8266666666666667,
+          "exact_rate": 0.24666666666666667,
+          "lean_ok_rate": 0.8266666666666667,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.56,
+          "median_steps": 2.0,
+          "median_solve_step": 2.0,
+          "avg_elapsed_ms": 495.9533333333333,
+          "timeout_records": 0,
+          "first_error_kind": {
+            "parse_error": 107,
+            "type_mismatch": 90,
+            "failed_typeclass": 46,
+            "not_proposition": 30,
+            "other": 24,
+            "unknown_identifier": 3
+          },
+          "terminal_error_kind": {
+            "solved": 248,
+            "parse_error": 19,
+            "other": 16,
+            "failed_typeclass": 8,
+            "type_mismatch": 6,
+            "unknown_identifier": 3
+          },
+          "acceptance_rejection_reasons": {},
+          "failure_transitions": {
+            "parse_error->parse_error": 19,
+            "failed_typeclass->failed_typeclass": 8,
+            "other->other": 7,
+            "parse_error->other": 6,
+            "type_mismatch->type_mismatch": 6,
+            "unknown_identifier->unknown_identifier": 3,
+            "failed_typeclass->other": 2,
+            "type_mismatch->other": 1
+          },
+          "solved_by_step": {
+            "2": 189,
+            "3": 32,
+            "4": 25,
+            "6": 2
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 40,
+              "solved": 37,
+              "exact": 27,
+              "lean_ok_records": 37,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.925,
+              "exact_rate": 0.675,
+              "lean_ok_rate": 0.925,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.225,
+              "avg_elapsed_ms": 434.2,
+              "first_error_kind": {
+                "failed_typeclass": 22,
+                "other": 9,
+                "type_mismatch": 7,
+                "unknown_identifier": 2
+              },
+              "terminal_error_kind": {
+                "solved": 37,
+                "unknown_identifier": 2,
+                "other": 1
+              },
+              "failure_transitions": {
+                "unknown_identifier->unknown_identifier": 2,
+                "other->other": 1
+              }
+            },
+            "not_proposition": {
+              "count": 67,
+              "solved": 63,
+              "exact": 0,
+              "lean_ok_records": 63,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.9402985074626866,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.9402985074626866,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.08955223880597,
+              "avg_elapsed_ms": 401.95522388059703,
+              "first_error_kind": {
+                "type_mismatch": 33,
+                "not_proposition": 30,
+                "other": 4
+              },
+              "terminal_error_kind": {
+                "solved": 63,
+                "other": 4
+              },
+              "failure_transitions": {
+                "other->other": 4
+              }
+            },
+            "parse_missing_colon": {
+              "count": 56,
+              "solved": 37,
+              "exact": 26,
+              "lean_ok_records": 37,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.6607142857142857,
+              "exact_rate": 0.4642857142857143,
+              "lean_ok_rate": 0.6607142857142857,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.9642857142857144,
+              "avg_elapsed_ms": 570.5357142857143,
+              "first_error_kind": {
+                "parse_error": 56
+              },
+              "terminal_error_kind": {
+                "solved": 37,
+                "parse_error": 15,
+                "other": 4
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 15,
+                "parse_error->other": 4
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 47,
+              "solved": 41,
+              "exact": 21,
+              "lean_ok_records": 41,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.8723404255319149,
+              "exact_rate": 0.44680851063829785,
+              "lean_ok_rate": 0.8723404255319149,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 3.8297872340425534,
+              "avg_elapsed_ms": 740.2978723404256,
+              "first_error_kind": {
+                "parse_error": 47
+              },
+              "terminal_error_kind": {
+                "solved": 41,
+                "parse_error": 4,
+                "other": 2
+              },
+              "failure_transitions": {
+                "parse_error->parse_error": 4,
+                "parse_error->other": 2
+              }
+            },
+            "type_mismatch": {
+              "count": 47,
+              "solved": 45,
+              "exact": 0,
+              "lean_ok_records": 45,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.9574468085106383,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.9574468085106383,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.1702127659574466,
+              "avg_elapsed_ms": 423.7659574468085,
+              "first_error_kind": {
+                "type_mismatch": 38,
+                "failed_typeclass": 5,
+                "parse_error": 4
+              },
+              "terminal_error_kind": {
+                "solved": 45,
+                "other": 2
+              },
+              "failure_transitions": {
+                "failed_typeclass->other": 1,
+                "type_mismatch->other": 1
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 43,
+              "solved": 25,
+              "exact": 0,
+              "lean_ok_records": 25,
+              "rejected_lean_ok_records": 0,
+              "rejected_lean_ok_steps": 0,
+              "accepted_after_rejection": 0,
+              "solve_rate": 0.5813953488372093,
+              "exact_rate": 0.0,
+              "lean_ok_rate": 0.5813953488372093,
+              "rejected_lean_ok_rate": 0.0,
+              "avg_steps": 2.116279069767442,
+              "avg_elapsed_ms": 414.5581395348837,
+              "first_error_kind": {
+                "failed_typeclass": 19,
+                "type_mismatch": 12,
+                "other": 11,
+                "unknown_identifier": 1
+              },
+              "terminal_error_kind": {
+                "solved": 25,
+                "failed_typeclass": 8,
+                "type_mismatch": 6,
+                "other": 3,
+                "unknown_identifier": 1
+              },
+              "failure_transitions": {
+                "failed_typeclass->failed_typeclass": 8,
+                "type_mismatch->type_mismatch": 6,
+                "other->other": 2,
+                "failed_typeclass->other": 1,
+                "unknown_identifier->unknown_identifier": 1
+              }
+            }
+          },
+          "failure_examples": [
+            {
+              "id": "real_00002",
+              "corruption": "lowercase_type",
+              "steps": 6,
+              "first_error_kind": "unknown_identifier",
+              "terminal_error_kind": "unknown_identifier",
+              "candidate0": "theorem bench_real_00002 (h : LE.le n m) : Eq (nat.ble n m) true",
+              "final": "theorem bench_real_00002 (h : LE.le n m) : Eq (Int.ble n m) true := by sorry",
+              "terminal_errors": [
+                "unknown constant 'Int.ble'"
+              ]
+            },
+            {
+              "id": "real_00003",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00003 (a b : UFoo64) (ha : a < 65536) (hb : b < 65536) : (a % b).toUInt16 = a.toUInt16 % b.toUInt16",
+              "final": "theorem bench_real_00003 (a b : UFoo64) (ha : a < 65536) (hb : b < 65536) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00005",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00005  {b : Foo} [Decidable (true = b)]  : decide (true  = b) =  b",
+              "final": "theorem bench_real_00005  {b : Foo} [Decidable (true = b)]  : True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00010",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00010 (a b n : Int)   (a - b).fmod n = (a.fmod n - b.fmod n).fmod n",
+              "final": "theorem bench_real_00010 (a b n : Int)   (a - b).fmod n = (a.fmod n - b.fmod n) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '-'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00015",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 6,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00015 {a b : Int} (H1 : 0 \u2264 a (H2 : a < b) : a % b = a",
+              "final": "theorem bench_real_00015 : {a := by sorry",
+              "terminal_errors": [
+                "unexpected end of input; expected '}'"
+              ]
+            },
+            {
+              "id": "real_00018",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00018 (h : c \u2223 a + b + 1)   (a + b) / c = a / c + b / c",
+              "final": "theorem bench_real_00018 (h : c \u2223 a + b + 1)   (a + b) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '+'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00029",
+              "corruption": "type_mismatch",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00029 {o : Option \u03b1} {a b} : o.getD a = 0",
+              "final": "theorem bench_real_00029 {o : Option \u03b1} {a b} : True := by sorry",
+              "terminal_errors": [
+                "failed to infer binder type",
+                "failed to infer binder type"
+              ]
+            },
+            {
+              "id": "real_00056",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00056 {a : Foo} (h : (!a) = a) : False",
+              "final": "theorem bench_real_00056 {a : Foo} (h : (!a) = a) : True := by sorry",
+              "terminal_errors": [
+                "Application type mismatch: In the application",
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00059",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "failed_typeclass",
+              "candidate0": "theorem bench_real_00059 {a b : Foo} (bpos : 0 < b) (H : a \u2223 b) : a \u2264 b",
+              "final": "theorem bench_real_00059 {a b : Foo} (bpos : 0 < b) (H : a \u2223 b) : True := by sorry",
+              "terminal_errors": [
+                "failed to synthesize",
+                "failed to synthesize",
+                "failed to synthesize"
+              ]
+            },
+            {
+              "id": "real_00062",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00062 {a b : Foo} (h : (a || b) = false) : a = false",
+              "final": "theorem bench_real_00062 {a b : Foo} (h : (a || b) = false) : True := by sorry",
+              "terminal_errors": [
+                "Application type mismatch: In the application"
+              ]
+            },
+            {
+              "id": "real_00063",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00063   \u2200 {a} {l : List \u03b1}, a \u2208 l \u2192 \u2203 (i : Nat) (h : i < l.length), l[i]'h = a",
+              "final": "theorem bench_real_00063   \u2200 {a} {l : List \u03b1}, a \u2208 l \u2192 \u2203 (i : Nat) (h : i < l.length), l[i] : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '\u2200'; expected ':'"
+              ]
+            },
+            {
+              "id": "real_00065",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00065 (a b : UInt16) (hb : b < 16)   (a <<< b).toUInt64 = (a.toUInt64 <<< b.toUInt64) % 65536",
+              "final": "theorem bench_real_00065 (a b : UInt16) (hb : b < 16)   (a <<< b).toUInt64 = (a.toUInt64 <<< b.toUInt64) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '<<<'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00092",
+              "corruption": "parse_unbalanced_paren",
+              "steps": 3,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00092 {m n k : Int} (i) : (m + i % n = (k + i) % n \u2194 m % n = k % n",
+              "final": "theorem bench_real_00092 {m n k : Int} (i) : True := by sorry",
+              "terminal_errors": [
+                "failed to infer binder type"
+              ]
+            },
+            {
+              "id": "real_00094",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "failed_typeclass",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00094 {a b : Foo} {hab\u2081 hab\u2082} : Int64.ofIntLE (a * b) hab\u2081 hab\u2082 = Int64.ofInt a * Int64.ofInt b",
+              "final": "theorem bench_real_00094 {a b : Foo} {hab\u2081 hab\u2082} : True := by sorry",
+              "terminal_errors": [
+                "failed to infer binder type",
+                "failed to infer binder type"
+              ]
+            },
+            {
+              "id": "real_00098",
+              "corruption": "not_proposition",
+              "steps": 3,
+              "first_error_kind": "other",
+              "terminal_error_kind": "other",
+              "candidate0": "theorem bench_real_00098 {xs : List \u03b1} {p : \u03b1 \u2192 Bool} (h) : Nat",
+              "final": "theorem bench_real_00098 {xs : List \u03b1} {p : \u03b1 \u2192 Bool} (h) : True := by sorry",
+              "terminal_errors": [
+                "failed to infer binder type"
+              ]
+            },
+            {
+              "id": "real_00099",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00099  (ha : a)   (a \u2194 b) \u2194 b",
+              "final": "theorem bench_real_00099  (ha : a)   (a \u2194 b) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token '\u2194'; expected ')'"
+              ]
+            },
+            {
+              "id": "real_00104",
+              "corruption": "unknown_type_symbol",
+              "steps": 3,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00104 {a b : Foo} (h : a = True) : (a \u2228 b) = True",
+              "final": "theorem bench_real_00104 {a b : Foo} (h : a = True) : True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            },
+            {
+              "id": "real_00105",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00105 {a : Foo} (ha : a) : (a \u2192 b) \u2194 b",
+              "final": "theorem bench_real_00105 {a : Foo} (ha : a) : True := by sorry",
+              "terminal_errors": [
+                "type expected, got"
+              ]
+            },
+            {
+              "id": "real_00112",
+              "corruption": "parse_missing_colon",
+              "steps": 4,
+              "first_error_kind": "parse_error",
+              "terminal_error_kind": "parse_error",
+              "candidate0": "theorem bench_real_00112 (c : Prop) {h : Decidable c} {\u03b1 : Sort u} (t : \u03b1) (e : \u03b1)   dite c (fun _ => t) (fun _ => e) = ite c t e",
+              "final": "theorem bench_real_00112 (c : Prop) {h : Decidable c} {\u03b1 : Sort u} (t : \u03b1) (e : \u03b1)   dite c (fun _ => t) (fun _ => e) : True := by sorry",
+              "terminal_errors": [
+                "unexpected token 'fun'; expected '_' or identifier"
+              ]
+            },
+            {
+              "id": "real_00118",
+              "corruption": "unknown_type_symbol",
+              "steps": 2,
+              "first_error_kind": "type_mismatch",
+              "terminal_error_kind": "type_mismatch",
+              "candidate0": "theorem bench_real_00118 {a b : Foo} (h : b = true) : (a && b) = a",
+              "final": "theorem bench_real_00118 {a b : Foo} (h : b = true) : True := by sorry",
+              "terminal_errors": [
+                "type mismatch"
+              ]
+            }
+          ]
+        }
+      },
+      "missing_policies": []
+    }
+  },
+  "policies": {
+    "heuristic": {
+      "count": 900,
+      "records_with_trace": 900,
+      "solved": 90,
+      "exact": 0,
+      "lean_ok_records": 90,
+      "rejected_lean_ok_records": 0,
+      "rejected_lean_ok_steps": 0,
+      "accepted_after_rejection": 0,
+      "solve_rate": 0.1,
+      "exact_rate": 0.0,
+      "lean_ok_rate": 0.1,
+      "rejected_lean_ok_rate": 0.0,
+      "avg_steps": 1.3177777777777777,
+      "median_steps": 1.0,
+      "median_solve_step": 2.0,
+      "avg_elapsed_ms": 255.86555555555555,
+      "timeout_records": 0,
+      "first_error_kind": {
+        "parse_error": 331,
+        "type_mismatch": 287,
+        "failed_typeclass": 141,
+        "not_proposition": 77,
+        "other": 51,
+        "unknown_identifier": 13
+      },
+      "terminal_error_kind": {
+        "parse_error": 315,
+        "type_mismatch": 288,
+        "failed_typeclass": 143,
+        "solved": 90,
+        "other": 52,
+        "unknown_identifier": 12
+      },
+      "acceptance_rejection_reasons": {},
+      "failure_transitions": {
+        "parse_error->parse_error": 315,
+        "type_mismatch->type_mismatch": 276,
+        "failed_typeclass->failed_typeclass": 141,
+        "other->other": 51,
+        "parse_error->type_mismatch": 12,
+        "unknown_identifier->unknown_identifier": 12,
+        "type_mismatch->failed_typeclass": 2,
+        "unknown_identifier->other": 1
+      },
+      "solved_by_step": {
+        "2": 86,
+        "3": 2,
+        "4": 2
+      },
+      "by_corruption": {
+        "lowercase_type": {
+          "count": 118,
+          "solved": 0,
+          "exact": 0,
+          "lean_ok_records": 0,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.0,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 1.0338983050847457,
+          "avg_elapsed_ms": 202.9406779661017,
+          "first_error_kind": {
+            "failed_typeclass": 65,
+            "type_mismatch": 27,
+            "other": 21,
+            "unknown_identifier": 5
+          },
+          "terminal_error_kind": {
+            "failed_typeclass": 65,
+            "type_mismatch": 27,
+            "other": 22,
+            "unknown_identifier": 4
+          },
+          "failure_transitions": {
+            "failed_typeclass->failed_typeclass": 65,
+            "type_mismatch->type_mismatch": 27,
+            "other->other": 21,
+            "unknown_identifier->unknown_identifier": 4,
+            "unknown_identifier->other": 1
+          }
+        },
+        "not_proposition": {
+          "count": 194,
+          "solved": 86,
+          "exact": 0,
+          "lean_ok_records": 86,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.44329896907216493,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.44329896907216493,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 1.458762886597938,
+          "avg_elapsed_ms": 280.2371134020619,
+          "first_error_kind": {
+            "type_mismatch": 111,
+            "not_proposition": 77,
+            "other": 6
+          },
+          "terminal_error_kind": {
+            "type_mismatch": 101,
+            "solved": 86,
+            "other": 6,
+            "failed_typeclass": 1
+          },
+          "failure_transitions": {
+            "type_mismatch->type_mismatch": 101,
+            "other->other": 6,
+            "type_mismatch->failed_typeclass": 1
+          }
+        },
+        "parse_missing_colon": {
+          "count": 176,
+          "solved": 0,
+          "exact": 0,
+          "lean_ok_records": 0,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.0,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 1.0227272727272727,
+          "avg_elapsed_ms": 195.9659090909091,
+          "first_error_kind": {
+            "parse_error": 176
+          },
+          "terminal_error_kind": {
+            "parse_error": 176
+          },
+          "failure_transitions": {
+            "parse_error->parse_error": 176
+          }
+        },
+        "parse_unbalanced_paren": {
+          "count": 143,
+          "solved": 2,
+          "exact": 0,
+          "lean_ok_records": 2,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.013986013986013986,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.013986013986013986,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.167832167832168,
+          "avg_elapsed_ms": 417.9020979020979,
+          "first_error_kind": {
+            "parse_error": 143
+          },
+          "terminal_error_kind": {
+            "parse_error": 129,
+            "type_mismatch": 12,
+            "solved": 2
+          },
+          "failure_transitions": {
+            "parse_error->parse_error": 129,
+            "parse_error->type_mismatch": 12
+          }
+        },
+        "type_mismatch": {
+          "count": 140,
+          "solved": 2,
+          "exact": 0,
+          "lean_ok_records": 2,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.014285714285714285,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.014285714285714285,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 1.1428571428571428,
+          "avg_elapsed_ms": 226.40714285714284,
+          "first_error_kind": {
+            "type_mismatch": 112,
+            "failed_typeclass": 15,
+            "parse_error": 12,
+            "unknown_identifier": 1
+          },
+          "terminal_error_kind": {
+            "type_mismatch": 112,
+            "failed_typeclass": 15,
+            "parse_error": 10,
+            "solved": 2,
+            "unknown_identifier": 1
+          },
+          "failure_transitions": {
+            "type_mismatch->type_mismatch": 112,
+            "failed_typeclass->failed_typeclass": 15,
+            "parse_error->parse_error": 10,
+            "unknown_identifier->unknown_identifier": 1
+          }
+        },
+        "unknown_type_symbol": {
+          "count": 129,
+          "solved": 0,
+          "exact": 0,
+          "lean_ok_records": 0,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.0,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 1.0155038759689923,
+          "avg_elapsed_ms": 201.69767441860466,
+          "first_error_kind": {
+            "failed_typeclass": 61,
+            "type_mismatch": 37,
+            "other": 24,
+            "unknown_identifier": 7
+          },
+          "terminal_error_kind": {
+            "failed_typeclass": 62,
+            "type_mismatch": 36,
+            "other": 24,
+            "unknown_identifier": 7
+          },
+          "failure_transitions": {
+            "failed_typeclass->failed_typeclass": 61,
+            "type_mismatch->type_mismatch": 36,
+            "other->other": 24,
+            "unknown_identifier->unknown_identifier": 7,
+            "type_mismatch->failed_typeclass": 1
+          }
+        }
+      },
+      "failure_examples": [
+        {
+          "id": "real_00000",
+          "corruption": "parse_unbalanced_paren",
+          "steps": 2,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00000 {\u03b1 : Sort u} {c : Prop} {_ : Decidable c} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} (h : c = False : (dite c t e) = e (of_eq_false h)",
+          "final": "theorem bench_real_00000 {\u03b1 : Sort u} {c : Prop} {_ : Decidable c} {t : c \u2192 \u03b1} {e : \u00ac c \u2192 \u03b1} := by sorry",
+          "terminal_errors": [
+            "unexpected token ':='; expected ':'"
+          ]
+        },
+        {
+          "id": "real_00001",
+          "corruption": "parse_missing_colon",
+          "steps": 1,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) + 1#w = ~~~y * x",
+          "final": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) + 1#w = ~~~y * x := by sorry",
+          "terminal_errors": [
+            "unexpected token '~~~'; expected ':'"
+          ]
+        },
+        {
+          "id": "real_00002",
+          "corruption": "parse_unbalanced_paren",
+          "steps": 2,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00002 {a : \u03b1} {xs : Array \u03b1} (h : a \u2208 xs : \u2203 as bs : Array \u03b1, xs = as.push a ++ bs",
+          "final": "theorem bench_real_00002 {a : \u03b1} {xs : Array \u03b1} := by sorry",
+          "terminal_errors": [
+            "unexpected token ':='; expected ':'"
+          ]
+        },
+        {
+          "id": "real_00003",
+          "corruption": "type_mismatch",
+          "steps": 1,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00003 {n : Nat} : Nat = True",
+          "final": "theorem bench_real_00003 {n : Nat} : Nat = True := by sorry",
+          "terminal_errors": [
+            "type mismatch"
+          ]
+        },
+        {
+          "id": "real_00004",
+          "corruption": "parse_unbalanced_paren",
+          "steps": 2,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00004 {a b : Int} : (-a % b = if b \u2223 a then 0 else b.natAbs - (a % b)",
+          "final": "theorem bench_real_00004 {a b : Int} : (-a := by sorry",
+          "terminal_errors": [
+            "unexpected token ':='; expected ')', ',' or ':'"
+          ]
+        },
+        {
+          "id": "real_00005",
+          "corruption": "type_mismatch",
+          "steps": 1,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00005 : \u2200 {o : Ordering}, o.isLE \u2194 \u00aco = False",
+          "final": "theorem bench_real_00005 : \u2200 {o : Ordering}, o.isLE \u2194 \u00aco = False := by sorry",
+          "terminal_errors": [
+            "type mismatch"
+          ]
+        },
+        {
+          "id": "real_00006",
+          "corruption": "unknown_type_symbol",
+          "steps": 1,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "failed_typeclass",
+          "candidate0": "theorem bench_real_00006 {a : Foo} (H : 0 \u2264 a) (H' : a \u2223 1) : a = 1",
+          "final": "theorem bench_real_00006 {a : Foo} (H : 0 \u2264 a) (H' : a \u2223 1) : a = 1 := by sorry",
+          "terminal_errors": [
+            "failed to synthesize",
+            "failed to synthesize",
+            "failed to synthesize"
+          ]
+        },
+        {
+          "id": "real_00007",
+          "corruption": "type_mismatch",
+          "steps": 1,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00007 {xs ys : Array \u03b1} : #[] = False",
+          "final": "theorem bench_real_00007 {xs ys : Array \u03b1} : #[] = False := by sorry",
+          "terminal_errors": [
+            "type mismatch"
+          ]
+        },
+        {
+          "id": "real_00008",
+          "corruption": "not_proposition",
+          "steps": 1,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00008 {x : Option \u03b1} {p : \u03b1 \u2192 Bool} (h : x.any p) : h",
+          "final": "theorem bench_real_00008 {x : Option \u03b1} {p : \u03b1 \u2192 Bool} (h : x.any p) : h := by sorry",
+          "terminal_errors": [
+            "type expected, got"
+          ]
+        },
+        {
+          "id": "real_00009",
+          "corruption": "parse_missing_colon",
+          "steps": 1,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00009   (a \u2228 b) \u2228 c \u2194 a \u2228 (b \u2228 c)",
+          "final": "theorem bench_real_00009   (a \u2228 b) \u2228 c \u2194 a \u2228 (b \u2228 c) := by sorry",
+          "terminal_errors": [
+            "unexpected token '\u2228'; expected ')'"
+          ]
+        },
+        {
+          "id": "real_00010",
+          "corruption": "unknown_type_symbol",
+          "steps": 1,
+          "first_error_kind": "unknown_identifier",
+          "terminal_error_kind": "unknown_identifier",
+          "candidate0": "theorem bench_real_00010 (a b : BitVec 32) : Foo32.ofBitVec a < Int32.ofBitVec b \u2194 a.slt b",
+          "final": "theorem bench_real_00010 (a b : BitVec 32) : Foo32.ofBitVec a < Int32.ofBitVec b \u2194 a.slt b := by sorry",
+          "terminal_errors": [
+            "unknown identifier 'Foo32.ofBitVec'"
+          ]
+        },
+        {
+          "id": "real_00011",
+          "corruption": "unknown_type_symbol",
+          "steps": 1,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00011 (a : Foo) : a \u2227 \u00aca \u2194 False",
+          "final": "theorem bench_real_00011 (a : Foo) : a \u2227 \u00aca \u2194 False := by sorry",
+          "terminal_errors": [
+            "Application type mismatch: In the application",
+            "Application type mismatch: In the application"
+          ]
+        },
+        {
+          "id": "real_00012",
+          "corruption": "parse_missing_colon",
+          "steps": 1,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00012 {l : List \u03b1}   l.enum = l.enumFrom 0",
+          "final": "theorem bench_real_00012 {l : List \u03b1}   l.enum = l.enumFrom 0 := by sorry",
+          "terminal_errors": [
+            "unexpected token '='; expected ':'"
+          ]
+        },
+        {
+          "id": "real_00013",
+          "corruption": "unknown_type_symbol",
+          "steps": 1,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00013 {a b : Foo} (h : b = False) : (a \u2227 b) = False",
+          "final": "theorem bench_real_00013 {a b : Foo} (h : b = False) : (a \u2227 b) = False := by sorry",
+          "terminal_errors": [
+            "type mismatch",
+            "Application type mismatch: In the application"
+          ]
+        },
+        {
+          "id": "real_00014",
+          "corruption": "parse_missing_colon",
+          "steps": 1,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00014   (0 : ISize) \u2260 1",
+          "final": "theorem bench_real_00014   (0 : ISize) \u2260 1 := by sorry",
+          "terminal_errors": [
+            "unexpected token; expected '_' or identifier"
+          ]
+        },
+        {
+          "id": "real_00015",
+          "corruption": "not_proposition",
+          "steps": 1,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00015 (a b : Int16) (hb : b \u2260 -1) : hb",
+          "final": "theorem bench_real_00015 (a b : Int16) (hb : b \u2260 -1) : hb := by sorry",
+          "terminal_errors": [
+            "type expected, got"
+          ]
+        },
+        {
+          "id": "real_00016",
+          "corruption": "lowercase_type",
+          "steps": 1,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "failed_typeclass",
+          "candidate0": "theorem bench_real_00016 {a b c : nat} (h : a + b < c) : a < c - b",
+          "final": "theorem bench_real_00016 {a b c : nat} (h : a + b < c) : a < c - b := by sorry",
+          "terminal_errors": [
+            "failed to synthesize",
+            "failed to synthesize"
+          ]
+        },
+        {
+          "id": "real_00017",
+          "corruption": "unknown_type_symbol",
+          "steps": 1,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "failed_typeclass",
+          "candidate0": "theorem bench_real_00017 {a b c : Foo64} : (a &&& b) <<< c = (a <<< c) &&& (b <<< c)",
+          "final": "theorem bench_real_00017 {a b c : Foo64} : (a &&& b) <<< c = (a <<< c) &&& (b <<< c) := by sorry",
+          "terminal_errors": [
+            "failed to synthesize",
+            "failed to synthesize",
+            "failed to synthesize"
+          ]
+        },
+        {
+          "id": "real_00018",
+          "corruption": "parse_missing_colon",
+          "steps": 1,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) = false",
+          "final": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) = false := by sorry",
+          "terminal_errors": [
+            "unexpected token '('; expected ')'"
+          ]
+        },
+        {
+          "id": "real_00019",
+          "corruption": "unknown_type_symbol",
+          "steps": 1,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "failed_typeclass",
+          "candidate0": "theorem bench_real_00019 (a : Foo) {b : Int} (H : 0 < b) : a < (a / b + 1) * b",
+          "final": "theorem bench_real_00019 (a : Foo) {b : Int} (H : 0 < b) : a < (a / b + 1) * b := by sorry",
+          "terminal_errors": [
+            "failed to synthesize"
+          ]
+        }
+      ]
+    },
+    "research": {
+      "count": 900,
+      "records_with_trace": 900,
+      "solved": 756,
+      "exact": 249,
+      "lean_ok_records": 756,
+      "rejected_lean_ok_records": 0,
+      "rejected_lean_ok_steps": 0,
+      "accepted_after_rejection": 0,
+      "solve_rate": 0.84,
+      "exact_rate": 0.27666666666666667,
+      "lean_ok_rate": 0.84,
+      "rejected_lean_ok_rate": 0.0,
+      "avg_steps": 2.551111111111111,
+      "median_steps": 2.0,
+      "median_solve_step": 2.0,
+      "avg_elapsed_ms": 494.42333333333335,
+      "timeout_records": 0,
+      "first_error_kind": {
+        "parse_error": 331,
+        "type_mismatch": 287,
+        "failed_typeclass": 141,
+        "not_proposition": 77,
+        "other": 51,
+        "unknown_identifier": 13
+      },
+      "terminal_error_kind": {
+        "solved": 756,
+        "parse_error": 59,
+        "other": 34,
+        "failed_typeclass": 28,
+        "type_mismatch": 16,
+        "unknown_identifier": 7
+      },
+      "acceptance_rejection_reasons": {},
+      "failure_transitions": {
+        "parse_error->parse_error": 59,
+        "failed_typeclass->failed_typeclass": 27,
+        "other->other": 16,
+        "type_mismatch->type_mismatch": 15,
+        "parse_error->other": 10,
+        "unknown_identifier->unknown_identifier": 7,
+        "failed_typeclass->other": 5,
+        "type_mismatch->other": 3,
+        "parse_error->type_mismatch": 1,
+        "type_mismatch->failed_typeclass": 1
+      },
+      "solved_by_step": {
+        "2": 564,
+        "3": 98,
+        "4": 85,
+        "6": 5,
+        "5": 4
+      },
+      "by_corruption": {
+        "lowercase_type": {
+          "count": 118,
+          "solved": 107,
+          "exact": 84,
+          "lean_ok_records": 107,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.9067796610169492,
+          "exact_rate": 0.711864406779661,
+          "lean_ok_rate": 0.9067796610169492,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.194915254237288,
+          "avg_elapsed_ms": 428.3220338983051,
+          "first_error_kind": {
+            "failed_typeclass": 65,
+            "type_mismatch": 27,
+            "other": 21,
+            "unknown_identifier": 5
+          },
+          "terminal_error_kind": {
+            "solved": 107,
+            "other": 5,
+            "unknown_identifier": 5,
+            "failed_typeclass": 1
+          },
+          "failure_transitions": {
+            "other->other": 5,
+            "unknown_identifier->unknown_identifier": 5,
+            "failed_typeclass->failed_typeclass": 1
+          }
+        },
+        "not_proposition": {
+          "count": 194,
+          "solved": 185,
+          "exact": 0,
+          "lean_ok_records": 185,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.9536082474226805,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.9536082474226805,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.056701030927835,
+          "avg_elapsed_ms": 395.6546391752577,
+          "first_error_kind": {
+            "type_mismatch": 111,
+            "not_proposition": 77,
+            "other": 6
+          },
+          "terminal_error_kind": {
+            "solved": 185,
+            "other": 8,
+            "failed_typeclass": 1
+          },
+          "failure_transitions": {
+            "other->other": 6,
+            "type_mismatch->other": 2,
+            "type_mismatch->failed_typeclass": 1
+          }
+        },
+        "parse_missing_colon": {
+          "count": 176,
+          "solved": 122,
+          "exact": 89,
+          "lean_ok_records": 122,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.6931818181818182,
+          "exact_rate": 0.5056818181818182,
+          "lean_ok_rate": 0.6931818181818182,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.8125,
+          "avg_elapsed_ms": 541.125,
+          "first_error_kind": {
+            "parse_error": 176
+          },
+          "terminal_error_kind": {
+            "solved": 122,
+            "parse_error": 46,
+            "other": 7,
+            "type_mismatch": 1
+          },
+          "failure_transitions": {
+            "parse_error->parse_error": 46,
+            "parse_error->other": 7,
+            "parse_error->type_mismatch": 1
+          }
+        },
+        "parse_unbalanced_paren": {
+          "count": 143,
+          "solved": 127,
+          "exact": 71,
+          "lean_ok_records": 127,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.8881118881118881,
+          "exact_rate": 0.4965034965034965,
+          "lean_ok_rate": 0.8881118881118881,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 3.9160839160839163,
+          "avg_elapsed_ms": 755.986013986014,
+          "first_error_kind": {
+            "parse_error": 143
+          },
+          "terminal_error_kind": {
+            "solved": 127,
+            "parse_error": 13,
+            "other": 3
+          },
+          "failure_transitions": {
+            "parse_error->parse_error": 13,
+            "parse_error->other": 3
+          }
+        },
+        "type_mismatch": {
+          "count": 140,
+          "solved": 136,
+          "exact": 0,
+          "lean_ok_records": 136,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.9714285714285714,
+          "exact_rate": 0.0,
+          "lean_ok_rate": 0.9714285714285714,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.2142857142857144,
+          "avg_elapsed_ms": 433.85714285714283,
+          "first_error_kind": {
+            "type_mismatch": 112,
+            "failed_typeclass": 15,
+            "parse_error": 12,
+            "unknown_identifier": 1
+          },
+          "terminal_error_kind": {
+            "solved": 136,
+            "other": 3,
+            "unknown_identifier": 1
+          },
+          "failure_transitions": {
+            "failed_typeclass->other": 2,
+            "type_mismatch->other": 1,
+            "unknown_identifier->unknown_identifier": 1
+          }
+        },
+        "unknown_type_symbol": {
+          "count": 129,
+          "solved": 79,
+          "exact": 5,
+          "lean_ok_records": 79,
+          "rejected_lean_ok_records": 0,
+          "rejected_lean_ok_steps": 0,
+          "accepted_after_rejection": 0,
+          "solve_rate": 0.6124031007751938,
+          "exact_rate": 0.03875968992248062,
+          "lean_ok_rate": 0.6124031007751938,
+          "rejected_lean_ok_rate": 0.0,
+          "avg_steps": 2.116279069767442,
+          "avg_elapsed_ms": 415.48837209302326,
+          "first_error_kind": {
+            "failed_typeclass": 61,
+            "type_mismatch": 37,
+            "other": 24,
+            "unknown_identifier": 7
+          },
+          "terminal_error_kind": {
+            "solved": 79,
+            "failed_typeclass": 26,
+            "type_mismatch": 15,
+            "other": 8,
+            "unknown_identifier": 1
+          },
+          "failure_transitions": {
+            "failed_typeclass->failed_typeclass": 26,
+            "type_mismatch->type_mismatch": 15,
+            "other->other": 5,
+            "failed_typeclass->other": 3,
+            "unknown_identifier->unknown_identifier": 1
+          }
+        }
+      },
+      "failure_examples": [
+        {
+          "id": "real_00001",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) + 1#w = ~~~y * x",
+          "final": "theorem BitVec.add_neg_mul''' {x y : BitVec w}   ~~~(y * x + x) : True := by sorry",
+          "terminal_errors": [
+            "unexpected token '~~~'; expected ':'"
+          ]
+        },
+        {
+          "id": "real_00006",
+          "corruption": "unknown_type_symbol",
+          "steps": 2,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "failed_typeclass",
+          "candidate0": "theorem bench_real_00006 {a : Foo} (H : 0 \u2264 a) (H' : a \u2223 1) : a = 1",
+          "final": "theorem bench_real_00006 {a : Foo} (H : 0 \u2264 a) (H' : a \u2223 1) : True := by sorry",
+          "terminal_errors": [
+            "failed to synthesize",
+            "failed to synthesize",
+            "failed to synthesize"
+          ]
+        },
+        {
+          "id": "real_00013",
+          "corruption": "unknown_type_symbol",
+          "steps": 2,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00013 {a b : Foo} (h : b = False) : (a \u2227 b) = False",
+          "final": "theorem bench_real_00013 {a b : Foo} (h : b = False) : True := by sorry",
+          "terminal_errors": [
+            "type mismatch"
+          ]
+        },
+        {
+          "id": "real_00014",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00014   (0 : ISize) \u2260 1",
+          "final": "theorem bench_real_00014   (0 : ISize) : True := by sorry",
+          "terminal_errors": [
+            "unexpected token; expected '_' or identifier"
+          ]
+        },
+        {
+          "id": "real_00018",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) = false",
+          "final": "theorem BitVec.max_ult' (a : BitVec w)   (BitVec.ult (-1#w) a) : True := by sorry",
+          "terminal_errors": [
+            "unexpected token '('; expected ')'"
+          ]
+        },
+        {
+          "id": "real_00035",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00035   (0 : Int8) \u2260 1",
+          "final": "theorem bench_real_00035   (0 : Int8) : True := by sorry",
+          "terminal_errors": [
+            "unexpected token; expected '_' or identifier"
+          ]
+        },
+        {
+          "id": "real_00038",
+          "corruption": "parse_missing_colon",
+          "steps": 3,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00038 {P : Fin (n + 1) \u2192 Prop}   (\u2200 i, P i) \u2194 P 0 \u2227 \u2200 i : Fin n, P i.succ",
+          "final": "theorem bench_real_00038 {P : Fin (n + 1) \u2192 Prop}   (\u2200 i, P i) \u2194 P 0 \u2227 \u2200 i : True := by sorry",
+          "terminal_errors": [
+            "unexpected token '\u2200'; expected '_' or identifier"
+          ]
+        },
+        {
+          "id": "real_00043",
+          "corruption": "not_proposition",
+          "steps": 2,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "other",
+          "candidate0": "theorem bench_real_00043 {xs : Array \u03b1} (h : \u2200 i, (h : i < xs.size) \u2192 \u00acp xs[i]) : h",
+          "final": "theorem bench_real_00043 {xs : Array \u03b1} (h : \u2200 i, (h : i < xs.size) \u2192 \u00acp xs[i]) : True := by sorry",
+          "terminal_errors": [
+            "function expected at"
+          ]
+        },
+        {
+          "id": "real_00045",
+          "corruption": "unknown_type_symbol",
+          "steps": 2,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00045 {p q : Foo} (h\u2081 : p = q) (h\u2082 : q)  : p",
+          "final": "theorem bench_real_00045 {p q : Foo} (h\u2081 : p = q) (h\u2082 : q)  : True := by sorry",
+          "terminal_errors": [
+            "type expected, got"
+          ]
+        },
+        {
+          "id": "real_00068",
+          "corruption": "unknown_type_symbol",
+          "steps": 2,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "failed_typeclass",
+          "candidate0": "theorem bench_real_00068 (x : Foo32) (hx : 0 \u2264 x) : Int32.ofNat x.toNatClampNeg = x",
+          "final": "theorem bench_real_00068 (x : Foo32) (hx : 0 \u2264 x) : True := by sorry",
+          "terminal_errors": [
+            "failed to synthesize",
+            "failed to synthesize"
+          ]
+        },
+        {
+          "id": "real_00069",
+          "corruption": "unknown_type_symbol",
+          "steps": 2,
+          "first_error_kind": "type_mismatch",
+          "terminal_error_kind": "type_mismatch",
+          "candidate0": "theorem bench_real_00069 {a b : Foo} (h : b = false) : (a || b) = a",
+          "final": "theorem bench_real_00069 {a b : Foo} (h : b = false) : True := by sorry",
+          "terminal_errors": [
+            "type mismatch"
+          ]
+        },
+        {
+          "id": "real_00072",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00072 {x y : BitVec w}   (x ^^^ y = 0#w) \u2194 x = y",
+          "final": "theorem bench_real_00072 {x y : BitVec w}   (x ^^^ y = 0#w) : True := by sorry",
+          "terminal_errors": [
+            "unexpected token '^^^'; expected ')'"
+          ]
+        },
+        {
+          "id": "real_00076",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00076 (h : 0 < w)   (BitVec.ofNat w 1)[0] = true",
+          "final": "theorem bench_real_00076 (h : 0 < w)   (BitVec.ofNat w 1)[0] : True := by sorry",
+          "terminal_errors": [
+            "unexpected token; expected ')'"
+          ]
+        },
+        {
+          "id": "real_00078",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00078 {o : Option \u03b1}   o.toList = [] \u2194 o = none",
+          "final": "theorem bench_real_00078 {o : Option \u03b1}   o.toList = [] : True := by sorry",
+          "terminal_errors": [
+            "unexpected token '='; expected ':'"
+          ]
+        },
+        {
+          "id": "real_00081",
+          "corruption": "unknown_type_symbol",
+          "steps": 2,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "failed_typeclass",
+          "candidate0": "theorem bench_real_00081 {n : Foo} (hn : n \u2260 0) : Int.sign n = 1",
+          "final": "theorem bench_real_00081 {n : Foo} (hn : n \u2260 0) : True := by sorry",
+          "terminal_errors": [
+            "failed to synthesize"
+          ]
+        },
+        {
+          "id": "real_00089",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00089   \u2200 {o\u2081 o\u2082 : Ordering}, o\u2081.then o\u2082 = lt \u2194 o\u2081 = lt \u2228 o\u2081 = eq \u2227 o\u2082 = lt",
+          "final": "theorem bench_real_00089   \u2200 {o\u2081 o\u2082 : Ordering} : True := by sorry",
+          "terminal_errors": [
+            "unexpected token '\u2200'; expected ':'"
+          ]
+        },
+        {
+          "id": "real_00090",
+          "corruption": "lowercase_type",
+          "steps": 2,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "failed_typeclass",
+          "candidate0": "theorem bench_real_00090 (a b : Uint8) (hb : b < 8) : (a <<< b).toUInt64 = (a.toUInt64 <<< b.toUInt64) % 256",
+          "final": "theorem bench_real_00090 (a b : Uint8) (hb : b < 8) : True := by sorry",
+          "terminal_errors": [
+            "failed to synthesize",
+            "failed to synthesize"
+          ]
+        },
+        {
+          "id": "real_00103",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00103 {w start len : Nat}   (0#w).extractLsb' start len = 0#len",
+          "final": "theorem bench_real_00103 {w start len : Nat}   (0#w) : True := by sorry",
+          "terminal_errors": [
+            "unexpected token; expected '_' or identifier"
+          ]
+        },
+        {
+          "id": "real_00104",
+          "corruption": "type_mismatch",
+          "steps": 2,
+          "first_error_kind": "failed_typeclass",
+          "terminal_error_kind": "other",
+          "candidate0": "theorem bench_real_00104 {xs : Array \u03b1} (h : \u2200 a, a \u2208 xs \u2192 \u00acp a) : xs.eraseP p = 0",
+          "final": "theorem bench_real_00104 {xs : Array \u03b1} (h : \u2200 a, a \u2208 xs \u2192 \u00acp a) : True := by sorry",
+          "terminal_errors": [
+            "function expected at"
+          ]
+        },
+        {
+          "id": "real_00116",
+          "corruption": "parse_missing_colon",
+          "steps": 4,
+          "first_error_kind": "parse_error",
+          "terminal_error_kind": "parse_error",
+          "candidate0": "theorem bench_real_00116 {b : BitVec w}   ~~~(~~~b) = b",
+          "final": "theorem bench_real_00116 {b : BitVec w}   ~~~(~~~b) : True := by sorry",
+          "terminal_errors": [
+            "unexpected token '~~~'; expected ':'"
+          ]
+        }
+      ]
+    }
+  },
+  "missing_policy_run_counts": {}
+}

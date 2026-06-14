@@ -1,0 +1,3099 @@
+{
+  "root": "results\\real_paper_v2",
+  "policies": {
+    "heuristic": {
+      "count": 900,
+      "max_observed_steps": 4,
+      "budgets": [
+        {
+          "budget": 1,
+          "count": 900,
+          "solved": 0,
+          "exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "avg_checks_used": 1.0
+        },
+        {
+          "budget": 2,
+          "count": 900,
+          "solved": 86,
+          "exact": 0,
+          "solve_rate": 0.09555555555555556,
+          "exact_rate": 0.0,
+          "avg_checks_used": 1.2866666666666666
+        },
+        {
+          "budget": 3,
+          "count": 900,
+          "solved": 88,
+          "exact": 0,
+          "solve_rate": 0.09777777777777778,
+          "exact_rate": 0.0,
+          "avg_checks_used": 1.3155555555555556
+        },
+        {
+          "budget": 4,
+          "count": 900,
+          "solved": 90,
+          "exact": 0,
+          "solve_rate": 0.1,
+          "exact_rate": 0.0,
+          "avg_checks_used": 1.3177777777777777
+        }
+      ],
+      "marginal_solves": {
+        "1": 0,
+        "2": 86,
+        "3": 2,
+        "4": 2
+      },
+      "by_corruption": {
+        "lowercase_type": {
+          "count": 118,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 118,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 118,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0338983050847457
+            },
+            {
+              "budget": 3,
+              "count": 118,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0338983050847457
+            },
+            {
+              "budget": 4,
+              "count": 118,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0338983050847457
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0
+          }
+        },
+        "not_proposition": {
+          "count": 194,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 194,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 194,
+              "solved": 86,
+              "exact": 0,
+              "solve_rate": 0.44329896907216493,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.458762886597938
+            },
+            {
+              "budget": 3,
+              "count": 194,
+              "solved": 86,
+              "exact": 0,
+              "solve_rate": 0.44329896907216493,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.458762886597938
+            },
+            {
+              "budget": 4,
+              "count": 194,
+              "solved": 86,
+              "exact": 0,
+              "solve_rate": 0.44329896907216493,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.458762886597938
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 86,
+            "3": 0,
+            "4": 0
+          }
+        },
+        "parse_missing_colon": {
+          "count": 176,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 176,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 176,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0227272727272727
+            },
+            {
+              "budget": 3,
+              "count": 176,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0227272727272727
+            },
+            {
+              "budget": 4,
+              "count": 176,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0227272727272727
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0
+          }
+        },
+        "parse_unbalanced_paren": {
+          "count": 143,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 143,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 143,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 143,
+              "solved": 1,
+              "exact": 0,
+              "solve_rate": 0.006993006993006993,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.160839160839161
+            },
+            {
+              "budget": 4,
+              "count": 143,
+              "solved": 2,
+              "exact": 0,
+              "solve_rate": 0.013986013986013986,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.167832167832168
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 0,
+            "3": 1,
+            "4": 1
+          }
+        },
+        "type_mismatch": {
+          "count": 140,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 140,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 140,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.1142857142857143
+            },
+            {
+              "budget": 3,
+              "count": 140,
+              "solved": 1,
+              "exact": 0,
+              "solve_rate": 0.007142857142857143,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.1357142857142857
+            },
+            {
+              "budget": 4,
+              "count": 140,
+              "solved": 2,
+              "exact": 0,
+              "solve_rate": 0.014285714285714285,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.1428571428571428
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 0,
+            "3": 1,
+            "4": 1
+          }
+        },
+        "unknown_type_symbol": {
+          "count": 129,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 129,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 129,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0155038759689923
+            },
+            {
+              "budget": 3,
+              "count": 129,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0155038759689923
+            },
+            {
+              "budget": 4,
+              "count": 129,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0155038759689923
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0
+          }
+        }
+      }
+    },
+    "research": {
+      "count": 900,
+      "max_observed_steps": 6,
+      "budgets": [
+        {
+          "budget": 1,
+          "count": 900,
+          "solved": 0,
+          "exact": 0,
+          "solve_rate": 0.0,
+          "exact_rate": 0.0,
+          "avg_checks_used": 1.0
+        },
+        {
+          "budget": 2,
+          "count": 900,
+          "solved": 564,
+          "exact": 170,
+          "solve_rate": 0.6266666666666667,
+          "exact_rate": 0.18888888888888888,
+          "avg_checks_used": 2.0
+        },
+        {
+          "budget": 3,
+          "count": 900,
+          "solved": 662,
+          "exact": 178,
+          "solve_rate": 0.7355555555555555,
+          "exact_rate": 0.19777777777777777,
+          "avg_checks_used": 2.307777777777778
+        },
+        {
+          "budget": 4,
+          "count": 900,
+          "solved": 747,
+          "exact": 249,
+          "solve_rate": 0.83,
+          "exact_rate": 0.27666666666666667,
+          "avg_checks_used": 2.4844444444444442
+        },
+        {
+          "budget": 5,
+          "count": 900,
+          "solved": 751,
+          "exact": 249,
+          "solve_rate": 0.8344444444444444,
+          "exact_rate": 0.27666666666666667,
+          "avg_checks_used": 2.52
+        },
+        {
+          "budget": 6,
+          "count": 900,
+          "solved": 756,
+          "exact": 249,
+          "solve_rate": 0.84,
+          "exact_rate": 0.27666666666666667,
+          "avg_checks_used": 2.551111111111111
+        }
+      ],
+      "marginal_solves": {
+        "1": 0,
+        "2": 564,
+        "3": 98,
+        "4": 85,
+        "5": 4,
+        "6": 5
+      },
+      "by_corruption": {
+        "lowercase_type": {
+          "count": 118,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 118,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 118,
+              "solved": 104,
+              "exact": 81,
+              "solve_rate": 0.8813559322033898,
+              "exact_rate": 0.6864406779661016,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 118,
+              "solved": 107,
+              "exact": 84,
+              "solve_rate": 0.9067796610169492,
+              "exact_rate": 0.711864406779661,
+              "avg_checks_used": 2.0677966101694913
+            },
+            {
+              "budget": 4,
+              "count": 118,
+              "solved": 107,
+              "exact": 84,
+              "solve_rate": 0.9067796610169492,
+              "exact_rate": 0.711864406779661,
+              "avg_checks_used": 2.110169491525424
+            },
+            {
+              "budget": 5,
+              "count": 118,
+              "solved": 107,
+              "exact": 84,
+              "solve_rate": 0.9067796610169492,
+              "exact_rate": 0.711864406779661,
+              "avg_checks_used": 2.152542372881356
+            },
+            {
+              "budget": 6,
+              "count": 118,
+              "solved": 107,
+              "exact": 84,
+              "solve_rate": 0.9067796610169492,
+              "exact_rate": 0.711864406779661,
+              "avg_checks_used": 2.194915254237288
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 104,
+            "3": 3,
+            "4": 0,
+            "5": 0,
+            "6": 0
+          }
+        },
+        "not_proposition": {
+          "count": 194,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 194,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 194,
+              "solved": 182,
+              "exact": 0,
+              "solve_rate": 0.9381443298969072,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 194,
+              "solved": 183,
+              "exact": 0,
+              "solve_rate": 0.9432989690721649,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.0463917525773194
+            },
+            {
+              "budget": 4,
+              "count": 194,
+              "solved": 185,
+              "exact": 0,
+              "solve_rate": 0.9536082474226805,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.056701030927835
+            },
+            {
+              "budget": 5,
+              "count": 194,
+              "solved": 185,
+              "exact": 0,
+              "solve_rate": 0.9536082474226805,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.056701030927835
+            },
+            {
+              "budget": 6,
+              "count": 194,
+              "solved": 185,
+              "exact": 0,
+              "solve_rate": 0.9536082474226805,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.056701030927835
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 182,
+            "3": 1,
+            "4": 2,
+            "5": 0,
+            "6": 0
+          }
+        },
+        "parse_missing_colon": {
+          "count": 176,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 176,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 176,
+              "solved": 91,
+              "exact": 89,
+              "solve_rate": 0.5170454545454546,
+              "exact_rate": 0.5056818181818182,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 176,
+              "solved": 114,
+              "exact": 89,
+              "solve_rate": 0.6477272727272727,
+              "exact_rate": 0.5056818181818182,
+              "avg_checks_used": 2.4829545454545454
+            },
+            {
+              "budget": 4,
+              "count": 176,
+              "solved": 122,
+              "exact": 89,
+              "solve_rate": 0.6931818181818182,
+              "exact_rate": 0.5056818181818182,
+              "avg_checks_used": 2.778409090909091
+            },
+            {
+              "budget": 5,
+              "count": 176,
+              "solved": 122,
+              "exact": 89,
+              "solve_rate": 0.6931818181818182,
+              "exact_rate": 0.5056818181818182,
+              "avg_checks_used": 2.7954545454545454
+            },
+            {
+              "budget": 6,
+              "count": 176,
+              "solved": 122,
+              "exact": 89,
+              "solve_rate": 0.6931818181818182,
+              "exact_rate": 0.5056818181818182,
+              "avg_checks_used": 2.8125
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 91,
+            "3": 23,
+            "4": 8,
+            "5": 0,
+            "6": 0
+          }
+        },
+        "parse_unbalanced_paren": {
+          "count": 143,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 143,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 143,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 143,
+              "solved": 48,
+              "exact": 0,
+              "solve_rate": 0.3356643356643357,
+              "exact_rate": 0.0,
+              "avg_checks_used": 3.0
+            },
+            {
+              "budget": 4,
+              "count": 143,
+              "solved": 119,
+              "exact": 71,
+              "solve_rate": 0.8321678321678322,
+              "exact_rate": 0.4965034965034965,
+              "avg_checks_used": 3.6433566433566433
+            },
+            {
+              "budget": 5,
+              "count": 143,
+              "solved": 122,
+              "exact": 71,
+              "solve_rate": 0.8531468531468531,
+              "exact_rate": 0.4965034965034965,
+              "avg_checks_used": 3.7902097902097904
+            },
+            {
+              "budget": 6,
+              "count": 143,
+              "solved": 127,
+              "exact": 71,
+              "solve_rate": 0.8881118881118881,
+              "exact_rate": 0.4965034965034965,
+              "avg_checks_used": 3.9160839160839163
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 0,
+            "3": 48,
+            "4": 71,
+            "5": 3,
+            "6": 5
+          }
+        },
+        "type_mismatch": {
+          "count": 140,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 140,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 140,
+              "solved": 116,
+              "exact": 0,
+              "solve_rate": 0.8285714285714286,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 140,
+              "solved": 133,
+              "exact": 0,
+              "solve_rate": 0.95,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.157142857142857
+            },
+            {
+              "budget": 4,
+              "count": 140,
+              "solved": 135,
+              "exact": 0,
+              "solve_rate": 0.9642857142857143,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.192857142857143
+            },
+            {
+              "budget": 5,
+              "count": 140,
+              "solved": 136,
+              "exact": 0,
+              "solve_rate": 0.9714285714285714,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.2071428571428573
+            },
+            {
+              "budget": 6,
+              "count": 140,
+              "solved": 136,
+              "exact": 0,
+              "solve_rate": 0.9714285714285714,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.2142857142857144
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 116,
+            "3": 17,
+            "4": 2,
+            "5": 1,
+            "6": 0
+          }
+        },
+        "unknown_type_symbol": {
+          "count": 129,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 129,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 129,
+              "solved": 71,
+              "exact": 0,
+              "solve_rate": 0.5503875968992248,
+              "exact_rate": 0.0,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 129,
+              "solved": 77,
+              "exact": 5,
+              "solve_rate": 0.5968992248062015,
+              "exact_rate": 0.03875968992248062,
+              "avg_checks_used": 2.0775193798449614
+            },
+            {
+              "budget": 4,
+              "count": 129,
+              "solved": 79,
+              "exact": 5,
+              "solve_rate": 0.6124031007751938,
+              "exact_rate": 0.03875968992248062,
+              "avg_checks_used": 2.10077519379845
+            },
+            {
+              "budget": 5,
+              "count": 129,
+              "solved": 79,
+              "exact": 5,
+              "solve_rate": 0.6124031007751938,
+              "exact_rate": 0.03875968992248062,
+              "avg_checks_used": 2.108527131782946
+            },
+            {
+              "budget": 6,
+              "count": 129,
+              "solved": 79,
+              "exact": 5,
+              "solve_rate": 0.6124031007751938,
+              "exact_rate": 0.03875968992248062,
+              "avg_checks_used": 2.116279069767442
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 71,
+            "3": 6,
+            "4": 2,
+            "5": 0,
+            "6": 0
+          }
+        }
+      }
+    }
+  },
+  "runs": {
+    "run_20260211_002138": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "max_observed_steps": 3,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 300,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 300,
+              "solved": 26,
+              "exact": 0,
+              "solve_rate": 0.08666666666666667,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.2666666666666666
+            },
+            {
+              "budget": 3,
+              "count": 300,
+              "solved": 26,
+              "exact": 0,
+              "solve_rate": 0.08666666666666667,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.2733333333333334
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 26,
+            "3": 0
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 36,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 36,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 36,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 3,
+                  "count": 36,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            },
+            "not_proposition": {
+              "count": 63,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 63,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 63,
+                  "solved": 26,
+                  "exact": 0,
+                  "solve_rate": 0.4126984126984127,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.4126984126984128
+                },
+                {
+                  "budget": 3,
+                  "count": 63,
+                  "solved": 26,
+                  "exact": 0,
+                  "solve_rate": 0.4126984126984127,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.4126984126984128
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 26,
+                "3": 0
+              }
+            },
+            "parse_missing_colon": {
+              "count": 71,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 71,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 71,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.028169014084507
+                },
+                {
+                  "budget": 3,
+                  "count": 71,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.028169014084507
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 46,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 46,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 46,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 46,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0434782608695654
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            },
+            "type_mismatch": {
+              "count": 43,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0930232558139534
+                },
+                {
+                  "budget": 3,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0930232558139534
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 41,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 41,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 41,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.048780487804878
+                },
+                {
+                  "budget": 3,
+                  "count": 41,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.048780487804878
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            }
+          }
+        },
+        "research": {
+          "count": 300,
+          "max_observed_steps": 6,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 300,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 300,
+              "solved": 187,
+              "exact": 63,
+              "solve_rate": 0.6233333333333333,
+              "exact_rate": 0.21,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 300,
+              "solved": 213,
+              "exact": 66,
+              "solve_rate": 0.71,
+              "exact_rate": 0.22,
+              "avg_checks_used": 2.31
+            },
+            {
+              "budget": 4,
+              "count": 300,
+              "solved": 249,
+              "exact": 96,
+              "solve_rate": 0.83,
+              "exact_rate": 0.32,
+              "avg_checks_used": 2.506666666666667
+            },
+            {
+              "budget": 5,
+              "count": 300,
+              "solved": 250,
+              "exact": 96,
+              "solve_rate": 0.8333333333333334,
+              "exact_rate": 0.32,
+              "avg_checks_used": 2.5233333333333334
+            },
+            {
+              "budget": 6,
+              "count": 300,
+              "solved": 252,
+              "exact": 96,
+              "solve_rate": 0.84,
+              "exact_rate": 0.32,
+              "avg_checks_used": 2.5366666666666666
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 187,
+            "3": 26,
+            "4": 36,
+            "5": 1,
+            "6": 2
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 36,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 36,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 36,
+                  "solved": 32,
+                  "exact": 26,
+                  "solve_rate": 0.8888888888888888,
+                  "exact_rate": 0.7222222222222222,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 36,
+                  "solved": 32,
+                  "exact": 26,
+                  "solve_rate": 0.8888888888888888,
+                  "exact_rate": 0.7222222222222222,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 4,
+                  "count": 36,
+                  "solved": 32,
+                  "exact": 26,
+                  "solve_rate": 0.8888888888888888,
+                  "exact_rate": 0.7222222222222222,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 5,
+                  "count": 36,
+                  "solved": 32,
+                  "exact": 26,
+                  "solve_rate": 0.8888888888888888,
+                  "exact_rate": 0.7222222222222222,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 6,
+                  "count": 36,
+                  "solved": 32,
+                  "exact": 26,
+                  "solve_rate": 0.8888888888888888,
+                  "exact_rate": 0.7222222222222222,
+                  "avg_checks_used": 2.0
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 32,
+                "3": 0,
+                "4": 0,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "not_proposition": {
+              "count": 63,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 63,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 63,
+                  "solved": 59,
+                  "exact": 0,
+                  "solve_rate": 0.9365079365079365,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 63,
+                  "solved": 59,
+                  "exact": 0,
+                  "solve_rate": 0.9365079365079365,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0317460317460316
+                },
+                {
+                  "budget": 4,
+                  "count": 63,
+                  "solved": 59,
+                  "exact": 0,
+                  "solve_rate": 0.9365079365079365,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0317460317460316
+                },
+                {
+                  "budget": 5,
+                  "count": 63,
+                  "solved": 59,
+                  "exact": 0,
+                  "solve_rate": 0.9365079365079365,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0317460317460316
+                },
+                {
+                  "budget": 6,
+                  "count": 63,
+                  "solved": 59,
+                  "exact": 0,
+                  "solve_rate": 0.9365079365079365,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0317460317460316
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 59,
+                "3": 0,
+                "4": 0,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "parse_missing_colon": {
+              "count": 71,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 71,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 71,
+                  "solved": 38,
+                  "exact": 37,
+                  "solve_rate": 0.5352112676056338,
+                  "exact_rate": 0.5211267605633803,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 71,
+                  "solved": 44,
+                  "exact": 37,
+                  "solve_rate": 0.6197183098591549,
+                  "exact_rate": 0.5211267605633803,
+                  "avg_checks_used": 2.464788732394366
+                },
+                {
+                  "budget": 4,
+                  "count": 71,
+                  "solved": 47,
+                  "exact": 37,
+                  "solve_rate": 0.6619718309859155,
+                  "exact_rate": 0.5211267605633803,
+                  "avg_checks_used": 2.7746478873239435
+                },
+                {
+                  "budget": 5,
+                  "count": 71,
+                  "solved": 47,
+                  "exact": 37,
+                  "solve_rate": 0.6619718309859155,
+                  "exact_rate": 0.5211267605633803,
+                  "avg_checks_used": 2.788732394366197
+                },
+                {
+                  "budget": 6,
+                  "count": 71,
+                  "solved": 47,
+                  "exact": 37,
+                  "solve_rate": 0.6619718309859155,
+                  "exact_rate": 0.5211267605633803,
+                  "avg_checks_used": 2.8028169014084505
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 38,
+                "3": 6,
+                "4": 3,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 46,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 46,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 46,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 46,
+                  "solved": 11,
+                  "exact": 0,
+                  "solve_rate": 0.2391304347826087,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 3.0
+                },
+                {
+                  "budget": 4,
+                  "count": 46,
+                  "solved": 41,
+                  "exact": 30,
+                  "solve_rate": 0.8913043478260869,
+                  "exact_rate": 0.6521739130434783,
+                  "avg_checks_used": 3.739130434782609
+                },
+                {
+                  "budget": 5,
+                  "count": 46,
+                  "solved": 42,
+                  "exact": 30,
+                  "solve_rate": 0.9130434782608695,
+                  "exact_rate": 0.6521739130434783,
+                  "avg_checks_used": 3.8260869565217392
+                },
+                {
+                  "budget": 6,
+                  "count": 46,
+                  "solved": 44,
+                  "exact": 30,
+                  "solve_rate": 0.9565217391304348,
+                  "exact_rate": 0.6521739130434783,
+                  "avg_checks_used": 3.891304347826087
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 11,
+                "4": 30,
+                "5": 1,
+                "6": 2
+              }
+            },
+            "type_mismatch": {
+              "count": 43,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 43,
+                  "solved": 36,
+                  "exact": 0,
+                  "solve_rate": 0.8372093023255814,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 43,
+                  "solved": 41,
+                  "exact": 0,
+                  "solve_rate": 0.9534883720930233,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.13953488372093
+                },
+                {
+                  "budget": 4,
+                  "count": 43,
+                  "solved": 42,
+                  "exact": 0,
+                  "solve_rate": 0.9767441860465116,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.1627906976744184
+                },
+                {
+                  "budget": 5,
+                  "count": 43,
+                  "solved": 42,
+                  "exact": 0,
+                  "solve_rate": 0.9767441860465116,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.1627906976744184
+                },
+                {
+                  "budget": 6,
+                  "count": 43,
+                  "solved": 42,
+                  "exact": 0,
+                  "solve_rate": 0.9767441860465116,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.1627906976744184
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 36,
+                "3": 5,
+                "4": 1,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 41,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 41,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 41,
+                  "solved": 22,
+                  "exact": 0,
+                  "solve_rate": 0.5365853658536586,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 41,
+                  "solved": 26,
+                  "exact": 3,
+                  "solve_rate": 0.6341463414634146,
+                  "exact_rate": 0.07317073170731707,
+                  "avg_checks_used": 2.1463414634146343
+                },
+                {
+                  "budget": 4,
+                  "count": 41,
+                  "solved": 28,
+                  "exact": 3,
+                  "solve_rate": 0.6829268292682927,
+                  "exact_rate": 0.07317073170731707,
+                  "avg_checks_used": 2.1951219512195124
+                },
+                {
+                  "budget": 5,
+                  "count": 41,
+                  "solved": 28,
+                  "exact": 3,
+                  "solve_rate": 0.6829268292682927,
+                  "exact_rate": 0.07317073170731707,
+                  "avg_checks_used": 2.1951219512195124
+                },
+                {
+                  "budget": 6,
+                  "count": 41,
+                  "solved": 28,
+                  "exact": 3,
+                  "solve_rate": 0.6829268292682927,
+                  "exact_rate": 0.07317073170731707,
+                  "avg_checks_used": 2.1951219512195124
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 22,
+                "3": 4,
+                "4": 2,
+                "5": 0,
+                "6": 0
+              }
+            }
+          }
+        }
+      },
+      "missing_policies": []
+    },
+    "run_20260211_002407": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "max_observed_steps": 3,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 300,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 300,
+              "solved": 29,
+              "exact": 0,
+              "solve_rate": 0.09666666666666666,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.3033333333333332
+            },
+            {
+              "budget": 3,
+              "count": 300,
+              "solved": 29,
+              "exact": 0,
+              "solve_rate": 0.09666666666666666,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.34
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 29,
+            "3": 0
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 42,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 42,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 42,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0476190476190477
+                },
+                {
+                  "budget": 3,
+                  "count": 42,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0476190476190477
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            },
+            "not_proposition": {
+              "count": 64,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 64,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 64,
+                  "solved": 29,
+                  "exact": 0,
+                  "solve_rate": 0.453125,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.484375
+                },
+                {
+                  "budget": 3,
+                  "count": 64,
+                  "solved": 29,
+                  "exact": 0,
+                  "solve_rate": 0.453125,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.484375
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 29,
+                "3": 0
+              }
+            },
+            "parse_missing_colon": {
+              "count": 49,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 49,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 49,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0408163265306123
+                },
+                {
+                  "budget": 3,
+                  "count": 49,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0408163265306123
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 50,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.22
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            },
+            "type_mismatch": {
+              "count": 50,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.12
+                },
+                {
+                  "budget": 3,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.12
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 45,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 45,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 45,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 3,
+                  "count": 45,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0
+              }
+            }
+          }
+        },
+        "research": {
+          "count": 300,
+          "max_observed_steps": 6,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 300,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 300,
+              "solved": 188,
+              "exact": 55,
+              "solve_rate": 0.6266666666666667,
+              "exact_rate": 0.18333333333333332,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 300,
+              "solved": 228,
+              "exact": 59,
+              "solve_rate": 0.76,
+              "exact_rate": 0.19666666666666666,
+              "avg_checks_used": 2.3033333333333332
+            },
+            {
+              "budget": 4,
+              "count": 300,
+              "solved": 252,
+              "exact": 79,
+              "solve_rate": 0.84,
+              "exact_rate": 0.2633333333333333,
+              "avg_checks_used": 2.46
+            },
+            {
+              "budget": 5,
+              "count": 300,
+              "solved": 255,
+              "exact": 79,
+              "solve_rate": 0.85,
+              "exact_rate": 0.2633333333333333,
+              "avg_checks_used": 2.513333333333333
+            },
+            {
+              "budget": 6,
+              "count": 300,
+              "solved": 256,
+              "exact": 79,
+              "solve_rate": 0.8533333333333334,
+              "exact_rate": 0.2633333333333333,
+              "avg_checks_used": 2.5566666666666666
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 188,
+            "3": 40,
+            "4": 24,
+            "5": 3,
+            "6": 1
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 42,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 42,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 42,
+                  "solved": 36,
+                  "exact": 29,
+                  "solve_rate": 0.8571428571428571,
+                  "exact_rate": 0.6904761904761905,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 42,
+                  "solved": 38,
+                  "exact": 31,
+                  "solve_rate": 0.9047619047619048,
+                  "exact_rate": 0.7380952380952381,
+                  "avg_checks_used": 2.119047619047619
+                },
+                {
+                  "budget": 4,
+                  "count": 42,
+                  "solved": 38,
+                  "exact": 31,
+                  "solve_rate": 0.9047619047619048,
+                  "exact_rate": 0.7380952380952381,
+                  "avg_checks_used": 2.1904761904761907
+                },
+                {
+                  "budget": 5,
+                  "count": 42,
+                  "solved": 38,
+                  "exact": 31,
+                  "solve_rate": 0.9047619047619048,
+                  "exact_rate": 0.7380952380952381,
+                  "avg_checks_used": 2.261904761904762
+                },
+                {
+                  "budget": 6,
+                  "count": 42,
+                  "solved": 38,
+                  "exact": 31,
+                  "solve_rate": 0.9047619047619048,
+                  "exact_rate": 0.7380952380952381,
+                  "avg_checks_used": 2.3333333333333335
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 36,
+                "3": 2,
+                "4": 0,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "not_proposition": {
+              "count": 64,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 64,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 64,
+                  "solved": 61,
+                  "exact": 0,
+                  "solve_rate": 0.953125,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 64,
+                  "solved": 62,
+                  "exact": 0,
+                  "solve_rate": 0.96875,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.03125
+                },
+                {
+                  "budget": 4,
+                  "count": 64,
+                  "solved": 63,
+                  "exact": 0,
+                  "solve_rate": 0.984375,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.046875
+                },
+                {
+                  "budget": 5,
+                  "count": 64,
+                  "solved": 63,
+                  "exact": 0,
+                  "solve_rate": 0.984375,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.046875
+                },
+                {
+                  "budget": 6,
+                  "count": 64,
+                  "solved": 63,
+                  "exact": 0,
+                  "solve_rate": 0.984375,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.046875
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 61,
+                "3": 1,
+                "4": 1,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "parse_missing_colon": {
+              "count": 49,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 49,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 49,
+                  "solved": 27,
+                  "exact": 26,
+                  "solve_rate": 0.5510204081632653,
+                  "exact_rate": 0.5306122448979592,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 49,
+                  "solved": 35,
+                  "exact": 26,
+                  "solve_rate": 0.7142857142857143,
+                  "exact_rate": 0.5306122448979592,
+                  "avg_checks_used": 2.4489795918367347
+                },
+                {
+                  "budget": 4,
+                  "count": 49,
+                  "solved": 38,
+                  "exact": 26,
+                  "solve_rate": 0.7755102040816326,
+                  "exact_rate": 0.5306122448979592,
+                  "avg_checks_used": 2.6530612244897958
+                },
+                {
+                  "budget": 5,
+                  "count": 49,
+                  "solved": 38,
+                  "exact": 26,
+                  "solve_rate": 0.7755102040816326,
+                  "exact_rate": 0.5306122448979592,
+                  "avg_checks_used": 2.6530612244897958
+                },
+                {
+                  "budget": 6,
+                  "count": 49,
+                  "solved": 38,
+                  "exact": 26,
+                  "solve_rate": 0.7755102040816326,
+                  "exact_rate": 0.5306122448979592,
+                  "avg_checks_used": 2.6530612244897958
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 27,
+                "3": 8,
+                "4": 3,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 50,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 50,
+                  "solved": 19,
+                  "exact": 0,
+                  "solve_rate": 0.38,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 3.0
+                },
+                {
+                  "budget": 4,
+                  "count": 50,
+                  "solved": 39,
+                  "exact": 20,
+                  "solve_rate": 0.78,
+                  "exact_rate": 0.4,
+                  "avg_checks_used": 3.62
+                },
+                {
+                  "budget": 5,
+                  "count": 50,
+                  "solved": 41,
+                  "exact": 20,
+                  "solve_rate": 0.82,
+                  "exact_rate": 0.4,
+                  "avg_checks_used": 3.84
+                },
+                {
+                  "budget": 6,
+                  "count": 50,
+                  "solved": 42,
+                  "exact": 20,
+                  "solve_rate": 0.84,
+                  "exact_rate": 0.4,
+                  "avg_checks_used": 4.02
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 19,
+                "4": 20,
+                "5": 2,
+                "6": 1
+              }
+            },
+            "type_mismatch": {
+              "count": 50,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 50,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 50,
+                  "solved": 40,
+                  "exact": 0,
+                  "solve_rate": 0.8,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 50,
+                  "solved": 48,
+                  "exact": 0,
+                  "solve_rate": 0.96,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.2
+                },
+                {
+                  "budget": 4,
+                  "count": 50,
+                  "solved": 48,
+                  "exact": 0,
+                  "solve_rate": 0.96,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.24
+                },
+                {
+                  "budget": 5,
+                  "count": 50,
+                  "solved": 49,
+                  "exact": 0,
+                  "solve_rate": 0.98,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.28
+                },
+                {
+                  "budget": 6,
+                  "count": 50,
+                  "solved": 49,
+                  "exact": 0,
+                  "solve_rate": 0.98,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.3
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 40,
+                "3": 8,
+                "4": 0,
+                "5": 1,
+                "6": 0
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 45,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 45,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 45,
+                  "solved": 24,
+                  "exact": 0,
+                  "solve_rate": 0.5333333333333333,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 45,
+                  "solved": 26,
+                  "exact": 2,
+                  "solve_rate": 0.5777777777777777,
+                  "exact_rate": 0.044444444444444446,
+                  "avg_checks_used": 2.0444444444444443
+                },
+                {
+                  "budget": 4,
+                  "count": 45,
+                  "solved": 26,
+                  "exact": 2,
+                  "solve_rate": 0.5777777777777777,
+                  "exact_rate": 0.044444444444444446,
+                  "avg_checks_used": 2.0444444444444443
+                },
+                {
+                  "budget": 5,
+                  "count": 45,
+                  "solved": 26,
+                  "exact": 2,
+                  "solve_rate": 0.5777777777777777,
+                  "exact_rate": 0.044444444444444446,
+                  "avg_checks_used": 2.0444444444444443
+                },
+                {
+                  "budget": 6,
+                  "count": 45,
+                  "solved": 26,
+                  "exact": 2,
+                  "solve_rate": 0.5777777777777777,
+                  "exact_rate": 0.044444444444444446,
+                  "avg_checks_used": 2.0444444444444443
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 24,
+                "3": 2,
+                "4": 0,
+                "5": 0,
+                "6": 0
+              }
+            }
+          }
+        }
+      },
+      "missing_policies": []
+    },
+    "run_20260211_002639": {
+      "policies": {
+        "heuristic": {
+          "count": 300,
+          "max_observed_steps": 4,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 300,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 300,
+              "solved": 31,
+              "exact": 0,
+              "solve_rate": 0.10333333333333333,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.29
+            },
+            {
+              "budget": 3,
+              "count": 300,
+              "solved": 33,
+              "exact": 0,
+              "solve_rate": 0.11,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.3333333333333333
+            },
+            {
+              "budget": 4,
+              "count": 300,
+              "solved": 35,
+              "exact": 0,
+              "solve_rate": 0.11666666666666667,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.34
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 31,
+            "3": 2,
+            "4": 2
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 40,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 40,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 40,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.05
+                },
+                {
+                  "budget": 3,
+                  "count": 40,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.05
+                },
+                {
+                  "budget": 4,
+                  "count": 40,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.05
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0
+              }
+            },
+            "not_proposition": {
+              "count": 67,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 67,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 67,
+                  "solved": 31,
+                  "exact": 0,
+                  "solve_rate": 0.4626865671641791,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.4776119402985075
+                },
+                {
+                  "budget": 3,
+                  "count": 67,
+                  "solved": 31,
+                  "exact": 0,
+                  "solve_rate": 0.4626865671641791,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.4776119402985075
+                },
+                {
+                  "budget": 4,
+                  "count": 67,
+                  "solved": 31,
+                  "exact": 0,
+                  "solve_rate": 0.4626865671641791,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.4776119402985075
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 31,
+                "3": 0,
+                "4": 0
+              }
+            },
+            "parse_missing_colon": {
+              "count": 56,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 56,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 56,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 3,
+                  "count": 56,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 4,
+                  "count": 56,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 47,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 47,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 47,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 47,
+                  "solved": 1,
+                  "exact": 0,
+                  "solve_rate": 0.02127659574468085,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.2127659574468086
+                },
+                {
+                  "budget": 4,
+                  "count": 47,
+                  "solved": 2,
+                  "exact": 0,
+                  "solve_rate": 0.0425531914893617,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.234042553191489
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 1,
+                "4": 1
+              }
+            },
+            "type_mismatch": {
+              "count": 47,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 47,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 47,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.127659574468085
+                },
+                {
+                  "budget": 3,
+                  "count": 47,
+                  "solved": 1,
+                  "exact": 0,
+                  "solve_rate": 0.02127659574468085,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.1914893617021276
+                },
+                {
+                  "budget": 4,
+                  "count": 47,
+                  "solved": 2,
+                  "exact": 0,
+                  "solve_rate": 0.0425531914893617,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.2127659574468086
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 1,
+                "4": 1
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 43,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 3,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 4,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0
+              }
+            }
+          }
+        },
+        "research": {
+          "count": 300,
+          "max_observed_steps": 6,
+          "budgets": [
+            {
+              "budget": 1,
+              "count": 300,
+              "solved": 0,
+              "exact": 0,
+              "solve_rate": 0.0,
+              "exact_rate": 0.0,
+              "avg_checks_used": 1.0
+            },
+            {
+              "budget": 2,
+              "count": 300,
+              "solved": 189,
+              "exact": 52,
+              "solve_rate": 0.63,
+              "exact_rate": 0.17333333333333334,
+              "avg_checks_used": 2.0
+            },
+            {
+              "budget": 3,
+              "count": 300,
+              "solved": 221,
+              "exact": 53,
+              "solve_rate": 0.7366666666666667,
+              "exact_rate": 0.17666666666666667,
+              "avg_checks_used": 2.31
+            },
+            {
+              "budget": 4,
+              "count": 300,
+              "solved": 246,
+              "exact": 74,
+              "solve_rate": 0.82,
+              "exact_rate": 0.24666666666666667,
+              "avg_checks_used": 2.486666666666667
+            },
+            {
+              "budget": 5,
+              "count": 300,
+              "solved": 246,
+              "exact": 74,
+              "solve_rate": 0.82,
+              "exact_rate": 0.24666666666666667,
+              "avg_checks_used": 2.5233333333333334
+            },
+            {
+              "budget": 6,
+              "count": 300,
+              "solved": 248,
+              "exact": 74,
+              "solve_rate": 0.8266666666666667,
+              "exact_rate": 0.24666666666666667,
+              "avg_checks_used": 2.56
+            }
+          ],
+          "marginal_solves": {
+            "1": 0,
+            "2": 189,
+            "3": 32,
+            "4": 25,
+            "5": 0,
+            "6": 2
+          },
+          "by_corruption": {
+            "lowercase_type": {
+              "count": 40,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 40,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 40,
+                  "solved": 36,
+                  "exact": 26,
+                  "solve_rate": 0.9,
+                  "exact_rate": 0.65,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 40,
+                  "solved": 37,
+                  "exact": 27,
+                  "solve_rate": 0.925,
+                  "exact_rate": 0.675,
+                  "avg_checks_used": 2.075
+                },
+                {
+                  "budget": 4,
+                  "count": 40,
+                  "solved": 37,
+                  "exact": 27,
+                  "solve_rate": 0.925,
+                  "exact_rate": 0.675,
+                  "avg_checks_used": 2.125
+                },
+                {
+                  "budget": 5,
+                  "count": 40,
+                  "solved": 37,
+                  "exact": 27,
+                  "solve_rate": 0.925,
+                  "exact_rate": 0.675,
+                  "avg_checks_used": 2.175
+                },
+                {
+                  "budget": 6,
+                  "count": 40,
+                  "solved": 37,
+                  "exact": 27,
+                  "solve_rate": 0.925,
+                  "exact_rate": 0.675,
+                  "avg_checks_used": 2.225
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 36,
+                "3": 1,
+                "4": 0,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "not_proposition": {
+              "count": 67,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 67,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 67,
+                  "solved": 62,
+                  "exact": 0,
+                  "solve_rate": 0.9253731343283582,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 67,
+                  "solved": 62,
+                  "exact": 0,
+                  "solve_rate": 0.9253731343283582,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.074626865671642
+                },
+                {
+                  "budget": 4,
+                  "count": 67,
+                  "solved": 63,
+                  "exact": 0,
+                  "solve_rate": 0.9402985074626866,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.08955223880597
+                },
+                {
+                  "budget": 5,
+                  "count": 67,
+                  "solved": 63,
+                  "exact": 0,
+                  "solve_rate": 0.9402985074626866,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.08955223880597
+                },
+                {
+                  "budget": 6,
+                  "count": 67,
+                  "solved": 63,
+                  "exact": 0,
+                  "solve_rate": 0.9402985074626866,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.08955223880597
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 62,
+                "3": 0,
+                "4": 1,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "parse_missing_colon": {
+              "count": 56,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 56,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 56,
+                  "solved": 26,
+                  "exact": 26,
+                  "solve_rate": 0.4642857142857143,
+                  "exact_rate": 0.4642857142857143,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 56,
+                  "solved": 35,
+                  "exact": 26,
+                  "solve_rate": 0.625,
+                  "exact_rate": 0.4642857142857143,
+                  "avg_checks_used": 2.5357142857142856
+                },
+                {
+                  "budget": 4,
+                  "count": 56,
+                  "solved": 37,
+                  "exact": 26,
+                  "solve_rate": 0.6607142857142857,
+                  "exact_rate": 0.4642857142857143,
+                  "avg_checks_used": 2.892857142857143
+                },
+                {
+                  "budget": 5,
+                  "count": 56,
+                  "solved": 37,
+                  "exact": 26,
+                  "solve_rate": 0.6607142857142857,
+                  "exact_rate": 0.4642857142857143,
+                  "avg_checks_used": 2.9285714285714284
+                },
+                {
+                  "budget": 6,
+                  "count": 56,
+                  "solved": 37,
+                  "exact": 26,
+                  "solve_rate": 0.6607142857142857,
+                  "exact_rate": 0.4642857142857143,
+                  "avg_checks_used": 2.9642857142857144
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 26,
+                "3": 9,
+                "4": 2,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "parse_unbalanced_paren": {
+              "count": 47,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 47,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 47,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 47,
+                  "solved": 18,
+                  "exact": 0,
+                  "solve_rate": 0.3829787234042553,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 3.0
+                },
+                {
+                  "budget": 4,
+                  "count": 47,
+                  "solved": 39,
+                  "exact": 21,
+                  "solve_rate": 0.8297872340425532,
+                  "exact_rate": 0.44680851063829785,
+                  "avg_checks_used": 3.574468085106383
+                },
+                {
+                  "budget": 5,
+                  "count": 47,
+                  "solved": 39,
+                  "exact": 21,
+                  "solve_rate": 0.8297872340425532,
+                  "exact_rate": 0.44680851063829785,
+                  "avg_checks_used": 3.702127659574468
+                },
+                {
+                  "budget": 6,
+                  "count": 47,
+                  "solved": 41,
+                  "exact": 21,
+                  "solve_rate": 0.8723404255319149,
+                  "exact_rate": 0.44680851063829785,
+                  "avg_checks_used": 3.8297872340425534
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 0,
+                "3": 18,
+                "4": 21,
+                "5": 0,
+                "6": 2
+              }
+            },
+            "type_mismatch": {
+              "count": 47,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 47,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 47,
+                  "solved": 40,
+                  "exact": 0,
+                  "solve_rate": 0.851063829787234,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 47,
+                  "solved": 44,
+                  "exact": 0,
+                  "solve_rate": 0.9361702127659575,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.127659574468085
+                },
+                {
+                  "budget": 4,
+                  "count": 47,
+                  "solved": 45,
+                  "exact": 0,
+                  "solve_rate": 0.9574468085106383,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.1702127659574466
+                },
+                {
+                  "budget": 5,
+                  "count": 47,
+                  "solved": 45,
+                  "exact": 0,
+                  "solve_rate": 0.9574468085106383,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.1702127659574466
+                },
+                {
+                  "budget": 6,
+                  "count": 47,
+                  "solved": 45,
+                  "exact": 0,
+                  "solve_rate": 0.9574468085106383,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.1702127659574466
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 40,
+                "3": 4,
+                "4": 1,
+                "5": 0,
+                "6": 0
+              }
+            },
+            "unknown_type_symbol": {
+              "count": 43,
+              "budgets": [
+                {
+                  "budget": 1,
+                  "count": 43,
+                  "solved": 0,
+                  "exact": 0,
+                  "solve_rate": 0.0,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 1.0
+                },
+                {
+                  "budget": 2,
+                  "count": 43,
+                  "solved": 25,
+                  "exact": 0,
+                  "solve_rate": 0.5813953488372093,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0
+                },
+                {
+                  "budget": 3,
+                  "count": 43,
+                  "solved": 25,
+                  "exact": 0,
+                  "solve_rate": 0.5813953488372093,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.046511627906977
+                },
+                {
+                  "budget": 4,
+                  "count": 43,
+                  "solved": 25,
+                  "exact": 0,
+                  "solve_rate": 0.5813953488372093,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0697674418604652
+                },
+                {
+                  "budget": 5,
+                  "count": 43,
+                  "solved": 25,
+                  "exact": 0,
+                  "solve_rate": 0.5813953488372093,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.0930232558139537
+                },
+                {
+                  "budget": 6,
+                  "count": 43,
+                  "solved": 25,
+                  "exact": 0,
+                  "solve_rate": 0.5813953488372093,
+                  "exact_rate": 0.0,
+                  "avg_checks_used": 2.116279069767442
+                }
+              ],
+              "marginal_solves": {
+                "1": 0,
+                "2": 25,
+                "3": 0,
+                "4": 0,
+                "5": 0,
+                "6": 0
+              }
+            }
+          }
+        }
+      },
+      "missing_policies": []
+    }
+  },
+  "missing_policy_run_counts": {}
+}

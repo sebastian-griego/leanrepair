@@ -35,6 +35,7 @@ _UNKNOWN_RE = re.compile(
 @dataclass
 class ResearchHeuristicPolicy(LLMPolicy):
     max_proposals: int = 8
+    allow_degenerate_fallbacks: bool = True
 
     def propose(self, nl: str, ctx: str, cand: str, check_result: lc.CheckResult) -> str:
         proposals = self.propose_many(nl, ctx, cand, check_result)
@@ -86,6 +87,8 @@ class ResearchHeuristicPolicy(LLMPolicy):
         if sanitized is None:
             return
         if sanitized == original:
+            return
+        if not self.allow_degenerate_fallbacks and _is_degenerate_fallback(sanitized):
             return
         if sanitized in proposals:
             return
@@ -157,6 +160,29 @@ def _replace_goal(candidate: str, new_goal: str) -> str:
         return candidate
     prefix = candidate[: colon_idx + 1]
     return f"{prefix} {new_goal.strip()}"
+
+
+def _is_degenerate_fallback(candidate: str) -> bool:
+    colon_idx = rl._find_top_level_colon(candidate)
+    if colon_idx == -1:
+        return False
+    goal = _normalize_expr(candidate[colon_idx + 1 :])
+    if goal == "True":
+        return True
+    return _is_reflexive_equality(goal)
+
+
+def _is_reflexive_equality(goal: str) -> bool:
+    parts = goal.split("=")
+    if len(parts) != 2:
+        return False
+    left = _normalize_expr(parts[0])
+    right = _normalize_expr(parts[1])
+    return bool(left) and left == right
+
+
+def _normalize_expr(text: str) -> str:
+    return re.sub(r"\s+", "", str(text).strip())
 
 
 def _rewrite_goal_as_equality(candidate: str) -> str:
@@ -508,7 +534,33 @@ def _extract_candidate(text: str) -> str:
                 cleaned = lines[1].strip() if len(lines) > 1 else ""
             else:
                 cleaned = code_block
-    return cleaned
+    return _extract_lean_header(cleaned)
+
+
+def _extract_lean_header(text: str) -> str:
+    lines = text.strip().splitlines()
+    start_idx = None
+    for idx, line in enumerate(lines):
+        if re.match(r"^\s*(theorem|lemma)\b", line):
+            start_idx = idx
+            break
+    if start_idx is None:
+        return text.strip()
+
+    header_lines: list[str] = []
+    for line in lines[start_idx:]:
+        if header_lines and re.match(r"^\s*(theorem|lemma)\b", line):
+            break
+        if not header_lines and not line.strip():
+            continue
+        header_lines.append(line.rstrip())
+        if ":=" in line:
+            break
+
+    header = "\n".join(header_lines).strip()
+    if ":=" in header:
+        header = header.split(":=", 1)[0].rstrip()
+    return header
 
 
 def _format_errors(result: lc.CheckResult) -> str:
