@@ -6,10 +6,10 @@
 
 ## Aggregate
 
-| Policy | Records | Raw Solved | Strict Solved | Raw Exact | Strict Exact | Raw Degenerate | Lost Under Strict | Strict Retention | Recovered Later |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| heuristic | 900 | 90 | 5 | 0 | 0 | 85 | 85 | 5.6% | 0 |
-| research | 900 | 756 | 255 | 249 | 249 | 501 | 501 | 33.7% | 0 |
+| Policy | Records | Raw Solved | Strict Solved | Raw Exact | Strict Exact | Strict Nonexact | Exact Given Strict | Raw Degenerate | Lost Under Strict | Strict Retention | Recovered Later |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| heuristic | 900 | 90 | 5 | 0 | 0 | 5 | 0.0% | 85 | 85 | 5.6% | 0 |
+| research | 900 | 756 | 255 | 249 | 249 | 6 | 97.6% | 501 | 501 | 33.7% | 0 |
 
 ## Raw Degenerate Reasons
 
@@ -22,25 +22,25 @@
 
 ### heuristic
 
-| Corruption | N | Raw Solved | Strict Solved | Raw Degenerate | Lost | Retention |
-|---|---:|---:|---:|---:|---:|---:|
-| lowercase_type | 118 | 0 | 0 | 0 | 0 | 0.0% |
-| not_proposition | 194 | 86 | 3 | 83 | 83 | 3.5% |
-| parse_missing_colon | 176 | 0 | 0 | 0 | 0 | 0.0% |
-| parse_unbalanced_paren | 143 | 2 | 2 | 0 | 0 | 100.0% |
-| type_mismatch | 140 | 2 | 0 | 2 | 2 | 0.0% |
-| unknown_type_symbol | 129 | 0 | 0 | 0 | 0 | 0.0% |
+| Corruption | N | Raw Solved | Strict Solved | Strict Exact | Strict Nonexact | Exact Given Strict | Raw Degenerate | Lost | Retention |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| lowercase_type | 118 | 0 | 0 | 0 | 0 | 0.0% | 0 | 0 | 0.0% |
+| not_proposition | 194 | 86 | 3 | 0 | 3 | 0.0% | 83 | 83 | 3.5% |
+| parse_missing_colon | 176 | 0 | 0 | 0 | 0 | 0.0% | 0 | 0 | 0.0% |
+| parse_unbalanced_paren | 143 | 2 | 2 | 0 | 2 | 0.0% | 0 | 0 | 100.0% |
+| type_mismatch | 140 | 2 | 0 | 0 | 0 | 0.0% | 2 | 2 | 0.0% |
+| unknown_type_symbol | 129 | 0 | 0 | 0 | 0 | 0.0% | 0 | 0 | 0.0% |
 
 ### research
 
-| Corruption | N | Raw Solved | Strict Solved | Raw Degenerate | Lost | Retention |
-|---|---:|---:|---:|---:|---:|---:|
-| lowercase_type | 118 | 107 | 84 | 23 | 23 | 78.5% |
-| not_proposition | 194 | 185 | 3 | 182 | 182 | 1.6% |
-| parse_missing_colon | 176 | 122 | 91 | 31 | 31 | 74.6% |
-| parse_unbalanced_paren | 143 | 127 | 71 | 56 | 56 | 55.9% |
-| type_mismatch | 140 | 136 | 0 | 136 | 136 | 0.0% |
-| unknown_type_symbol | 129 | 79 | 6 | 73 | 73 | 7.6% |
+| Corruption | N | Raw Solved | Strict Solved | Strict Exact | Strict Nonexact | Exact Given Strict | Raw Degenerate | Lost | Retention |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| lowercase_type | 118 | 107 | 84 | 84 | 0 | 100.0% | 23 | 23 | 78.5% |
+| not_proposition | 194 | 185 | 3 | 0 | 3 | 0.0% | 182 | 182 | 1.6% |
+| parse_missing_colon | 176 | 122 | 91 | 89 | 2 | 97.8% | 31 | 31 | 74.6% |
+| parse_unbalanced_paren | 143 | 127 | 71 | 71 | 0 | 100.0% | 56 | 56 | 55.9% |
+| type_mismatch | 140 | 136 | 0 | 0 | 0 | 0.0% | 136 | 136 | 0.0% |
+| unknown_type_symbol | 129 | 79 | 6 | 5 | 1 | 83.3% | 73 | 73 | 7.6% |
 
 ## Raw Solves Rejected By Strict Replay
 
@@ -73,6 +73,29 @@
 | real_00107 | lowercase_type | goal_true | 2 | True | (a ^^^ b) <<< c = (a <<< c) ^^^ (b <<< c) |
 | real_00111 | lowercase_type | goal_true | 2 | True | x.toInt = y.toInt → x = y |
 | real_00116 | lowercase_type | goal_true | 2 | True | c.toNat ≤ 1 |
+
+## Strict Nonexact Accepts
+
+### heuristic
+
+| id | corruption | strict step | strict final header | target header |
+|---|---|---:|---|---|
+| real_00111 | not_proposition | 2 | theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m | theorem bench_real_00111 (n m : Nat) (h : 0 < m) : 1 ≤ m ^ n |
+| real_00255 | not_proposition | 2 | theorem bench_real_00255 (a b : Int) (b : Prop): b | theorem bench_real_00255 (a b : Int) : (¬a ≤ b) = (b + 1 ≤ a) |
+| real_00296 | not_proposition | 2 | theorem bench_real_00296 (x y : Int) (y : Prop): y | theorem bench_real_00296 (x y : Int) : (x - y) % y = x % y |
+| real_00066 | parse_unbalanced_paren | 4 | theorem bench_real_00066 {n d : Nat} (d : Prop): d | theorem bench_real_00066 {n d : Nat} : d * (n / d) = n ↔ d ∣ n |
+| real_00288 | parse_unbalanced_paren | 3 | theorem bench_real_00288 [Decidable a] : a | theorem bench_real_00288 [Decidable a] : a ∨ b ↔ (¬a → b) |
+
+### research
+
+| id | corruption | strict step | strict final header | target header |
+|---|---|---:|---|---|
+| real_00111 | not_proposition | 2 | theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m | theorem bench_real_00111 (n m : Nat) (h : 0 < m) : 1 ≤ m ^ n |
+| real_00255 | not_proposition | 2 | theorem bench_real_00255 (a b : Int) (b : Prop): b | theorem bench_real_00255 (a b : Int) : (¬a ≤ b) = (b + 1 ≤ a) |
+| real_00296 | not_proposition | 2 | theorem bench_real_00296 (x y : Int) (y : Prop): y | theorem bench_real_00296 (x y : Int) : (x - y) % y = x % y |
+| real_00139 | parse_missing_colon | 2 | theorem bench_real_00139 (a : α) : a = a ↔ True | theorem bench_real_00139 (a : α) : a = a ↔ True |
+| real_00230 | parse_missing_colon | 2 | theorem bench_real_00230 : ∀ (x y z : Bool), (x && (y \|\| z)) = (x && y \|\| x && z) | theorem bench_real_00230 : ∀ (x y z : Bool), (x && (y \|\| z)) = (x && y \|\| x && z) |
+| real_00075 | unknown_type_symbol | 2 | theorem bench_real_00075 {a b : Nat} (hab : b ≤ a) : Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b | theorem bench_real_00075 {a b : Nat} (hab : b ≤ a) : UInt8.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b |
 
 ## Later Nondegenerate Recoveries
 

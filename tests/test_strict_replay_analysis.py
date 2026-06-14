@@ -69,7 +69,36 @@ class StrictReplayAnalysisTests(unittest.TestCase):
         self.assertEqual(summary["strict_solved"], 1)
         self.assertEqual(summary["raw_exact"], 1)
         self.assertEqual(summary["strict_exact"], 1)
+        self.assertEqual(summary["strict_not_exact"], 0)
+        self.assertAlmostEqual(summary["strict_exact_given_strict"], 1.0)
         self.assertEqual(summary["raw_degenerate_solved"], 0)
+
+    def test_strict_replay_reports_nondegenerate_nonexact_acceptance(self):
+        summary = sra.analyze_records(
+            [
+                {
+                    "id": "nonexact",
+                    "policy": "research",
+                    "corruption": "parse",
+                    "ok": True,
+                    "final": "theorem nonexact (n : Nat) : n = n + 0 := by sorry",
+                    "target": "theorem nonexact (n : Nat) : n + 0 = n",
+                    "trace": [
+                        {
+                            "ok": True,
+                            "candidate": "theorem nonexact (n : Nat) : n = n + 0 := by sorry",
+                        },
+                    ],
+                }
+            ]
+        )
+
+        self.assertEqual(summary["strict_solved"], 1)
+        self.assertEqual(summary["strict_exact"], 0)
+        self.assertEqual(summary["strict_not_exact"], 1)
+        self.assertAlmostEqual(summary["strict_exact_given_strict"], 0.0)
+        self.assertEqual(summary["strict_nonexact_examples"][0]["id"], "nonexact")
+        self.assertEqual(summary["by_corruption"]["parse"]["strict_not_exact"], 1)
 
     def test_strict_replay_can_recover_after_degenerate_trace_step(self):
         summary = sra.analyze_records(
@@ -145,6 +174,7 @@ class StrictReplayAnalysisTests(unittest.TestCase):
 
             payload = json.loads(output_json.read_text(encoding="utf-8"))
             self.assertEqual(payload["policies"]["research"]["raw_to_strict_loss"], 1)
+            self.assertEqual(payload["policies"]["research"]["strict_not_exact"], 0)
             self.assertIn("Strict Replay Audit", output_md.read_text(encoding="utf-8"))
 
     def _write_jsonl(self, path: pathlib.Path, rows: list[dict]) -> None:

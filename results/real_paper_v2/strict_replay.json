@@ -10,6 +10,7 @@
           "strict_solved": 1,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 1,
           "raw_degenerate_solved": 25,
           "raw_to_strict_loss": 25,
           "discarded_degenerate_ok_steps": 25,
@@ -19,6 +20,7 @@
           "strict_solve_rate": 0.0033333333333333335,
           "raw_exact_rate": 0.0,
           "strict_exact_rate": 0.0,
+          "strict_exact_given_strict": 0.0,
           "raw_degenerate_solved_rate": 0.08333333333333333,
           "strict_retention_given_raw": 0.038461538461538464,
           "raw_degenerate_reasons": {
@@ -32,11 +34,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "not_proposition": {
@@ -45,11 +49,13 @@
               "strict_solved": 1,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 25,
               "raw_to_strict_loss": 25,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.4126984126984127,
               "strict_solve_rate": 0.015873015873015872,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.038461538461538464
             },
             "parse_missing_colon": {
@@ -58,11 +64,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "parse_unbalanced_paren": {
@@ -71,11 +79,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "type_mismatch": {
@@ -84,11 +94,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "unknown_type_symbol": {
@@ -97,11 +109,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             }
           },
@@ -387,7 +401,23 @@
               "target_goal": "[a][i]? = if i = 0 then some a else none"
             }
           ],
-          "recovered_examples": []
+          "recovered_examples": [],
+          "strict_nonexact_examples": [
+            {
+              "id": "real_00255",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+              "strict_final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+              "target_header": "theorem bench_real_00255 (a b : Int) : (\u00aca \u2264 b) = (b + 1 \u2264 a)",
+              "raw_final_goal": "b",
+              "strict_final_goal": "b",
+              "target_goal": "(\u00aca \u2264 b) = (b + 1 \u2264 a)"
+            }
+          ]
         },
         "research": {
           "count": 300,
@@ -395,6 +425,7 @@
           "strict_solved": 98,
           "raw_exact": 96,
           "strict_exact": 96,
+          "strict_not_exact": 2,
           "raw_degenerate_solved": 154,
           "raw_to_strict_loss": 154,
           "discarded_degenerate_ok_steps": 154,
@@ -404,6 +435,7 @@
           "strict_solve_rate": 0.32666666666666666,
           "raw_exact_rate": 0.32,
           "strict_exact_rate": 0.32,
+          "strict_exact_given_strict": 0.9795918367346939,
           "raw_degenerate_solved_rate": 0.5133333333333333,
           "strict_retention_given_raw": 0.3888888888888889,
           "raw_degenerate_reasons": {
@@ -418,11 +450,13 @@
               "strict_solved": 26,
               "raw_exact": 26,
               "strict_exact": 26,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 6,
               "raw_to_strict_loss": 6,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.8888888888888888,
               "strict_solve_rate": 0.7222222222222222,
+              "strict_exact_given_strict": 1.0,
               "strict_retention_given_raw": 0.8125
             },
             "not_proposition": {
@@ -431,11 +465,13 @@
               "strict_solved": 1,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 58,
               "raw_to_strict_loss": 58,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.9365079365079365,
               "strict_solve_rate": 0.015873015873015872,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.01694915254237288
             },
             "parse_missing_colon": {
@@ -444,11 +480,13 @@
               "strict_solved": 38,
               "raw_exact": 37,
               "strict_exact": 37,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 9,
               "raw_to_strict_loss": 9,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.6619718309859155,
               "strict_solve_rate": 0.5352112676056338,
+              "strict_exact_given_strict": 0.9736842105263158,
               "strict_retention_given_raw": 0.8085106382978723
             },
             "parse_unbalanced_paren": {
@@ -457,11 +495,13 @@
               "strict_solved": 30,
               "raw_exact": 30,
               "strict_exact": 30,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 14,
               "raw_to_strict_loss": 14,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.9565217391304348,
               "strict_solve_rate": 0.6521739130434783,
+              "strict_exact_given_strict": 1.0,
               "strict_retention_given_raw": 0.6818181818181818
             },
             "type_mismatch": {
@@ -470,11 +510,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 42,
               "raw_to_strict_loss": 42,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.9767441860465116,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "unknown_type_symbol": {
@@ -483,11 +525,13 @@
               "strict_solved": 3,
               "raw_exact": 3,
               "strict_exact": 3,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 25,
               "raw_to_strict_loss": 25,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.6829268292682927,
               "strict_solve_rate": 0.07317073170731707,
+              "strict_exact_given_strict": 1.0,
               "strict_retention_given_raw": 0.10714285714285714
             }
           },
@@ -773,7 +817,37 @@
               "target_goal": "\u2203 x, x \u2208 xs"
             }
           ],
-          "recovered_examples": []
+          "recovered_examples": [],
+          "strict_nonexact_examples": [
+            {
+              "id": "real_00255",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+              "strict_final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+              "target_header": "theorem bench_real_00255 (a b : Int) : (\u00aca \u2264 b) = (b + 1 \u2264 a)",
+              "raw_final_goal": "b",
+              "strict_final_goal": "b",
+              "target_goal": "(\u00aca \u2264 b) = (b + 1 \u2264 a)"
+            },
+            {
+              "id": "real_00139",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00139 (a : \u03b1) : a = a \u2194 True",
+              "strict_final_header": "theorem bench_real_00139 (a : \u03b1) : a = a \u2194 True",
+              "target_header": "theorem bench_real_00139 (a : \u03b1)  : a = a \u2194 True",
+              "raw_final_goal": "a = a \u2194 True",
+              "strict_final_goal": "a = a \u2194 True",
+              "target_goal": "a = a \u2194 True"
+            }
+          ]
         }
       },
       "missing_policies": []
@@ -786,6 +860,7 @@
           "strict_solved": 1,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 1,
           "raw_degenerate_solved": 28,
           "raw_to_strict_loss": 28,
           "discarded_degenerate_ok_steps": 28,
@@ -795,6 +870,7 @@
           "strict_solve_rate": 0.0033333333333333335,
           "raw_exact_rate": 0.0,
           "strict_exact_rate": 0.0,
+          "strict_exact_given_strict": 0.0,
           "raw_degenerate_solved_rate": 0.09333333333333334,
           "strict_retention_given_raw": 0.034482758620689655,
           "raw_degenerate_reasons": {
@@ -808,11 +884,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "not_proposition": {
@@ -821,11 +899,13 @@
               "strict_solved": 1,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 28,
               "raw_to_strict_loss": 28,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.453125,
               "strict_solve_rate": 0.015625,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.034482758620689655
             },
             "parse_missing_colon": {
@@ -834,11 +914,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "parse_unbalanced_paren": {
@@ -847,11 +929,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "type_mismatch": {
@@ -860,11 +944,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "unknown_type_symbol": {
@@ -873,11 +959,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             }
           },
@@ -1163,7 +1251,23 @@
               "target_goal": "~~~ x = y \u2194 x = ~~~ y"
             }
           ],
-          "recovered_examples": []
+          "recovered_examples": [],
+          "strict_nonexact_examples": [
+            {
+              "id": "real_00296",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00296 (x y : Int) (y : Prop): y",
+              "strict_final_header": "theorem bench_real_00296 (x y : Int) (y : Prop): y",
+              "target_header": "theorem bench_real_00296 (x y : Int) : (x - y) % y = x % y",
+              "raw_final_goal": "y",
+              "strict_final_goal": "y",
+              "target_goal": "(x - y) % y = x % y"
+            }
+          ]
         },
         "research": {
           "count": 300,
@@ -1171,6 +1275,7 @@
           "strict_solved": 82,
           "raw_exact": 79,
           "strict_exact": 79,
+          "strict_not_exact": 3,
           "raw_degenerate_solved": 174,
           "raw_to_strict_loss": 174,
           "discarded_degenerate_ok_steps": 174,
@@ -1180,6 +1285,7 @@
           "strict_solve_rate": 0.2733333333333333,
           "raw_exact_rate": 0.2633333333333333,
           "strict_exact_rate": 0.2633333333333333,
+          "strict_exact_given_strict": 0.9634146341463414,
           "raw_degenerate_solved_rate": 0.58,
           "strict_retention_given_raw": 0.3203125,
           "raw_degenerate_reasons": {
@@ -1194,11 +1300,13 @@
               "strict_solved": 31,
               "raw_exact": 31,
               "strict_exact": 31,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 7,
               "raw_to_strict_loss": 7,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.9047619047619048,
               "strict_solve_rate": 0.7380952380952381,
+              "strict_exact_given_strict": 1.0,
               "strict_retention_given_raw": 0.8157894736842105
             },
             "not_proposition": {
@@ -1207,11 +1315,13 @@
               "strict_solved": 1,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 62,
               "raw_to_strict_loss": 62,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.984375,
               "strict_solve_rate": 0.015625,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.015873015873015872
             },
             "parse_missing_colon": {
@@ -1220,11 +1330,13 @@
               "strict_solved": 27,
               "raw_exact": 26,
               "strict_exact": 26,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 11,
               "raw_to_strict_loss": 11,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.7755102040816326,
               "strict_solve_rate": 0.5510204081632653,
+              "strict_exact_given_strict": 0.9629629629629629,
               "strict_retention_given_raw": 0.7105263157894737
             },
             "parse_unbalanced_paren": {
@@ -1233,11 +1345,13 @@
               "strict_solved": 20,
               "raw_exact": 20,
               "strict_exact": 20,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 22,
               "raw_to_strict_loss": 22,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.84,
               "strict_solve_rate": 0.4,
+              "strict_exact_given_strict": 1.0,
               "strict_retention_given_raw": 0.47619047619047616
             },
             "type_mismatch": {
@@ -1246,11 +1360,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 49,
               "raw_to_strict_loss": 49,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.98,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "unknown_type_symbol": {
@@ -1259,11 +1375,13 @@
               "strict_solved": 3,
               "raw_exact": 2,
               "strict_exact": 2,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 23,
               "raw_to_strict_loss": 23,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.5777777777777777,
               "strict_solve_rate": 0.06666666666666667,
+              "strict_exact_given_strict": 0.6666666666666666,
               "strict_retention_given_raw": 0.11538461538461539
             }
           },
@@ -1549,7 +1667,51 @@
               "target_goal": "(a + b = c) = (a = c - b)"
             }
           ],
-          "recovered_examples": []
+          "recovered_examples": [],
+          "strict_nonexact_examples": [
+            {
+              "id": "real_00296",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00296 (x y : Int) (y : Prop): y",
+              "strict_final_header": "theorem bench_real_00296 (x y : Int) (y : Prop): y",
+              "target_header": "theorem bench_real_00296 (x y : Int) : (x - y) % y = x % y",
+              "raw_final_goal": "y",
+              "strict_final_goal": "y",
+              "target_goal": "(x - y) % y = x % y"
+            },
+            {
+              "id": "real_00230",
+              "policy": "research",
+              "corruption": "parse_missing_colon",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00230 : \u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+              "strict_final_header": "theorem bench_real_00230 : \u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+              "target_header": "theorem bench_real_00230  : \u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+              "raw_final_goal": "\u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+              "strict_final_goal": "\u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+              "target_goal": "\u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)"
+            },
+            {
+              "id": "real_00075",
+              "policy": "research",
+              "corruption": "unknown_type_symbol",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00075 {a b : Nat} (hab : b \u2264 a) : Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+              "strict_final_header": "theorem bench_real_00075 {a b : Nat} (hab : b \u2264 a) : Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+              "target_header": "theorem bench_real_00075 {a b : Nat} (hab : b \u2264 a) : UInt8.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+              "raw_final_goal": "Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+              "strict_final_goal": "Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+              "target_goal": "UInt8.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b"
+            }
+          ]
         }
       },
       "missing_policies": []
@@ -1562,6 +1724,7 @@
           "strict_solved": 3,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 3,
           "raw_degenerate_solved": 32,
           "raw_to_strict_loss": 32,
           "discarded_degenerate_ok_steps": 32,
@@ -1571,6 +1734,7 @@
           "strict_solve_rate": 0.01,
           "raw_exact_rate": 0.0,
           "strict_exact_rate": 0.0,
+          "strict_exact_given_strict": 0.0,
           "raw_degenerate_solved_rate": 0.10666666666666667,
           "strict_retention_given_raw": 0.08571428571428572,
           "raw_degenerate_reasons": {
@@ -1584,11 +1748,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "not_proposition": {
@@ -1597,11 +1763,13 @@
               "strict_solved": 1,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 30,
               "raw_to_strict_loss": 30,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.4626865671641791,
               "strict_solve_rate": 0.014925373134328358,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.03225806451612903
             },
             "parse_missing_colon": {
@@ -1610,11 +1778,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "parse_unbalanced_paren": {
@@ -1623,11 +1793,13 @@
               "strict_solved": 2,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 2,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0425531914893617,
               "strict_solve_rate": 0.0425531914893617,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 1.0
             },
             "type_mismatch": {
@@ -1636,11 +1808,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 2,
               "raw_to_strict_loss": 2,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0425531914893617,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "unknown_type_symbol": {
@@ -1649,11 +1823,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 0,
               "raw_to_strict_loss": 0,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.0,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             }
           },
@@ -1939,7 +2115,51 @@
               "target_goal": "xs.any p = decide (\u2203 x, x \u2208 xs \u2227 p x)"
             }
           ],
-          "recovered_examples": []
+          "recovered_examples": [],
+          "strict_nonexact_examples": [
+            {
+              "id": "real_00111",
+              "policy": "heuristic",
+              "corruption": "not_proposition",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m",
+              "strict_final_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m",
+              "target_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) : 1 \u2264 m ^ n",
+              "raw_final_goal": "m",
+              "strict_final_goal": "m",
+              "target_goal": "1 \u2264 m ^ n"
+            },
+            {
+              "id": "real_00066",
+              "policy": "heuristic",
+              "corruption": "parse_unbalanced_paren",
+              "raw_reason": "",
+              "raw_step_index": 4,
+              "strict_step_index": 4,
+              "raw_final_header": "theorem bench_real_00066 {n d : Nat} (d : Prop): d",
+              "strict_final_header": "theorem bench_real_00066 {n d : Nat} (d : Prop): d",
+              "target_header": "theorem bench_real_00066 {n d : Nat} : d * (n / d) = n \u2194 d \u2223 n",
+              "raw_final_goal": "d",
+              "strict_final_goal": "d",
+              "target_goal": "d * (n / d) = n \u2194 d \u2223 n"
+            },
+            {
+              "id": "real_00288",
+              "policy": "heuristic",
+              "corruption": "parse_unbalanced_paren",
+              "raw_reason": "",
+              "raw_step_index": 3,
+              "strict_step_index": 3,
+              "raw_final_header": "theorem bench_real_00288 [Decidable a] : a",
+              "strict_final_header": "theorem bench_real_00288 [Decidable a] : a",
+              "target_header": "theorem bench_real_00288 [Decidable a] : a \u2228 b \u2194 (\u00aca \u2192 b)",
+              "raw_final_goal": "a",
+              "strict_final_goal": "a",
+              "target_goal": "a \u2228 b \u2194 (\u00aca \u2192 b)"
+            }
+          ]
         },
         "research": {
           "count": 300,
@@ -1947,6 +2167,7 @@
           "strict_solved": 75,
           "raw_exact": 74,
           "strict_exact": 74,
+          "strict_not_exact": 1,
           "raw_degenerate_solved": 173,
           "raw_to_strict_loss": 173,
           "discarded_degenerate_ok_steps": 173,
@@ -1956,6 +2177,7 @@
           "strict_solve_rate": 0.25,
           "raw_exact_rate": 0.24666666666666667,
           "strict_exact_rate": 0.24666666666666667,
+          "strict_exact_given_strict": 0.9866666666666667,
           "raw_degenerate_solved_rate": 0.5766666666666667,
           "strict_retention_given_raw": 0.3024193548387097,
           "raw_degenerate_reasons": {
@@ -1969,11 +2191,13 @@
               "strict_solved": 27,
               "raw_exact": 27,
               "strict_exact": 27,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 10,
               "raw_to_strict_loss": 10,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.925,
               "strict_solve_rate": 0.675,
+              "strict_exact_given_strict": 1.0,
               "strict_retention_given_raw": 0.7297297297297297
             },
             "not_proposition": {
@@ -1982,11 +2206,13 @@
               "strict_solved": 1,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 1,
               "raw_degenerate_solved": 62,
               "raw_to_strict_loss": 62,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.9402985074626866,
               "strict_solve_rate": 0.014925373134328358,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.015873015873015872
             },
             "parse_missing_colon": {
@@ -1995,11 +2221,13 @@
               "strict_solved": 26,
               "raw_exact": 26,
               "strict_exact": 26,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 11,
               "raw_to_strict_loss": 11,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.6607142857142857,
               "strict_solve_rate": 0.4642857142857143,
+              "strict_exact_given_strict": 1.0,
               "strict_retention_given_raw": 0.7027027027027027
             },
             "parse_unbalanced_paren": {
@@ -2008,11 +2236,13 @@
               "strict_solved": 21,
               "raw_exact": 21,
               "strict_exact": 21,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 20,
               "raw_to_strict_loss": 20,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.8723404255319149,
               "strict_solve_rate": 0.44680851063829785,
+              "strict_exact_given_strict": 1.0,
               "strict_retention_given_raw": 0.5121951219512195
             },
             "type_mismatch": {
@@ -2021,11 +2251,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 45,
               "raw_to_strict_loss": 45,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.9574468085106383,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             },
             "unknown_type_symbol": {
@@ -2034,11 +2266,13 @@
               "strict_solved": 0,
               "raw_exact": 0,
               "strict_exact": 0,
+              "strict_not_exact": 0,
               "raw_degenerate_solved": 25,
               "raw_to_strict_loss": 25,
               "recovered_after_degenerate": 0,
               "raw_solve_rate": 0.5813953488372093,
               "strict_solve_rate": 0.0,
+              "strict_exact_given_strict": 0.0,
               "strict_retention_given_raw": 0.0
             }
           },
@@ -2324,7 +2558,23 @@
               "target_goal": "(a % b).toUInt8 = a.toUInt8 % b.toUInt8"
             }
           ],
-          "recovered_examples": []
+          "recovered_examples": [],
+          "strict_nonexact_examples": [
+            {
+              "id": "real_00111",
+              "policy": "research",
+              "corruption": "not_proposition",
+              "raw_reason": "",
+              "raw_step_index": 2,
+              "strict_step_index": 2,
+              "raw_final_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m",
+              "strict_final_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m",
+              "target_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) : 1 \u2264 m ^ n",
+              "raw_final_goal": "m",
+              "strict_final_goal": "m",
+              "target_goal": "1 \u2264 m ^ n"
+            }
+          ]
         }
       },
       "missing_policies": []
@@ -2337,6 +2587,7 @@
       "strict_solved": 5,
       "raw_exact": 0,
       "strict_exact": 0,
+      "strict_not_exact": 5,
       "raw_degenerate_solved": 85,
       "raw_to_strict_loss": 85,
       "discarded_degenerate_ok_steps": 85,
@@ -2346,6 +2597,7 @@
       "strict_solve_rate": 0.005555555555555556,
       "raw_exact_rate": 0.0,
       "strict_exact_rate": 0.0,
+      "strict_exact_given_strict": 0.0,
       "raw_degenerate_solved_rate": 0.09444444444444444,
       "strict_retention_given_raw": 0.05555555555555555,
       "raw_degenerate_reasons": {
@@ -2359,11 +2611,13 @@
           "strict_solved": 0,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 0,
           "raw_degenerate_solved": 0,
           "raw_to_strict_loss": 0,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.0,
           "strict_solve_rate": 0.0,
+          "strict_exact_given_strict": 0.0,
           "strict_retention_given_raw": 0.0
         },
         "not_proposition": {
@@ -2372,11 +2626,13 @@
           "strict_solved": 3,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 3,
           "raw_degenerate_solved": 83,
           "raw_to_strict_loss": 83,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.44329896907216493,
           "strict_solve_rate": 0.015463917525773196,
+          "strict_exact_given_strict": 0.0,
           "strict_retention_given_raw": 0.03488372093023256
         },
         "parse_missing_colon": {
@@ -2385,11 +2641,13 @@
           "strict_solved": 0,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 0,
           "raw_degenerate_solved": 0,
           "raw_to_strict_loss": 0,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.0,
           "strict_solve_rate": 0.0,
+          "strict_exact_given_strict": 0.0,
           "strict_retention_given_raw": 0.0
         },
         "parse_unbalanced_paren": {
@@ -2398,11 +2656,13 @@
           "strict_solved": 2,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 2,
           "raw_degenerate_solved": 0,
           "raw_to_strict_loss": 0,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.013986013986013986,
           "strict_solve_rate": 0.013986013986013986,
+          "strict_exact_given_strict": 0.0,
           "strict_retention_given_raw": 1.0
         },
         "type_mismatch": {
@@ -2411,11 +2671,13 @@
           "strict_solved": 0,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 0,
           "raw_degenerate_solved": 2,
           "raw_to_strict_loss": 2,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.014285714285714285,
           "strict_solve_rate": 0.0,
+          "strict_exact_given_strict": 0.0,
           "strict_retention_given_raw": 0.0
         },
         "unknown_type_symbol": {
@@ -2424,11 +2686,13 @@
           "strict_solved": 0,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 0,
           "raw_degenerate_solved": 0,
           "raw_to_strict_loss": 0,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.0,
           "strict_solve_rate": 0.0,
+          "strict_exact_given_strict": 0.0,
           "strict_retention_given_raw": 0.0
         }
       },
@@ -2714,7 +2978,79 @@
           "target_goal": "UInt32.ofFin a \u2264 UInt32.ofFin b \u2194 a \u2264 b"
         }
       ],
-      "recovered_examples": []
+      "recovered_examples": [],
+      "strict_nonexact_examples": [
+        {
+          "id": "real_00111",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m",
+          "strict_final_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m",
+          "target_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) : 1 \u2264 m ^ n",
+          "raw_final_goal": "m",
+          "strict_final_goal": "m",
+          "target_goal": "1 \u2264 m ^ n"
+        },
+        {
+          "id": "real_00255",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+          "strict_final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+          "target_header": "theorem bench_real_00255 (a b : Int) : (\u00aca \u2264 b) = (b + 1 \u2264 a)",
+          "raw_final_goal": "b",
+          "strict_final_goal": "b",
+          "target_goal": "(\u00aca \u2264 b) = (b + 1 \u2264 a)"
+        },
+        {
+          "id": "real_00296",
+          "policy": "heuristic",
+          "corruption": "not_proposition",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00296 (x y : Int) (y : Prop): y",
+          "strict_final_header": "theorem bench_real_00296 (x y : Int) (y : Prop): y",
+          "target_header": "theorem bench_real_00296 (x y : Int) : (x - y) % y = x % y",
+          "raw_final_goal": "y",
+          "strict_final_goal": "y",
+          "target_goal": "(x - y) % y = x % y"
+        },
+        {
+          "id": "real_00066",
+          "policy": "heuristic",
+          "corruption": "parse_unbalanced_paren",
+          "raw_reason": "",
+          "raw_step_index": 4,
+          "strict_step_index": 4,
+          "raw_final_header": "theorem bench_real_00066 {n d : Nat} (d : Prop): d",
+          "strict_final_header": "theorem bench_real_00066 {n d : Nat} (d : Prop): d",
+          "target_header": "theorem bench_real_00066 {n d : Nat} : d * (n / d) = n \u2194 d \u2223 n",
+          "raw_final_goal": "d",
+          "strict_final_goal": "d",
+          "target_goal": "d * (n / d) = n \u2194 d \u2223 n"
+        },
+        {
+          "id": "real_00288",
+          "policy": "heuristic",
+          "corruption": "parse_unbalanced_paren",
+          "raw_reason": "",
+          "raw_step_index": 3,
+          "strict_step_index": 3,
+          "raw_final_header": "theorem bench_real_00288 [Decidable a] : a",
+          "strict_final_header": "theorem bench_real_00288 [Decidable a] : a",
+          "target_header": "theorem bench_real_00288 [Decidable a] : a \u2228 b \u2194 (\u00aca \u2192 b)",
+          "raw_final_goal": "a",
+          "strict_final_goal": "a",
+          "target_goal": "a \u2228 b \u2194 (\u00aca \u2192 b)"
+        }
+      ]
     },
     "research": {
       "count": 900,
@@ -2722,6 +3058,7 @@
       "strict_solved": 255,
       "raw_exact": 249,
       "strict_exact": 249,
+      "strict_not_exact": 6,
       "raw_degenerate_solved": 501,
       "raw_to_strict_loss": 501,
       "discarded_degenerate_ok_steps": 501,
@@ -2731,6 +3068,7 @@
       "strict_solve_rate": 0.2833333333333333,
       "raw_exact_rate": 0.27666666666666667,
       "strict_exact_rate": 0.27666666666666667,
+      "strict_exact_given_strict": 0.9764705882352941,
       "raw_degenerate_solved_rate": 0.5566666666666666,
       "strict_retention_given_raw": 0.3373015873015873,
       "raw_degenerate_reasons": {
@@ -2745,11 +3083,13 @@
           "strict_solved": 84,
           "raw_exact": 84,
           "strict_exact": 84,
+          "strict_not_exact": 0,
           "raw_degenerate_solved": 23,
           "raw_to_strict_loss": 23,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.9067796610169492,
           "strict_solve_rate": 0.711864406779661,
+          "strict_exact_given_strict": 1.0,
           "strict_retention_given_raw": 0.7850467289719626
         },
         "not_proposition": {
@@ -2758,11 +3098,13 @@
           "strict_solved": 3,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 3,
           "raw_degenerate_solved": 182,
           "raw_to_strict_loss": 182,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.9536082474226805,
           "strict_solve_rate": 0.015463917525773196,
+          "strict_exact_given_strict": 0.0,
           "strict_retention_given_raw": 0.016216216216216217
         },
         "parse_missing_colon": {
@@ -2771,11 +3113,13 @@
           "strict_solved": 91,
           "raw_exact": 89,
           "strict_exact": 89,
+          "strict_not_exact": 2,
           "raw_degenerate_solved": 31,
           "raw_to_strict_loss": 31,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.6931818181818182,
           "strict_solve_rate": 0.5170454545454546,
+          "strict_exact_given_strict": 0.978021978021978,
           "strict_retention_given_raw": 0.7459016393442623
         },
         "parse_unbalanced_paren": {
@@ -2784,11 +3128,13 @@
           "strict_solved": 71,
           "raw_exact": 71,
           "strict_exact": 71,
+          "strict_not_exact": 0,
           "raw_degenerate_solved": 56,
           "raw_to_strict_loss": 56,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.8881118881118881,
           "strict_solve_rate": 0.4965034965034965,
+          "strict_exact_given_strict": 1.0,
           "strict_retention_given_raw": 0.5590551181102362
         },
         "type_mismatch": {
@@ -2797,11 +3143,13 @@
           "strict_solved": 0,
           "raw_exact": 0,
           "strict_exact": 0,
+          "strict_not_exact": 0,
           "raw_degenerate_solved": 136,
           "raw_to_strict_loss": 136,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.9714285714285714,
           "strict_solve_rate": 0.0,
+          "strict_exact_given_strict": 0.0,
           "strict_retention_given_raw": 0.0
         },
         "unknown_type_symbol": {
@@ -2810,11 +3158,13 @@
           "strict_solved": 6,
           "raw_exact": 5,
           "strict_exact": 5,
+          "strict_not_exact": 1,
           "raw_degenerate_solved": 73,
           "raw_to_strict_loss": 73,
           "recovered_after_degenerate": 0,
           "raw_solve_rate": 0.6124031007751938,
           "strict_solve_rate": 0.046511627906976744,
+          "strict_exact_given_strict": 0.8333333333333334,
           "strict_retention_given_raw": 0.0759493670886076
         }
       },
@@ -3100,7 +3450,93 @@
           "target_goal": "x.ule y = decide (x.toNat \u2264 y.toNat)"
         }
       ],
-      "recovered_examples": []
+      "recovered_examples": [],
+      "strict_nonexact_examples": [
+        {
+          "id": "real_00111",
+          "policy": "research",
+          "corruption": "not_proposition",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m",
+          "strict_final_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) (m : Prop): m",
+          "target_header": "theorem bench_real_00111 (n m : Nat) (h : 0 < m) : 1 \u2264 m ^ n",
+          "raw_final_goal": "m",
+          "strict_final_goal": "m",
+          "target_goal": "1 \u2264 m ^ n"
+        },
+        {
+          "id": "real_00255",
+          "policy": "research",
+          "corruption": "not_proposition",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+          "strict_final_header": "theorem bench_real_00255 (a b : Int) (b : Prop): b",
+          "target_header": "theorem bench_real_00255 (a b : Int) : (\u00aca \u2264 b) = (b + 1 \u2264 a)",
+          "raw_final_goal": "b",
+          "strict_final_goal": "b",
+          "target_goal": "(\u00aca \u2264 b) = (b + 1 \u2264 a)"
+        },
+        {
+          "id": "real_00296",
+          "policy": "research",
+          "corruption": "not_proposition",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00296 (x y : Int) (y : Prop): y",
+          "strict_final_header": "theorem bench_real_00296 (x y : Int) (y : Prop): y",
+          "target_header": "theorem bench_real_00296 (x y : Int) : (x - y) % y = x % y",
+          "raw_final_goal": "y",
+          "strict_final_goal": "y",
+          "target_goal": "(x - y) % y = x % y"
+        },
+        {
+          "id": "real_00139",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00139 (a : \u03b1) : a = a \u2194 True",
+          "strict_final_header": "theorem bench_real_00139 (a : \u03b1) : a = a \u2194 True",
+          "target_header": "theorem bench_real_00139 (a : \u03b1)  : a = a \u2194 True",
+          "raw_final_goal": "a = a \u2194 True",
+          "strict_final_goal": "a = a \u2194 True",
+          "target_goal": "a = a \u2194 True"
+        },
+        {
+          "id": "real_00230",
+          "policy": "research",
+          "corruption": "parse_missing_colon",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00230 : \u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+          "strict_final_header": "theorem bench_real_00230 : \u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+          "target_header": "theorem bench_real_00230  : \u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+          "raw_final_goal": "\u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+          "strict_final_goal": "\u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)",
+          "target_goal": "\u2200 (x y z : Bool), (x && (y || z)) = (x && y || x && z)"
+        },
+        {
+          "id": "real_00075",
+          "policy": "research",
+          "corruption": "unknown_type_symbol",
+          "raw_reason": "",
+          "raw_step_index": 2,
+          "strict_step_index": 2,
+          "raw_final_header": "theorem bench_real_00075 {a b : Nat} (hab : b \u2264 a) : Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+          "strict_final_header": "theorem bench_real_00075 {a b : Nat} (hab : b \u2264 a) : Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+          "target_header": "theorem bench_real_00075 {a b : Nat} (hab : b \u2264 a) : UInt8.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+          "raw_final_goal": "Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+          "strict_final_goal": "Int.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b",
+          "target_goal": "UInt8.ofNat (a - b) = UInt8.ofNat a - UInt8.ofNat b"
+        }
+      ]
     }
   },
   "missing_policy_run_counts": {}

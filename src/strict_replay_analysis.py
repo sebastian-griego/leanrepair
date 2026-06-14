@@ -202,13 +202,14 @@ def format_markdown(summary: dict[str, Any]) -> str:
         "",
         "## Aggregate",
         "",
-        "| Policy | Records | Raw Solved | Strict Solved | Raw Exact | Strict Exact | Raw Degenerate | Lost Under Strict | Strict Retention | Recovered Later |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| Policy | Records | Raw Solved | Strict Solved | Raw Exact | Strict Exact | Strict Nonexact | Exact Given Strict | Raw Degenerate | Lost Under Strict | Strict Retention | Recovered Later |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for policy, row in sorted(policies.items()):
         lines.append(
             f"| {policy} | {row['count']} | {row['raw_solved']} | "
             f"{row['strict_solved']} | {row['raw_exact']} | {row['strict_exact']} | "
+            f"{row['strict_not_exact']} | {_pct(row['strict_exact_given_strict'])} | "
             f"{row['raw_degenerate_solved']} | {row['raw_to_strict_loss']} | "
             f"{_pct(row['strict_retention_given_raw'])} | "
             f"{row['recovered_after_degenerate']} |"
@@ -230,15 +231,16 @@ def format_markdown(summary: dict[str, Any]) -> str:
             [
                 f"### {policy}",
                 "",
-                "| Corruption | N | Raw Solved | Strict Solved | Raw Degenerate | Lost | Retention |",
-                "|---|---:|---:|---:|---:|---:|---:|",
+                "| Corruption | N | Raw Solved | Strict Solved | Strict Exact | Strict Nonexact | Exact Given Strict | Raw Degenerate | Lost | Retention |",
+                "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
             ]
         )
         for corruption, bucket in row.get("by_corruption", {}).items():
             lines.append(
                 f"| {_md(corruption)} | {bucket['count']} | {bucket['raw_solved']} | "
-                f"{bucket['strict_solved']} | {bucket['raw_degenerate_solved']} | "
-                f"{bucket['raw_to_strict_loss']} | "
+                f"{bucket['strict_solved']} | {bucket['strict_exact']} | "
+                f"{bucket['strict_not_exact']} | {_pct(bucket['strict_exact_given_strict'])} | "
+                f"{bucket['raw_degenerate_solved']} | {bucket['raw_to_strict_loss']} | "
                 f"{_pct(bucket['strict_retention_given_raw'])} |"
             )
         lines.append("")
@@ -261,6 +263,28 @@ def format_markdown(summary: dict[str, Any]) -> str:
                 f"| {_md(ex['id'])} | {_md(ex['corruption'])} | {_md(ex['raw_reason'])} | "
                 f"{_fmt_step(ex['raw_step_index'])} | {_md(_short(ex['raw_final_goal']))} | "
                 f"{_md(_short(ex['target_goal']))} |"
+            )
+        lines.append("")
+
+    lines.extend(["## Strict Nonexact Accepts", ""])
+    for policy, row in sorted(policies.items()):
+        examples = row.get("strict_nonexact_examples", [])
+        lines.extend([f"### {policy}", ""])
+        if not examples:
+            lines.extend(["Every strict accepted candidate is exact.", ""])
+            continue
+        lines.extend(
+            [
+                "| id | corruption | strict step | strict final header | target header |",
+                "|---|---|---:|---|---|",
+            ]
+        )
+        for ex in examples[:10]:
+            lines.append(
+                f"| {_md(ex['id'])} | {_md(ex['corruption'])} | "
+                f"{_fmt_step(ex['strict_step_index'])} | "
+                f"{_md(_short(ex['strict_final_header']))} | "
+                f"{_md(_short(ex['target_header']))} |"
             )
         lines.append("")
 
@@ -329,6 +353,7 @@ def _summarize_replays(
     strict_solved = sum(1 for row in replays if row["strict_ok"])
     raw_exact = sum(1 for row in replays if row["raw_exact"])
     strict_exact = sum(1 for row in replays if row["strict_exact"])
+    strict_not_exact = sum(1 for row in replays if row["strict_ok"] and not row["strict_exact"])
     raw_degenerate = sum(1 for row in replays if row["raw_degenerate"])
     raw_to_strict_loss = sum(1 for row in replays if row["raw_ok"] and not row["strict_ok"])
     discarded_steps = sum(int(row["discarded_degenerate_ok_steps"]) for row in replays)
@@ -365,6 +390,16 @@ def _summarize_replays(
             ),
         )[: max(0, int(max_examples))]
     ]
+    strict_nonexact_examples = [
+        _example_json(row)
+        for row in sorted(
+            (row for row in replays if row["strict_ok"] and not row["strict_exact"]),
+            key=lambda item: (
+                str(item["corruption"]),
+                str(item["id"]),
+            ),
+        )[: max(0, int(max_examples))]
+    ]
 
     return {
         "count": int(total),
@@ -372,6 +407,7 @@ def _summarize_replays(
         "strict_solved": int(strict_solved),
         "raw_exact": int(raw_exact),
         "strict_exact": int(strict_exact),
+        "strict_not_exact": int(strict_not_exact),
         "raw_degenerate_solved": int(raw_degenerate),
         "raw_to_strict_loss": int(raw_to_strict_loss),
         "discarded_degenerate_ok_steps": int(discarded_steps),
@@ -381,6 +417,7 @@ def _summarize_replays(
         "strict_solve_rate": _rate(strict_solved, total),
         "raw_exact_rate": _rate(raw_exact, total),
         "strict_exact_rate": _rate(strict_exact, total),
+        "strict_exact_given_strict": _rate(strict_exact, strict_solved),
         "raw_degenerate_solved_rate": _rate(raw_degenerate, total),
         "strict_retention_given_raw": _rate(strict_solved, raw_solved),
         "raw_degenerate_reasons": dict(sorted(by_reason.items())),
@@ -390,6 +427,7 @@ def _summarize_replays(
         },
         "lost_examples": lost_examples,
         "recovered_examples": recovered_examples,
+        "strict_nonexact_examples": strict_nonexact_examples,
     }
 
 
@@ -406,6 +444,7 @@ class _Bucket:
         strict_solved = sum(1 for row in self.rows if row["strict_ok"])
         raw_exact = sum(1 for row in self.rows if row["raw_exact"])
         strict_exact = sum(1 for row in self.rows if row["strict_exact"])
+        strict_not_exact = sum(1 for row in self.rows if row["strict_ok"] and not row["strict_exact"])
         raw_degenerate = sum(1 for row in self.rows if row["raw_degenerate"])
         loss = sum(1 for row in self.rows if row["raw_ok"] and not row["strict_ok"])
         recovered = sum(1 for row in self.rows if row["recovered_after_degenerate"])
@@ -415,11 +454,13 @@ class _Bucket:
             "strict_solved": int(strict_solved),
             "raw_exact": int(raw_exact),
             "strict_exact": int(strict_exact),
+            "strict_not_exact": int(strict_not_exact),
             "raw_degenerate_solved": int(raw_degenerate),
             "raw_to_strict_loss": int(loss),
             "recovered_after_degenerate": int(recovered),
             "raw_solve_rate": _rate(raw_solved, total),
             "strict_solve_rate": _rate(strict_solved, total),
+            "strict_exact_given_strict": _rate(strict_exact, strict_solved),
             "strict_retention_given_raw": _rate(strict_solved, raw_solved),
         }
 
