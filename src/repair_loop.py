@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 import re
 from typing import Callable, List, Sequence
 
+import acceptance
 import lean_check as lc
 from lean_errors import ErrorInfo
 
@@ -12,15 +13,30 @@ from lean_errors import ErrorInfo
 class TraceStep:
     candidate: str
     result: lc.CheckResult
+    accepted: bool = False
+    acceptance_reason: str = ""
 
 
 @dataclass
 class Trace:
     steps: List[TraceStep] = field(default_factory=list)
 
+    @property
+    def accepted_step(self) -> TraceStep | None:
+        return next((step for step in self.steps if step.accepted), None)
+
+    @property
+    def final_step(self) -> TraceStep | None:
+        return self.accepted_step or (self.steps[-1] if self.steps else None)
+
+    @property
+    def accepted(self) -> bool:
+        return self.accepted_step is not None
+
 
 PolicyOutput = str | Sequence[str]
 PolicyFn = Callable[[str, str, str, lc.CheckResult], PolicyOutput]
+AcceptanceFn = acceptance.AcceptanceFn
 
 
 def repair_one(
@@ -30,10 +46,12 @@ def repair_one(
     Tmax: int,
     timeout_s: float,
     policy: PolicyFn,
+    accept: AcceptanceFn | None = None,
 ) -> Trace:
     trace = Trace()
     if Tmax <= 0:
         return trace
+    accept_fn = accept or acceptance.accept_lean_ok
 
     queue: list[str] = [candidate0 or ""]
     seen: set[str] = set()
@@ -50,7 +68,7 @@ def repair_one(
                 elapsed_ms=0,
                 timed_out=False,
             )
-            trace.steps.append(TraceStep(candidate=current, result=result))
+            trace.steps.append(TraceStep(candidate=current, result=result, accepted=False))
             continue
 
         theorem = lc.build_theorem(sanitized)
@@ -60,10 +78,24 @@ def repair_one(
         queued.discard(theorem)
 
         result = lc.lean_check(ctx, theorem, timeout_s)
-        trace.steps.append(TraceStep(candidate=theorem, result=result))
+        decision = (
+            acceptance.normalize_decision(accept_fn(theorem, result))
+            if result.ok
+            else acceptance.AcceptanceDecision(False, "")
+        )
+        trace.steps.append(
+            TraceStep(
+                candidate=theorem,
+                result=result,
+                accepted=bool(decision.accepted),
+                acceptance_reason=decision.reason,
+            )
+        )
 
-        if result.ok:
+        if decision.accepted:
             break
+        if result.ok:
+            continue
 
         for proposal in _normalize_policy_output(policy(nl, ctx, sanitized, result)):
             proposed = lc.sanitize_candidate(proposal)
@@ -267,4 +299,4 @@ def _truncate_unbalanced(text: str) -> str:
     return text[: last_balanced + 1].rstrip()
 
 
-__all__ = ["Trace", "TraceStep", "default_policy", "repair_one"]
+__all__ = ["AcceptanceFn", "Trace", "TraceStep", "default_policy", "repair_one"]

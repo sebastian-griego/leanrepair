@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
 import eval_utils as eu  # noqa: E402
+import acceptance  # noqa: E402
 import budget_analysis as ba  # noqa: E402
 import exactness_analysis as ea  # noqa: E402
 import lean_check as lc  # noqa: E402
@@ -38,6 +39,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--Tmax", type=int, default=6, help="Maximum repair steps per item")
     parser.add_argument("--timeout-s", type=float, default=20.0, help="Lean timeout per check")
+    parser.add_argument(
+        "--acceptance",
+        choices=("lean_ok", "strict"),
+        default="lean_ok",
+        help="Acceptance rule for Lean-ok candidates.",
+    )
+    parser.add_argument("--token-recall-floor", type=float, default=0.2)
     parser.add_argument("--warmup", action="store_true", help="Run one warmup Lean check before evaluation")
     args = parser.parse_args(argv)
 
@@ -57,13 +65,24 @@ def main(argv: list[str] | None = None) -> int:
         "created_at_utc": timestamp,
         "Tmax": args.Tmax,
         "timeout_s": args.timeout_s,
+        "acceptance": args.acceptance,
+        "token_recall_floor": args.token_recall_floor,
         "policies": {},
     }
 
     for policy_name in args.policies:
         policy = rc._make_policy(policy_name)
         result_path = run_dir / f"{policy_name}.jsonl"
-        records = _run_policy(dataset, policy_name, policy, args.Tmax, args.timeout_s, result_path)
+        records = _run_policy(
+            dataset,
+            policy_name,
+            policy,
+            args.Tmax,
+            args.timeout_s,
+            result_path,
+            acceptance_rule=args.acceptance,
+            token_recall_floor=float(args.token_recall_floor),
+        )
         summary = eu.summarize(records)
         aggregate_summary["policies"][policy_name] = summary
         with (run_dir / f"{policy_name}.summary.json").open("w", encoding="utf-8") as handle:
@@ -90,6 +109,9 @@ def _run_policy(
     Tmax: int,
     timeout_s: float,
     output_path: Path,
+    *,
+    acceptance_rule: str = "lean_ok",
+    token_recall_floor: float = 0.2,
 ) -> list[eu.ExperimentRecord]:
     records: list[eu.ExperimentRecord] = []
     policy_fn = lambda nl, ctx, cand, result: policy.propose_many(nl, ctx, cand, result)
@@ -102,6 +124,11 @@ def _run_policy(
             candidate = str(item.get("candidate", "") or "")
             target = str(item.get("target", "") or "")
             corruption = str(item.get("corruption", "unknown") or "unknown")
+            accept_fn = _make_acceptance(
+                acceptance_rule,
+                target=target,
+                token_recall_floor=token_recall_floor,
+            )
 
             trace = rl.repair_one(
                 nl=nl,
@@ -110,10 +137,12 @@ def _run_policy(
                 Tmax=Tmax,
                 timeout_s=timeout_s,
                 policy=policy_fn,
+                accept=accept_fn,
             )
 
-            final = trace.steps[-1].candidate if trace.steps else ""
-            ok = trace.steps[-1].result.ok if trace.steps else False
+            final_step = trace.final_step
+            final = final_step.candidate if final_step else ""
+            ok = trace.accepted
             elapsed_ms = sum(step.result.elapsed_ms for step in trace.steps)
 
             records.append(
@@ -134,6 +163,7 @@ def _run_policy(
                 "policy": policy_name,
                 "corruption": corruption,
                 "ok": ok,
+                "acceptance": acceptance_rule,
                 "steps": len(trace.steps),
                 "elapsed_ms": elapsed_ms,
                 "candidate0": candidate,
@@ -153,6 +183,8 @@ def _trace_step_to_dict(step: rl.TraceStep) -> dict[str, Any]:
     return {
         "candidate": step.candidate,
         "ok": step.result.ok,
+        "accepted": step.accepted,
+        "acceptance_reason": step.acceptance_reason,
         "errors": [
             {
                 "kind": err.kind,
@@ -184,6 +216,20 @@ def _warmup(timeout_s: float) -> None:
     lc.lean_check("", "theorem warmup : True := by sorry", max(timeout_s, 20.0))
 
 
+def _make_acceptance(
+    kind: str,
+    *,
+    target: str,
+    token_recall_floor: float = 0.2,
+) -> rl.AcceptanceFn:
+    if kind == "strict":
+        return acceptance.strict_acceptance_for_target(
+            target,
+            token_recall_floor=token_recall_floor,
+        )
+    return acceptance.accept_lean_ok
+
+
 def _write_markdown_report(path: Path, summary: dict[str, Any]) -> None:
     lines = [
         "# LeanRepair Experiment Report",
@@ -192,6 +238,7 @@ def _write_markdown_report(path: Path, summary: dict[str, Any]) -> None:
         f"- Dataset size: `{summary['count']}`",
         f"- Tmax: `{summary['Tmax']}`",
         f"- Timeout (s): `{summary['timeout_s']}`",
+        f"- Acceptance: `{summary.get('acceptance', 'lean_ok')}`",
         f"- Created (UTC): `{summary['created_at_utc']}`",
         "",
         "## Policy Summary",

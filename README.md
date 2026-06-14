@@ -39,7 +39,8 @@ python repair_cli.py \
     --output results.jsonl \
     --Tmax 6 \
     --timeout-s 20 \
-    --policy research
+    --policy research \
+    --acceptance strict
 ```
 
 #### Arguments
@@ -51,6 +52,8 @@ python repair_cli.py \
 | `--Tmax` | Maximum repair iterations per theorem | 3 |
 | `--timeout-s` | Lean compiler timeout in seconds | 20.0 |
 | `--policy` | Repair policy: `heuristic`, `research`, `research_strict`, or `openai` | heuristic |
+| `--acceptance` | Acceptance rule: `lean_ok` accepts any typechecking candidate; `strict` rejects degenerate typechecking candidates such as `True` goals and reflexive equalities | lean_ok |
+| `--token-recall-floor` | Minimum target-token recall for strict acceptance | 0.2 |
 
 ### Input Format
 
@@ -75,6 +78,7 @@ Output JSONL contains:
 {
   "id": "theorem_1",
   "ok": true,
+  "acceptance": "lean_ok",
   "final": "theorem foo : Nat := by sorry",
   "steps": 2,
   "trace": [...]
@@ -100,7 +104,7 @@ The baseline heuristic policy applies rule-based repairs for common error patter
 - Applies syntax repairs for missing top-level `:` and unbalanced binder parentheses
 - Repairs common corruption patterns (`nat` -> `Nat`, `x = True` -> `x = x`, inferred type replacement for unknown type symbols)
 
-Use `research_strict` to run the same search without trivial `True` and reflexive-equality fallback proposals. This is useful when raw typechecking success should not be inflated by degenerate repairs.
+Use `research_strict` to run the same search without trivial `True` and reflexive-equality fallback proposals. Use `--acceptance strict` when LeanRepair should also reject any degenerate Lean-ok candidate during the repair loop and continue to later queued candidates when available.
 
 ### OpenAI Policy
 
@@ -161,6 +165,7 @@ python scripts/run_experiments.py \
   --policies heuristic research \
   --Tmax 6 \
   --timeout-s 25 \
+  --acceptance lean_ok \
   --warmup
 ```
 
