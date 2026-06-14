@@ -245,10 +245,22 @@ Run the full local reproducibility gate used by CI:
 python scripts/verify_reproducibility.py
 ```
 
+With `make` available, the equivalent shortcut is:
+
+```bash
+make verify
+```
+
 Write a machine-readable command report:
 
 ```bash
 python scripts/verify_reproducibility.py --report-json results/reproducibility_report.json
+```
+
+With `make` available:
+
+```bash
+make verify-report
 ```
 
 The JSON report records `schema_version`, planned and executed command counts,
@@ -263,6 +275,12 @@ Verify the checked-in snapshot is current without rewriting it:
 python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2 --check
 ```
 
+With `make` available:
+
+```bash
+make snapshot-check
+```
+
 Verify that the source hashes embedded in the checked-in snapshot still match
 the current component artifacts:
 
@@ -270,6 +288,12 @@ the current component artifacts:
 python scripts/summarize_real_paper_snapshot.py \
   --output-json results/real_paper_v2/snapshot_summary.json \
   --verify-source-hashes
+```
+
+With `make` available:
+
+```bash
+make source-hashes
 ```
 
 ## API Usage
