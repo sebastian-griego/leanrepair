@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import eval_utils as eu  # noqa: E402
 import budget_analysis as ba  # noqa: E402
+import exactness_analysis as ea  # noqa: E402
 import lean_check as lc  # noqa: E402
 import repair_cli as rc  # noqa: E402
 import repair_loop as rl  # noqa: E402
@@ -70,6 +71,7 @@ def main(argv: list[str] | None = None) -> int:
     _write_markdown_report(run_dir / "report.md", aggregate_summary)
     _write_trace_taxonomy(run_dir, args.policies)
     _write_budget_curve(run_dir, args.policies)
+    _write_exactness_gap(run_dir, args.policies)
 
     print(f"Wrote experiment outputs to {run_dir}")
     return 0
@@ -235,6 +237,18 @@ def _write_budget_curve(run_dir: Path, policies: list[str]) -> None:
     )
     (run_dir / "budget_curve.md").write_text(
         ba.format_markdown(summary) + "\n",
+        encoding="utf-8",
+    )
+
+
+def _write_exactness_gap(run_dir: Path, policies: list[str]) -> None:
+    summary = ea.analyze_run_dir(run_dir, policies, max_examples=20)
+    (run_dir / "exactness_gap.json").write_text(
+        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
+        encoding="utf-8",
+    )
+    (run_dir / "exactness_gap.md").write_text(
+        ea.format_markdown(summary) + "\n",
         encoding="utf-8",
     )
 
