@@ -175,6 +175,7 @@ python scripts/analyze_trace_taxonomy.py --root results/real_paper --policies he
 python scripts/analyze_budget_curve.py --root results/real_paper --policies heuristic research
 python scripts/analyze_exactness_gap.py --root results/real_paper --policies heuristic research
 python scripts/analyze_semantic_drift.py --root results/real_paper --policies heuristic research
+python scripts/analyze_quality_summary.py --root results/real_paper --policies heuristic research
 ```
 
 The paired analyzer reports coverage before comparing policies, so unmatched
@@ -191,10 +192,12 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Repair budget curve: `budget_curve.json`, `budget_curve.md`
 - Exactness gap: `exactness_gap.json`, `exactness_gap.md`
 - Semantic drift audit: `semantic_drift.json`, `semantic_drift.md`
+- Quality-adjusted summary: `quality_summary.json`, `quality_summary.md`
 
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
 - Aggregate report: `results/real_paper_v2/aggregate_report.md`
+- Quality-adjusted report: `results/real_paper_v2/quality_summary.md`
 - Baseline `heuristic`: solve rate `10.0% +/- 1.2%`, exact rate `0.0% +/- 0.0%`
 - `research`: solve rate `84.0% +/- 1.1%`, exact rate `27.7% +/- 3.1%`
 - Pooled across all 900 items:
