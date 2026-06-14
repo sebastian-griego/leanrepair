@@ -239,6 +239,12 @@ reports:
 python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2
 ```
 
+Run the full local reproducibility gate used by CI:
+
+```bash
+python scripts/verify_reproducibility.py
+```
+
 Verify the checked-in snapshot is current without rewriting it:
 
 ```bash
