@@ -88,6 +88,62 @@ class RepairCLITests(unittest.TestCase):
             self.assertFalse(record["trace"][0]["accepted"])
             self.assertEqual(record["trace"][0]["acceptance_reason"], "goal_true")
 
+    def test_cli_rejects_malformed_jsonl_before_writing_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            input_path.write_text(
+                json.dumps(
+                    {"id": "valid", "nl": "", "ctx": "", "candidate": "theorem ok : True"}
+                )
+                + "\n"
+                + '{"id": bad}\n',
+                encoding="utf-8",
+            )
+
+            exit_code = rc.main(["--input", str(input_path), "--output", str(output_path)])
+
+            self.assertEqual(exit_code, 2)
+            self.assertFalse(output_path.exists())
+
+    def test_cli_can_skip_invalid_jsonl_rows_explicitly(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            input_path.write_text(
+                json.dumps(
+                    {"id": "valid", "nl": "", "ctx": "", "candidate": "theorem ok : True"}
+                )
+                + "\n"
+                + '[1, 2, 3]\n'
+                + '{"id": bad}\n',
+                encoding="utf-8",
+            )
+
+            def fake_lean_check(ctx: str, theorem: str, timeout_s: float) -> lc.CheckResult:
+                return lc.CheckResult(ok=True, errors=[], raw="", elapsed_ms=1, timed_out=False)
+
+            with mock.patch.object(rc.rl.lc, "lean_check", fake_lean_check):
+                exit_code = rc.main(
+                    [
+                        "--input",
+                        str(input_path),
+                        "--output",
+                        str(output_path),
+                        "--skip-invalid-rows",
+                    ]
+                )
+
+            self.assertEqual(exit_code, 0)
+            records = [
+                json.loads(line)
+                for line in output_path.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            self.assertEqual([record["id"] for record in records], ["valid"])
+
 
 if __name__ == "__main__":
     unittest.main()

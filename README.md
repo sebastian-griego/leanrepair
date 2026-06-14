@@ -54,6 +54,7 @@ python repair_cli.py \
 | `--policy` | Repair policy: `heuristic`, `research`, `research_strict`, or `openai` | heuristic |
 | `--acceptance` | Acceptance rule: `lean_ok` accepts any typechecking candidate; `strict` rejects degenerate typechecking candidates such as `True` goals and reflexive equalities | lean_ok |
 | `--token-recall-floor` | Minimum target-token recall for strict acceptance | 0.2 |
+| `--skip-invalid-rows` | Skip malformed or non-object JSONL rows instead of failing before output is written | false |
 
 ### Input Format
 
@@ -62,6 +63,10 @@ Input JSONL files should contain records with the following fields:
 ```json
 {"id": "theorem_1", "nl": "Natural language description", "ctx": "import Mathlib\n\n", "candidate": "theorem foo : Nat"}
 ```
+
+The CLI validates the JSONL before writing results. Malformed rows or non-object
+rows stop the run with a line-numbered error; use `--skip-invalid-rows` only for
+ad hoc cleanup runs where dropping bad rows is intentional.
 
 | Field | Description |
 |-------|-------------|
