@@ -23,6 +23,7 @@ import repair_cli as rc  # noqa: E402
 import repair_loop as rl  # noqa: E402
 import semantic_drift_analysis as sda  # noqa: E402
 import strict_replay_analysis as sra  # noqa: E402
+import strict_replay_casebook as srcb  # noqa: E402
 import trace_analysis as ta  # noqa: E402
 
 
@@ -333,6 +334,7 @@ def _write_quality_summary(run_dir: Path, policies: list[str]) -> None:
 def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
     summary = sra.analyze_run_dir(run_dir, policies, max_examples=20)
     replay_rows = sra.replay_run_dir(run_dir, policies)
+    casebook = srcb.analyze_records(replay_rows, max_cases=25)
     (run_dir / "strict_replay.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
         encoding="utf-8",
@@ -342,6 +344,15 @@ def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
         encoding="utf-8",
     )
     sra.write_replay_records_jsonl(run_dir / "strict_replay_records.jsonl", replay_rows)
+    (run_dir / "strict_replay_casebook.json").write_text(
+        json.dumps(casebook, indent=2, ensure_ascii=True) + "\n",
+        encoding="utf-8",
+    )
+    (run_dir / "strict_replay_casebook.md").write_text(
+        srcb.format_markdown(casebook) + "\n",
+        encoding="utf-8",
+    )
+    srcb.write_cases_jsonl(run_dir / "strict_replay_casebook_cases.jsonl", casebook["focused_cases"])
 
 
 if __name__ == "__main__":

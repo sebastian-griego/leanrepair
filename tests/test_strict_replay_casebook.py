@@ -11,6 +11,7 @@ sys.path.append(str(ROOT))
 
 import strict_replay_casebook as srcb  # noqa: E402
 from scripts import analyze_strict_replay_casebook as cli  # noqa: E402
+from scripts import run_experiments as rex  # noqa: E402
 
 
 class StrictReplayCasebookTests(unittest.TestCase):
@@ -147,6 +148,41 @@ class StrictReplayCasebookTests(unittest.TestCase):
             self.assertEqual(payload["dataset"]["focused_cases"], 2)
             self.assertEqual([case["id"] for case in cases], ["loss", "nonexact"])
             self.assertIn("Strict Replay Casebook", output_md.read_text(encoding="utf-8"))
+
+    def test_run_experiments_strict_replay_writer_emits_casebook(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = pathlib.Path(tmp)
+            self._write_jsonl(
+                run_dir / "research.jsonl",
+                [
+                    {
+                        "id": "loss",
+                        "policy": "research",
+                        "corruption": "not_proposition",
+                        "ok": True,
+                        "final": "theorem loss : True := by sorry",
+                        "target": "theorem loss (n : Nat) : n = n",
+                        "trace": [
+                            {
+                                "ok": True,
+                                "candidate": "theorem loss : True := by sorry",
+                            }
+                        ],
+                    }
+                ],
+            )
+
+            rex._write_strict_replay(run_dir, ["research"])
+
+            self.assertTrue((run_dir / "strict_replay.json").exists())
+            self.assertTrue((run_dir / "strict_replay.md").exists())
+            self.assertTrue((run_dir / "strict_replay_records.jsonl").exists())
+            self.assertTrue((run_dir / "strict_replay_casebook.json").exists())
+            self.assertTrue((run_dir / "strict_replay_casebook.md").exists())
+            self.assertTrue((run_dir / "strict_replay_casebook_cases.jsonl").exists())
+            casebook = json.loads((run_dir / "strict_replay_casebook.json").read_text(encoding="utf-8"))
+            self.assertEqual(casebook["dataset"]["focused_cases"], 1)
+            self.assertEqual(casebook["primary_case_counts"]["raw_to_strict_loss"], 1)
 
     def _write_jsonl(self, path: pathlib.Path, rows: list[dict]) -> None:
         path.write_text(
