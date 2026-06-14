@@ -9,6 +9,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT / "src"))
 sys.path.append(str(ROOT))
 
+from jsonl_io import JsonlError  # noqa: E402
 import strict_replay_paired as srp  # noqa: E402
 from scripts import analyze_strict_replay_paired as cli  # noqa: E402
 from scripts import run_experiments as rex  # noqa: E402
@@ -85,6 +86,35 @@ class StrictReplayPairedTests(unittest.TestCase):
         self.assertIn("Strict Replay Paired Analysis", markdown)
         self.assertIn("Raw Wins Lost By Strict Replay Breakdown", markdown)
         self.assertIn("reflexive_equality", markdown)
+
+    def test_analyze_records_validates_in_memory_schema(self):
+        row = self._row("run_001", "bad", "research", raw_ok=True, strict_ok=True)
+        del row["reported_ok"]
+
+        with self.assertRaises(JsonlError) as ctx:
+            srp.analyze_records([row])
+
+        self.assertIn(
+            "missing reported_ok at input strict replay records:1",
+            str(ctx.exception),
+        )
+
+    def test_analyze_records_rejects_duplicate_in_memory_keys(self):
+        rows = [
+            self._row("run_001", "dup", "research", raw_ok=True, strict_ok=True),
+            self._row("run_001", "dup", "research", raw_ok=True, strict_ok=True),
+        ]
+
+        with self.assertRaises(JsonlError) as ctx:
+            srp.analyze_records(rows)
+
+        message = str(ctx.exception)
+        self.assertIn(
+            "duplicate strict replay row run='run_001', id='dup', policy='research'",
+            message,
+        )
+        self.assertIn("at input row 2", message)
+        self.assertIn("first seen at input row 1", message)
 
     def test_cli_writes_paired_outputs_from_records_jsonl(self):
         with tempfile.TemporaryDirectory() as tmp:
