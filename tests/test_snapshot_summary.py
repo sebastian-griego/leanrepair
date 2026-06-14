@@ -1,5 +1,6 @@
 import json
 import pathlib
+import subprocess
 import sys
 
 
@@ -15,16 +16,7 @@ from scripts.summarize_real_paper_snapshot import (  # noqa: E402
 
 def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
     root = tmp_path / "real_paper_v2"
-    root.mkdir()
-    _write(root / "aggregate_summary.json", _aggregate())
-    _write(root / "budget_curve.json", _budget())
-    _write(root / "exactness_gap.json", _exactness())
-    _write(root / "quality_summary.json", _quality())
-    _write(root / "semantic_drift.json", _semantic())
-    _write(root / "strict_replay.json", _strict())
-    _write(root / "strict_replay_casebook.json", _casebook())
-    _write(root / "strict_replay_paired.json", _paired())
-    _write(root / "trace_taxonomy.json", _trace())
+    _write_snapshot_inputs(root)
 
     snapshot = build_snapshot(root)
     markdown = format_markdown(snapshot)
@@ -49,6 +41,38 @@ def test_real_paper_snapshot_rollup_merges_result_artifacts(tmp_path):
     assert "Trace Taxonomy" in markdown
     assert "Corruption Highlights" in markdown
     assert "Strict Paired Comparison" in markdown
+
+
+def test_snapshot_check_cli_fails_without_rewriting_stale_outputs(tmp_path):
+    root = tmp_path / "real_paper_v2"
+    _write_snapshot_inputs(root)
+    output_json = tmp_path / "snapshot.json"
+    output_md = tmp_path / "snapshot.md"
+    output_json.write_text("stale\n", encoding="utf-8")
+    output_md.write_text("stale\n", encoding="utf-8")
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "summarize_real_paper_snapshot.py"),
+            "--root",
+            str(root),
+            "--output-json",
+            str(output_json),
+            "--output-md",
+            str(output_md),
+            "--check",
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert completed.returncode != 0
+    assert "Stale snapshot outputs" in completed.stderr + completed.stdout
+    assert output_json.read_text(encoding="utf-8") == "stale\n"
+    assert output_md.read_text(encoding="utf-8") == "stale\n"
 
 
 def test_stale_outputs_detects_missing_and_mismatched_files(tmp_path):
@@ -80,6 +104,19 @@ def test_checked_in_real_paper_snapshot_is_current(monkeypatch):
 
 def _write(path: pathlib.Path, payload: dict) -> None:
     path.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+
+
+def _write_snapshot_inputs(root: pathlib.Path) -> None:
+    root.mkdir(parents=True, exist_ok=True)
+    _write(root / "aggregate_summary.json", _aggregate())
+    _write(root / "budget_curve.json", _budget())
+    _write(root / "exactness_gap.json", _exactness())
+    _write(root / "quality_summary.json", _quality())
+    _write(root / "semantic_drift.json", _semantic())
+    _write(root / "strict_replay.json", _strict())
+    _write(root / "strict_replay_casebook.json", _casebook())
+    _write(root / "strict_replay_paired.json", _paired())
+    _write(root / "trace_taxonomy.json", _trace())
 
 
 def _aggregate() -> dict:
