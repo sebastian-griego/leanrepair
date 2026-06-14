@@ -185,6 +185,7 @@ python scripts/analyze_semantic_drift.py --root results/real_paper --policies he
 python scripts/analyze_quality_summary.py --root results/real_paper --policies heuristic research
 python scripts/analyze_strict_replay.py --root results/real_paper --policies heuristic research
 python scripts/analyze_strict_replay_casebook.py --root results/real_paper --policies heuristic research
+python scripts/analyze_strict_replay_paired.py --records-jsonl results/real_paper/strict_replay_records.jsonl --policy-a heuristic --policy-b research
 ```
 
 The paired analyzer reports coverage before comparing policies, so unmatched
@@ -204,6 +205,7 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Quality-adjusted summary: `quality_summary.json`, `quality_summary.md`
 - Strict replay audit: `strict_replay.json`, `strict_replay.md`, `strict_replay_records.jsonl`
 - Strict replay casebook: `strict_replay_casebook.json`, `strict_replay_casebook.md`, `strict_replay_casebook_cases.jsonl`
+- Strict replay paired comparison: `strict_replay_paired.json`, `strict_replay_paired.md`
 
 Trace taxonomy reports are acceptance-aware: on strict-acceptance runs they
 separate raw Lean-ok candidates from candidates actually accepted by the repair
@@ -222,6 +224,7 @@ loop, and count rejection reasons such as `goal_true`.
 - Semantic drift audit: `research` has `501/756` solved outputs classified as degenerate (`338` `True` goals, `157` reflexive equalities, `6` low-retention goals), leaving `255/900` nondegenerate solved headers.
 - Strict replay audit: filtering degenerate accepted fixes preserves all `249` exact `research` repairs while reducing raw `research` solves from `756/900` to `255/900`; `249/255` strict accepted repairs are exact, with only `6` nondegenerate-but-nonexact accepts. `results/real_paper_v2/strict_replay_records.jsonl` contains the 1,800 row-level replay decisions behind the aggregate report.
 - Strict replay casebook: `results/real_paper_v2/strict_replay_casebook.md` extracts `597` focused rows from the replay ledger (`586` raw solves lost under strict replay and `11` strict nonexact accepts), with loss reasons split into `338` `goal_true`, `235` reflexive equalities, and `13` low-token-recall goals.
+- Strict paired replay: `results/real_paper_v2/strict_replay_paired.md` shows that the raw `research` solve lift of `+74.0` percentage points becomes a strict solve lift of `+27.8` points (`252` `research`-only strict solves vs `2` `heuristic`-only; sign-test `p = 2.238e-72`) and a strict exact lift of `+27.7` points (`249` `research`-only exact repairs vs `0`; `p = 2.211e-75`). It also identifies `414` raw `research`-only wins that strict replay rejects as degenerate.
 
 Per-run artifacts are available under `results/real_paper_v2/run_*/`.
 

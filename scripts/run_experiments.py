@@ -24,6 +24,7 @@ import repair_loop as rl  # noqa: E402
 import semantic_drift_analysis as sda  # noqa: E402
 import strict_replay_analysis as sra  # noqa: E402
 import strict_replay_casebook as srcb  # noqa: E402
+import strict_replay_paired as srp  # noqa: E402
 import trace_analysis as ta  # noqa: E402
 
 
@@ -353,6 +354,21 @@ def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
         encoding="utf-8",
     )
     srcb.write_cases_jsonl(run_dir / "strict_replay_casebook_cases.jsonl", casebook["focused_cases"])
+    if len(policies) >= 2:
+        paired = srp.analyze_records(
+            replay_rows,
+            policy_a=policies[0],
+            policy_b=policies[1],
+            max_cases=25,
+        )
+        (run_dir / "strict_replay_paired.json").write_text(
+            json.dumps(paired, indent=2, ensure_ascii=True) + "\n",
+            encoding="utf-8",
+        )
+        (run_dir / "strict_replay_paired.md").write_text(
+            srp.format_markdown(paired) + "\n",
+            encoding="utf-8",
+        )
 
 
 if __name__ == "__main__":
