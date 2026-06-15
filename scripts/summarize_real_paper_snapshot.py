@@ -305,6 +305,7 @@ def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
     aggregate = loaded["aggregate"]
     policies = set(aggregate["policies"])
     _require_equal("aggregate.n_runs", int(aggregate["n_runs"]), len(aggregate["runs"]))
+    aggregate_run_names = _validate_aggregate_runs(aggregate)
     for artifact in (
         "budget_curve",
         "exactness_gap",
@@ -313,6 +314,7 @@ def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
         "strict_replay",
         "trace_taxonomy",
     ):
+        _validate_artifact_runs(artifact, loaded[artifact], aggregate, aggregate_run_names)
         artifact_policies = set(loaded[artifact]["policies"])
         if artifact_policies != policies:
             raise ValueError(
@@ -366,6 +368,7 @@ def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
             "Inconsistent source artifact strict_casebook.by_policy: "
             f"{sorted(casebook_policies)} is not a subset of {sorted(policies)}"
         )
+    _validate_casebook_policy_records(loaded["strict_casebook"], aggregate)
     _validate_casebook(loaded["strict_casebook"])
 
     paired = loaded["strict_paired"]
@@ -388,6 +391,85 @@ def _validate_snapshot_sources(loaded: dict[str, dict[str, Any]]) -> None:
         int(aggregate["policies"][policy_b]["pooled"]["count"]),
     )
     _validate_paired_metrics(paired)
+
+
+def _validate_aggregate_runs(aggregate: dict[str, Any]) -> set[str]:
+    run_names = {Path(str(run)).name for run in aggregate["runs"]}
+    per_run = aggregate.get("per_run")
+    if isinstance(per_run, dict):
+        per_run_names = {str(run) for run in per_run}
+        if per_run_names != run_names:
+            raise ValueError(
+                "Inconsistent source artifact aggregate.per_run: "
+                f"{sorted(per_run_names)} != {sorted(run_names)}"
+            )
+    return run_names
+
+
+def _validate_artifact_runs(
+    artifact: str,
+    source: dict[str, Any],
+    aggregate: dict[str, Any],
+    aggregate_run_names: set[str],
+) -> None:
+    runs = source.get("runs")
+    if not isinstance(runs, dict):
+        return
+
+    artifact_run_names = {str(run) for run in runs}
+    if artifact_run_names != aggregate_run_names:
+        raise ValueError(
+            f"Inconsistent source artifact {artifact}.runs: "
+            f"{sorted(artifact_run_names)} != {sorted(aggregate_run_names)}"
+        )
+
+    policies = set(aggregate["policies"])
+    aggregate_per_run = aggregate.get("per_run", {})
+    for run_name, run_payload in runs.items():
+        run_policies = run_payload.get("policies", {})
+        artifact_policies = set(run_policies)
+        if artifact_policies != policies:
+            raise ValueError(
+                f"Inconsistent source artifact {artifact}.runs.{run_name}.policies: "
+                f"{sorted(artifact_policies)} != {sorted(policies)}"
+            )
+        if not isinstance(aggregate_per_run, dict) or run_name not in aggregate_per_run:
+            continue
+        aggregate_run = aggregate_per_run[run_name]
+        for policy in sorted(policies):
+            if "count" not in run_policies[policy]:
+                continue
+            _require_equal(
+                f"{artifact}.runs.{run_name}.{policy}.count",
+                int(run_policies[policy]["count"]),
+                int(aggregate_run[policy]["count"]),
+            )
+
+
+def _validate_casebook_policy_records(
+    casebook: dict[str, Any],
+    aggregate: dict[str, Any],
+) -> None:
+    dataset_policies = casebook.get("dataset", {}).get("policies")
+    if not isinstance(dataset_policies, dict):
+        return
+
+    aggregate_counts = {
+        policy: int(row["pooled"]["count"])
+        for policy, row in aggregate["policies"].items()
+    }
+    casebook_counts = {str(policy): int(count) for policy, count in dataset_policies.items()}
+    if set(casebook_counts) != set(aggregate_counts):
+        raise ValueError(
+            "Inconsistent source artifact strict_casebook.dataset.policies: "
+            f"{sorted(casebook_counts)} != {sorted(aggregate_counts)}"
+        )
+    for policy, count in sorted(casebook_counts.items()):
+        _require_equal(
+            f"strict_casebook.dataset.policies.{policy}",
+            count,
+            aggregate_counts[policy],
+        )
 
 
 def _validate_aggregate_policy(policy: str, row: dict[str, Any]) -> None:

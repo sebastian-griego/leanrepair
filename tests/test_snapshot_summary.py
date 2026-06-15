@@ -66,6 +66,41 @@ def test_snapshot_rollup_rejects_inconsistent_policy_counts(tmp_path):
         build_snapshot(root)
 
 
+def test_snapshot_rollup_rejects_mismatched_run_bundles(tmp_path):
+    root = tmp_path / "real_paper_v2"
+    _write_snapshot_inputs(root)
+    budget = _budget()
+    budget["runs"] = {
+        "run_a": {
+            "policies": {
+                "heuristic": {"count": 20},
+                "research": {"count": 20},
+            }
+        },
+        "run_c": {
+            "policies": {
+                "heuristic": {"count": 20},
+                "research": {"count": 20},
+            }
+        },
+    }
+    _write(root / "budget_curve.json", budget)
+
+    with pytest.raises(ValueError, match="budget_curve.runs"):
+        build_snapshot(root)
+
+
+def test_snapshot_rollup_rejects_casebook_policy_record_mismatch(tmp_path):
+    root = tmp_path / "real_paper_v2"
+    _write_snapshot_inputs(root)
+    casebook = _casebook()
+    casebook["dataset"]["policies"] = {"heuristic": 21, "research": 19}
+    _write(root / "strict_replay_casebook.json", casebook)
+
+    with pytest.raises(ValueError, match="strict_casebook.dataset.policies.heuristic"):
+        build_snapshot(root)
+
+
 def test_snapshot_rollup_rejects_inconsistent_rates(tmp_path):
     root = tmp_path / "real_paper_v2"
     _write_snapshot_inputs(root)
@@ -428,7 +463,11 @@ def _strict_policy(count, raw_solved, strict_solved, exact, nonexact, loss, reas
 
 def _casebook() -> dict:
     return {
-        "dataset": {"records": 40, "focused_cases": 14},
+        "dataset": {
+            "records": 40,
+            "focused_cases": 14,
+            "policies": {"heuristic": 20, "research": 20},
+        },
         "primary_case_counts": {"raw_to_strict_loss": 13, "strict_nonexact_accept": 1},
         "flag_counts": {"raw_to_strict_loss": 13, "strict_nonexact_accept": 1},
         "by_policy": {
