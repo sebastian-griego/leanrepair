@@ -66,7 +66,9 @@ Input JSONL files should contain records with the following fields:
 
 The CLI validates the JSONL before writing results. Malformed rows or non-object
 rows stop the run with a line-numbered error; use `--skip-invalid-rows` only for
-ad hoc cleanup runs where dropping bad rows is intentional.
+ad hoc cleanup runs where dropping bad rows is intentional. Remaining rows must
+have unique non-empty string `id` values and non-empty string `candidate` values;
+`--acceptance strict` also requires a non-empty string `target`.
 
 | Field | Description |
 |-------|-------------|

@@ -108,6 +108,121 @@ class RepairCLITests(unittest.TestCase):
             self.assertEqual(exit_code, 2)
             self.assertFalse(output_path.exists())
 
+    def test_cli_rejects_duplicate_ids_before_writing_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            rows = [
+                {"id": "dup", "nl": "", "ctx": "", "candidate": "theorem a : True"},
+                {"id": "dup", "nl": "", "ctx": "", "candidate": "theorem b : True"},
+            ]
+            input_path.write_text(
+                "".join(json.dumps(row) + "\n" for row in rows),
+                encoding="utf-8",
+            )
+
+            exit_code = rc.main(["--input", str(input_path), "--output", str(output_path)])
+
+            self.assertEqual(exit_code, 2)
+            self.assertFalse(output_path.exists())
+
+    def test_cli_rejects_missing_id_before_writing_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            input_path.write_text(
+                json.dumps({"nl": "", "ctx": "", "candidate": "theorem ok : True"}) + "\n",
+                encoding="utf-8",
+            )
+
+            exit_code = rc.main(["--input", str(input_path), "--output", str(output_path)])
+
+            self.assertEqual(exit_code, 2)
+            self.assertFalse(output_path.exists())
+
+    def test_cli_rejects_empty_candidate_before_writing_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            input_path.write_text(
+                json.dumps({"id": "bad", "nl": "", "ctx": "", "candidate": "   "}) + "\n",
+                encoding="utf-8",
+            )
+
+            exit_code = rc.main(["--input", str(input_path), "--output", str(output_path)])
+
+            self.assertEqual(exit_code, 2)
+            self.assertFalse(output_path.exists())
+
+    def test_cli_strict_acceptance_requires_target_before_writing_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            input_path.write_text(
+                json.dumps({"id": "bad", "nl": "", "ctx": "", "candidate": "theorem ok : True"})
+                + "\n",
+                encoding="utf-8",
+            )
+
+            exit_code = rc.main(
+                [
+                    "--input",
+                    str(input_path),
+                    "--output",
+                    str(output_path),
+                    "--acceptance",
+                    "strict",
+                ]
+            )
+
+            self.assertEqual(exit_code, 2)
+            self.assertFalse(output_path.exists())
+
+    def test_cli_rejects_invalid_run_options_before_writing_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            input_path.write_text(
+                json.dumps(
+                    {"id": "valid", "nl": "", "ctx": "", "candidate": "theorem ok : True"}
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            for args in (
+                ["--Tmax", "0"],
+                ["--timeout-s", "0"],
+                ["--token-recall-floor", "1.5"],
+            ):
+                with self.subTest(args=args):
+                    if output_path.exists():
+                        output_path.unlink()
+
+                    exit_code = rc.main(
+                        ["--input", str(input_path), "--output", str(output_path), *args]
+                    )
+
+                    self.assertEqual(exit_code, 2)
+                    self.assertFalse(output_path.exists())
+
+    def test_cli_rejects_empty_input_before_writing_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            input_path = root / "input.jsonl"
+            output_path = root / "output.jsonl"
+            input_path.write_text("\n\n", encoding="utf-8")
+
+            exit_code = rc.main(["--input", str(input_path), "--output", str(output_path)])
+
+            self.assertEqual(exit_code, 2)
+            self.assertFalse(output_path.exists())
+
     def test_cli_can_skip_invalid_jsonl_rows_explicitly(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp)
