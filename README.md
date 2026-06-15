@@ -233,7 +233,8 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
   every non-root-manifest file in the run directory. New manifests also record
   the run directory name as `run_id`; verification rejects mismatched `run_id`
   values while still accepting older checked-in manifests that predate the
-  field.
+  field. Verification also checks schema and artifact-count metadata types, so
+  JSON booleans or floats cannot masquerade as version or count integers.
 
 Trace taxonomy reports are acceptance-aware: on strict-acceptance runs they
 separate raw Lean-ok candidates from candidates actually accepted by the repair

@@ -139,6 +139,42 @@ def test_verify_manifest_rejects_path_escape(tmp_path):
         verify_manifest(run_dir)
 
 
+def test_verify_manifest_rejects_boolean_schema_version(tmp_path):
+    run_dir = tmp_path / "run_001"
+    run_dir.mkdir()
+    (run_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "schema_version": True,
+                "artifact_count": 0,
+                "artifacts": [],
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ManifestError, match="unsupported manifest schema_version"):
+        verify_manifest(run_dir)
+
+
+def test_verify_manifest_rejects_non_integer_artifact_count(tmp_path):
+    run_dir = tmp_path / "run_001"
+    run_dir.mkdir()
+    (run_dir / "summary.json").write_text("{}\n", encoding="utf-8")
+    manifest = write_manifest(run_dir)
+
+    for bad_count in (True, 1.0):
+        manifest["artifact_count"] = bad_count
+        (run_dir / "manifest.json").write_text(
+            json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
+        with pytest.raises(ManifestError, match="non-negative integer"):
+            verify_manifest(run_dir)
+
+
 def test_verify_artifact_manifest_cli(tmp_path):
     run_dir = tmp_path / "run_001"
     run_dir.mkdir()

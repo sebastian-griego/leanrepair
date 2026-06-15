@@ -50,9 +50,14 @@ def verify_manifest(root: str | Path, *, allow_extra: bool = False) -> dict[str,
 
     if not isinstance(manifest, dict):
         raise ManifestError(f"manifest must be a JSON object: {manifest_path}")
-    if manifest.get("schema_version") != SCHEMA_VERSION:
+    schema_version = manifest.get("schema_version")
+    if (
+        not isinstance(schema_version, int)
+        or isinstance(schema_version, bool)
+        or schema_version != SCHEMA_VERSION
+    ):
         raise ManifestError(
-            f"unsupported manifest schema_version: {manifest.get('schema_version')!r}"
+            f"unsupported manifest schema_version: {schema_version!r}"
         )
     run_id = manifest.get("run_id")
     if run_id is not None:
@@ -66,11 +71,7 @@ def verify_manifest(root: str | Path, *, allow_extra: bool = False) -> dict[str,
     artifacts = manifest.get("artifacts")
     if not isinstance(artifacts, list):
         raise ManifestError("manifest artifacts must be a list")
-    if manifest.get("artifact_count") != len(artifacts):
-        raise ManifestError(
-            f"manifest artifact_count {manifest.get('artifact_count')!r} "
-            f"does not match {len(artifacts)} artifacts"
-        )
+    _verify_artifact_count(manifest.get("artifact_count"), expected=len(artifacts))
 
     seen: set[str] = set()
     for idx, entry in enumerate(artifacts, 1):
@@ -175,6 +176,15 @@ def _verify_entry(
     actual_hash = _sha256_file(path)
     if actual_hash != expected_hash:
         raise ManifestError(f"{where}: sha256 mismatch for {rel_path!r}")
+
+
+def _verify_artifact_count(value: Any, *, expected: int) -> None:
+    if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+        raise ManifestError("manifest artifact_count must be a non-negative integer")
+    if value != expected:
+        raise ManifestError(
+            f"manifest artifact_count {value!r} does not match {expected} artifacts"
+        )
 
 
 def _sha256_file(path: Path) -> str:
