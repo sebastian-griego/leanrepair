@@ -13,6 +13,8 @@ from jsonl_io import (  # noqa: E402
     load_jsonl_map_by_key,
     load_jsonl_objects,
     load_jsonl_objects_unique_by_key,
+    load_policy_result_map,
+    load_policy_result_objects,
 )
 
 
@@ -100,3 +102,27 @@ def test_load_jsonl_objects_unique_by_key_rejects_duplicates(tmp_path):
     assert f"{path}:3" in message
     assert "duplicate id 'a'" in message
     assert "first seen at line 1" in message
+
+
+def test_load_policy_result_objects_rejects_exact_without_ok(tmp_path):
+    path = tmp_path / "policy.jsonl"
+    path.write_text('{"id": "a", "ok": false, "exact": true}\n', encoding="utf-8")
+
+    with pytest.raises(JsonlError) as excinfo:
+        load_policy_result_objects(path)
+
+    message = str(excinfo.value)
+    assert f"{path}:1" in message
+    assert "exact is true but ok is false" in message
+
+
+def test_load_policy_result_map_rejects_non_bool_outcome_fields(tmp_path):
+    path = tmp_path / "policy.jsonl"
+    path.write_text('{"id": "a", "ok": "true", "exact": false}\n', encoding="utf-8")
+
+    with pytest.raises(JsonlError) as excinfo:
+        load_policy_result_map(path)
+
+    message = str(excinfo.value)
+    assert f"{path}:1" in message
+    assert "expected ok to be bool" in message

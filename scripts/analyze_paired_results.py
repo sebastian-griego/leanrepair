@@ -13,7 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from jsonl_io import load_jsonl_map_by_key  # noqa: E402
+from jsonl_io import load_policy_result_map  # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -161,7 +161,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _load_policy_rows(path: Path) -> dict[str, dict[str, Any]]:
-    return load_jsonl_map_by_key(path, "id")
+    return load_policy_result_map(path)
 
 
 def _solve_rate(rows: Any) -> float:

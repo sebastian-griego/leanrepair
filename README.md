@@ -204,7 +204,9 @@ fail a run with missing policy outputs, and tune `--bootstrap-samples`/`--seed`
 to reproduce confidence intervals for solve-rate and exact-rate lift. Per-policy
 result files are loaded through duplicate-`id` checks across the aggregate
 analyzers, with physical line numbers in failures, so accidental concatenation
-cannot silently inflate or overwrite reported results.
+cannot silently inflate or overwrite reported results. These loaders also
+reject non-boolean `ok`/`exact` fields and impossible `exact=true, ok=false`
+rows before rates are computed.
 Strict replay ledgers are schema-validated before casebook and paired replay
 reports are built, whether loaded from JSONL or supplied in memory. Duplicate
 `(run, id, policy)` rows are rejected with the physical line number or input row,
