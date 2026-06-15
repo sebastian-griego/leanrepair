@@ -1,0 +1,4 @@
+# Run manifests hash these checked-in paper artifacts byte-for-byte.
+results/real_paper_v2/run_*/*.json text eol=lf
+results/real_paper_v2/run_*/*.jsonl text eol=lf
+results/real_paper_v2/run_*/*.md text eol=lf

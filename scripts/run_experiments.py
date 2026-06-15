@@ -15,8 +15,10 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import eval_utils as eu  # noqa: E402
 import acceptance  # noqa: E402
+from artifact_manifest import write_manifest  # noqa: E402
 import budget_analysis as ba  # noqa: E402
 import exactness_analysis as ea  # noqa: E402
+from jsonl_io import JsonlError, iter_jsonl_objects  # noqa: E402
 import lean_check as lc  # noqa: E402
 import quality_analysis as qa  # noqa: E402
 import repair_cli as rc  # noqa: E402
@@ -26,6 +28,34 @@ import strict_replay_analysis as sra  # noqa: E402
 import strict_replay_casebook as srcb  # noqa: E402
 import strict_replay_paired as srp  # noqa: E402
 import trace_analysis as ta  # noqa: E402
+
+
+MAX_RUN_DIR_COLLISIONS = 1000
+
+
+def _utc_run_timestamp() -> str:
+    return datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+
+
+def _allocate_run_dir(output_dir: Path, timestamp: str) -> Path:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    base_name = f"run_{timestamp}"
+    for collision_index in range(MAX_RUN_DIR_COLLISIONS):
+        run_name = (
+            base_name
+            if collision_index == 0
+            else f"{base_name}_{collision_index:03d}"
+        )
+        run_dir = output_dir / run_name
+        try:
+            run_dir.mkdir()
+        except FileExistsError:
+            continue
+        return run_dir
+    raise FileExistsError(
+        f"could not allocate a unique run directory under {output_dir} "
+        f"for timestamp {timestamp!r}"
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -51,12 +81,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--warmup", action="store_true", help="Run one warmup Lean check before evaluation")
     args = parser.parse_args(argv)
 
+    _validate_unique_policies(args.policies)
     input_path = Path(args.input)
-    dataset = _load_jsonl(input_path)
+    dataset = _load_benchmark(input_path)
 
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    run_dir = Path(args.output_dir) / f"run_{timestamp}"
-    run_dir.mkdir(parents=True, exist_ok=True)
+    timestamp = _utc_run_timestamp()
+    run_dir = _allocate_run_dir(Path(args.output_dir), timestamp)
 
     if args.warmup:
         _warmup(args.timeout_s)
@@ -65,6 +95,7 @@ def main(argv: list[str] | None = None) -> int:
         "input": str(input_path),
         "count": len(dataset),
         "created_at_utc": timestamp,
+        "run_id": run_dir.name,
         "Tmax": args.Tmax,
         "timeout_s": args.timeout_s,
         "acceptance": args.acceptance,
@@ -87,11 +118,9 @@ def main(argv: list[str] | None = None) -> int:
         )
         summary = eu.summarize(records)
         aggregate_summary["policies"][policy_name] = summary
-        with (run_dir / f"{policy_name}.summary.json").open("w", encoding="utf-8") as handle:
-            json.dump(summary, handle, indent=2, ensure_ascii=True)
+        _write_json(run_dir / f"{policy_name}.summary.json", summary)
 
-    with (run_dir / "summary.json").open("w", encoding="utf-8") as handle:
-        json.dump(aggregate_summary, handle, indent=2, ensure_ascii=True)
+    _write_json(run_dir / "summary.json", aggregate_summary)
     _write_markdown_report(run_dir / "report.md", aggregate_summary)
     _write_trace_taxonomy(run_dir, args.policies)
     _write_budget_curve(run_dir, args.policies)
@@ -99,8 +128,12 @@ def main(argv: list[str] | None = None) -> int:
     _write_semantic_drift(run_dir, args.policies)
     _write_quality_summary(run_dir, args.policies)
     _write_strict_replay(run_dir, args.policies)
+    manifest = write_manifest(run_dir)
 
-    print(f"Wrote experiment outputs to {run_dir}")
+    print(
+        f"Wrote experiment outputs to {run_dir} "
+        f"with {manifest['artifact_count']} manifest entries"
+    )
     return 0
 
 
@@ -118,7 +151,7 @@ def _run_policy(
     records: list[eu.ExperimentRecord] = []
     policy_fn = lambda nl, ctx, cand, result: policy.propose_many(nl, ctx, cand, result)
 
-    with output_path.open("w", encoding="utf-8") as out:
+    with output_path.open("w", encoding="utf-8", newline="\n") as out:
         for item in dataset:
             item_id = str(item.get("id", ""))
             nl = str(item.get("nl", "") or "")
@@ -202,15 +235,48 @@ def _trace_step_to_dict(step: rl.TraceStep) -> dict[str, Any]:
     }
 
 
-def _load_jsonl(path: Path) -> list[dict[str, Any]]:
+def _load_benchmark(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            stripped = line.strip()
-            if not stripped:
-                continue
-            rows.append(json.loads(stripped))
+    first_lines: dict[str, int] = {}
+    for line_no, row in iter_jsonl_objects(path):
+        _validate_benchmark_row(row, path=path, line_no=line_no)
+        item_id = str(row["id"])
+        if item_id in first_lines:
+            raise JsonlError(
+                f"duplicate id {item_id!r} at {path}:{line_no}; "
+                f"first seen at line {first_lines[item_id]}"
+            )
+        first_lines[item_id] = line_no
+        rows.append(row)
+    if not rows:
+        raise JsonlError(f"Empty benchmark at {path}")
     return rows
+
+
+def _validate_unique_policies(policies: list[str]) -> None:
+    first_positions: dict[str, int] = {}
+    for position, policy in enumerate(policies, 1):
+        if policy in first_positions:
+            raise ValueError(
+                f"duplicate policy {policy!r} at position {position}; "
+                f"first seen at position {first_positions[policy]}"
+            )
+        first_positions[policy] = position
+
+
+def _validate_benchmark_row(row: dict[str, Any], *, path: Path, line_no: int) -> None:
+    for key in ("id", "candidate", "target"):
+        value = row.get(key)
+        if not isinstance(value, str) or not value.strip():
+            raise JsonlError(
+                f"Expected non-empty string field {key!r} at {path}:{line_no}"
+            )
+    for key in ("nl", "ctx", "corruption"):
+        value = row.get(key)
+        if value is not None and not isinstance(value, str):
+            raise JsonlError(
+                f"Expected string field {key!r} at {path}:{line_no}, got {type(value).__name__}"
+            )
 
 
 def _warmup(timeout_s: float) -> None:
@@ -269,89 +335,50 @@ def _write_markdown_report(path: Path, summary: dict[str, Any]) -> None:
             + " |"
         )
 
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    _write_text(path, "\n".join(lines) + "\n")
 
 
 def _write_trace_taxonomy(run_dir: Path, policies: list[str]) -> None:
     summary = ta.analyze_run_dir(run_dir, policies, max_examples=20)
-    (run_dir / "trace_taxonomy.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "trace_taxonomy.md").write_text(
-        ta.format_markdown(summary),
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "trace_taxonomy.json", summary)
+    _write_text(run_dir / "trace_taxonomy.md", ta.format_markdown(summary))
 
 
 def _write_budget_curve(run_dir: Path, policies: list[str]) -> None:
     summary = ba.analyze_root(run_dir, policies)
-    (run_dir / "budget_curve.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "budget_curve.md").write_text(
-        ba.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "budget_curve.json", summary)
+    _write_text(run_dir / "budget_curve.md", ba.format_markdown(summary) + "\n")
 
 
 def _write_exactness_gap(run_dir: Path, policies: list[str]) -> None:
     summary = ea.analyze_run_dir(run_dir, policies, max_examples=20)
-    (run_dir / "exactness_gap.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "exactness_gap.md").write_text(
-        ea.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "exactness_gap.json", summary)
+    _write_text(run_dir / "exactness_gap.md", ea.format_markdown(summary) + "\n")
 
 
 def _write_semantic_drift(run_dir: Path, policies: list[str]) -> None:
     summary = sda.analyze_run_dir(run_dir, policies, max_examples=20)
-    (run_dir / "semantic_drift.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "semantic_drift.md").write_text(
-        sda.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "semantic_drift.json", summary)
+    _write_text(run_dir / "semantic_drift.md", sda.format_markdown(summary) + "\n")
 
 
 def _write_quality_summary(run_dir: Path, policies: list[str]) -> None:
     summary = qa.analyze_root(run_dir, policies)
-    (run_dir / "quality_summary.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "quality_summary.md").write_text(
-        qa.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "quality_summary.json", summary)
+    _write_text(run_dir / "quality_summary.md", qa.format_markdown(summary) + "\n")
 
 
 def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
     summary = sra.analyze_run_dir(run_dir, policies, max_examples=20)
     replay_rows = sra.replay_run_dir(run_dir, policies)
     casebook = srcb.analyze_records(replay_rows, max_cases=25)
-    (run_dir / "strict_replay.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "strict_replay.md").write_text(
-        sra.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "strict_replay.json", summary)
+    _write_text(run_dir / "strict_replay.md", sra.format_markdown(summary) + "\n")
     sra.write_replay_records_jsonl(run_dir / "strict_replay_records.jsonl", replay_rows)
-    (run_dir / "strict_replay_casebook.json").write_text(
-        json.dumps(casebook, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "strict_replay_casebook.md").write_text(
+    _write_json(run_dir / "strict_replay_casebook.json", casebook)
+    _write_text(
+        run_dir / "strict_replay_casebook.md",
         srcb.format_markdown(casebook) + "\n",
-        encoding="utf-8",
     )
     srcb.write_cases_jsonl(run_dir / "strict_replay_casebook_cases.jsonl", casebook["focused_cases"])
     if len(policies) >= 2:
@@ -361,14 +388,19 @@ def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
             policy_b=policies[1],
             max_cases=25,
         )
-        (run_dir / "strict_replay_paired.json").write_text(
-            json.dumps(paired, indent=2, ensure_ascii=True) + "\n",
-            encoding="utf-8",
-        )
-        (run_dir / "strict_replay_paired.md").write_text(
+        _write_json(run_dir / "strict_replay_paired.json", paired)
+        _write_text(
+            run_dir / "strict_replay_paired.md",
             srp.format_markdown(paired) + "\n",
-            encoding="utf-8",
         )
+
+
+def _write_json(path: Path, payload: Any) -> None:
+    _write_text(path, json.dumps(payload, indent=2, ensure_ascii=True) + "\n")
+
+
+def _write_text(path: Path, text: str) -> None:
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

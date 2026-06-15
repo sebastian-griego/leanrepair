@@ -30,8 +30,13 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Compile Python sources
-        run: python -m compileall -q repair_cli.py src scripts tests
+      - name: Verify reproducibility
+        run: python scripts/verify_reproducibility.py --report-json results/reproducibility-${{ matrix.python-version }}.json
 
-      - name: Run tests
-        run: python -m pytest -q
+      - name: Upload reproducibility report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reproducibility-report-py${{ matrix.python-version }}
+          path: results/reproducibility-${{ matrix.python-version }}.json
+          if-no-files-found: ignore

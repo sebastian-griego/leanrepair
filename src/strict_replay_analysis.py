@@ -5,17 +5,13 @@ import json
 from pathlib import Path
 from typing import Any, Iterable
 
+from jsonl_io import load_policy_result_objects
 import semantic_drift_analysis as sda
+from strict_replay_records import validate_records
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            stripped = line.strip()
-            if stripped:
-                rows.append(json.loads(stripped))
-    return rows
+    return load_policy_result_objects(path)
 
 
 def analyze_records(
@@ -253,9 +249,11 @@ def replay_root(
 
 
 def write_replay_records_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
+    rows = validate_records(rows, location="strict replay export")
     path.write_text(
         "".join(json.dumps(row, ensure_ascii=True) + "\n" for row in rows),
         encoding="utf-8",
+        newline="\n",
     )
 
 

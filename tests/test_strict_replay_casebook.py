@@ -9,6 +9,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT / "src"))
 sys.path.append(str(ROOT))
 
+from jsonl_io import JsonlError  # noqa: E402
 import strict_replay_casebook as srcb  # noqa: E402
 from scripts import analyze_strict_replay_casebook as cli  # noqa: E402
 from scripts import run_experiments as rex  # noqa: E402
@@ -18,64 +19,44 @@ class StrictReplayCasebookTests(unittest.TestCase):
     def test_casebook_counts_loss_nonexact_and_recovery_flags(self):
         summary = srcb.analyze_records(
             [
-                {
-                    "run": "run_001",
-                    "id": "loss",
-                    "policy": "research",
-                    "corruption": "not_proposition",
-                    "raw_ok": True,
-                    "strict_ok": False,
-                    "strict_exact": False,
-                    "raw_reason": "goal_true",
-                    "raw_step_index": 2,
-                    "raw_final_goal": "True",
-                    "target_goal": "n = n",
-                },
-                {
-                    "run": "run_001",
-                    "id": "nonexact",
-                    "policy": "research",
-                    "corruption": "parse",
-                    "raw_ok": True,
-                    "strict_ok": True,
-                    "strict_exact": False,
-                    "strict_step_index": 3,
-                    "strict_final_header": "theorem nonexact : n = n + 0",
-                    "target_header": "theorem nonexact : n + 0 = n",
-                },
-                {
-                    "run": "run_001",
-                    "id": "recovered",
-                    "policy": "research",
-                    "corruption": "type_mismatch",
-                    "raw_ok": True,
-                    "strict_ok": True,
-                    "strict_exact": True,
-                    "raw_reason": "reflexive_equality",
-                    "raw_step_index": 1,
-                    "strict_step_index": 4,
-                    "recovered_after_degenerate": True,
-                    "changed_accepted_output": True,
-                    "strict_final_goal": "n = n",
-                },
-                {
-                    "run": "run_001",
-                    "id": "exact",
-                    "policy": "heuristic",
-                    "corruption": "parse",
-                    "raw_ok": True,
-                    "strict_ok": True,
-                    "strict_exact": True,
-                },
-                {
-                    "run": "run_001",
-                    "id": "unsolved",
-                    "policy": "heuristic",
-                    "corruption": "parse",
-                    "raw_ok": False,
-                    "strict_ok": False,
-                    "strict_exact": False,
-                },
+                self._strict_row(
+                    "run_001",
+                    "loss",
+                    "research",
+                    corruption="not_proposition",
+                    strict_ok=False,
+                    strict_exact=False,
+                    raw_reason="goal_true",
+                ),
+                self._strict_row(
+                    "run_001",
+                    "nonexact",
+                    "research",
+                    strict_ok=True,
+                    strict_exact=False,
+                    target_header="theorem nonexact : n + 0 = n",
+                ),
+                self._strict_row(
+                    "run_001",
+                    "recovered",
+                    "research",
+                    corruption="type_mismatch",
+                    raw_reason="reflexive_equality",
+                    recovered_after_degenerate=True,
+                    changed_accepted_output=True,
+                    strict_final_header="theorem recovered (n : Nat) : n = n",
+                    strict_final_goal="n = n",
+                    discarded_degenerate_ok_steps=1,
+                ),
+                self._strict_row("run_001", "exact", "heuristic"),
+                self._strict_row(
+                    "run_001",
+                    "unsolved",
+                    "heuristic",
+                    raw_ok=False,
+                    strict_ok=False,
+                    strict_exact=False,
+                ),
             ]
         )
         markdown = srcb.format_markdown(summary)
@@ -94,6 +75,35 @@ class StrictReplayCasebookTests(unittest.TestCase):
         self.assertIn("Strict Replay Casebook", markdown)
         self.assertIn("Raw Solves Lost Under Strict Replay", markdown)
 
+    def test_analyze_records_validates_in_memory_schema(self):
+        row = self._strict_row("run_001", "bad", "research")
+        del row["reported_ok"]
+
+        with self.assertRaises(JsonlError) as ctx:
+            srcb.analyze_records([row])
+
+        self.assertIn(
+            "missing reported_ok at input strict replay records:1",
+            str(ctx.exception),
+        )
+
+    def test_analyze_records_rejects_duplicate_in_memory_keys(self):
+        rows = [
+            self._strict_row("run_001", "dup", "research"),
+            self._strict_row("run_001", "dup", "research"),
+        ]
+
+        with self.assertRaises(JsonlError) as ctx:
+            srcb.analyze_records(rows)
+
+        message = str(ctx.exception)
+        self.assertIn(
+            "duplicate strict replay row run='run_001', id='dup', policy='research'",
+            message,
+        )
+        self.assertIn("at input row 2", message)
+        self.assertIn("first seen at input row 1", message)
+
     def test_cli_writes_casebook_outputs_from_records_jsonl(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp)
@@ -101,25 +111,22 @@ class StrictReplayCasebookTests(unittest.TestCase):
             self._write_jsonl(
                 records,
                 [
-                    {
-                        "run": "run_001",
-                        "id": "loss",
-                        "policy": "research",
-                        "corruption": "not_proposition",
-                        "raw_ok": True,
-                        "strict_ok": False,
-                        "strict_exact": False,
-                        "raw_reason": "goal_true",
-                    },
-                    {
-                        "run": "run_001",
-                        "id": "nonexact",
-                        "policy": "research",
-                        "corruption": "parse",
-                        "raw_ok": True,
-                        "strict_ok": True,
-                        "strict_exact": False,
-                    },
+                    self._strict_row(
+                        "run_001",
+                        "loss",
+                        "research",
+                        corruption="not_proposition",
+                        strict_ok=False,
+                        strict_exact=False,
+                        raw_reason="goal_true",
+                    ),
+                    self._strict_row(
+                        "run_001",
+                        "nonexact",
+                        "research",
+                        strict_ok=True,
+                        strict_exact=False,
+                    ),
                 ],
             )
             output_json = root / "casebook.json"
@@ -189,6 +196,58 @@ class StrictReplayCasebookTests(unittest.TestCase):
             "".join(json.dumps(row) + "\n" for row in rows),
             encoding="utf-8",
         )
+
+    def _strict_row(
+        self,
+        run: str,
+        item_id: str,
+        policy: str,
+        *,
+        raw_ok: bool = True,
+        strict_ok: bool = True,
+        strict_exact: bool = True,
+        raw_reason: str = "",
+        corruption: str = "parse",
+        recovered_after_degenerate: bool = False,
+        changed_accepted_output: bool = False,
+        strict_final_header: str | None = None,
+        target_header: str | None = None,
+        strict_final_goal: str | None = None,
+        discarded_degenerate_ok_steps: int = 0,
+    ) -> dict:
+        raw_degenerate = bool(raw_reason)
+        discarded_steps = discarded_degenerate_ok_steps
+        if raw_degenerate and discarded_steps == 0:
+            discarded_steps = 1
+        strict_step_index = 2 if recovered_after_degenerate else 1
+        return {
+            "run": run,
+            "id": item_id,
+            "policy": policy,
+            "corruption": corruption,
+            "reported_ok": raw_ok,
+            "raw_ok": raw_ok,
+            "raw_exact": strict_exact,
+            "raw_degenerate": raw_degenerate,
+            "raw_reason": raw_reason,
+            "raw_step_index": 1 if raw_ok else None,
+            "raw_final_header": f"theorem {item_id} : True" if raw_ok else "",
+            "raw_final_goal": "True" if raw_ok else "",
+            "target_header": target_header or f"theorem {item_id} : True",
+            "target_goal": "True",
+            "strict_ok": strict_ok,
+            "strict_exact": strict_exact,
+            "strict_step_index": strict_step_index if strict_ok else None,
+            "strict_final_header": strict_final_header
+            if strict_final_header is not None
+            else f"theorem {item_id} : True" if strict_ok else "",
+            "strict_final_goal": strict_final_goal
+            if strict_final_goal is not None
+            else "True" if strict_ok else "",
+            "discarded_degenerate_ok_steps": discarded_steps,
+            "recovered_after_degenerate": recovered_after_degenerate,
+            "changed_accepted_output": changed_accepted_output,
+        }
 
 
 if __name__ == "__main__":

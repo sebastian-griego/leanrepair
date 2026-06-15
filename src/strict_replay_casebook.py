@@ -5,6 +5,11 @@ import json
 from pathlib import Path
 from typing import Any, Iterable
 
+from strict_replay_records import (
+    load_records_jsonl as load_strict_replay_records,
+    validate_records as validate_strict_replay_records,
+)
+
 
 INTERESTING_FLAGS = (
     "raw_to_strict_loss",
@@ -15,12 +20,7 @@ INTERESTING_FLAGS = (
 
 
 def load_records_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            if line.strip():
-                rows.append(json.loads(line))
-    return rows
+    return load_strict_replay_records(path)
 
 
 def analyze_records(
@@ -28,7 +28,7 @@ def analyze_records(
     *,
     max_cases: int = 25,
 ) -> dict[str, Any]:
-    rows = [_annotate_case(row) for row in records]
+    rows = [_annotate_case(row) for row in validate_strict_replay_records(records)]
     if not rows:
         raise ValueError("no strict replay records found")
 
@@ -155,6 +155,7 @@ def write_cases_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
     path.write_text(
         "".join(json.dumps(row, ensure_ascii=True, sort_keys=True) + "\n" for row in rows),
         encoding="utf-8",
+        newline="\n",
     )
 
 

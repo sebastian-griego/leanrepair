@@ -54,6 +54,7 @@ python repair_cli.py \
 | `--policy` | Repair policy: `heuristic`, `research`, `research_strict`, or `openai` | heuristic |
 | `--acceptance` | Acceptance rule: `lean_ok` accepts any typechecking candidate; `strict` rejects degenerate typechecking candidates such as `True` goals and reflexive equalities | lean_ok |
 | `--token-recall-floor` | Minimum target-token recall for strict acceptance | 0.2 |
+| `--skip-invalid-rows` | Skip malformed or non-object JSONL rows instead of failing before output is written | false |
 
 ### Input Format
 
@@ -62,6 +63,12 @@ Input JSONL files should contain records with the following fields:
 ```json
 {"id": "theorem_1", "nl": "Natural language description", "ctx": "import Mathlib\n\n", "candidate": "theorem foo : Nat"}
 ```
+
+The CLI validates the JSONL before writing results. Malformed rows or non-object
+rows stop the run with a line-numbered error; use `--skip-invalid-rows` only for
+ad hoc cleanup runs where dropping bad rows is intentional. Remaining rows must
+have unique non-empty string `id` values and non-empty string `candidate` values;
+`--acceptance strict` also requires a non-empty string `target`.
 
 | Field | Description |
 |-------|-------------|
@@ -148,6 +155,13 @@ python scripts/run_experiments.py \
   --warmup
 ```
 
+Experiment inputs are validated before any run directory is created. Each
+benchmark row must contain non-empty string `id`, `candidate`, and `target`
+fields; optional `nl`, `ctx`, and `corruption` fields must also be strings when
+present. Duplicate `id` values and duplicate requested policy names are rejected
+before any run directory is created, and schema errors report the physical JSONL
+line number.
+
 ### Real Benchmark (Mined from Lean Source)
 
 Build a real benchmark by mining theorem/lemma headers from local Lean sources (`Init`/`Std`), validating clean targets, and keeping only corrupted variants that fail Lean checking:
@@ -191,7 +205,20 @@ python scripts/analyze_strict_replay_paired.py --records-jsonl results/real_pape
 The paired analyzer reports coverage before comparing policies, so unmatched
 rows are visible instead of being silently dropped. Use `--strict-pairs` to
 fail a run with missing policy outputs, and tune `--bootstrap-samples`/`--seed`
-to reproduce confidence intervals for solve-rate and exact-rate lift.
+to reproduce confidence intervals for solve-rate and exact-rate lift. Per-policy
+result files are loaded through duplicate-`id` checks across the aggregate
+analyzers, with physical line numbers in failures, so accidental concatenation
+cannot silently inflate or overwrite reported results. These loaders also
+reject non-boolean `ok`/`exact` fields and impossible `exact=true, ok=false`
+rows before rates are computed. When present, policy-result fields such as
+`policy`, `corruption`, `steps`, `elapsed_ms`, and `trace` are schema-checked
+before rates are computed, and JSONL inputs may be UTF-8 with or without a BOM.
+Strict replay ledgers are schema-validated before casebook and paired replay
+reports are built, whether loaded from JSONL or supplied in memory. Duplicate
+`(run, id, policy)` rows are rejected with the physical line number or input row,
+so corrupted or resumed ledgers cannot double-count a replay decision. Replay
+records also validate outcome/step consistency before they are exported or
+loaded, preventing impossible raw/strict replay states from reaching reports.
 
 Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 
@@ -206,6 +233,13 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Strict replay audit: `strict_replay.json`, `strict_replay.md`, `strict_replay_records.jsonl`
 - Strict replay casebook: `strict_replay_casebook.json`, `strict_replay_casebook.md`, `strict_replay_casebook_cases.jsonl`
 - Strict replay paired comparison: `strict_replay_paired.json`, `strict_replay_paired.md`
+- Artifact manifest: `manifest.json` with byte sizes and SHA-256 hashes for
+  every non-root-manifest file in the run directory. New schema-v2 manifests
+  require the run directory name as `run_id`; verification rejects missing or
+  mismatched `run_id` values while still accepting legacy schema-v1 checked-in
+  manifests that predate the field. Verification also checks schema and
+  artifact-count metadata types, so JSON booleans or floats cannot masquerade
+  as version or count integers.
 
 Trace taxonomy reports are acceptance-aware: on strict-acceptance runs they
 separate raw Lean-ok candidates from candidates actually accepted by the repair
@@ -213,6 +247,10 @@ loop, and count rejection reasons such as `goal_true`.
 
 ### Current Snapshot (Real Data v2, 3 Seeds, 300 Items/Seed)
 
+- Generated snapshot: `results/real_paper_v2/snapshot_summary.md`
+- Snapshot rollup includes aggregate outcomes, repair-budget curve, exactness
+  gap, quality adjustment, trace taxonomy, strict replay, and paired replay
+  with source paths and SHA-256 provenance for the exact component artifacts.
 - Aggregate report: `results/real_paper_v2/aggregate_report.md`
 - Quality-adjusted report: `results/real_paper_v2/quality_summary.md`
 - Baseline `heuristic`: solve rate `10.0% +/- 1.2%`, exact rate `0.0% +/- 0.0%`
@@ -227,6 +265,78 @@ loop, and count rejection reasons such as `goal_true`.
 - Strict paired replay: `results/real_paper_v2/strict_replay_paired.md` shows that the raw `research` solve lift of `+74.0` percentage points becomes a strict solve lift of `+28.0` points (`252` `research`-only strict solves vs `0` `heuristic`-only; sign-test `p = 2.764e-76`) and a strict exact lift of `+27.9` points (`251` `research`-only exact repairs vs `0`; `p = 5.527e-76`). It also identifies `414` raw `research`-only wins that strict replay rejects as degenerate, now split by rejection reason (`334` `goal_true`, `80` `reflexive_equality`) and corruption type.
 
 Per-run artifacts are available under `results/real_paper_v2/run_*/`.
+
+Regenerate the compact source-traceable snapshot after refreshing component
+reports:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2
+```
+
+Run the full local reproducibility gate used by CI:
+
+```bash
+python scripts/verify_reproducibility.py
+```
+
+With `make` available, the equivalent shortcut is:
+
+```bash
+make verify
+```
+
+Write a machine-readable command report:
+
+```bash
+python scripts/verify_reproducibility.py --report-json results/reproducibility_report.json
+```
+
+With `make` available:
+
+```bash
+make verify-report
+```
+
+The JSON report records `schema_version`, planned and executed command counts,
+per-command return codes, elapsed times, git commit/worktree metadata, and the
+first failed command when the gate stops early.
+
+Verify the checked-in `real_paper_v2` run manifests:
+
+```bash
+python scripts/verify_artifact_manifest.py --root results/real_paper_v2
+```
+
+For a single generated run, use `--run-dir results/<group>/run_<timestamp>`.
+
+CI uploads this report as an artifact for each supported Python version.
+
+Verify the checked-in snapshot is current without rewriting it:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py --root results/real_paper_v2 --check
+```
+
+With `make` available:
+
+```bash
+make snapshot-check
+```
+
+Verify that the source hashes embedded in the checked-in snapshot still match
+the current component artifacts:
+
+```bash
+python scripts/summarize_real_paper_snapshot.py \
+  --output-json results/real_paper_v2/snapshot_summary.json \
+  --verify-source-hashes
+```
+
+With `make` available:
+
+```bash
+make source-hashes
+```
 
 ## API Usage
 

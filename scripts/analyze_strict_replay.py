@@ -63,8 +63,9 @@ def main(argv: list[str] | None = None) -> int:
     output_json.write_text(
         json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
-    output_md.write_text(markdown + "\n", encoding="utf-8")
+    output_md.write_text(markdown + "\n", encoding="utf-8", newline="\n")
     sra.write_replay_records_jsonl(output_records, replay_rows)
     print(f"Wrote {output_json}, {output_md}, and {output_records}")
     return 0

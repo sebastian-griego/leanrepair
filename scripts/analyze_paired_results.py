@@ -6,7 +6,14 @@ import json
 import math
 import random
 from pathlib import Path
+import sys
 from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from jsonl_io import load_policy_result_map  # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -146,21 +153,17 @@ def main(argv: list[str] | None = None) -> int:
     )
     output_md = Path(args.output_md) if args.output_md else root / "paired_analysis.md"
     output_json.write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True), encoding="utf-8"
+        json.dumps(summary, indent=2, ensure_ascii=True),
+        encoding="utf-8",
+        newline="\n",
     )
-    output_md.write_text(_to_markdown(summary), encoding="utf-8")
+    output_md.write_text(_to_markdown(summary), encoding="utf-8", newline="\n")
     print(f"Wrote {output_json} and {output_md}")
     return 0
 
 
 def _load_policy_rows(path: Path) -> dict[str, dict[str, Any]]:
-    rows: dict[str, dict[str, Any]] = {}
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            row = json.loads(line)
-            item_id = str(row.get("id", ""))
-            rows[item_id] = row
-    return rows
+    return load_policy_result_map(path)
 
 
 def _solve_rate(rows: Any) -> float:

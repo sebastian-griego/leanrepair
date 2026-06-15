@@ -1,24 +1,22 @@
 from __future__ import annotations
 
 from collections import Counter
-import json
 from math import exp, lgamma, log
 from pathlib import Path
 from typing import Any, Iterable
 
 import eval_utils as eu
+from strict_replay_records import (
+    load_records_jsonl as load_strict_replay_records,
+    validate_records as validate_strict_replay_records,
+)
 
 
 PAIRED_METRICS = ("raw_ok", "strict_ok", "strict_exact")
 
 
 def load_records_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            if line.strip():
-                rows.append(json.loads(line))
-    return rows
+    return load_strict_replay_records(path)
 
 
 def analyze_records(
@@ -29,7 +27,7 @@ def analyze_records(
     strict_pairs: bool = False,
     max_cases: int = 25,
 ) -> dict[str, Any]:
-    rows = list(records)
+    rows = validate_strict_replay_records(records)
     if not rows:
         raise ValueError("no strict replay records found")
     policy_a = str(policy_a)
@@ -240,13 +238,7 @@ def _index_records(
     for row in rows:
         key = (str(row.get("run", "")), str(row.get("id", "")))
         policy = str(row.get("policy", ""))
-        if not policy:
-            continue
         bucket = by_key.setdefault(key, {})
-        if policy in bucket:
-            raise ValueError(
-                f"duplicate strict replay row for run={key[0]!r}, id={key[1]!r}, policy={policy!r}"
-            )
         bucket[policy] = row
     return by_key
 

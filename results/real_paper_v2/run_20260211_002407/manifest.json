@@ -1,0 +1,36 @@
+{
+  "artifact_count": 6,
+  "artifacts": [
+    {
+      "bytes": 371392,
+      "path": "heuristic.jsonl",
+      "sha256": "54b9d13d0ca66cfae81460ffd84f787d05390cd0d3ca17d85e9a169eb93f652e"
+    },
+    {
+      "bytes": 1659,
+      "path": "heuristic.summary.json",
+      "sha256": "80ea6654fc2db3544969079e8daf63fa7caa1c09857a91e9f934502ce5501c34"
+    },
+    {
+      "bytes": 413,
+      "path": "report.md",
+      "sha256": "bfb9578b5f127e1564cd8cf265b5e07fa53af0952c5d73877ff1c077b0eac3ac"
+    },
+    {
+      "bytes": 486964,
+      "path": "research.jsonl",
+      "sha256": "926dba8107ba4d224d8df2609b0150048fdc80cb43969345374d564746fb2766"
+    },
+    {
+      "bytes": 1881,
+      "path": "research.summary.json",
+      "sha256": "e8a11dbab5cd2ef519c73f5cb6a35997893959e3467efc542720b41fc14c7e75"
+    },
+    {
+      "bytes": 4415,
+      "path": "summary.json",
+      "sha256": "e3219d26c4c56df06c95addd0a4d9e6afc4acf1cbcdec04a0562bbd935e30e82"
+    }
+  ],
+  "schema_version": 1
+}
