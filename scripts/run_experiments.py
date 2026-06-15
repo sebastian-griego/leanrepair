@@ -236,8 +236,16 @@ def _trace_step_to_dict(step: rl.TraceStep) -> dict[str, Any]:
 
 def _load_benchmark(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
+    first_lines: dict[str, int] = {}
     for line_no, row in iter_jsonl_objects(path):
         _validate_benchmark_row(row, path=path, line_no=line_no)
+        item_id = str(row["id"])
+        if item_id in first_lines:
+            raise JsonlError(
+                f"duplicate id {item_id!r} at {path}:{line_no}; "
+                f"first seen at line {first_lines[item_id]}"
+            )
+        first_lines[item_id] = line_no
         rows.append(row)
     if not rows:
         raise JsonlError(f"Empty benchmark at {path}")

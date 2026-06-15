@@ -92,6 +92,40 @@ def test_run_experiments_rejects_bad_schema_before_creating_run_dir(tmp_path):
     assert not output_dir.exists()
 
 
+def test_run_experiments_rejects_duplicate_ids_before_creating_run_dir(tmp_path):
+    path = tmp_path / "benchmark.jsonl"
+    output_dir = tmp_path / "results"
+    rows = [
+        {
+            "id": "dup",
+            "nl": "",
+            "ctx": "",
+            "candidate": "theorem dup : True",
+            "target": "theorem dup : True",
+        },
+        {
+            "id": "dup",
+            "nl": "",
+            "ctx": "",
+            "candidate": "theorem dup2 : True",
+            "target": "theorem dup2 : True",
+        },
+    ]
+    path.write_text(
+        "".join(json.dumps(row) + "\n" for row in rows),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(JsonlError) as excinfo:
+        rex.main(["--input", str(path), "--output-dir", str(output_dir)])
+
+    message = str(excinfo.value)
+    assert f"{path}:2" in message
+    assert "duplicate id 'dup'" in message
+    assert "first seen at line 1" in message
+    assert not output_dir.exists()
+
+
 def test_load_benchmark_rejects_empty_file(tmp_path):
     path = tmp_path / "benchmark.jsonl"
     path.write_text("\n\n", encoding="utf-8")
