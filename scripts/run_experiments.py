@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import eval_utils as eu  # noqa: E402
 import acceptance  # noqa: E402
+from artifact_manifest import write_manifest  # noqa: E402
 import budget_analysis as ba  # noqa: E402
 import exactness_analysis as ea  # noqa: E402
 from jsonl_io import JsonlError, iter_jsonl_objects  # noqa: E402
@@ -100,8 +101,12 @@ def main(argv: list[str] | None = None) -> int:
     _write_semantic_drift(run_dir, args.policies)
     _write_quality_summary(run_dir, args.policies)
     _write_strict_replay(run_dir, args.policies)
+    manifest = write_manifest(run_dir)
 
-    print(f"Wrote experiment outputs to {run_dir}")
+    print(
+        f"Wrote experiment outputs to {run_dir} "
+        f"with {manifest['artifact_count']} manifest entries"
+    )
     return 0
 
 

@@ -10,6 +10,8 @@ sys.path.append(str(ROOT))
 sys.path.append(str(ROOT / "src"))
 
 from jsonl_io import JsonlError  # noqa: E402
+from artifact_manifest import verify_manifest  # noqa: E402
+import lean_check as lc  # noqa: E402
 from scripts import run_experiments as rex  # noqa: E402
 
 
@@ -68,3 +70,56 @@ def test_load_benchmark_rejects_empty_file(tmp_path):
         rex._load_benchmark(path)
 
     assert f"Empty benchmark at {path}" in str(excinfo.value)
+
+
+def test_run_experiments_writes_verifiable_manifest(tmp_path, monkeypatch):
+    input_path = tmp_path / "benchmark.jsonl"
+    output_dir = tmp_path / "results"
+    input_path.write_text(
+        json.dumps(
+            {
+                "id": "item_1",
+                "nl": "",
+                "ctx": "",
+                "candidate": "theorem item_1 : True",
+                "target": "theorem item_1 : True",
+                "corruption": "smoke",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    def fake_lean_check(ctx: str, theorem: str, timeout_s: float) -> lc.CheckResult:
+        return lc.CheckResult(
+            ok=True,
+            errors=[],
+            raw="",
+            elapsed_ms=1,
+            timed_out=False,
+        )
+
+    monkeypatch.setattr(rex.rl.lc, "lean_check", fake_lean_check)
+
+    exit_code = rex.main(
+        [
+            "--input",
+            str(input_path),
+            "--output-dir",
+            str(output_dir),
+            "--policies",
+            "heuristic",
+            "--Tmax",
+            "1",
+            "--timeout-s",
+            "1",
+        ]
+    )
+
+    assert exit_code == 0
+    run_dir = next(output_dir.glob("run_*"))
+    manifest = verify_manifest(run_dir)
+    paths = {entry["path"] for entry in manifest["artifacts"]}
+    assert "heuristic.jsonl" in paths
+    assert "summary.json" in paths
+    assert "report.md" in paths

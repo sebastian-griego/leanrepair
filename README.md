@@ -229,6 +229,8 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Strict replay audit: `strict_replay.json`, `strict_replay.md`, `strict_replay_records.jsonl`
 - Strict replay casebook: `strict_replay_casebook.json`, `strict_replay_casebook.md`, `strict_replay_casebook_cases.jsonl`
 - Strict replay paired comparison: `strict_replay_paired.json`, `strict_replay_paired.md`
+- Artifact manifest: `manifest.json` with byte sizes and SHA-256 hashes for
+  every file in the run directory.
 
 Trace taxonomy reports are acceptance-aware: on strict-acceptance runs they
 separate raw Lean-ok candidates from candidates actually accepted by the repair
@@ -289,6 +291,12 @@ make verify-report
 The JSON report records `schema_version`, planned and executed command counts,
 per-command return codes, elapsed times, and the first failed command when the
 gate stops early.
+
+Verify a generated run manifest:
+
+```bash
+python scripts/verify_artifact_manifest.py --run-dir results/real_paper_v2/run_<timestamp>
+```
 
 CI uploads this report as an artifact for each supported Python version.
 
