@@ -109,6 +109,26 @@ def test_validate_records_rejects_replay_state_inconsistencies():
     with pytest.raises(JsonlError, match="no degenerate steps were discarded"):
         srr.validate_records([recovered_without_discarded])
 
+    discarded_without_raw_degenerate = _row("run_001", "discarded", "research")
+    discarded_without_raw_degenerate["discarded_degenerate_ok_steps"] = 1
+    with pytest.raises(JsonlError, match="raw_degenerate is false"):
+        srr.validate_records([discarded_without_raw_degenerate])
+
+    raw_degenerate_without_recovery = _row("run_001", "rawdeg", "research")
+    raw_degenerate_without_recovery["raw_degenerate"] = True
+    raw_degenerate_without_recovery["raw_reason"] = "goal_true"
+    raw_degenerate_without_recovery["discarded_degenerate_ok_steps"] = 1
+    with pytest.raises(JsonlError, match="require recovered_after_degenerate"):
+        srr.validate_records([raw_degenerate_without_recovery])
+
+    recovered_not_later = _row("run_001", "same_step", "research")
+    recovered_not_later["raw_degenerate"] = True
+    recovered_not_later["raw_reason"] = "goal_true"
+    recovered_not_later["discarded_degenerate_ok_steps"] = 1
+    recovered_not_later["recovered_after_degenerate"] = True
+    with pytest.raises(JsonlError, match="strict_step_index after raw_step_index"):
+        srr.validate_records([recovered_not_later])
+
     changed_flag_mismatch = _row("run_001", "c", "research")
     changed_flag_mismatch["strict_final_header"] = "theorem c : Nat := by exact 0"
     changed_flag_mismatch["changed_accepted_output"] = False

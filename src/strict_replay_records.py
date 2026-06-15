@@ -177,6 +177,25 @@ def validate_record(
         raise JsonlError(f"raw_degenerate is true but raw_ok is false at {location}")
     if row["raw_degenerate"] and not row["raw_reason"].strip():
         raise JsonlError(f"raw_degenerate is true but raw_reason is empty at {location}")
+    if row["raw_degenerate"] and discarded < 1:
+        raise JsonlError(
+            "raw_degenerate is true but no degenerate steps were discarded "
+            f"at {location}"
+        )
+    if discarded > 0 and not row["raw_degenerate"]:
+        raise JsonlError(
+            "discarded_degenerate_ok_steps is positive but raw_degenerate is false "
+            f"at {location}"
+        )
+    if (
+        row["raw_degenerate"]
+        and row["strict_ok"]
+        and not row["recovered_after_degenerate"]
+    ):
+        raise JsonlError(
+            "raw_degenerate and strict_ok require recovered_after_degenerate "
+            f"at {location}"
+        )
     if row["recovered_after_degenerate"] and not (
         row["raw_degenerate"] and row["strict_ok"]
     ):
@@ -188,6 +207,13 @@ def validate_record(
         raise JsonlError(
             "recovered_after_degenerate is true but no degenerate steps were "
             f"discarded at {location}"
+        )
+    if row["recovered_after_degenerate"] and (
+        row["strict_step_index"] <= row["raw_step_index"]
+    ):
+        raise JsonlError(
+            "recovered_after_degenerate requires strict_step_index after raw_step_index "
+            f"at {location}"
         )
     if row["changed_accepted_output"] and not row["strict_ok"]:
         raise JsonlError(f"changed_accepted_output is true but strict_ok is false at {location}")

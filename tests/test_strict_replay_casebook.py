@@ -215,6 +215,11 @@ class StrictReplayCasebookTests(unittest.TestCase):
         strict_final_goal: str | None = None,
         discarded_degenerate_ok_steps: int = 0,
     ) -> dict:
+        raw_degenerate = bool(raw_reason)
+        discarded_steps = discarded_degenerate_ok_steps
+        if raw_degenerate and discarded_steps == 0:
+            discarded_steps = 1
+        strict_step_index = 2 if recovered_after_degenerate else 1
         return {
             "run": run,
             "id": item_id,
@@ -223,7 +228,7 @@ class StrictReplayCasebookTests(unittest.TestCase):
             "reported_ok": raw_ok,
             "raw_ok": raw_ok,
             "raw_exact": strict_exact,
-            "raw_degenerate": bool(raw_reason),
+            "raw_degenerate": raw_degenerate,
             "raw_reason": raw_reason,
             "raw_step_index": 1 if raw_ok else None,
             "raw_final_header": f"theorem {item_id} : True" if raw_ok else "",
@@ -232,14 +237,14 @@ class StrictReplayCasebookTests(unittest.TestCase):
             "target_goal": "True",
             "strict_ok": strict_ok,
             "strict_exact": strict_exact,
-            "strict_step_index": 1 if strict_ok else None,
+            "strict_step_index": strict_step_index if strict_ok else None,
             "strict_final_header": strict_final_header
             if strict_final_header is not None
             else f"theorem {item_id} : True" if strict_ok else "",
             "strict_final_goal": strict_final_goal
             if strict_final_goal is not None
             else "True" if strict_ok else "",
-            "discarded_degenerate_ok_steps": discarded_degenerate_ok_steps,
+            "discarded_degenerate_ok_steps": discarded_steps,
             "recovered_after_degenerate": recovered_after_degenerate,
             "changed_accepted_output": changed_accepted_output,
         }

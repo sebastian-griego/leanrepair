@@ -218,7 +218,7 @@ class StrictReplayPairedTests(unittest.TestCase):
             "strict_step_index": 2 if strict_ok else None,
             "strict_final_header": f"theorem {item_id} : True" if strict_ok else "",
             "strict_final_goal": "True" if strict_ok else "",
-            "discarded_degenerate_ok_steps": 0,
+            "discarded_degenerate_ok_steps": 1 if raw_degenerate else 0,
             "recovered_after_degenerate": False,
             "changed_accepted_output": False,
         }
