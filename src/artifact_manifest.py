@@ -22,7 +22,7 @@ def write_manifest(root: str | Path) -> dict[str, Any]:
     artifacts = [
         _artifact_entry(root, path)
         for path in _iter_artifact_files(root)
-        if path.name != MANIFEST_NAME
+        if not _is_root_manifest(root, path)
     ]
     manifest = {
         "schema_version": SCHEMA_VERSION,
@@ -70,7 +70,7 @@ def verify_manifest(root: str | Path, *, allow_extra: bool = False) -> dict[str,
         actual_paths = {
             _relative_artifact_path(root, path)
             for path in _iter_artifact_files(root)
-            if path.name != MANIFEST_NAME
+            if not _is_root_manifest(root, path)
         }
         extra = sorted(actual_paths - seen)
         if extra:
@@ -83,6 +83,10 @@ def verify_manifest(root: str | Path, *, allow_extra: bool = False) -> dict[str,
 
 def _iter_artifact_files(root: Path) -> list[Path]:
     return sorted(path for path in root.rglob("*") if path.is_file())
+
+
+def _is_root_manifest(root: Path, path: Path) -> bool:
+    return path.relative_to(root).as_posix() == MANIFEST_NAME
 
 
 def _artifact_entry(root: Path, path: Path) -> dict[str, Any]:

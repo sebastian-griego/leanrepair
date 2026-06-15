@@ -20,14 +20,22 @@ def test_write_and_verify_manifest_records_nested_artifacts(tmp_path):
         '{"id": "a"}\n',
         encoding="utf-8",
     )
+    (run_dir / "nested" / "manifest.json").write_text(
+        '{"kind": "nested artifact"}\n',
+        encoding="utf-8",
+    )
 
     manifest = write_manifest(run_dir)
 
     paths = {entry["path"] for entry in manifest["artifacts"]}
-    assert paths == {"nested/trace.jsonl", "summary.json"}
+    assert paths == {
+        "nested/manifest.json",
+        "nested/trace.jsonl",
+        "summary.json",
+    }
     assert (run_dir / "manifest.json").exists()
     verified = verify_manifest(run_dir)
-    assert verified["artifact_count"] == 2
+    assert verified["artifact_count"] == 3
 
 
 def test_verify_manifest_detects_tampered_artifact(tmp_path):
@@ -54,6 +62,21 @@ def test_verify_manifest_rejects_unlisted_extra_artifact(tmp_path):
     with pytest.raises(ManifestError, match="unexpected artifacts"):
         verify_manifest(run_dir)
     assert verify_manifest(run_dir, allow_extra=True)["artifact_count"] == 1
+
+
+def test_verify_manifest_rejects_unlisted_nested_manifest(tmp_path):
+    run_dir = tmp_path / "run_001"
+    (run_dir / "nested").mkdir(parents=True)
+    (run_dir / "summary.json").write_text("{}\n", encoding="utf-8")
+    write_manifest(run_dir)
+
+    (run_dir / "nested" / "manifest.json").write_text(
+        '{"kind": "late"}\n',
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ManifestError, match="nested/manifest\\.json"):
+        verify_manifest(run_dir)
 
 
 def test_verify_manifest_rejects_path_escape(tmp_path):
