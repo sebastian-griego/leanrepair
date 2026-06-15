@@ -33,6 +33,7 @@ def test_write_and_verify_manifest_records_nested_artifacts(tmp_path):
         "nested/trace.jsonl",
         "summary.json",
     }
+    assert manifest["schema_version"] == 2
     assert (run_dir / "manifest.json").exists()
     verified = verify_manifest(run_dir)
     assert verified["artifact_count"] == 3
@@ -103,6 +104,7 @@ def test_verify_manifest_accepts_legacy_manifest_without_run_id(tmp_path):
     artifact = run_dir / "summary.json"
     artifact.write_text("{}\n", encoding="utf-8")
     manifest = write_manifest(run_dir)
+    manifest["schema_version"] = 1
     del manifest["run_id"]
     (run_dir / "manifest.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",
@@ -112,6 +114,21 @@ def test_verify_manifest_accepts_legacy_manifest_without_run_id(tmp_path):
     verified = verify_manifest(run_dir)
     assert verified["artifact_count"] == 1
     assert "run_id" not in verified
+
+
+def test_verify_manifest_rejects_schema_v2_without_run_id(tmp_path):
+    run_dir = tmp_path / "run_001"
+    run_dir.mkdir()
+    (run_dir / "summary.json").write_text("{}\n", encoding="utf-8")
+    manifest = write_manifest(run_dir)
+    del manifest["run_id"]
+    (run_dir / "manifest.json").write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ManifestError, match="run_id must be a non-empty string"):
+        verify_manifest(run_dir)
 
 
 def test_verify_manifest_rejects_path_escape(tmp_path):
@@ -173,6 +190,21 @@ def test_verify_manifest_rejects_non_integer_artifact_count(tmp_path):
 
         with pytest.raises(ManifestError, match="non-negative integer"):
             verify_manifest(run_dir)
+
+
+def test_verify_manifest_rejects_artifact_count_mismatch(tmp_path):
+    run_dir = tmp_path / "run_001"
+    run_dir.mkdir()
+    (run_dir / "summary.json").write_text("{}\n", encoding="utf-8")
+    manifest = write_manifest(run_dir)
+    manifest["artifact_count"] = len(manifest["artifacts"]) + 1
+    (run_dir / "manifest.json").write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ManifestError, match="does not match"):
+        verify_manifest(run_dir)
 
 
 def test_verify_artifact_manifest_cli(tmp_path):

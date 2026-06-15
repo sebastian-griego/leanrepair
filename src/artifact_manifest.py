@@ -7,7 +7,9 @@ from typing import Any
 
 
 MANIFEST_NAME = "manifest.json"
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+LEGACY_SCHEMA_VERSION = 1
+SUPPORTED_SCHEMA_VERSIONS = {LEGACY_SCHEMA_VERSION, SCHEMA_VERSION}
 
 
 class ManifestError(ValueError):
@@ -54,12 +56,16 @@ def verify_manifest(root: str | Path, *, allow_extra: bool = False) -> dict[str,
     if (
         not isinstance(schema_version, int)
         or isinstance(schema_version, bool)
-        or schema_version != SCHEMA_VERSION
+        or schema_version not in SUPPORTED_SCHEMA_VERSIONS
     ):
         raise ManifestError(
             f"unsupported manifest schema_version: {schema_version!r}"
         )
     run_id = manifest.get("run_id")
+    if schema_version >= SCHEMA_VERSION and (
+        not isinstance(run_id, str) or not run_id
+    ):
+        raise ManifestError("manifest run_id must be a non-empty string")
     if run_id is not None:
         if not isinstance(run_id, str) or not run_id:
             raise ManifestError("manifest run_id must be a non-empty string")
