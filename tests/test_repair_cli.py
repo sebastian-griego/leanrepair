@@ -30,6 +30,7 @@ class RepairCLITests(unittest.TestCase):
         with open(output_path, "r", encoding="utf-8") as handle:
             lines = [line.strip() for line in handle.readlines() if line.strip()]
 
+        self.assertNotIn(b"\r\n", pathlib.Path(output_path).read_bytes())
         self.assertEqual(len(lines), 3)
         for line in lines:
             record = json.loads(line)

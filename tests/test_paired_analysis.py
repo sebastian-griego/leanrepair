@@ -72,6 +72,8 @@ class PairedAnalysisTests(unittest.TestCase):
             )
 
             summary = json.loads(output_json.read_text(encoding="utf-8"))
+            self.assertNotIn(b"\r\n", output_json.read_bytes())
+            self.assertNotIn(b"\r\n", output_md.read_bytes())
             self.assertEqual(summary["coverage"]["policy_a_unpaired"], 1)
             self.assertEqual(summary["coverage"]["policy_b_unpaired"], 1)
             self.assertEqual(summary["coverage"]["paired_records"], 2)

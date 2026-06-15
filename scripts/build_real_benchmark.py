@@ -122,7 +122,7 @@ def main(argv: list[str] | None = None) -> int:
             }
         )
 
-    with output_path.open("w", encoding="utf-8") as handle:
+    with output_path.open("w", encoding="utf-8", newline="\n") as handle:
         for row in records:
             handle.write(json.dumps(row, ensure_ascii=True) + "\n")
 

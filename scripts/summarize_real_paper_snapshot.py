@@ -1052,6 +1052,10 @@ def _display_hash_mismatches(mismatches: list[dict[str, str]]) -> str:
     )
 
 
+def _write_text(path: Path, text: str) -> None:
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default="results/real_paper_v2")
@@ -1101,8 +1105,8 @@ def main() -> None:
         print(f"Snapshot outputs are up to date: {_display_paths(list(expected))}")
         return
 
-    output_json.write_text(json_text, encoding="utf-8")
-    output_md.write_text(markdown, encoding="utf-8")
+    _write_text(output_json, json_text)
+    _write_text(output_md, markdown)
     print(f"Wrote {output_json} and {output_md}")
 
 

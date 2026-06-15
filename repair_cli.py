@@ -74,7 +74,7 @@ def run_dataset(
     records = _iter_input_records(input_path, skip_invalid_rows=skip_invalid_rows)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("w", encoding="utf-8") as out:
+    with output_path.open("w", encoding="utf-8", newline="\n") as out:
         for line_no, record in records:
             item_id = record.get("id", str(line_no))
             nl = record.get("nl", "") or ""

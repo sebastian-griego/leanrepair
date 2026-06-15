@@ -83,8 +83,9 @@ def main(argv: list[str] | None = None) -> int:
     output_json.write_text(
         json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
-    output_md.write_text(markdown + "\n", encoding="utf-8")
+    output_md.write_text(markdown + "\n", encoding="utf-8", newline="\n")
     srcb.write_cases_jsonl(cases_jsonl, summary["focused_cases"])
     print(f"Wrote {output_json}, {output_md}, and {cases_jsonl}")
     return 0

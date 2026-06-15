@@ -51,8 +51,9 @@ def main(argv: list[str] | None = None) -> int:
     output_json.write_text(
         json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
-    output_md.write_text(markdown, encoding="utf-8")
+    output_md.write_text(markdown, encoding="utf-8", newline="\n")
     print(f"Wrote {output_json} and {output_md}")
     return 0
 

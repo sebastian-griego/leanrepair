@@ -66,7 +66,7 @@ def main(argv: list[str] | None = None) -> int:
         )
         attempt += 1
 
-    with output_path.open("w", encoding="utf-8") as handle:
+    with output_path.open("w", encoding="utf-8", newline="\n") as handle:
         for record in records:
             handle.write(json.dumps(record, ensure_ascii=True) + "\n")
 

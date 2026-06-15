@@ -153,9 +153,11 @@ def main(argv: list[str] | None = None) -> int:
     )
     output_md = Path(args.output_md) if args.output_md else root / "paired_analysis.md"
     output_json.write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True), encoding="utf-8"
+        json.dumps(summary, indent=2, ensure_ascii=True),
+        encoding="utf-8",
+        newline="\n",
     )
-    output_md.write_text(_to_markdown(summary), encoding="utf-8")
+    output_md.write_text(_to_markdown(summary), encoding="utf-8", newline="\n")
     print(f"Wrote {output_json} and {output_md}")
     return 0
 
