@@ -107,6 +107,30 @@ def test_policy_result_loaders_reject_non_boolean_ok_exact(loader, tmp_path):
     assert "expected ok to be bool" in message
 
 
+@pytest.mark.parametrize("loader", POLICY_RESULT_LOADERS)
+def test_policy_result_loaders_reject_malformed_optional_artifact_fields(loader, tmp_path):
+    path = tmp_path / "research.jsonl"
+    _write_jsonl(
+        path,
+        [
+            {
+                "id": "bad",
+                "ok": False,
+                "exact": False,
+                "policy": "",
+                "trace": {},
+            }
+        ],
+    )
+
+    with pytest.raises(JsonlError) as excinfo:
+        loader(path)
+
+    message = str(excinfo.value)
+    assert f"{path}:1" in message
+    assert "expected policy to be a non-empty string" in message
+
+
 def _write_jsonl(path: pathlib.Path, rows: list[dict]) -> None:
     path.write_text(
         "".join(json.dumps(row) + "\n" for row in rows),

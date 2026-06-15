@@ -206,7 +206,9 @@ result files are loaded through duplicate-`id` checks across the aggregate
 analyzers, with physical line numbers in failures, so accidental concatenation
 cannot silently inflate or overwrite reported results. These loaders also
 reject non-boolean `ok`/`exact` fields and impossible `exact=true, ok=false`
-rows before rates are computed.
+rows before rates are computed. When present, policy-result fields such as
+`policy`, `corruption`, `steps`, `elapsed_ms`, and `trace` are schema-checked
+before rates are computed, and JSONL inputs may be UTF-8 with or without a BOM.
 Strict replay ledgers are schema-validated before casebook and paired replay
 reports are built, whether loaded from JSONL or supplied in memory. Duplicate
 `(run, id, policy)` rows are rejected with the physical line number or input row,

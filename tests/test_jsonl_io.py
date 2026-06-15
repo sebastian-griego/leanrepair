@@ -35,6 +35,13 @@ def test_iter_jsonl_objects_reports_physical_line_numbers(tmp_path):
     ]
 
 
+def test_iter_jsonl_objects_accepts_utf8_bom(tmp_path):
+    path = tmp_path / "rows.jsonl"
+    path.write_text('{"id": "a"}\n', encoding="utf-8-sig")
+
+    assert load_jsonl_objects(path) == [{"id": "a"}]
+
+
 def test_load_jsonl_objects_reports_invalid_json_line(tmp_path):
     path = tmp_path / "rows.jsonl"
     path.write_text('{"id": "a"}\n\n{"id": bad}\n', encoding="utf-8")
@@ -126,3 +133,30 @@ def test_load_policy_result_map_rejects_non_bool_outcome_fields(tmp_path):
     message = str(excinfo.value)
     assert f"{path}:1" in message
     assert "expected ok to be bool" in message
+
+
+def test_load_policy_result_objects_rejects_non_string_id(tmp_path):
+    path = tmp_path / "policy.jsonl"
+    path.write_text('{"id": 1, "ok": false, "exact": false}\n', encoding="utf-8")
+
+    with pytest.raises(JsonlError) as excinfo:
+        load_policy_result_objects(path)
+
+    message = str(excinfo.value)
+    assert f"{path}:1" in message
+    assert "expected id to be a non-empty string" in message
+
+
+def test_load_policy_result_objects_rejects_invalid_optional_fields(tmp_path):
+    path = tmp_path / "policy.jsonl"
+    path.write_text(
+        '{"id": "a", "ok": false, "exact": false, "steps": -1}\n',
+        encoding="utf-8",
+    )
+
+    with pytest.raises(JsonlError) as excinfo:
+        load_policy_result_objects(path)
+
+    message = str(excinfo.value)
+    assert f"{path}:1" in message
+    assert "expected steps to be a non-negative integer" in message

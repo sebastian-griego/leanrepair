@@ -11,7 +11,7 @@ class JsonlError(ValueError):
 
 def iter_jsonl_objects(path: str | Path) -> Iterator[tuple[int, dict[str, Any]]]:
     path = Path(path)
-    with path.open("r", encoding="utf-8") as handle:
+    with path.open("r", encoding="utf-8-sig") as handle:
         for line_no, line in enumerate(handle, start=1):
             stripped = line.strip()
             if not stripped:
@@ -81,6 +81,7 @@ def load_policy_result_objects(path: str | Path) -> list[dict[str, Any]]:
             path=path,
             line_no=line_no,
             first_lines=first_lines,
+            require_nonempty_string=True,
         )
         first_lines[map_key] = line_no
         rows.append(row)
@@ -99,6 +100,7 @@ def load_policy_result_map(path: str | Path) -> dict[str, dict[str, Any]]:
             path=path,
             line_no=line_no,
             first_lines=first_lines,
+            require_nonempty_string=True,
         )
         rows[map_key] = row
         first_lines[map_key] = line_no
@@ -112,6 +114,40 @@ def _validate_policy_result_row(row: dict[str, Any], *, path: Path, line_no: int
                 f"expected {field} to be bool at {path}:{line_no}, "
                 f"got {type(row[field]).__name__}"
             )
+    for field in ("policy", "corruption", "acceptance"):
+        if field in row and (
+            not isinstance(row[field], str) or not row[field].strip()
+        ):
+            raise JsonlError(
+                f"expected {field} to be a non-empty string at {path}:{line_no}, "
+                f"got {type(row[field]).__name__}"
+            )
+    for field in (
+        "candidate0",
+        "target",
+        "final",
+        "final_header",
+        "target_header",
+    ):
+        if field in row and not isinstance(row[field], str):
+            raise JsonlError(
+                f"expected {field} to be string at {path}:{line_no}, "
+                f"got {type(row[field]).__name__}"
+            )
+    for field in ("steps", "elapsed_ms"):
+        if field not in row:
+            continue
+        value = row[field]
+        if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+            raise JsonlError(
+                f"expected {field} to be a non-negative integer at {path}:{line_no}, "
+                f"got {type(value).__name__}"
+            )
+    if "trace" in row and not isinstance(row["trace"], list):
+        raise JsonlError(
+            f"expected trace to be list at {path}:{line_no}, "
+            f"got {type(row['trace']).__name__}"
+        )
     if row.get("exact") is True and row.get("ok") is not True:
         raise JsonlError(f"exact is true but ok is false at {path}:{line_no}")
 
@@ -123,10 +159,18 @@ def _require_unique_key(
     path: Path,
     line_no: int,
     first_lines: dict[str, int],
+    require_nonempty_string: bool = False,
 ) -> str:
     value = row.get(key)
     if value is None:
         raise JsonlError(f"missing {key} at {path}:{line_no}")
+    if require_nonempty_string and (
+        not isinstance(value, str) or not value.strip()
+    ):
+        raise JsonlError(
+            f"expected {key} to be a non-empty string at {path}:{line_no}, "
+            f"got {type(value).__name__}"
+        )
     map_key = str(value)
     if map_key in first_lines:
         raise JsonlError(
