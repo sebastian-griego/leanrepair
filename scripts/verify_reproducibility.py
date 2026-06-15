@@ -32,6 +32,12 @@ def verification_commands(python: str, *, include_tests: bool = True) -> list[li
             "results/real_paper_v2/snapshot_summary.json",
             "--verify-source-hashes",
         ],
+        [
+            python,
+            "scripts/verify_artifact_manifest.py",
+            "--root",
+            "results/real_paper_v2",
+        ],
     ]
     if include_tests:
         commands.append([python, "-m", "pytest", "-q"])

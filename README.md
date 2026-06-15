@@ -292,11 +292,13 @@ The JSON report records `schema_version`, planned and executed command counts,
 per-command return codes, elapsed times, and the first failed command when the
 gate stops early.
 
-Verify a generated run manifest:
+Verify the checked-in `real_paper_v2` run manifests:
 
 ```bash
-python scripts/verify_artifact_manifest.py --run-dir results/real_paper_v2/run_<timestamp>
+python scripts/verify_artifact_manifest.py --root results/real_paper_v2
 ```
+
+For a single generated run, use `--run-dir results/<group>/run_<timestamp>`.
 
 CI uploads this report as an artifact for each supported Python version.
 

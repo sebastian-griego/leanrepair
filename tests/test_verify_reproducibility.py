@@ -18,6 +18,12 @@ def test_verification_commands_cover_reproducibility_gate():
     ]
     assert any("--check" in command for command in commands)
     assert any("--verify-source-hashes" in command for command in commands)
+    assert [
+        "python",
+        "scripts/verify_artifact_manifest.py",
+        "--root",
+        "results/real_paper_v2",
+    ] in commands
     assert commands[-1] == ["python", "-m", "pytest", "-q"]
 
 

@@ -126,3 +126,39 @@ def test_verify_artifact_manifest_cli(tmp_path):
     assert completed.returncode == 0
     payload = json.loads(completed.stdout)
     assert payload["verified"][0]["artifact_count"] == 1
+
+
+def test_verify_artifact_manifest_cli_verifies_run_root(tmp_path):
+    root = tmp_path / "runs"
+    first = root / "run_001"
+    second = root / "run_002"
+    skipped = root / "scratch"
+    first.mkdir(parents=True)
+    second.mkdir()
+    skipped.mkdir()
+    (first / "summary.json").write_text("{}\n", encoding="utf-8")
+    (second / "summary.json").write_text("{}\n", encoding="utf-8")
+    (skipped / "summary.json").write_text("{}\n", encoding="utf-8")
+    write_manifest(first)
+    write_manifest(second)
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "verify_artifact_manifest.py"),
+            "--root",
+            str(root),
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert completed.returncode == 0
+    payload = json.loads(completed.stdout)
+    assert [pathlib.Path(row["run_dir"]).name for row in payload["verified"]] == [
+        "run_001",
+        "run_002",
+    ]
+    assert [row["artifact_count"] for row in payload["verified"]] == [1, 1]
