@@ -81,6 +81,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--warmup", action="store_true", help="Run one warmup Lean check before evaluation")
     args = parser.parse_args(argv)
 
+    _validate_unique_policies(args.policies)
     input_path = Path(args.input)
     dataset = _load_benchmark(input_path)
 
@@ -250,6 +251,17 @@ def _load_benchmark(path: Path) -> list[dict[str, Any]]:
     if not rows:
         raise JsonlError(f"Empty benchmark at {path}")
     return rows
+
+
+def _validate_unique_policies(policies: list[str]) -> None:
+    first_positions: dict[str, int] = {}
+    for position, policy in enumerate(policies, 1):
+        if policy in first_positions:
+            raise ValueError(
+                f"duplicate policy {policy!r} at position {position}; "
+                f"first seen at position {first_positions[policy]}"
+            )
+        first_positions[policy] = position
 
 
 def _validate_benchmark_row(row: dict[str, Any], *, path: Path, line_no: int) -> None:

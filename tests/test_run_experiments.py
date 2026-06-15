@@ -126,6 +126,32 @@ def test_run_experiments_rejects_duplicate_ids_before_creating_run_dir(tmp_path)
     assert not output_dir.exists()
 
 
+def test_run_experiments_rejects_duplicate_policies_before_creating_run_dir(tmp_path):
+    path = tmp_path / "benchmark.jsonl"
+    output_dir = tmp_path / "results"
+    _write_smoke_benchmark(path)
+
+    with pytest.raises(ValueError) as excinfo:
+        rex.main(
+            [
+                "--input",
+                str(path),
+                "--output-dir",
+                str(output_dir),
+                "--policies",
+                "heuristic",
+                "research",
+                "heuristic",
+            ]
+        )
+
+    message = str(excinfo.value)
+    assert "duplicate policy 'heuristic'" in message
+    assert "position 3" in message
+    assert "first seen at position 1" in message
+    assert not output_dir.exists()
+
+
 def test_load_benchmark_rejects_empty_file(tmp_path):
     path = tmp_path / "benchmark.jsonl"
     path.write_text("\n\n", encoding="utf-8")
