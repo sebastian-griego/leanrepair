@@ -212,7 +212,9 @@ before rates are computed, and JSONL inputs may be UTF-8 with or without a BOM.
 Strict replay ledgers are schema-validated before casebook and paired replay
 reports are built, whether loaded from JSONL or supplied in memory. Duplicate
 `(run, id, policy)` rows are rejected with the physical line number or input row,
-so corrupted or resumed ledgers cannot double-count a replay decision.
+so corrupted or resumed ledgers cannot double-count a replay decision. Replay
+records also validate outcome/step consistency before they are exported or
+loaded, preventing impossible raw/strict replay states from reaching reports.
 
 Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 

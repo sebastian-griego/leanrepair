@@ -7,6 +7,7 @@ from typing import Any, Iterable
 
 from jsonl_io import load_policy_result_objects
 import semantic_drift_analysis as sda
+from strict_replay_records import validate_records
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -248,6 +249,7 @@ def replay_root(
 
 
 def write_replay_records_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
+    rows = validate_records(rows, location="strict replay export")
     path.write_text(
         "".join(json.dumps(row, ensure_ascii=True) + "\n" for row in rows),
         encoding="utf-8",

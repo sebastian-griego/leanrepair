@@ -34,7 +34,6 @@ class StrictReplayCasebookTests(unittest.TestCase):
                     "research",
                     strict_ok=True,
                     strict_exact=False,
-                    strict_final_header="theorem nonexact : n = n + 0",
                     target_header="theorem nonexact : n + 0 = n",
                 ),
                 self._strict_row(
@@ -45,7 +44,9 @@ class StrictReplayCasebookTests(unittest.TestCase):
                     raw_reason="reflexive_equality",
                     recovered_after_degenerate=True,
                     changed_accepted_output=True,
+                    strict_final_header="theorem recovered (n : Nat) : n = n",
                     strict_final_goal="n = n",
+                    discarded_degenerate_ok_steps=1,
                 ),
                 self._strict_row("run_001", "exact", "heuristic"),
                 self._strict_row(
@@ -212,6 +213,7 @@ class StrictReplayCasebookTests(unittest.TestCase):
         strict_final_header: str | None = None,
         target_header: str | None = None,
         strict_final_goal: str | None = None,
+        discarded_degenerate_ok_steps: int = 0,
     ) -> dict:
         return {
             "run": run,
@@ -237,7 +239,7 @@ class StrictReplayCasebookTests(unittest.TestCase):
             "strict_final_goal": strict_final_goal
             if strict_final_goal is not None
             else "True" if strict_ok else "",
-            "discarded_degenerate_ok_steps": 0,
+            "discarded_degenerate_ok_steps": discarded_degenerate_ok_steps,
             "recovered_after_degenerate": recovered_after_degenerate,
             "changed_accepted_output": changed_accepted_output,
         }

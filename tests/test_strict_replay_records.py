@@ -9,6 +9,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT / "src"))
 
 from jsonl_io import JsonlError  # noqa: E402
+import strict_replay_analysis as sra  # noqa: E402
 import strict_replay_records as srr  # noqa: E402
 
 
@@ -65,6 +66,67 @@ def test_load_records_jsonl_rejects_inconsistent_exact_flag(tmp_path):
 
     assert f"{path}:1" in str(excinfo.value)
     assert "strict_exact is true but strict_ok is false" in str(excinfo.value)
+
+
+def test_validate_records_rejects_step_flag_mismatches():
+    raw_ok_missing_step = _row("run_001", "a", "research")
+    raw_ok_missing_step["raw_step_index"] = None
+    with pytest.raises(JsonlError, match="raw_ok is true but raw_step_index is null"):
+        srr.validate_records([raw_ok_missing_step])
+
+    raw_fail_with_step = _row(
+        "run_001", "b", "research", raw_ok=False, strict_ok=False, strict_exact=False
+    )
+    raw_fail_with_step["raw_step_index"] = 1
+    with pytest.raises(JsonlError, match="raw_step_index is set but raw_ok is false"):
+        srr.validate_records([raw_fail_with_step])
+
+    strict_ok_missing_step = _row("run_001", "c", "research")
+    strict_ok_missing_step["strict_step_index"] = None
+    with pytest.raises(JsonlError, match="strict_ok is true but strict_step_index is null"):
+        srr.validate_records([strict_ok_missing_step])
+
+    strict_fail_with_step = _row(
+        "run_001", "d", "research", strict_ok=False, strict_exact=False
+    )
+    strict_fail_with_step["strict_step_index"] = 1
+    with pytest.raises(JsonlError, match="strict_step_index is set but strict_ok is false"):
+        srr.validate_records([strict_fail_with_step])
+
+
+def test_validate_records_rejects_replay_state_inconsistencies():
+    raw_degenerate_without_reason = _row("run_001", "a", "research")
+    raw_degenerate_without_reason["raw_degenerate"] = True
+    raw_degenerate_without_reason["raw_reason"] = ""
+    with pytest.raises(JsonlError, match="raw_degenerate is true but raw_reason is empty"):
+        srr.validate_records([raw_degenerate_without_reason])
+
+    recovered_without_discarded = _row("run_001", "b", "research")
+    recovered_without_discarded["raw_degenerate"] = True
+    recovered_without_discarded["raw_reason"] = "goal_true"
+    recovered_without_discarded["recovered_after_degenerate"] = True
+    recovered_without_discarded["discarded_degenerate_ok_steps"] = 0
+    with pytest.raises(JsonlError, match="no degenerate steps were discarded"):
+        srr.validate_records([recovered_without_discarded])
+
+    changed_flag_mismatch = _row("run_001", "c", "research")
+    changed_flag_mismatch["strict_final_header"] = "theorem c : Nat := by exact 0"
+    changed_flag_mismatch["changed_accepted_output"] = False
+    with pytest.raises(JsonlError, match="changed_accepted_output does not match"):
+        srr.validate_records([changed_flag_mismatch])
+
+
+def test_write_replay_records_jsonl_validates_export_rows(tmp_path):
+    path = tmp_path / "strict_replay_records.jsonl"
+    rows = [
+        _row("run_001", "a", "research"),
+        _row("run_001", "a", "research"),
+    ]
+
+    with pytest.raises(JsonlError, match="duplicate strict replay row"):
+        sra.write_replay_records_jsonl(path, rows)
+
+    assert not path.exists()
 
 
 def _row(

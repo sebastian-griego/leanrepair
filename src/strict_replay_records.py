@@ -153,8 +153,51 @@ def validate_record(
         raise JsonlError(f"raw_exact is true but raw_ok is false at {location}")
     if row["strict_exact"] and not row["strict_ok"]:
         raise JsonlError(f"strict_exact is true but strict_ok is false at {location}")
+    if row["strict_ok"] and not row["raw_ok"]:
+        raise JsonlError(f"strict_ok is true but raw_ok is false at {location}")
+    if row["raw_ok"] and row["raw_step_index"] is None:
+        raise JsonlError(f"raw_ok is true but raw_step_index is null at {location}")
+    if not row["raw_ok"] and row["raw_step_index"] is not None:
+        raise JsonlError(f"raw_step_index is set but raw_ok is false at {location}")
+    if row["strict_ok"] and row["strict_step_index"] is None:
+        raise JsonlError(
+            f"strict_ok is true but strict_step_index is null at {location}"
+        )
+    if not row["strict_ok"] and row["strict_step_index"] is not None:
+        raise JsonlError(
+            f"strict_step_index is set but strict_ok is false at {location}"
+        )
+    if row["raw_ok"] and not row["raw_final_header"].strip():
+        raise JsonlError(f"raw_ok is true but raw_final_header is empty at {location}")
+    if row["strict_ok"] and not row["strict_final_header"].strip():
+        raise JsonlError(
+            f"strict_ok is true but strict_final_header is empty at {location}"
+        )
+    if row["raw_degenerate"] and not row["raw_ok"]:
+        raise JsonlError(f"raw_degenerate is true but raw_ok is false at {location}")
+    if row["raw_degenerate"] and not row["raw_reason"].strip():
+        raise JsonlError(f"raw_degenerate is true but raw_reason is empty at {location}")
+    if row["recovered_after_degenerate"] and not (
+        row["raw_degenerate"] and row["strict_ok"]
+    ):
+        raise JsonlError(
+            "recovered_after_degenerate requires raw_degenerate and strict_ok "
+            f"at {location}"
+        )
+    if row["recovered_after_degenerate"] and discarded < 1:
+        raise JsonlError(
+            "recovered_after_degenerate is true but no degenerate steps were "
+            f"discarded at {location}"
+        )
     if row["changed_accepted_output"] and not row["strict_ok"]:
         raise JsonlError(f"changed_accepted_output is true but strict_ok is false at {location}")
+    changed_output = row["raw_final_header"] != row["strict_final_header"]
+    if row["raw_ok"] and row["strict_ok"] and row["changed_accepted_output"] != changed_output:
+        expected = str(changed_output).lower()
+        raise JsonlError(
+            "changed_accepted_output does not match raw/strict final headers "
+            f"at {location}; expected {expected}"
+        )
 
 
 def _record_key(row: dict[str, Any]) -> tuple[str, str, str]:
