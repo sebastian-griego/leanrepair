@@ -155,6 +155,7 @@ def write_cases_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
     path.write_text(
         "".join(json.dumps(row, ensure_ascii=True, sort_keys=True) + "\n" for row in rows),
         encoding="utf-8",
+        newline="\n",
     )
 
 

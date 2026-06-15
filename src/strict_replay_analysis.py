@@ -253,6 +253,7 @@ def write_replay_records_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> No
     path.write_text(
         "".join(json.dumps(row, ensure_ascii=True) + "\n" for row in rows),
         encoding="utf-8",
+        newline="\n",
     )
 
 

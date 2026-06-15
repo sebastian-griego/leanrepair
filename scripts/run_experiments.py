@@ -89,11 +89,9 @@ def main(argv: list[str] | None = None) -> int:
         )
         summary = eu.summarize(records)
         aggregate_summary["policies"][policy_name] = summary
-        with (run_dir / f"{policy_name}.summary.json").open("w", encoding="utf-8") as handle:
-            json.dump(summary, handle, indent=2, ensure_ascii=True)
+        _write_json(run_dir / f"{policy_name}.summary.json", summary)
 
-    with (run_dir / "summary.json").open("w", encoding="utf-8") as handle:
-        json.dump(aggregate_summary, handle, indent=2, ensure_ascii=True)
+    _write_json(run_dir / "summary.json", aggregate_summary)
     _write_markdown_report(run_dir / "report.md", aggregate_summary)
     _write_trace_taxonomy(run_dir, args.policies)
     _write_budget_curve(run_dir, args.policies)
@@ -124,7 +122,7 @@ def _run_policy(
     records: list[eu.ExperimentRecord] = []
     policy_fn = lambda nl, ctx, cand, result: policy.propose_many(nl, ctx, cand, result)
 
-    with output_path.open("w", encoding="utf-8") as out:
+    with output_path.open("w", encoding="utf-8", newline="\n") as out:
         for item in dataset:
             item_id = str(item.get("id", ""))
             nl = str(item.get("nl", "") or "")
@@ -289,89 +287,50 @@ def _write_markdown_report(path: Path, summary: dict[str, Any]) -> None:
             + " |"
         )
 
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    _write_text(path, "\n".join(lines) + "\n")
 
 
 def _write_trace_taxonomy(run_dir: Path, policies: list[str]) -> None:
     summary = ta.analyze_run_dir(run_dir, policies, max_examples=20)
-    (run_dir / "trace_taxonomy.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "trace_taxonomy.md").write_text(
-        ta.format_markdown(summary),
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "trace_taxonomy.json", summary)
+    _write_text(run_dir / "trace_taxonomy.md", ta.format_markdown(summary))
 
 
 def _write_budget_curve(run_dir: Path, policies: list[str]) -> None:
     summary = ba.analyze_root(run_dir, policies)
-    (run_dir / "budget_curve.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "budget_curve.md").write_text(
-        ba.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "budget_curve.json", summary)
+    _write_text(run_dir / "budget_curve.md", ba.format_markdown(summary) + "\n")
 
 
 def _write_exactness_gap(run_dir: Path, policies: list[str]) -> None:
     summary = ea.analyze_run_dir(run_dir, policies, max_examples=20)
-    (run_dir / "exactness_gap.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "exactness_gap.md").write_text(
-        ea.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "exactness_gap.json", summary)
+    _write_text(run_dir / "exactness_gap.md", ea.format_markdown(summary) + "\n")
 
 
 def _write_semantic_drift(run_dir: Path, policies: list[str]) -> None:
     summary = sda.analyze_run_dir(run_dir, policies, max_examples=20)
-    (run_dir / "semantic_drift.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "semantic_drift.md").write_text(
-        sda.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "semantic_drift.json", summary)
+    _write_text(run_dir / "semantic_drift.md", sda.format_markdown(summary) + "\n")
 
 
 def _write_quality_summary(run_dir: Path, policies: list[str]) -> None:
     summary = qa.analyze_root(run_dir, policies)
-    (run_dir / "quality_summary.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "quality_summary.md").write_text(
-        qa.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "quality_summary.json", summary)
+    _write_text(run_dir / "quality_summary.md", qa.format_markdown(summary) + "\n")
 
 
 def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
     summary = sra.analyze_run_dir(run_dir, policies, max_examples=20)
     replay_rows = sra.replay_run_dir(run_dir, policies)
     casebook = srcb.analyze_records(replay_rows, max_cases=25)
-    (run_dir / "strict_replay.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "strict_replay.md").write_text(
-        sra.format_markdown(summary) + "\n",
-        encoding="utf-8",
-    )
+    _write_json(run_dir / "strict_replay.json", summary)
+    _write_text(run_dir / "strict_replay.md", sra.format_markdown(summary) + "\n")
     sra.write_replay_records_jsonl(run_dir / "strict_replay_records.jsonl", replay_rows)
-    (run_dir / "strict_replay_casebook.json").write_text(
-        json.dumps(casebook, indent=2, ensure_ascii=True) + "\n",
-        encoding="utf-8",
-    )
-    (run_dir / "strict_replay_casebook.md").write_text(
+    _write_json(run_dir / "strict_replay_casebook.json", casebook)
+    _write_text(
+        run_dir / "strict_replay_casebook.md",
         srcb.format_markdown(casebook) + "\n",
-        encoding="utf-8",
     )
     srcb.write_cases_jsonl(run_dir / "strict_replay_casebook_cases.jsonl", casebook["focused_cases"])
     if len(policies) >= 2:
@@ -381,14 +340,19 @@ def _write_strict_replay(run_dir: Path, policies: list[str]) -> None:
             policy_b=policies[1],
             max_cases=25,
         )
-        (run_dir / "strict_replay_paired.json").write_text(
-            json.dumps(paired, indent=2, ensure_ascii=True) + "\n",
-            encoding="utf-8",
-        )
-        (run_dir / "strict_replay_paired.md").write_text(
+        _write_json(run_dir / "strict_replay_paired.json", paired)
+        _write_text(
+            run_dir / "strict_replay_paired.md",
             srp.format_markdown(paired) + "\n",
-            encoding="utf-8",
         )
+
+
+def _write_json(path: Path, payload: Any) -> None:
+    _write_text(path, json.dumps(payload, indent=2, ensure_ascii=True) + "\n")
+
+
+def _write_text(path: Path, text: str) -> None:
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

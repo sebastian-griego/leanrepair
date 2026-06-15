@@ -123,3 +123,9 @@ def test_run_experiments_writes_verifiable_manifest(tmp_path, monkeypatch):
     assert "heuristic.jsonl" in paths
     assert "summary.json" in paths
     assert "report.md" in paths
+    for entry in manifest["artifacts"]:
+        artifact_bytes = (run_dir / entry["path"]).read_bytes()
+        assert b"\r\n" not in artifact_bytes, entry["path"]
+    manifest_bytes = (run_dir / "manifest.json").read_bytes()
+    assert manifest_bytes.endswith(b"\n")
+    assert b"\r\n" not in manifest_bytes
