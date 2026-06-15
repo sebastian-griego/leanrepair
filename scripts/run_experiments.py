@@ -30,6 +30,34 @@ import strict_replay_paired as srp  # noqa: E402
 import trace_analysis as ta  # noqa: E402
 
 
+MAX_RUN_DIR_COLLISIONS = 1000
+
+
+def _utc_run_timestamp() -> str:
+    return datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+
+
+def _allocate_run_dir(output_dir: Path, timestamp: str) -> Path:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    base_name = f"run_{timestamp}"
+    for collision_index in range(MAX_RUN_DIR_COLLISIONS):
+        run_name = (
+            base_name
+            if collision_index == 0
+            else f"{base_name}_{collision_index:03d}"
+        )
+        run_dir = output_dir / run_name
+        try:
+            run_dir.mkdir()
+        except FileExistsError:
+            continue
+        return run_dir
+    raise FileExistsError(
+        f"could not allocate a unique run directory under {output_dir} "
+        f"for timestamp {timestamp!r}"
+    )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run Lean repair experiments and summarize results.")
     parser.add_argument("--input", required=True, help="Input benchmark JSONL")
@@ -56,9 +84,8 @@ def main(argv: list[str] | None = None) -> int:
     input_path = Path(args.input)
     dataset = _load_benchmark(input_path)
 
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    run_dir = Path(args.output_dir) / f"run_{timestamp}"
-    run_dir.mkdir(parents=True, exist_ok=True)
+    timestamp = _utc_run_timestamp()
+    run_dir = _allocate_run_dir(Path(args.output_dir), timestamp)
 
     if args.warmup:
         _warmup(args.timeout_s)
@@ -67,6 +94,7 @@ def main(argv: list[str] | None = None) -> int:
         "input": str(input_path),
         "count": len(dataset),
         "created_at_utc": timestamp,
+        "run_id": run_dir.name,
         "Tmax": args.Tmax,
         "timeout_s": args.timeout_s,
         "acceptance": args.acceptance,

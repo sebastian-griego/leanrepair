@@ -15,6 +15,36 @@ import lean_check as lc  # noqa: E402
 from scripts import run_experiments as rex  # noqa: E402
 
 
+def _write_smoke_benchmark(path: pathlib.Path) -> None:
+    path.write_text(
+        json.dumps(
+            {
+                "id": "item_1",
+                "nl": "",
+                "ctx": "",
+                "candidate": "theorem item_1 : True",
+                "target": "theorem item_1 : True",
+                "corruption": "smoke",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def _patch_successful_lean(monkeypatch: pytest.MonkeyPatch) -> None:
+    def fake_lean_check(ctx: str, theorem: str, timeout_s: float) -> lc.CheckResult:
+        return lc.CheckResult(
+            ok=True,
+            errors=[],
+            raw="",
+            elapsed_ms=1,
+            timed_out=False,
+        )
+
+    monkeypatch.setattr(rex.rl.lc, "lean_check", fake_lean_check)
+
+
 def test_load_benchmark_rejects_missing_required_field_with_line_number(tmp_path):
     path = tmp_path / "benchmark.jsonl"
     path.write_text(
@@ -75,31 +105,8 @@ def test_load_benchmark_rejects_empty_file(tmp_path):
 def test_run_experiments_writes_verifiable_manifest(tmp_path, monkeypatch):
     input_path = tmp_path / "benchmark.jsonl"
     output_dir = tmp_path / "results"
-    input_path.write_text(
-        json.dumps(
-            {
-                "id": "item_1",
-                "nl": "",
-                "ctx": "",
-                "candidate": "theorem item_1 : True",
-                "target": "theorem item_1 : True",
-                "corruption": "smoke",
-            }
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-
-    def fake_lean_check(ctx: str, theorem: str, timeout_s: float) -> lc.CheckResult:
-        return lc.CheckResult(
-            ok=True,
-            errors=[],
-            raw="",
-            elapsed_ms=1,
-            timed_out=False,
-        )
-
-    monkeypatch.setattr(rex.rl.lc, "lean_check", fake_lean_check)
+    _write_smoke_benchmark(input_path)
+    _patch_successful_lean(monkeypatch)
 
     exit_code = rex.main(
         [
@@ -129,3 +136,38 @@ def test_run_experiments_writes_verifiable_manifest(tmp_path, monkeypatch):
     manifest_bytes = (run_dir / "manifest.json").read_bytes()
     assert manifest_bytes.endswith(b"\n")
     assert b"\r\n" not in manifest_bytes
+
+
+def test_run_experiments_suffixes_colliding_run_timestamp(tmp_path, monkeypatch):
+    input_path = tmp_path / "benchmark.jsonl"
+    output_dir = tmp_path / "results"
+    _write_smoke_benchmark(input_path)
+    _patch_successful_lean(monkeypatch)
+    monkeypatch.setattr(rex, "_utc_run_timestamp", lambda: "20260615_120000")
+
+    args = [
+        "--input",
+        str(input_path),
+        "--output-dir",
+        str(output_dir),
+        "--policies",
+        "heuristic",
+        "--Tmax",
+        "1",
+        "--timeout-s",
+        "1",
+    ]
+
+    assert rex.main(args) == 0
+    assert rex.main(args) == 0
+
+    run_dirs = sorted(path for path in output_dir.iterdir() if path.is_dir())
+    assert [path.name for path in run_dirs] == [
+        "run_20260615_120000",
+        "run_20260615_120000_001",
+    ]
+    for run_dir in run_dirs:
+        manifest = verify_manifest(run_dir)
+        assert manifest["artifact_count"] > 0
+        summary = json.loads((run_dir / "summary.json").read_text(encoding="utf-8"))
+        assert summary["run_id"] == run_dir.name
