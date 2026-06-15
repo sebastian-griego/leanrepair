@@ -230,7 +230,10 @@ Experiment artifacts are written under `results/<group>/run_<timestamp>/`:
 - Strict replay casebook: `strict_replay_casebook.json`, `strict_replay_casebook.md`, `strict_replay_casebook_cases.jsonl`
 - Strict replay paired comparison: `strict_replay_paired.json`, `strict_replay_paired.md`
 - Artifact manifest: `manifest.json` with byte sizes and SHA-256 hashes for
-  every non-root-manifest file in the run directory.
+  every non-root-manifest file in the run directory. New manifests also record
+  the run directory name as `run_id`; verification rejects mismatched `run_id`
+  values while still accepting older checked-in manifests that predate the
+  field.
 
 Trace taxonomy reports are acceptance-aware: on strict-acceptance runs they
 separate raw Lean-ok candidates from candidates actually accepted by the repair

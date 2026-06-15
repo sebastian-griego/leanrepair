@@ -55,12 +55,13 @@ def main(argv: list[str] | None = None) -> int:
         except ManifestError as exc:
             print(f"manifest error in {run_dir}: {exc}", file=sys.stderr)
             return 1
-        verified.append(
-            {
-                "run_dir": str(run_dir).replace("\\", "/"),
-                "artifact_count": int(manifest["artifact_count"]),
-            }
-        )
+        row = {
+            "run_dir": str(run_dir).replace("\\", "/"),
+            "artifact_count": int(manifest["artifact_count"]),
+        }
+        if manifest.get("run_id"):
+            row["run_id"] = str(manifest["run_id"])
+        verified.append(row)
 
     print(json.dumps({"verified": verified}, indent=2, sort_keys=True))
     return 0

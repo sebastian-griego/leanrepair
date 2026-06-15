@@ -26,6 +26,7 @@ def write_manifest(root: str | Path) -> dict[str, Any]:
     ]
     manifest = {
         "schema_version": SCHEMA_VERSION,
+        "run_id": root.name,
         "artifact_count": len(artifacts),
         "artifacts": artifacts,
     }
@@ -53,6 +54,14 @@ def verify_manifest(root: str | Path, *, allow_extra: bool = False) -> dict[str,
         raise ManifestError(
             f"unsupported manifest schema_version: {manifest.get('schema_version')!r}"
         )
+    run_id = manifest.get("run_id")
+    if run_id is not None:
+        if not isinstance(run_id, str) or not run_id:
+            raise ManifestError("manifest run_id must be a non-empty string")
+        if run_id != root.name:
+            raise ManifestError(
+                f"manifest run_id {run_id!r} does not match manifest root {root.name!r}"
+            )
 
     artifacts = manifest.get("artifacts")
     if not isinstance(artifacts, list):

@@ -36,6 +36,7 @@ def test_write_and_verify_manifest_records_nested_artifacts(tmp_path):
     assert (run_dir / "manifest.json").exists()
     verified = verify_manifest(run_dir)
     assert verified["artifact_count"] == 3
+    assert verified["run_id"] == "run_001"
 
 
 def test_verify_manifest_detects_tampered_artifact(tmp_path):
@@ -77,6 +78,40 @@ def test_verify_manifest_rejects_unlisted_nested_manifest(tmp_path):
 
     with pytest.raises(ManifestError, match="nested/manifest\\.json"):
         verify_manifest(run_dir)
+
+
+def test_verify_manifest_rejects_mismatched_run_id(tmp_path):
+    run_dir = tmp_path / "run_001"
+    run_dir.mkdir()
+    (run_dir / "summary.json").write_text("{}\n", encoding="utf-8")
+    write_manifest(run_dir)
+    manifest_path = run_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["run_id"] = "run_002"
+    manifest_path.write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ManifestError, match="does not match manifest root"):
+        verify_manifest(run_dir)
+
+
+def test_verify_manifest_accepts_legacy_manifest_without_run_id(tmp_path):
+    run_dir = tmp_path / "run_001"
+    run_dir.mkdir()
+    artifact = run_dir / "summary.json"
+    artifact.write_text("{}\n", encoding="utf-8")
+    manifest = write_manifest(run_dir)
+    del manifest["run_id"]
+    (run_dir / "manifest.json").write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    verified = verify_manifest(run_dir)
+    assert verified["artifact_count"] == 1
+    assert "run_id" not in verified
 
 
 def test_verify_manifest_rejects_path_escape(tmp_path):
@@ -126,6 +161,7 @@ def test_verify_artifact_manifest_cli(tmp_path):
     assert completed.returncode == 0
     payload = json.loads(completed.stdout)
     assert payload["verified"][0]["artifact_count"] == 1
+    assert payload["verified"][0]["run_id"] == "run_001"
 
 
 def test_verify_artifact_manifest_cli_verifies_run_root(tmp_path):
@@ -161,4 +197,5 @@ def test_verify_artifact_manifest_cli_verifies_run_root(tmp_path):
         "run_001",
         "run_002",
     ]
+    assert [row["run_id"] for row in payload["verified"]] == ["run_001", "run_002"]
     assert [row["artifact_count"] for row in payload["verified"]] == [1, 1]
